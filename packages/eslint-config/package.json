@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.26.10",
-    "@babel/eslint-parser": "7.27.1",
+    "@babel/eslint-parser": "7.27.5",
     "@babel/eslint-plugin": "7.27.1",
     "@cedarjs/eslint-plugin": "0.1.1",
     "@cedarjs/internal": "0.1.1",

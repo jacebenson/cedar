@@ -22,7 +22,7 @@
     "test:watch": "yarn test --watch"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "7.27.1",
+    "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/api": "0.1.1",
     "@cedarjs/context": "0.1.1",
     "@envelop/core": "5.0.2",
