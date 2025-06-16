@@ -1,4 +1,4 @@
-import terminalLink from 'terminal-link'
+import { terminalLink } from 'termi-link'
 
 export const command = 'flightcontrol <side>'
 export const alias = 'fc'

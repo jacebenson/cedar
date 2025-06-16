@@ -1,4 +1,4 @@
-import terminalLink from 'terminal-link'
+import { terminalLink } from 'termi-link'
 
 export const command = 'baremetal [environment]'
 export const description = 'Deploy to baremetal server(s)'
