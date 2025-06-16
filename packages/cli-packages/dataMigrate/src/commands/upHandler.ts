@@ -20,20 +20,20 @@ export async function handler({
   if (importDbClientFromDist) {
     if (!fs.existsSync(distPath)) {
       console.warn(
-        `Can't find api dist at ${distPath}. You may need to build first: yarn rw build api`,
+        `Can't find api dist at ${distPath}. You may need to build first: ` +
+          'yarn rw build api',
       )
       process.exitCode = 1
       return
     }
 
-    const distLibDbPath = path.join(distPath, 'lib', 'db.js')
+    const distLibPath = path.join(distPath, 'lib')
+    const distLibDbPath = path.join(distLibPath, 'db.js')
 
     if (!fs.existsSync(distLibDbPath)) {
       console.error(
-        `Can't find db.js at ${distLibDbPath}. Redwood expects the db.js file to be in the ${path.join(
-          distPath,
-          'lib',
-        )} directory`,
+        `Can't find db.js at ${distLibDbPath}. CedarJS expects the db.js ` +
+          `file to be in the ${distLibPath} directory`,
       )
       process.exitCode = 1
       return
