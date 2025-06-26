@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 
 import React from 'react'
 
@@ -10,16 +10,15 @@ import { load as loadHtml } from 'cheerio'
 import ReactDOMServer from 'react-dom/server'
 
 import {
-  registerApiSideBabelHook,
-  registerWebSideBabelHook,
-} from '@cedarjs/babel-config'
-import { getPaths, ensurePosixPath } from '@cedarjs/project-config'
+  getPaths,
+  ensurePosixPath,
+  importStatementPath,
+} from '@cedarjs/project-config'
 import { LocationProvider } from '@cedarjs/router'
 import { matchPath } from '@cedarjs/router/dist/util'
 import type { QueryInfo } from '@cedarjs/web'
 
-import redwoodCellsPlugin from './babelPlugins/babel-plugin-redwood-cell'
-import mediaImportsPlugin from './babelPlugins/babel-plugin-redwood-prerender-media-imports'
+import { buildAndImport } from './build-and-import/buildAndImport'
 import { detectPrerenderRoutes } from './detection'
 import {
   GqlHandlerImportError,
@@ -35,12 +34,13 @@ const prerenderApolloClient = new ApolloClient({ cache: new InMemoryCache() })
 async function recursivelyRender(
   App: React.ElementType,
   Routes: React.ElementType,
+  CellCacheContextProvider: React.ElementType,
   renderPath: string,
   gqlHandler: any,
   queryCache: Record<string, QueryInfo>,
 ): Promise<string> {
   // Load this async, to prevent rwjs/web being loaded before shims
-  const { CellCacheContextProvider, getOperationName } = require('@cedarjs/web')
+  const { getOperationName } = await import('@cedarjs/web')
 
   let shouldShowGraphqlHandlerNotFoundWarn = false
   // Execute all gql queries we haven't already fetched
@@ -77,10 +77,9 @@ async function recursivelyRender(
             result.errors[0].message ?? JSON.stringify(result.errors, null, 4)
 
           if (result.errors[0]?.extensions?.code === 'UNAUTHENTICATED') {
+            const queryName = getOperationName(value.query)
             console.error(
-              `\n \n 🛑  Cannot prerender the query ${getOperationName(
-                value.query,
-              )} as it requires auth. \n`,
+              `\n \n 🛑  Cannot prerender the query ${queryName} as it requires auth. \n`,
             )
           }
 
@@ -138,7 +137,14 @@ async function recursivelyRender(
   if (Object.values(queryCache).some((value) => !value.hasProcessed)) {
     // We found new queries that we haven't fetched yet. Execute all new
     // queries and render again
-    return recursivelyRender(App, Routes, renderPath, gqlHandler, queryCache)
+    return recursivelyRender(
+      App,
+      Routes,
+      CellCacheContextProvider,
+      renderPath,
+      gqlHandler,
+      queryCache,
+    )
   } else {
     if (shouldShowGraphqlHandlerNotFoundWarn) {
       console.warn(
@@ -231,6 +237,32 @@ function insertChunkLoadingScript(
   })
 }
 
+interface Args {
+  appPath: string
+  routesPath: string
+  outDir: string
+}
+
+async function createCombinedEntry({ appPath, routesPath, outDir }: Args) {
+  const combinedContent = `
+    import App from "${importStatementPath(appPath.replace('.tsx', ''))}";
+    import Routes from "${importStatementPath(routesPath.replace('.tsx', ''))}";
+    import { CellCacheContextProvider } from '@cedarjs/web'
+
+    export { App, Routes, CellCacheContextProvider };
+  `
+
+  const tempFilePath = path.join(outDir, '__prerender-temp-entry.tsx')
+  await fs.promises.writeFile(tempFilePath, combinedContent, 'utf8')
+  return tempFilePath
+}
+
+const renderCache: {
+  App?: React.FunctionComponent
+  Routes?: React.FunctionComponent
+  CellCacheContextProvider?: React.FunctionComponent
+} = {}
+
 interface PrerenderParams {
   queryCache: Record<string, QueryInfo>
   renderPath: string // The path (url) to render e.g. /about, /dashboard/me, /blog-post/3
@@ -241,69 +273,48 @@ export const runPrerender = async ({
   renderPath,
 }: PrerenderParams): Promise<string | void> => {
   registerShims(renderPath)
-  // registerApiSideBabelHook already includes the default api side babel
-  // config. So what we define here is additions to the default config
-  registerApiSideBabelHook({
-    plugins: [
-      [
-        'babel-plugin-module-resolver',
-        {
-          alias: {
-            api: getPaths().api.base,
-            web: getPaths().web.base,
-          },
-          loglevel: 'silent', // to silence the unnecessary warnings
-        },
-      ],
-    ],
-    overrides: [
-      {
-        test: ['./api/'],
-        plugins: [
-          [
-            'babel-plugin-module-resolver',
-            {
-              alias: {
-                src: getPaths().api.src,
-              },
-              loglevel: 'silent',
-            },
-            'exec-api-src-module-resolver',
-          ],
-        ],
-      },
-    ],
-  })
 
   const gqlHandler = await getGqlHandler()
 
-  // Prerender specific configuration
-  // extends projects web/babelConfig
-  registerWebSideBabelHook({
-    overrides: [
-      {
-        plugins: [
-          ['ignore-html-and-css-imports'], // webpack/postcss handles CSS imports
-          [mediaImportsPlugin],
-        ],
-      },
-      {
-        test: /.+Cell.(js|tsx|jsx)$/,
-        plugins: [redwoodCellsPlugin],
-      },
-    ],
-    options: {
-      forPrerender: true,
-    },
-  })
+  const prerenderDistPath = path.join(getPaths().web.dist, '__prerender')
+  fs.mkdirSync(prerenderDistPath, { recursive: true })
 
-  const indexContent = fs.readFileSync(getRootHtmlPath()).toString()
-  const { default: App } = require(getPaths().web.app)
-  const { default: Routes } = require(getPaths().web.routes)
+  if (!renderCache.App) {
+    const entryPath = await createCombinedEntry({
+      appPath: getPaths().web.app,
+      routesPath: getPaths().web.routes,
+      outDir: prerenderDistPath,
+    })
+
+    const required = await buildAndImport({
+      cwd: getPaths().web.base,
+      filepath: entryPath,
+      preserveTemporaryFile: true,
+    })
+
+    renderCache.App = required.App
+    renderCache.Routes = required.Routes
+    renderCache.CellCacheContextProvider = required.CellCacheContextProvider
+  }
+
+  const { App, Routes, CellCacheContextProvider } = renderCache
+
+  if (!App) {
+    throw new Error('App not found')
+  }
+
+  if (!Routes) {
+    throw new Error('Routes not found')
+  }
+
+  if (!CellCacheContextProvider) {
+    throw new Error('CellCacheContextProvider not found')
+  }
 
   const componentAsHtml = await recursivelyRender(
     App,
     Routes,
+    CellCacheContextProvider,
     renderPath,
     gqlHandler,
     queryCache,
@@ -311,8 +322,9 @@ export const runPrerender = async ({
 
   const { helmet } = globalThis.__REDWOOD__HELMET_CONTEXT
 
-  // Loop over ther queryCache and write the queries to the apollo client cache this will normalize the data
-  // and make it available to the app when it hydrates
+  // Loop over ther queryCache and write the queries to the apollo client cache
+  // This will normalize the data and make it available to the app when it
+  // hydrates
   Object.keys(queryCache).forEach((queryKey) => {
     const { query, variables, data } = queryCache[queryKey]
     prerenderApolloClient.writeQuery({
@@ -322,6 +334,7 @@ export const runPrerender = async ({
     })
   })
 
+  const indexContent = fs.readFileSync(getRootHtmlPath()).toString()
   const indexHtmlTree = loadHtml(indexContent)
 
   if (helmet) {
