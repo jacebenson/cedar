@@ -59,7 +59,7 @@ module.exports = {
     'packages/babel-config/src/__tests__/__fixtures__/**/*',
     'packages/codemods/**/__testfixtures__/**/*',
     'packages/cli/**/__testfixtures__/**/*',
-    'packages/prerender/src/babelPlugins/__tests__/__fixtures__/**/*',
+    'packages/prerender/**/__tests__/__fixtures__/**/*',
     'packages/storage/src/__tests__/prisma-client/*',
     'packages/testing/config',
     'packages/testing/**/__fixtures__/**/*',
