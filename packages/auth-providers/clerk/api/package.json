@@ -39,16 +39,16 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@clerk/clerk-sdk-node": "4.13.21"
+    "@clerk/backend": "1.33.1"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "0.16.4",
+    "@arethetypeswrong/cli": "0.18.1",
     "@cedarjs/api": "workspace:*",
     "@cedarjs/framework-tools": "workspace:*",
     "@types/aws-lambda": "8.10.145",
     "concurrently": "8.2.2",
-    "publint": "0.3.11",
-    "tsx": "4.19.3",
+    "publint": "0.3.12",
+    "tsx": "4.19.4",
     "typescript": "5.6.2",
     "vitest": "2.1.9"
   },

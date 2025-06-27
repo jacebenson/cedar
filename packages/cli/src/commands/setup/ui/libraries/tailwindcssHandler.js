@@ -4,7 +4,7 @@ import path from 'node:path'
 import { ListrEnquirerPromptAdapter } from '@listr2/prompt-adapter-enquirer'
 import execa from 'execa'
 import { Listr } from 'listr2'
-import terminalLink from 'terminal-link'
+import { terminalLink } from 'termi-link'
 
 import { recordTelemetryAttributes } from '@cedarjs/cli-helpers'
 import { errorTelemetry } from '@cedarjs/telemetry'
@@ -151,6 +151,12 @@ export const handler = async ({ force, install }) => {
                     ['workspace', 'web', 'add', '-D', ...webWorkspacePackages],
                     {
                       cwd: rwPaths.base,
+                      env: {
+                        // For some reason yarn started installing deprecated
+                        // typescript types when installing tailwind. This
+                        // prevents it from happening.
+                        YARN_TS_ENABLE_AUTO_TYPES: 'false',
+                      },
                     },
                   )
                 },

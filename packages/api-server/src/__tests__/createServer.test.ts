@@ -28,7 +28,7 @@ let createServer: typeof tCreateServer
 
 beforeAll(async () => {
   original_RWJS_CWD = process.env.RWJS_CWD
-  process.env.RWJS_CWD = path.join(__dirname, './fixtures/redwood-app')
+  process.env.RWJS_CWD = path.join(__dirname, './fixtures/graphql/cedar-app')
   createServer = (await import('../createServer.js')).createServer
 })
 
@@ -109,7 +109,7 @@ describe('createServer', () => {
   // This should be fixed so that all logs go to the same place
   it("doesn't handle logs consistently", async () => {
     // Here we create a logger that outputs to an array.
-    const loggerLogs: string[] = []
+    const loggerLogs: Record<string, Record<string, string> | string>[] = []
     const stream = build(async (source) => {
       for await (const obj of source) {
         loggerLogs.push(obj)
@@ -160,7 +160,6 @@ describe('createServer', () => {
       level: 30,
       msg: 'incoming request',
       req: {
-        hostname: 'localhost:80',
         method: 'GET',
         remoteAddress: '127.0.0.1',
         url: '/hello',
@@ -175,14 +174,20 @@ describe('createServer', () => {
       },
     })
 
+    // There will be two lines saying what address the server is listening to,
+    // one IPv4 and one IPv6. But after a recent OS update the order of the
+    // logs switched. So now I just check that they're there, but don't care
+    // what order they're in
     expect(loggerLogs[2]).toMatchObject({
       level: 30,
-      msg: 'Server listening at http://[::1]:8910',
+      msg: /Server listening at http:\/\/(127\.0\.0\.1|\[::1\]):8910/,
     })
     expect(loggerLogs[3]).toMatchObject({
       level: 30,
-      msg: 'Server listening at http://127.0.0.1:8910',
+      msg: /Server listening at http:\/\/(127\.0\.0\.1|\[::1\]):8910/,
     })
+
+    expect(loggerLogs[2].msg).not.toEqual(loggerLogs[3].msg)
   })
 
   describe('`server.start`', () => {

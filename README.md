@@ -1,6 +1,14 @@
 <p align="center">
   <img src="https://avatars.githubusercontent.com/u/211931789?s=200&v=4" width="200" />
   <h1 align="center">CedarJS</h1>
+  <p align="center">
+    <a href="https://discord.gg/8mNkAgby5m">
+      <img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Join our Discord server!"
+    /></a>
+    <a href="https://cedarjs.com">
+      <img src="https://img.shields.io/badge/Documentation-3ECC5F?style=for-the-badge&logo=readthedocs&logoColor=white" alt="Documentation" />
+    </a>
+  </p>
 </p>
 
 ## About
@@ -12,26 +20,33 @@ path for existing RedwoodJS applications.
 CedarJS is a reliable, modern, and actively maintained full-stack React
 framework used in production by both large and small companies.
 
-Cedar would obviously not be where it is today without the vision and heroic
+CedarJS would obviously not be where it is today without the vision and heroic
 efforts of the RedwoodJS founders, maintainers and community.
+
+> cedar has become a powerful symbol of strength and revitalization\
+> _— https://indigenousfoundations.arts.ubc.ca/cedar/_
 
 ## Migrating from RedwoodJS to CedarJS
 
-Search and replace all instances of `"@redwoodjs/(.*)": "\d+\.\d+\.\d+"`
-with `"@cedarjs/$1": "0.0.3"` (or whatever the latest version of Cedar is when
-you run this) in all three `package.json` files. Run `yarn install` to update
-your lock file.
-
-Search and replace all instances of `@redwoodjs` in all files with `@cedarjs`.
-Pay attention to `yarn.lock`. If anything changed in there you probably have to
-do some manual editing. Also find all mentions of
-`storybook-framework-redwoodjs-vite` and replace with
-`storybook-framework-cedarjs`
+1. Search and replace all instances of `"@redwoodjs/(.*)": "\d+\.\d+\.\d+"`
+   with `"@cedarjs/$1": "0.1.1"` (or whatever the latest version of Cedar is
+   when you run this) in all three `package.json` files.
+2. Run `yarn install` to update your lock file.
+3. Make a git commit with all changes as a checkpoint to make it easier to see
+   what changes in the following steps
+4. Search and replace all instances of `@redwoodjs` in all files with
+   `@cedarjs`.
+5. Also find all mentions of `storybook-framework-redwoodjs-vite` and replace
+   with `storybook-framework-cedarjs`
+6. Pay attention to `yarn.lock`. If anything changed in there you probably have
+   to do some manual editing. (Contact me if you need help.)
+7. Delete all files and folders inside `.redwood/` except `README.md`
+8. Run `yarn install` and `yarn rw build`. Make sure everything works as
+   expected.
+9. Make a new git commit (or amend the previous one you did)
 
 Cedar doesn't have the equivalent of Redwood Studio yet. So Studio will not
 work for now. Let me know if that's something you use and need.
-
-Delete all files and folders inside `.redwood/` except `README.md`
 
 ## Roadmap
 
@@ -56,11 +71,7 @@ what you use so I know what to keep and what to remove!
 
 - [ ] Make all packages ESM only where possible and ESM+CJS where needed to
       keep compatibility with existing RW apps. Packages still to convert:
-  - [ ] `@cedarjs/cli` (in progress, see
-        [#23](https://github.com/cedarjs/cedar/pull/23),
-        [#26](https://github.com/cedarjs/cedar/pull/26),
-        [#34](https://github.com/cedarjs/cedar/pull/34),
-        [#40](https://github.com/cedarjs/cedar/pull/40), etc)
+  - [x] `@cedarjs/cli`
   - [ ] `@cedarjs/fastify-web`
   - [ ] `@cedarjs/api-server`
   - [ ] `@cedarjs/api`
@@ -71,7 +82,8 @@ what you use so I know what to keep and what to remove!
       ESM
 - [ ] Enable strict mode for new Cedar TypeScript apps.
 - [ ] Upgrade to Node 24
-- [ ] Setup dependabot/renovate to automatically merge PRs that pass all checks
+- [x] Setup dependabot/renovate to automatically merge PRs that pass all checks
+- [ ] Move to Vitest for Cedar apps to prepare for ESM support
 
 ### Package Updates
 
@@ -80,12 +92,13 @@ what you use so I know what to keep and what to remove!
   - [ ] `prisma`
   - [ ] `apollo`
   - [ ] `vite`
-  - [ ] `fastify`
+  - [x] `fastify`
 
 ### Docs
 
-- [ ] Mirror the RedwoodJS docs to make sure they don't get deleted
-- [ ] Document where Cedar diverges from RedwoodJS. (Future major version.)
+- [x] Mirror the RedwoodJS docs to make sure they don't get deleted
+  - Done. See https://cedarjs.com/docs
+- [ ] Document where CedarJS diverges from RedwoodJS. (Future major version.)
 
 ### New Features
 
@@ -97,15 +110,18 @@ what you use so I know what to keep and what to remove!
 
 ## Documentation
 
-The best documentation for Cedar is actually still the
-[RedwoodJS documentation](https://redwoodjs.com/docs). The first version of
-Cedar will be fully compatible with RedwoodJS v8.6 and there will be no
-specific documentation written for Cedar for now.
+0.x releases of CedarJS will be fully compatible with RedwoodJS v8.6, so the
+best documentation for CedarJS is actually still the RedwoodJS documentation,
+which I have a copy of here: https://cedarjs.com/docs.
+I have made a few edits and updates to it, but it's still mostly the same as
+[the original](https://redwoodjs.com/docs).
 
 The only thing you'll have to adjust are the package names and replace every
 `@redwoodjs` package with a `@cedarjs` package of the same name.
 
-## The Cedar Team
+There will be no specific documentation written for CedarJS for now.
+
+## The CedarJS Team
 
 <table>
   <tr>

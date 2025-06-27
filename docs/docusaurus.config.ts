@@ -1,6 +1,7 @@
 import type * as PresetClassic from '@docusaurus/preset-classic'
 import type { Config } from '@docusaurus/types'
-import type { PluginOptions } from '@easyops-cn/docusaurus-search-local'
+import type { PluginOptions as SearchLocalPluginOptions } from '@easyops-cn/docusaurus-search-local'
+import type { PluginOptions as LlmsTxtPluginOptions } from '@signalwire/docusaurus-plugin-llms-txt'
 
 import autoImportTabs from './src/remark/auto-import-tabs.mjs'
 import fileExtSwitcher from './src/remark/file-ext-switcher.mjs'
@@ -14,35 +15,24 @@ const config: Config = {
       tutorial: 'forward',
     },
   },
-  // ?
-  title: 'Cedar Docs',
-  // ?
-  tagline:
-    'Built on React, GraphQL, and Prisma, Cedar works with the components and development workflow you love, but with simple conventions and helpers to make your experience even better.',
-  // ?
-  url: 'https://cedar.run',
-  baseUrl: '/redwood-docs',
+  title: 'CedarJS',
+  tagline: 'The React + GraphQL Web App Framework',
+  url: 'https://cedarjs.com',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'https://redwoodjs.com/favicon.png',
+  favicon: '/img/favicon.ico',
   organizationName: 'cedarjs', // Usually your GitHub org/user name.
   // ?
   projectName: 'cedar', // Usually your repo name.,
   themeConfig: {
-    algolia: {
-      appId: '__37B3LHULK0',
-      apiKey: '__1d7f2f299d9a38c157501c301425f090',
-      indexName: 'learn-cedar',
-      contextualSearch: true,
-      searchParameters: {},
-      // externalUrlRegex: 'https://learn-redwood.netlify.app',
-    },
+    image: 'img/og-image.png',
     navbar: {
-      title: 'Cedar',
+      title: 'CedarJS',
       logo: {
-        alt: 'Cedar logo',
-        src: 'https://d33wubrfki0l68.cloudfront.net/72b0d56596a981835c18946d6c4f8a968b08e694/82254/images/logo.svg',
-        href: 'https://cedar.run/redwood-docs',
+        alt: 'CedarJS logo',
+        src: 'https://avatars.githubusercontent.com/u/211931789?s=200&v=4',
+        href: 'https://cedarjs.com',
         target: '_self',
       },
       items: [
@@ -78,15 +68,15 @@ const config: Config = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.com/invite/redwoodjs',
+              href: 'https://discord.gg/8mNkAgby5m',
             },
+            // {
+            //   label: 'Discourse',
+            //   href: 'https://community.redwoodjs.com/',
+            // },
             {
-              label: 'Discourse',
-              href: 'https://community.redwoodjs.com/',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/redwoodjs',
+              label: 'Twitter/X',
+              href: 'https://x.com/cedarjs',
             },
           ],
         },
@@ -94,8 +84,8 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'cedar.run',
-              to: 'https://cedar.run/',
+              label: 'cedarjs.com',
+              to: 'https://cedarjs.com/',
             },
             {
               label: 'GitHub',
@@ -104,7 +94,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Cedar. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} CedarJS. Built with Docusaurus.`,
     },
   } satisfies PresetClassic.ThemeConfig,
   themes: [
@@ -112,7 +102,27 @@ const config: Config = {
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
-      } satisfies PluginOptions,
+        indexBlog: false,
+      } satisfies SearchLocalPluginOptions,
+    ],
+  ],
+  plugins: [
+    [
+      '@signalwire/docusaurus-plugin-llms-txt',
+      {
+        depth: 2,
+        logLevel: 1,
+        content: {
+          includeBlog: false,
+          excludeRoutes: [
+            '/docs/canary/**',
+            '/docs/0.0.*/**',
+            '/docs/8.*/**',
+            '/search',
+          ],
+          enableMarkdownFiles: true,
+        },
+      } satisfies LlmsTxtPluginOptions,
     ],
   ],
   presets: [
@@ -133,6 +143,7 @@ const config: Config = {
             },
           },
         },
+        blog: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },

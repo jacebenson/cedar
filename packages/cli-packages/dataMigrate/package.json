@@ -21,18 +21,19 @@
     "build:types": "tsc --build --verbose",
     "prepublishOnly": "NODE_ENV=production yarn build",
     "test": "yarn test:unit && yarn test:dist",
-    "test:dist": "yarn vitest run ./dist.test.ts",
-    "test:unit": "yarn vitest run src/"
+    "test:dist": "yarn jest ./dist.test.ts",
+    "test:unit": "yarn jest src"
   },
   "dependencies": {
     "@cedarjs/babel-config": "workspace:*",
     "@cedarjs/project-config": "workspace:*",
+    "bundle-require": "^5.1.0",
     "chalk": "4.1.2",
     "dotenv-defaults": "5.0.2",
     "execa": "5.1.1",
     "fs-extra": "11.2.0",
     "listr2": "7.0.2",
-    "terminal-link": "2.1.1",
+    "termi-link": "1.1.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
@@ -40,10 +41,10 @@
     "@prisma/client": "5.20.0",
     "@types/fs-extra": "11.0.4",
     "@types/yargs": "17.0.33",
-    "memfs": "4.17.1",
-    "tsx": "4.19.3",
-    "typescript": "5.6.2",
-    "vitest": "2.1.9"
+    "jest": "29.7.0",
+    "memfs": "4.17.2",
+    "tsx": "4.19.4",
+    "typescript": "5.6.2"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

@@ -61,7 +61,7 @@ test('Check that rehydration works for page not wrapped in Set', async ({
   expect(bodyText.match(/#7757/g)).toHaveLength(1)
 
   const title = await page.locator('title').innerText()
-  expect(title).toBe('Double | Redwood App')
+  expect(title).toBe('Double | Cedar App')
 
   expect(errors).toMatchObject([])
 
@@ -171,7 +171,7 @@ test('Check that a specific blog post is prerendered', async () => {
   expect(mainContent).not.toMatch(/A little more about me/)
 
   const navTitle = await pageWithoutJs.locator('header >> h1').innerText()
-  expect(navTitle).toBe('Redwood Blog')
+  expect(navTitle).toBe('Cedar Blog')
 
   const navLinks = await pageWithoutJs.locator('nav >> ul').innerText()
   expect(navLinks.split('\n')).toEqual([
@@ -200,7 +200,7 @@ test('Check that meta-tags are rendering the correct dynamic data', async () => 
   await expect(ogDescription).toHaveAttribute('content', 'Description 1')
 
   const title = await pageWithoutJs.locator('title').innerHTML()
-  await expect(title).toBe('Post 1 | Redwood App')
+  await expect(title).toBe('Post 1 | Cedar App')
 
   const ogTitle = await pageWithoutJs.locator('meta[property="og:title"]')
   await expect(ogTitle).toHaveAttribute('content', 'Post 1')

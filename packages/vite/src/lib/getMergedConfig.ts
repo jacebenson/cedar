@@ -155,11 +155,11 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
  * By default, the entry point is the index.html file - even if you don't
  * specify it in RollupOptions
  *
- * With streaming SSR, out entrypoint is different - either entry.client.tsx or
+ * With streaming SSR, our entrypoint is different - either entry.client.tsx or
  * entry.server.tsx and the html file is not used at all, because it is defined
  * in Document.tsx
  *
- * @param ssr {boolean} Whether to return the SSR inputs or not
+ * @param ssr Whether to return the SSR inputs or not
  * @returns Rollup input Options
  */
 function getRollupInput(ssr: boolean): InputOption | undefined {
