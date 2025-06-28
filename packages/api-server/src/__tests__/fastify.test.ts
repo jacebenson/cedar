@@ -1,5 +1,3 @@
-import path from 'node:path'
-
 import fastify from 'fastify'
 import { vol } from 'memfs'
 import {
@@ -28,7 +26,7 @@ vi.mock('fastify', () => {
 })
 
 // Suppress terminal logging.
-// console.log = vi.fn()
+console.log = vi.fn()
 
 // Set up RWJS_CWD.
 let original_RWJS_CWD: string | undefined
@@ -54,32 +52,16 @@ const userConfig = {
   requestTimeout: 25_000,
 }
 
-console.log('dirname', __dirname)
-const fileOSRoot = path.parse(__dirname).root
-console.log('fileOSRoot', fileOSRoot)
+const configPath = await vi.hoisted(async () => {
+  const path = await import('node:path')
 
-vi.mock('/graphql/cedar-app/api/server.config.js', () => {
-  return {
-    default: {
-      config: userConfig,
-    },
-  }
+  // This will be `D:\` on Windows (or some other drive letter) and `/` on Unix
+  const osRoot = path.parse(__dirname).root.replace('\\', '/')
+
+  return osRoot + 'graphql/cedar-app/api/server.config.js'
 })
-vi.mock('/D:/graphql/cedar-app/api/server.config.js', () => {
-  return {
-    default: {
-      config: userConfig,
-    },
-  }
-})
-vi.mock('D:/graphql/cedar-app/api/server.config.js', () => {
-  return {
-    default: {
-      config: userConfig,
-    },
-  }
-})
-vi.mock('\\graphql\\cedar-app\\api\\server.config.js', () => {
+
+vi.mock(configPath, () => {
   return {
     default: {
       config: userConfig,
