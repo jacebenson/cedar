@@ -44,7 +44,7 @@ const AdminLayout = ({children}: AdminLayoutProps) => {
                logOut()
              }}
           >
-            -> Log out
+            -&gt; Log out
           </a>
         </li>
       </ul>

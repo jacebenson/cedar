@@ -247,11 +247,15 @@ describe('makeMergedSchema', () => {
         }
       }`
       const res = await graphql({ schema, source: query })
-      expect(res.errors).toEqual([
-        new GraphQLError(
-          'Unable to resolve correct type for union. Try adding unique fields to each type or __typename to each resolver',
-        ),
-      ])
+
+      expect(res.errors).toHaveLength(1)
+      expect(res.errors?.at(0)).toBeInstanceOf(GraphQLError)
+      expect(res.errors?.at(0)).toMatchObject({
+        message:
+          'Unable to resolve correct type for union. Try adding unique ' +
+          'fields to each type or __typename to each resolver',
+        path: ['searchTypeSameFields'],
+      })
       expect((res.data as any).searchTypeSameFields).toBeNull()
     })
   })

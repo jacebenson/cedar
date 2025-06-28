@@ -60,7 +60,7 @@
     "react": "18.3.1",
     "tsx": "4.19.4",
     "typescript": "5.6.2",
-    "vitest": "2.1.9"
+    "vitest": "3.2.4"
   },
   "peerDependencies": {
     "netlify-identity-widget": "1.9.2"

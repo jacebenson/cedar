@@ -47,7 +47,7 @@
     "tsx": "4.19.4",
     "untildify": "4.0.0",
     "uuid": "10.0.0",
-    "vitest": "2.1.9",
+    "vitest": "3.2.4",
     "yargs": "17.7.2"
   },
   "publishConfig": {
