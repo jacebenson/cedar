@@ -389,7 +389,7 @@ describe('rscTransformUseServerPlugin module scoped "use server"', () => {
     const output = await pluginTransform(input, id)
 
     expect(output).toMatchInlineSnapshot(`
-        ""use server"
+      ""use server"
 
               import fs from 'node:fs'
 
@@ -400,10 +400,10 @@ describe('rscTransformUseServerPlugin module scoped "use server"', () => {
                 )
               }
 
-        import {registerServerReference} from "react-server-dom-webpack/server";
-        registerServerReference(formAction,"some/dist/path/assets/rsa-actions.ts-0.mjs","default");
-        "
-      `)
+      import {registerServerReference} from "react-server-dom-webpack/server";
+      registerServerReference(formAction,"some/dist/path/assets/rsa-actions.ts-0.mjs","default");
+      "
+    `)
   })
 
   it.todo('should handle default exported anonymous function', async () => {
