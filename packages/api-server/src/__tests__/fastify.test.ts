@@ -26,7 +26,7 @@ vi.mock('fastify', () => {
 })
 
 // Suppress terminal logging.
-console.log = vi.fn()
+// console.log = vi.fn()
 
 // Set up RWJS_CWD.
 let original_RWJS_CWD: string | undefined
