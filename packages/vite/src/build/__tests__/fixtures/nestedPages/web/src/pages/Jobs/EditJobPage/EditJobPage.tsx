@@ -4,6 +4,6 @@ const EditJobPage = ({ id, token }) => {
   return <EditJobCell id={id} token={token} />
 }
 
-export NonDefaultExport = 'for testing'
+export const NonDefaultExport = 'for testing'
 
 export default EditJobPage

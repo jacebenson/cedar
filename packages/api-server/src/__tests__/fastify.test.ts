@@ -1,3 +1,5 @@
+import path from 'node:path'
+
 import fastify from 'fastify'
 import { vol } from 'memfs'
 import {
@@ -26,7 +28,7 @@ vi.mock('fastify', () => {
 })
 
 // Suppress terminal logging.
-console.log = vi.fn()
+// console.log = vi.fn()
 
 // Set up RWJS_CWD.
 let original_RWJS_CWD: string | undefined
@@ -52,6 +54,10 @@ const userConfig = {
   requestTimeout: 25_000,
 }
 
+console.log('dirname', __dirname)
+const fileOSRoot = path.parse(__dirname).root
+console.log('fileOSRoot', fileOSRoot)
+
 vi.mock('/graphql/cedar-app/api/server.config.js', () => {
   return {
     default: {
@@ -59,7 +65,21 @@ vi.mock('/graphql/cedar-app/api/server.config.js', () => {
     },
   }
 })
-vi.mock('\\redwood-app\\api\\server.config.js', () => {
+vi.mock('/D:/graphql/cedar-app/api/server.config.js', () => {
+  return {
+    default: {
+      config: userConfig,
+    },
+  }
+})
+vi.mock('D:/graphql/cedar-app/api/server.config.js', () => {
+  return {
+    default: {
+      config: userConfig,
+    },
+  }
+})
+vi.mock('\\graphql\\cedar-app\\api\\server.config.js', () => {
   return {
     default: {
       config: userConfig,

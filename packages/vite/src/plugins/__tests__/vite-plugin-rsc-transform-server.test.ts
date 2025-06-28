@@ -1,5 +1,4 @@
 import { vol } from 'memfs'
-import type { TransformPluginContext } from 'rollup'
 import {
   afterAll,
   beforeAll,
@@ -38,7 +37,9 @@ function getPluginTransform(serverEntryFiles: Record<string, string>) {
   // See https://stackoverflow.com/a/70463512/88106
   // Typecasting because we're only going to call transform, and we don't need
   // anything provided by the context.
-  return plugin.transform.bind({} as TransformPluginContext)
+  // This used to be `{} as TransformPluginContext`, but that requires transient
+  // dependencies to match versions. Using `ThisParameterType` is more resilient
+  return plugin.transform.bind({} as ThisParameterType<typeof plugin.transform>)
 }
 
 const id = 'rw-app/web/src/some/path/to/actions.ts'
@@ -389,7 +390,7 @@ describe('rscTransformUseServerPlugin module scoped "use server"', () => {
     const output = await pluginTransform(input, id)
 
     expect(output).toMatchInlineSnapshot(`
-        ""use server"
+      ""use server"
 
               import fs from 'node:fs'
 
@@ -400,10 +401,10 @@ describe('rscTransformUseServerPlugin module scoped "use server"', () => {
                 )
               }
 
-        import {registerServerReference} from "react-server-dom-webpack/server";
-        registerServerReference(formAction,"some/dist/path/assets/rsa-actions.ts-0.mjs","default");
-        "
-      `)
+      import {registerServerReference} from "react-server-dom-webpack/server";
+      registerServerReference(formAction,"some/dist/path/assets/rsa-actions.ts-0.mjs","default");
+      "
+    `)
   })
 
   it.todo('should handle default exported anonymous function', async () => {

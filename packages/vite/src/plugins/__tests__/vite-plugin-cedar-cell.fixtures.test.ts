@@ -1,19 +1,21 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import type { TransformPluginContext, TransformResult } from 'rollup'
 import { describe, it, expect } from 'vitest'
 
 import { cedarCellTransform } from '../vite-plugin-cedar-cell.js'
 
-type TransformResultWithCode = Exclude<
-  TransformResult,
-  null | undefined | void
-> & { code: string }
+// T should extend from TransformResult, but I can't enforce that here because
+// vitest doesn't expose that type, and if I import it from Rollup (where it
+// really comes from), we get into transient dependency issues if versions don't match.
+// type TransformResultWithCode<T extends TransformResult> = Exclude<
+type TransformResultWithCode<T> = Exclude<T, null | undefined | void> & {
+  code: string
+}
 
-export function expectToBeResultWithCode(
-  result: TransformResult,
-): asserts result is TransformResultWithCode {
+export function expectToBeResultWithCode<T>(
+  result: T,
+): asserts result is TransformResultWithCode<T> {
   expect(
     result &&
       typeof result === 'object' &&
@@ -44,7 +46,8 @@ describe('redwoodCellTransform', () => {
 
     const result = await pluginTransform.call(
       // The plugin is not using anything on the context, so this is safe
-      {} as TransformPluginContext,
+      // {} as TransformPluginContext,
+      {} as ThisParameterType<typeof pluginTransform>,
       input,
       codePath,
     )
