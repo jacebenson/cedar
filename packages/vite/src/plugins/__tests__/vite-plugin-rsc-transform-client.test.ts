@@ -1,7 +1,6 @@
 import path from 'node:path'
 
 import { vol } from 'memfs'
-import type { TransformPluginContext } from 'rollup'
 import { normalizePath } from 'vite'
 import {
   afterAll,
@@ -32,7 +31,9 @@ function getPluginTransform(clientEntryFiles: Record<string, string>) {
   // See https://stackoverflow.com/a/70463512/88106
   // Typecasting because we're only going to call transform, and we don't need
   // anything provided by the context.
-  return plugin.transform.bind({} as TransformPluginContext)
+  // This used to be `{} as TransformPluginContext`, but that requires transient
+  // dependencies to match versions. Using `ThisParameterType` is more resilient
+  return plugin.transform.bind({} as ThisParameterType<typeof plugin.transform>)
 }
 
 beforeAll(() => {
