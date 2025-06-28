@@ -26,7 +26,7 @@ vi.mock('fastify', () => {
 })
 
 // Suppress terminal logging.
-// console.log = vi.fn()
+console.log = vi.fn()
 
 // Set up RWJS_CWD.
 let original_RWJS_CWD: string | undefined
@@ -59,7 +59,7 @@ vi.mock('/graphql/cedar-app/api/server.config.js', () => {
     },
   }
 })
-vi.mock('\\redwood-app\\api\\server.config.js', () => {
+vi.mock('\\graphql\\cedar-app\\api\\server.config.js', () => {
   return {
     default: {
       config: userConfig,
