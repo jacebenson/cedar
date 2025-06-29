@@ -1,5 +1,4 @@
 import { vol } from 'memfs'
-import type { TransformPluginContext } from 'rollup'
 import { afterAll, beforeAll, describe, it, expect, vi } from 'vitest'
 
 import { rscTransformUseServerPlugin } from '../vite-plugin-rsc-transform-server.js'
@@ -30,7 +29,9 @@ function getPluginTransform(serverEntryFiles: Record<string, string>) {
   // See https://stackoverflow.com/a/70463512/88106
   // Typecasting because we're only going to call transform, and we don't need
   // anything provided by the context.
-  return plugin.transform.bind({} as TransformPluginContext)
+  // This used to be `{} as TransformPluginContext`, but that requires transient
+  // dependencies to match versions. Using `ThisParameterType` is more resilient
+  return plugin.transform.bind({} as ThisParameterType<typeof plugin.transform>)
 }
 
 const id = 'rw-app/web/src/some/path/to/actions.ts'

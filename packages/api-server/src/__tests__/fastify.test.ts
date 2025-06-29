@@ -52,14 +52,16 @@ const userConfig = {
   requestTimeout: 25_000,
 }
 
-vi.mock('/graphql/cedar-app/api/server.config.js', () => {
-  return {
-    default: {
-      config: userConfig,
-    },
-  }
+const configPath = await vi.hoisted(async () => {
+  const path = await import('node:path')
+
+  // This will be `D:\` on Windows (or some other drive letter) and `/` on Unix
+  const osRoot = path.parse(__dirname).root.replace('\\', '/')
+
+  return osRoot + 'graphql/cedar-app/api/server.config.js'
 })
-vi.mock('\\redwood-app\\api\\server.config.js', () => {
+
+vi.mock(configPath, () => {
   return {
     default: {
       config: userConfig,

@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { pathToFileURL } from 'url'
 
 import type { FastifyInstance, FastifyServerOptions } from 'fastify'
 import Fastify from 'fastify'
@@ -48,7 +49,11 @@ export async function loadFastifyConfig() {
 
   if (!isServerConfigLoaded) {
     console.log(`Loading server config from ${serverConfigPath}`)
-    const config = await import(`file://${serverConfigPath}`)
+    console.log(`Loading server config from URL file://${serverConfigPath}`)
+    console.log(
+      `Loading server config from URL ${pathToFileURL(serverConfigPath).href}`,
+    )
+    const config = await import(pathToFileURL(serverConfigPath).href)
     serverConfigFile = { ...config.default }
     isServerConfigLoaded = true
   }

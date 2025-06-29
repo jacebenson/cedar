@@ -14,7 +14,6 @@
   "scripts": {
     "build": "nx run-many -t build",
     "build:clean": "node ./tasks/clean.mjs",
-    "build:clean:super": "git clean -fdx && yarn && yarn build",
     "build:pack": "nx run-many -t build:pack",
     "build:test-project": "node ./tasks/test-project/test-project",
     "build:watch": "lerna run build:watch --parallel; tsc --build",
@@ -27,6 +26,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "generate-dependency-graph": "node ./tasks/generateDependencyGraph.mjs",
+    "git-clean-build": "node ./tasks/git-clean-build.mjs",
     "install:all": "concurrently -g -c auto -n install:fw \"yarn install\" npm:install:crwrsca",
     "install:ci": "concurrently -g -c auto -n install:fw:ci \"yarn install --inline-builds\" npm:install:crwrsca:ci",
     "install:crwrsca": "yarn --cwd packages/create-cedar-rsc-app install",
@@ -130,7 +130,7 @@
     "tstyche": "3.0.0",
     "tsx": "4.19.4",
     "typescript": "5.6.2",
-    "vitest": "2.1.9",
+    "vitest": "3.2.4",
     "yargs": "17.7.2",
     "zx": "8.1.9"
   },

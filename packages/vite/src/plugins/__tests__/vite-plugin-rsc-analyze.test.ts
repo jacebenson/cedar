@@ -1,4 +1,3 @@
-import type { TransformPluginContext } from 'rollup'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 import { rscAnalyzePlugin } from '../vite-plugin-rsc-analyze.js'
@@ -20,7 +19,9 @@ function getPluginTransform() {
   // See https://stackoverflow.com/a/70463512/88106
   // Typecasting because we're only going to call transform, and we don't need
   // anything provided by the context.
-  return plugin.transform.bind({} as TransformPluginContext)
+  // This used to be `{} as TransformPluginContext`, but that requires transient
+  // dependencies to match versions. Using `ThisParameterType` is more resilient
+  return plugin.transform.bind({} as ThisParameterType<typeof plugin.transform>)
 }
 
 const pluginTransform = getPluginTransform()
