@@ -80,11 +80,11 @@ try {
     repoRoot,
     'packages/create-cedar-rsc-app',
   )
-  process.chdir(createCedarRscAppPath)
-  await $`yarn install`
+  await $({ cwd: createCedarRscAppPath })`yarn install`
 
   console.log('All tasks completed successfully!')
   console.log(`Returning to original directory: ${originalCwd}`)
+  process.chdir(originalCwd)
 } catch (error) {
   console.error('Error during clean-build process:', error)
   process.exit(1)
