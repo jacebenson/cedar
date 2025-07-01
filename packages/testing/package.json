@@ -8,7 +8,70 @@
     "directory": "packages/testing"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
+  "exports": {
+    "./config/jest/web": {
+      "default": "./config/jest/web/index.js"
+    },
+    "./config/jest/api": {
+      "default": "./config/jest/api/index.js"
+    },
+    "./config/jest/api/jest-preset": {
+      "default": "./config/jest/api/jest-preset.js"
+    },
+    "./config/jest/web/jest-preset": {
+      "default": "./config/jest/web/jest-preset.js"
+    },
+    "./dist/cjs/api/scenario": {
+      "default": "./dist/cjs/api/scenario.js"
+    },
+    "./dist/cjs/web/findCellMocks": {
+      "default": "./dist/cjs/web/findCellMocks.js"
+    },
+    "./dist/cjs/web/mockRequests": {
+      "default": "./dist/cjs/web/mockRequests.js"
+    },
+    "./auth": {
+      "import": {
+        "types": "./dist/web/mockAuth.d.ts",
+        "default": "./dist/web/mockAuth.js"
+      },
+      "require": {
+        "types": "./dist/cjs/web/index.d.ts",
+        "default": "./dist/cjs/web/mockAuth.js"
+      }
+    },
+    "./api": {
+      "import": {
+        "types": "./dist/api/index.d.ts",
+        "default": "./dist/api/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/api/index.d.ts",
+        "default": "./dist/cjs/api/index.js"
+      }
+    },
+    "./cache": {
+      "import": {
+        "types": "./dist/cache/index.d.ts",
+        "default": "./dist/cache/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/cache/index.d.ts",
+        "default": "./dist/cjs/cache/index.js"
+      }
+    },
+    "./web": {
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/web/index.d.ts",
+        "default": "./dist/cjs/web/index.js"
+      }
+    }
+  },
   "files": [
     "config",
     "web",
@@ -20,6 +83,7 @@
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-testing.tgz",
     "build:types": "tsc --build --verbose ./tsconfig.build.json",
+    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
     "build:watch": "nodemon --watch src --ext 'js,jsx,ts,tsx' --ignore dist --exec 'yarn build'",
     "check:attw": "yarn rw-fwtools-attw",
     "check:package": "concurrently npm:check:attw yarn:publint",
