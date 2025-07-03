@@ -16,6 +16,8 @@ pre-commit:
     - name: lint staged files
       run: yarn eslint {staged_files}
       glob: '*.{js,ts,jsx,tsx}'
+      exclude:
+        - __fixtures__/*
 
     - run: yarn prettier --log-level=silent --check {staged_files}
 #
