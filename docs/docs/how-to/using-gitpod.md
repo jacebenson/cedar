@@ -29,7 +29,7 @@ What's going on behind the scenes:
   - [Editor Config](https://github.com/redwoodjs/starter#:~:text=Code%20Version%20Lens-,Editor%20Config,-Prisma)
   - [Prisma](https://github.com/redwoodjs/starter/blob/main)
   - [VS Code GraphQL](https://github.com/redwoodjs/starter/blob/main)
-- It runs our **Create Redwood App** which will install the latest stable version of Redwood. We're setting this project to use TypeScript, however, you can [change it to JavaScript](https://github.com/redwoodjs/starter/blob/main) if you prefer.
+- It runs our **Create Cedar App** which will install the latest stable version of Redwood. We're setting this project to use TypeScript, however, you can [change it to JavaScript](https://github.com/redwoodjs/starter/blob/main) if you prefer.
 - It runs `yarn install`, adding all the dependencies for the project
 - Changes the database over to Postgres
 
