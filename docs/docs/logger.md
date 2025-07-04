@@ -63,7 +63,7 @@ That's it!
 
 ### Manual Setup for CedarJS Upgrade
 
-If you are upgrading an existing CedarJS app older than v0.28 and would like to include logging, you simply need to copy over files from the "Create Redwood Application" template:
+If you are upgrading an existing CedarJS app older than v0.28 and would like to include logging, you simply need to copy over files from the "Create Cedar Application" template:
 
 - Copy [`packages/create-cedar-app/template/api/src/lib/logger.ts`](https://github.com/cedarjs/cedar/blob/main/packages/create-cedar-app/template/api/src/lib/logger.ts) to `api/src/lib/logger.ts`. Required.
 
