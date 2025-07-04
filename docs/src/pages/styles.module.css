@@ -5,33 +5,42 @@
  * and scoped locally.
  */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.starButtonStyle {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e3e3e3;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  color: #24292f;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+.starSectionStyle {
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 8px 16px 8px 10px;
+  color: inherit;
+  border-right: 1px solid #d0d7de;
 }
 
-.features {
+.countSectionStyle {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+  padding: 8px 16px 8px 16px;
+  color: inherit;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
-.featureImage {
-  height: 200px;
-  width: 200px;
+.starIcon {
+  margin-right: 0.5rem;
 }
