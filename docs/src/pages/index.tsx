@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Head from '@docusaurus/Head'
 import Link from '@docusaurus/Link'
@@ -10,9 +10,9 @@ import sidebars from '../../sidebars'
 import styles from './styles.module.css'
 
 export default function Home() {
-  const [stargazerCount, setStargazerCount] = React.useState<number | string>(0)
+  const [stargazerCount, setStargazerCount] = useState<number | string>('--')
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch('https://api.github.com/repos/cedarjs/cedar')
       .then((response) => response.json())
       .then((data) => {
@@ -20,7 +20,7 @@ export default function Home() {
       })
       .catch((error) => {
         console.error('Error fetching startgazer count:', error)
-        setStargazerCount('N/A')
+        setStargazerCount('--')
       })
   }, [])
 
