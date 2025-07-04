@@ -470,7 +470,7 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
 }
 ```
 
-> **Note**: The `auth.ts` file here is the stub for a new RedwoodJS app. Once you have setup auth with your provider, this will enforce a proper authentication check.
+> **Note**: The `auth.ts` file here is the stub for a new CedarJS app. Once you have setup auth with your provider, this will enforce a proper authentication check.
 
 ### @skipAuth
 

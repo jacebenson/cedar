@@ -8,32 +8,32 @@ description: 'Learn how to build dashboards fast using the Tremor React library 
 
 In this how to, you'll learn how to
 
-- setup tremor in a new or existing RedwoodJS app
+- setup tremor in a new or existing CedarJS app
 - use tremor components to layout a new dashboard
 - use a chart and card component to visualize static data
-- access a GitHub repo to make your dashboard dynamic using an [example RedwoodJS app](https://github.com/redwoodjs/redwoodjs-tremor-dashboard-demo)
+- access a GitHub repo to make your dashboard dynamic using an [example CedarJS app](https://github.com/redwoodjs/redwoodjs-tremor-dashboard-demo)
 
 ## Live Demo
 
-See what's possible with a [dynamic dashboard live demo](https://tremor-redwood-dashboard-demo.netlify.app) build with RedwoodJS and Tremor.
+See what's possible with a [dynamic dashboard live demo](https://tremor-redwood-dashboard-demo.netlify.app) build with CedarJS and Tremor.
 
 Cool, right?
 
 Let's get started!
 
-## Create a New RedwoodJS Project
+## Create a New CedarJS Project
 
-In our terminal, we create a new RedwoodJS project:
+In our terminal, we create a new CedarJS project:
 
 ```bash
 yarn create cedar-app my-project --ts
 ```
 
-> **Note:** If you already have a RedwoodJS project, you can skip this step and continue with the next section.
+> **Note:** If you already have a CedarJS project, you can skip this step and continue with the next section.
 
 If you do not want a TypeScript project, omit the `--ts` flag.
 
-> **Important:** RedwoodJS prefers yarn over npm because a project is monorepo with api and web workspaces. You will install tremor and other web packages using yarn workspaces.
+> **Important:** CedarJS prefers yarn over npm because a project is monorepo with api and web workspaces. You will install tremor and other web packages using yarn workspaces.
 
 Use the Redwood setup command to install `TailwindCSS`, its peer dependencies, and create the `tailwind.config.js` file.
 
@@ -160,7 +160,7 @@ const DashboardPage = () => {
 export default DashboardPage
 ```
 
-Start your RedwoodJS development server
+Start your CedarJS development server
 
 ```bash
 yarn rw dev
@@ -405,6 +405,6 @@ Now that you have a Dashboard
 
 1. Explore the other [components](https://www.tremor.so/components) and [blocks](https://www.tremor.so/blocks) that you can use to showcase your data
 
-2. Learn how to make a [dynamic dashboard using RedwoodJS cells](https://github.com/redwoodjs/redwoodjs-tremor-dashboard-demo) to fetch data from a Prisma-backed database using GraphQL.
+2. Learn how to make a [dynamic dashboard using CedarJS cells](https://github.com/redwoodjs/redwoodjs-tremor-dashboard-demo) to fetch data from a Prisma-backed database using GraphQL.
 
 3. See a [dynamic dashboard live demo](https://tremor-redwood-dashboard-demo.netlify.app)!

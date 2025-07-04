@@ -1,6 +1,6 @@
 # Trusted Documents
 
-RedwoodJS can be setup to enforce [persisted operations](https://the-guild.dev/graphql/yoga-server/docs/features/persisted-operations) – alternatively called [Trusted Documents](https://benjie.dev/graphql/trusted-documents).
+CedarJS can be setup to enforce [persisted operations](https://the-guild.dev/graphql/yoga-server/docs/features/persisted-operations) – alternatively called [Trusted Documents](https://benjie.dev/graphql/trusted-documents).
 
 Use trusted documents if your GraphQL API is only for your own app (which is the case for most GraphQL APIs) for a massively decreased attack-surface, increased performance, and decreased bandwidth usage.
 
@@ -118,12 +118,12 @@ This means that because queries are pre-generated and the hash ids **must match*
 
 Thus preventing unwanted queries or GraphQL traversal attacks,
 
-- Configure RedwoodJS to use Trusted Documents via `redwood.toml`
+- Configure CedarJS to use Trusted Documents via `redwood.toml`
 - Configure the GraphQL Server
 
 ## Configure Trusted Documents
 
-Below are instructions to manually configure Trusted Documents in your RedwoodJS project.
+Below are instructions to manually configure Trusted Documents in your CedarJS project.
 
 Alternatively, you can use the `yarn redwood setup graphql trusted-documents` [CLI setup command](../cli-commands.md#setup-graphql-trusted-docs).
 

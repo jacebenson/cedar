@@ -1,6 +1,6 @@
 # Mailer
 
-RedwoodJS offers a convenient Mailer for sending emails to your users. It's not just about sending an email; delivery matters too. The way you deliver the feature requiring email is as significant as how you prepare the mail to be delivered by the infrastructure that sends emails over the internet.
+CedarJS offers a convenient Mailer for sending emails to your users. It's not just about sending an email; delivery matters too. The way you deliver the feature requiring email is as significant as how you prepare the mail to be delivered by the infrastructure that sends emails over the internet.
 
 When designing the Mailer, it was crucial that mail could be:
 
@@ -10,13 +10,13 @@ When designing the Mailer, it was crucial that mail could be:
 - send safely in both development and test environments in a "sandbox" without worrying that emails might accidentally leak.
 - be sent as text and/or html and composed using templates by popular tools like [React Email](https://react.email/docs/introduction) or [MJML](https://mjml.io/), with support for more methods in the future.
 - unit tested to set the proper to, from, cc, subject, body, and more.
-- integrated with RedwoodJS Studio to help design and preview templates.
+- integrated with CedarJS Studio to help design and preview templates.
 
-The RedwoodJS Mailer does more than "just send an email". It is a complete end-to-end design, development, and testing package for emails.
+The CedarJS Mailer does more than "just send an email". It is a complete end-to-end design, development, and testing package for emails.
 
 ## Overview
 
-The RedwoodJS Mailer consists of [handlers](#handlers) and [renderers](#renderers), which carry out the core functionality of sending (handling) your emails and composing (rendering) your emails, respectively. This is combined with a few required files which define the necessary configuration.
+The CedarJS Mailer consists of [handlers](#handlers) and [renderers](#renderers), which carry out the core functionality of sending (handling) your emails and composing (rendering) your emails, respectively. This is combined with a few required files which define the necessary configuration.
 
 A high-level overview of the Mailer Flow is shown in the diagram below, and each case is covered in more detail below the diagram.
 <img alt="mailer-flow" src="/img/mailer/flow.svg" />
@@ -46,7 +46,7 @@ Mailer currently offers the following handlers:
 
 - [@cedarjs/mailer-handler-in-memory](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers/in-memory), a simple in-memory handler typically used for testing.
 - [@cedarjs/mailer-handler-nodemailer](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers/nodemailer), which uses [Nodemailer](https://nodemailer.com/).
-- [@cedarjs/mailer-handler-studio](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers/studio), which sends emails to the RedwoodJS Studio using nodemailer internally.
+- [@cedarjs/mailer-handler-studio](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers/studio), which sends emails to the CedarJS Studio using nodemailer internally.
 - [@cedarjs/mailer-handler-resend](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers/resend), which uses [Resend](https://resend.com/).
 
 You can find community-maintained handlers by searching across npm, our forums, and other community spaces.
@@ -94,9 +94,9 @@ Mailer also expects you to put your mail react components inside the `api/src/ma
 
 ## Setup
 
-The Mailer is not set up by default when you create a new RedwoodJS app, but it is easy to do so. Simply run the following CLI command:
+The Mailer is not set up by default when you create a new CedarJS app, but it is easy to do so. Simply run the following CLI command:
 
-```bash title="RedwoodJS CLI"
+```bash title="CedarJS CLI"
 yarn rw setup mailer
 ```
 
@@ -281,7 +281,7 @@ When running in development mode, using the default `@cedarjs/mailer-handler-stu
 
 ## Need a Renderer or Handler?
 
-If the Mailer does not currenly provide a [handler](notion://www.notion.so/redwoodjs/133467eb46b744fd8ae60df2d493d7d0#handlers) or [renderer](notion://www.notion.so/redwoodjs/133467eb46b744fd8ae60df2d493d7d0#renderers) for the service or technology you wish to use, this doesn't prevent you from using the Mailer. Instead, you can create your own handler or renderer which you can then open source to the wider RedwoodJS community.
+If the Mailer does not currenly provide a [handler](notion://www.notion.so/redwoodjs/133467eb46b744fd8ae60df2d493d7d0#handlers) or [renderer](notion://www.notion.so/redwoodjs/133467eb46b744fd8ae60df2d493d7d0#renderers) for the service or technology you wish to use, this doesn't prevent you from using the Mailer. Instead, you can create your own handler or renderer which you can then open source to the wider CedarJS community.
 
 To do this, read over the existing implementations for handlers [here](https://github.com/cedarjs/cedar/tree/main/packages/mailer/handlers) and renderers [here](https://github.com/cedarjs/cedar/tree/main/packages/mailer/renderers). You can also find the interfaces that a handler or mailer must satisfy [here](https://github.com/cedarjs/cedar/tree/main/packages/mailer/core) in the `@cedarjs/mailer-core` package.
 

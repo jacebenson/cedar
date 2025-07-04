@@ -13,7 +13,7 @@ You don't have to start the dev server, login as a user, tab through dropdowns, 
 And say goodbye to rendering a whole page and make six GraphQL calls just to change the color of a modal!
 You can set up every component as a story and tweak it within Storybook. And for any [cells](./cells.md), [mocking GraphQL could not be easier!](./how-to/mocking-graphql-in-storybook.md)
 
-RedwoodJS offers a Storybook integration leveraging Storybook's [Framework Packages](https://storybook.js.org/docs/7/configure/integration/frameworks),
+CedarJS offers a Storybook integration leveraging Storybook's [Framework Packages](https://storybook.js.org/docs/7/configure/integration/frameworks),
 using Vite as its bundler to align with your production project.
 
 An older version of our Storybook integration used Webpack as its bundler — For more information on the differences, see [this forum post](https://community.redwoodjs.com/t/storybook-in-redwood-is-moving-to-vite/7212).

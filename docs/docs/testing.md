@@ -1872,7 +1872,7 @@ Testing [serverless functions](serverless-functions.md) and [webhooks](webhooks.
 
 Webhook testing is even more complex because you might need to open a http tunnel to a running dev server to accept an incoming request, then you'll have to sign the webhook payload so that the request is trusted, and then you might even trigger events from your third-party service ... all manually. Every. Time.
 
-Luckily, RedwoodJS has several api testing utilities to make [testing functions and webhooks](serverless-functions.md#how-to-test-serverless-functions) a breeze -- and without having to run a dev server.
+Luckily, CedarJS has several api testing utilities to make [testing functions and webhooks](serverless-functions.md#how-to-test-serverless-functions) a breeze -- and without having to run a dev server.
 
 > Want to learn to [How to Test Serverless Functions](serverless-functions.md#how-to-test-serverless-functions) and [Webhooks](serverless-functions.md#how-to-test-webhooks)?
 >
@@ -2091,7 +2091,7 @@ This is mainly helpful when you are testing for a very specific value, or have e
 
 ## Testing Mailer
 
-If your project uses [RedwoodJS Mailer](./mailer.md) to send emails, you can [also write tests](./mailer.md#testing) to make sure that email:
+If your project uses [CedarJS Mailer](./mailer.md) to send emails, you can [also write tests](./mailer.md#testing) to make sure that email:
 
 - is sent to an sandbox inbox
 - renders properly

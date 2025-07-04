@@ -293,7 +293,7 @@ yarn redwood deploy netlify --no-data-migrate
 :::warning
 While you may be tempted to use the [Netlify CLI](https://cli.netlify.com) commands to [build](https://cli.netlify.com/commands/build) and [deploy](https://cli.netlify.com/commands/deploy) your project directly from you local project directory, doing so **will lead to errors when deploying and/or when running functions**. I.e. errors in the function needed for the GraphQL server, but also other serverless functions.
 
-The main reason for this is that these Netlify CLI commands simply build and deploy -- they build your project locally and then push the dist folder. That means that when building a RedwoodJS project, the [Prisma client is generated with binaries matching the operating system at build time](https://cli.netlify.com/commands/link) -- and not the [OS compatible](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#binarytargets-options) with running functions on Netlify. Your Prisma client engine may be `darwin` for OSX or `windows` for Windows, but it needs to be `debian-openssl-1.1.x` or `rhel-openssl-1.1.x`. If the client is incompatible, your functions will fail.
+The main reason for this is that these Netlify CLI commands simply build and deploy -- they build your project locally and then push the dist folder. That means that when building a CedarJS project, the [Prisma client is generated with binaries matching the operating system at build time](https://cli.netlify.com/commands/link) -- and not the [OS compatible](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#binarytargets-options) with running functions on Netlify. Your Prisma client engine may be `darwin` for OSX or `windows` for Windows, but it needs to be `debian-openssl-1.1.x` or `rhel-openssl-1.1.x`. If the client is incompatible, your functions will fail.
 
 Therefore, please follow the [instructions in the Tutorial](tutorial/chapter4/deployment.md#netlify) to sync your GitHub (or other compatible source control service) repository with Netlify and allow their build and deploy system to manage deployments.
 
@@ -981,7 +981,7 @@ const Routes = () => {
 
 ### generate realtime
 
-Generate a boilerplate subscription or live query used with RedwoodJS Realtime.
+Generate a boilerplate subscription or live query used with CedarJS Realtime.
 
 ```bash
 yarn redwood generate realtime <name>
@@ -995,7 +995,7 @@ yarn redwood generate realtime <name>
 
 #### Usage
 
-See Realtime for more information on how to [setup RedwoodJS Realtime](#setup-realtime) and use Live Queries, and Subscriptions.
+See Realtime for more information on how to [setup CedarJS Realtime](#setup-realtime) and use Live Queries, and Subscriptions.
 
 **Examples**
 
@@ -1893,11 +1893,11 @@ yarn redwood setup deploy <provider>
 
 #### setup deploy netlify
 
-When configuring Netlify deployment, the `setup deploy netlify` command generates a `netlify.toml` [configuration file](https://docs.netlify.com/configure-builds/file-based-configuration/) with the defaults needed to build and deploy a RedwoodJS site on Netlify.
+When configuring Netlify deployment, the `setup deploy netlify` command generates a `netlify.toml` [configuration file](https://docs.netlify.com/configure-builds/file-based-configuration/) with the defaults needed to build and deploy a CedarJS site on Netlify.
 
 The `netlify.toml` file is a configuration file that specifies how Netlify builds and deploys your site — including redirects, branch and context-specific settings, and more.
 
-This configuration file also defines the settings needed for [Netlify Dev](https://docs.netlify.com/configure-builds/file-based-configuration/#netlify-dev) to detect that your site uses the RedwoodJS framework. Netlify Dev serves your RedwoodJS app as if it runs on the Netlify platform and can serve functions, handle Netlify [headers](https://docs.netlify.com/configure-builds/file-based-configuration/#headers) and [redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
+This configuration file also defines the settings needed for [Netlify Dev](https://docs.netlify.com/configure-builds/file-based-configuration/#netlify-dev) to detect that your site uses the CedarJS framework. Netlify Dev serves your CedarJS app as if it runs on the Netlify platform and can serve functions, handle Netlify [headers](https://docs.netlify.com/configure-builds/file-based-configuration/#headers) and [redirects](https://docs.netlify.com/configure-builds/file-based-configuration/#redirects).
 
 Netlify Dev can also create a tunnel from your local development server that allows you to share and collaborate with others using `netlify dev --live`.
 
@@ -1913,7 +1913,7 @@ Netlify Dev can also create a tunnel from your local development server that all
   framework = "redwoodjs"
   # Set targetPort to the [web] side port as defined in redwood.toml
   targetPort = 8910
-  # Point your browser to this port to access your RedwoodJS app
+  # Point your browser to this port to access your CedarJS app
   port = 8888
 ```
 
@@ -1925,7 +1925,7 @@ In order to use [Netlify Dev](https://www.netlify.com/products/dev/) you need to
 - run `netlify dev` and your site will be served on the specified `port` (e.g., 8888)
 - if you wish to share your local server with others, you can run `netlify dev --live`
 
-> Note: To detect the RedwoodJS framework, please use netlify-cli v3.34.0 or greater.
+> Note: To detect the CedarJS framework, please use netlify-cli v3.34.0 or greater.
 
 ### setup jobs
 
@@ -1941,7 +1941,7 @@ yarn redwood setup jobs
 
 ### setup mailer
 
-This command adds the necessary packages and files to get started using the RedwoodJS mailer. By default it also creates an example mail template which can be skipped with the `--skip-examples` flag.
+This command adds the necessary packages and files to get started using the CedarJS mailer. By default it also creates an example mail template which can be skipped with the `--skip-examples` flag.
 
 ```
 yarn redwood setup mailer
@@ -2041,7 +2041,7 @@ Run `yarn rw setup graphql trusted-documents`
 ✔ Configuring the GraphQL Handler to use a Trusted Documents store ...
 ```
 
-If you have not setup the RedwoodJS server file, it will be setup:
+If you have not setup the CedarJS server file, it will be setup:
 
 ```bash
 ✔ Adding the experimental server file...
@@ -2051,7 +2051,7 @@ If you have not setup the RedwoodJS server file, it will be setup:
 
 ### setup realtime
 
-This command creates the necessary files, installs the required packages, and provides examples to setup RedwoodJS Realtime from GraphQL live queries and subscriptions. See the Realtime docs for more information.
+This command creates the necessary files, installs the required packages, and provides examples to setup CedarJS Realtime from GraphQL live queries and subscriptions. See the Realtime docs for more information.
 
 ```
 yarn redwood setup realtime
@@ -2064,7 +2064,7 @@ yarn redwood setup realtime
 
 :::note
 
-If the RedwoodJS Server is not setup, it will be installed as well.
+If the CedarJS Server is not setup, it will be installed as well.
 
 :::
 
@@ -2085,7 +2085,7 @@ Run `yarn rw setup realtime`
 ✔ Generating types ...
 ```
 
-If you have not setup the RedwoodJS server file, it will be setup:
+If you have not setup the CedarJS server file, it will be setup:
 
 ```bash
 ✔ Adding the experimental server file...
@@ -2130,7 +2130,7 @@ yarn redwood storybook
 
 > "Props in, views out! Make it simple to reason about."
 
-RedwoodJS supports Storybook by creating stories when generating cells, components, layouts and pages. You can then use these to describe how to render that UI component with representative data.
+CedarJS supports Storybook by creating stories when generating cells, components, layouts and pages. You can then use these to describe how to render that UI component with representative data.
 
 | Arguments & Options | Description                                                                                        |
 | :------------------ | :------------------------------------------------------------------------------------------------- |

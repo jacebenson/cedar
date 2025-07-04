@@ -4,11 +4,11 @@ description: Securely integrate third-party services
 
 # Webhooks
 
-If you've used [IFTTT](https://ifttt.com/maker_webhooks), [Pipedream](https://pipedream.com/docs/api/rest/webhooks/), or [Zapier](https://zapier.com/apps/webhook/integrations) then you're familiar with how webhooks can give your app the power to create complex workflows, build one-to-one automation, and sync data between apps. RedwoodJS helps you work with webhooks by giving you the tools to both receive and verify incoming webhooks and sign outgoing ones with ease.
+If you've used [IFTTT](https://ifttt.com/maker_webhooks), [Pipedream](https://pipedream.com/docs/api/rest/webhooks/), or [Zapier](https://zapier.com/apps/webhook/integrations) then you're familiar with how webhooks can give your app the power to create complex workflows, build one-to-one automation, and sync data between apps. CedarJS helps you work with webhooks by giving you the tools to both receive and verify incoming webhooks and sign outgoing ones with ease.
 
 ## What is a webhook
 
-Simply put, webhooks are a common way that third-party services notify your RedwoodJS application when an event of interest happens. They are a form of messaging and automation allowing distinct web applications to communicate with each other and send real-time data from one application to another whenever a given event occurs.
+Simply put, webhooks are a common way that third-party services notify your CedarJS application when an event of interest happens. They are a form of messaging and automation allowing distinct web applications to communicate with each other and send real-time data from one application to another whenever a given event occurs.
 
 The third-party considers these "outgoing Webhooks" and therefore your application receives "incoming Webhooks".
 
@@ -27,7 +27,7 @@ Some examples of outgoing Webhooks are:
 - A cron/scheduled task wants to invoke a long running [background function on Netlify](https://docs.netlify.com/functions/background-functions/)
 - and more webhook integrations via services like [IFTTT](https://ifttt.com/maker_webhooks), [Pipedream](https://pipedream.com/docs/api/rest/webhooks/) and [Zapier](https://zapier.com/apps/webhook/integrations)
 
-If you were to subscribe to one of these webhooks, you'd point it to an endpoint in your RedwoodJS api -- ie, a serverless function. But, because that function is out "in the cloud" you need to ensure that these run **only when they should**. That means your function must:
+If you were to subscribe to one of these webhooks, you'd point it to an endpoint in your CedarJS api -- ie, a serverless function. But, because that function is out "in the cloud" you need to ensure that these run **only when they should**. That means your function must:
 
 - verify it comes from the place you expect
 - trust the party
@@ -36,9 +36,9 @@ If you were to subscribe to one of these webhooks, you'd point it to an endpoint
 
 That is, you need to **verify your incoming webhooks**.
 
-## Verifying Webhooks with RedwoodJS Made Easy
+## Verifying Webhooks with CedarJS Made Easy
 
-The RedwoodJS [`api/webhooks` package](https://github.com/cedarjs/cedar/blob/main/packages/api/src/webhooks/index.ts) makes it easy to receive and verify incoming webhooks by implementing many of the most commonly used Webhook signature verifiers.
+The CedarJS [`api/webhooks` package](https://github.com/cedarjs/cedar/blob/main/packages/api/src/webhooks/index.ts) makes it easy to receive and verify incoming webhooks by implementing many of the most commonly used Webhook signature verifiers.
 
 ### Webhook Verification
 
@@ -55,11 +55,11 @@ Common signature verification methods are:
 - Timestamp Scheme ([Stripe](https://stripe.com/docs/webhooks/best-practices) / Redwood default)
 - Secret Key (Custom, [Orbit](https://docs.orbit.love/docs/webhooks))
 
-RedwoodJS adds a way to do no verification as well of testing or in the case your third party doesn't sign the payload.
+CedarJS adds a way to do no verification as well of testing or in the case your third party doesn't sign the payload.
 
 - SkipVerifier (bypass verification, or no verification)
 
-RedwoodJS implements [signatureVerifiers](https://github.com/cedarjs/cedar/tree/main/packages/api/src/auth/verifiers) for each of these so you can get started integrating your app with third-parties right away.
+CedarJS implements [signatureVerifiers](https://github.com/cedarjs/cedar/tree/main/packages/api/src/auth/verifiers) for each of these so you can get started integrating your app with third-parties right away.
 
 ```jsx
 export type SupportedVerifiers =
@@ -314,7 +314,7 @@ export const handler = async (event: APIGatewayEvent) => {
 
 Vercel signs its webhooks with SHA also base64 encodes the event.
 
-RedwoodJS `verifyEvent` will detect is the event is base64 encoded, decode and then validate the payload with the signature.
+CedarJS `verifyEvent` will detect is the event is base64 encoded, decode and then validate the payload with the signature.
 
 ```jsx
 import type { APIGatewayEvent } from 'aws-lambda'
@@ -619,7 +619,7 @@ const webhookDetails = (event) => {
  * is your responsibility to secure appropriately.
  *
  * @see {@link https://redwoodjs.com/docs/serverless-functions#security-considerations|Serverless Function Considerations}
- * in the RedwoodJS documentation for more information.
+ * in the CedarJS documentation for more information.
  *
  * @typedef { import('aws-lambda').APIGatewayEvent } APIGatewayEvent
  * @typedef { import('aws-lambda').Context } Context

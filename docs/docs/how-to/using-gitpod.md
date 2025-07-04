@@ -2,7 +2,7 @@
 
 ## What is GitPod?
 
-GitPod is a cloud development environment with all the necessary tools and dependencies, allowing you to focus on building your RedwoodJS application without worrying about the setup. Get started quickly and efficiently by launching RedwoodJS inside GitPod!
+GitPod is a cloud development environment with all the necessary tools and dependencies, allowing you to focus on building your CedarJS application without worrying about the setup. Get started quickly and efficiently by launching CedarJS inside GitPod!
 
 ## Getting Started
 

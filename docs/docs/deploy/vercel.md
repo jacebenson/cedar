@@ -64,7 +64,7 @@ You'll then need to provide permissions for Vercel to access the repo on your ho
 
 ### Import and Deploy your Project
 
-Vercel will recognize your repo as a Redwood project and take care of most configuration heavy lifting. You should see the following options and, most importantly, the "Framework Preset" showing RedwoodJS.
+Vercel will recognize your repo as a Redwood project and take care of most configuration heavy lifting. You should see the following options and, most importantly, the "Framework Preset" showing CedarJS.
 
 <img src="https://user-images.githubusercontent.com/2951/90486275-9337cc80-e0ed-11ea-9af3-fd9613c1256b.png" />
 

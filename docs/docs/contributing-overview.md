@@ -75,7 +75,7 @@ For details on contributing to a specific package, see the package's README (lin
 
 What you want to do not on the roadmap? Well, still go for it! We love spikes and proof-of-concepts. And if you have a question, just ask!
 
-### RedwoodJS Framework Packages
+### CedarJS Framework Packages
 
 | Package                                                                                                       | Description                                                                                                                                                                                                  |
 | :------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

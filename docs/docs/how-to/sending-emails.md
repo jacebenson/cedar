@@ -1,12 +1,12 @@
 # Sending Emails
 
-Something a lot of applications will eventually have to do is send emails. To demonstrate how you can do that with RedwoodJS we're going to build a simple list of users and their email addresses, and allow you to trigger an email to them. We'll also include some auditing features, so you get a history of emails you sent to your users. The audit logs will be implemented by using one service from within another service &mdash; a powerful RedwoodJS feature.
+Something a lot of applications will eventually have to do is send emails. To demonstrate how you can do that with CedarJS we're going to build a simple list of users and their email addresses, and allow you to trigger an email to them. We'll also include some auditing features, so you get a history of emails you sent to your users. The audit logs will be implemented by using one service from within another service &mdash; a powerful CedarJS feature.
 
 The emails will be sent using the npm package [nodemailer](https://www.npmjs.com/package/nodemailer) together with [SendInBlue](https://sendinblue.com).
 
 ## Setup
 
-The first thing to do is to create a new RedwoodJS project.
+The first thing to do is to create a new CedarJS project.
 
 ```zsh
 yarn create cedar-app --typescript email
@@ -331,10 +331,10 @@ function sendTestEmail(emailAddress: string) {
   const subject = 'Test Email'
   const text =
     'This is a manually triggered test email.\n\n' +
-    'It was sent from a RedwoodJS application.'
+    'It was sent from a CedarJS application.'
   const html =
     'This is a manually triggered test email.<br><br>' +
-    'It was sent from a RedwoodJS application.'
+    'It was sent from a CedarJS application.'
   return sendEmail({ to: emailAddress, subject, text, html })
 }
 

@@ -142,7 +142,7 @@ import subscriptions from 'src/subscriptions/**/*.{js,ts}'
 // const subscribeClient = new Redis()
 
 /**
- * Configure RedwoodJS Realtime
+ * Configure CedarJS Realtime
  *
  * See https://redwoodjs.com/docs/realtime
  *

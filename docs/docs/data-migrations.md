@@ -4,7 +4,7 @@ description: Track changes to database content
 
 # Data Migrations
 
-> Data Migrations are available as of RedwoodJS v0.15
+> Data Migrations are available as of CedarJS v0.15
 
 There are two kinds of changes you can make to your database:
 

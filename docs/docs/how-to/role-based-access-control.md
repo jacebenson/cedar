@@ -4,11 +4,11 @@ slug: role-based-access-control-rbac
 
 # Role-based Access Control (RBAC)
 
-Role-based access control (RBAC) in RedwoodJS aims to be a simple, manageable approach to access management. It adds control over who can access routes, see features, or invoke services or functions to the existing `useAuth()` hook on the web side and `requireAuth()` helper on the api side.
+Role-based access control (RBAC) in CedarJS aims to be a simple, manageable approach to access management. It adds control over who can access routes, see features, or invoke services or functions to the existing `useAuth()` hook on the web side and `requireAuth()` helper on the api side.
 
 A **role** is a collection of permissions applied to a set of users based on the part they play in an organization or setting. Using roles makes it easier to add, remove, and adjust these permissions as your user base increases in scale and functionality increases in complexity.
 
-This how to examines how RBAC is implemented in RedwoodJS and <a href="#how-to-code-examples" data-turbolinks="false">how to protect</a> areas of your app's sides -- web, api, or custom.
+This how to examines how RBAC is implemented in CedarJS and <a href="#how-to-code-examples" data-turbolinks="false">how to protect</a> areas of your app's sides -- web, api, or custom.
 
 ### Quick Links
 
@@ -81,7 +81,7 @@ In our Blog example anyone can view Posts (authenticated or not). They are _publ
 
 ## Auth and RBAC Checklist
 
-In order to integrate RBAC in a RedwoodJS app, you will have to:
+In order to integrate RBAC in a CedarJS app, you will have to:
 
 - Implement an Identity as a Service/Authentication Provider
 - Define and Assign Roles
@@ -97,7 +97,7 @@ Helps to be familiar with [Blog Tutorial](../tutorial/foreword.md) as well as pa
 
 Developers no longer need to be responsible for developing their own identity service. The identity service manages authentication and the complexity associated.
 
-RedwoodJS generates Authentication Providers for several common Identity Services.
+CedarJS generates Authentication Providers for several common Identity Services.
 
 Some offer RBAC support natively together with a UI to manage users and role assignment.
 
@@ -471,7 +471,7 @@ or multiple roles:
 requireAuth({ roles: ['admin', 'author', 'publisher'] })
 ```
 
-This function should be located in `api/src/lib/auth.js` for your RedwoodJS app (ie, where your `getCurrentUser()` is located).
+This function should be located in `api/src/lib/auth.js` for your CedarJS app (ie, where your `getCurrentUser()` is located).
 
 ```javascript
 export const requireAuth = ({ roles } = {}) => {
