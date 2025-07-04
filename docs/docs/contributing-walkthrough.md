@@ -246,7 +246,7 @@ Refer to the [What makes for a good Pull Request?](contributing-overview.md#what
 **Demo of Gitpod**
 David briefly walks-through an automatically prebuilt Gitpod workspace here:
 
-- [Gitpod + RedwoodJS 3-minute Walkthrough](https://youtu.be/_kMuTW3x--s)
+- [Gitpod + CedarJS 3-minute Walkthrough](https://youtu.be/_kMuTW3x--s)
 
 Make sure you watch until the end where David shows how to set up your integration with GitHub and VS Code sync. 🤩
 
@@ -266,7 +266,7 @@ You can initialize a workspace using this URL pattern:
 https://gitpod.io/#<URL for branch or project>
 ```
 
-For example, this link will start a workspace using the RedwoodJS main branch:
+For example, this link will start a workspace using the CedarJS main branch:
 
 - https://gitpod.io/#https://github.com/cedarjs/cedar
 

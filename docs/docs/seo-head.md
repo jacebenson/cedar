@@ -295,7 +295,7 @@ This should allow you to create a fairly full-featured set of `<meta>` tags with
 ```jsx
 <Metadata
   title="My Website"
-  description="An amazing website created with RedwoodJS"
+  description="An amazing website created with CedarJS"
   robots="noindex,nofollow"
   og={{ image: "https://example.com/images/og-image.png" }}
   twitter={{

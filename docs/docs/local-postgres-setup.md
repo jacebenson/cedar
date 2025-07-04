@@ -4,7 +4,7 @@ description: Setup a Postgres database to develop locally
 
 # Local Postgres Setup
 
-RedwoodJS uses a SQLite database by default. While SQLite makes local development easy, you're
+CedarJS uses a SQLite database by default. While SQLite makes local development easy, you're
 likely going to want to run the same database you use in production locally at some point. And since the odds of that database being Postgres are high, here's how to set up Postgres.
 
 ## Install Postgres

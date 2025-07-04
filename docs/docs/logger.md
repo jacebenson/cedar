@@ -5,11 +5,11 @@ description: Use the Logger to observe your application
 
 # Logger
 
-RedwoodJS provides an opinionated logger with sensible, practical defaults that grants you visibility into the applications while you're developing and after you have deployed.
+CedarJS provides an opinionated logger with sensible, practical defaults that grants you visibility into the applications while you're developing and after you have deployed.
 
 Logging in the serverless ecosystem is not trivial and neither is its configuration. Redwood aims to make this easier.
 
-When choosing a Node.js logger to add to the framework, RedwoodJS required that it:
+When choosing a Node.js logger to add to the framework, CedarJS required that it:
 
 - Have a low-overhead, and be fast
 - Output helpful, readable information in development
@@ -23,9 +23,9 @@ When choosing a Node.js logger to add to the framework, RedwoodJS required that 
 
 With those criteria in mind, Redwood includes [pino](https://github.com/pinojs/pino) with its rich [features](https://github.com/pinojs/pino/blob/master/docs/api.md), [ecosystem](https://github.com/pinojs/pino/blob/master/docs/ecosystem.md) and [community](https://github.com/pinojs/pino/blob/master/docs/ecosystem.md#community).
 
-Plus ... pino means 🌲 pine tree! How perfect is that for RedwoodJS?
+Plus ... pino means 🌲 pine tree! How perfect is that for CedarJS?
 
-Note: RedwoodJS logging is setup for its api side only. For browser and web side error reporting or exception handling, these features will be considered in future releases.
+Note: CedarJS logging is setup for its api side only. For browser and web side error reporting or exception handling, these features will be considered in future releases.
 
 ## Quick Start
 
@@ -61,9 +61,9 @@ logger.error(error, `Failed to save item`)
 
 That's it!
 
-### Manual Setup for RedwoodJS Upgrade
+### Manual Setup for CedarJS Upgrade
 
-If you are upgrading an existing RedwoodJS app older than v0.28 and would like to include logging, you simply need to copy over files from the "Create Redwood Application" template:
+If you are upgrading an existing CedarJS app older than v0.28 and would like to include logging, you simply need to copy over files from the "Create Redwood Application" template:
 
 - Copy [`packages/create-cedar-app/template/api/src/lib/logger.ts`](https://github.com/cedarjs/cedar/blob/main/packages/create-cedar-app/template/api/src/lib/logger.ts) to `api/src/lib/logger.ts`. Required.
 
@@ -77,7 +77,7 @@ The second `db.ts` replaces how the `db` Prisma client instance is declared and 
 
 ## Options aka How to Log
 
-In addition to the rich [features](https://github.com/pinojs/pino/blob/master/docs/api.md) that [pino](https://github.com/pinojs/pino) offers, RedwoodJS has added some sensible, practical defaults to make the logger DX first-rate.
+In addition to the rich [features](https://github.com/pinojs/pino/blob/master/docs/api.md) that [pino](https://github.com/pinojs/pino) offers, CedarJS has added some sensible, practical defaults to make the logger DX first-rate.
 
 ### Log Level
 
@@ -120,7 +120,7 @@ Please refer to the [Pino options documentation](https://github.com/pinojs/pino/
 
 ### Redaction
 
-Everyone has heard of reports that Company X logged emails, or passwords, to files or systems that may not have been secured. While RedwoodJS logging won't necessarily prevent that, it does provide you with the mechanism to ensure that it won't happen.
+Everyone has heard of reports that Company X logged emails, or passwords, to files or systems that may not have been secured. While CedarJS logging won't necessarily prevent that, it does provide you with the mechanism to ensure that it won't happen.
 
 To redact sensitive information, you can supply paths to keys that hold sensitive data using the [redact option](https://github.com/pinojs/pino/blob/master/docs/redaction.md).
 
@@ -163,7 +163,7 @@ Note: Unless you provide the current `redactionsList` with the defaults, just th
 
 No log is worth logging if you cannot read it.
 
-RedwoodJS provides a `LogFormatter` that adds color, emoji, time formatting and level reporting so you can quickly see what is going on.
+CedarJS provides a `LogFormatter` that adds color, emoji, time formatting and level reporting so you can quickly see what is going on.
 
 It is based on [pino-colada](https://github.com/lrlna/pino-colada/blob/master/README.md): a cute [ndjson](http://ndjson.org) formatter for [pino](https://github.com/pinojs/pino).
 
@@ -174,13 +174,13 @@ The `LogFormatter` is distributed as a bin that can be invoke via the `yarn rw-l
 To pipe logs to the formatter:
 
 ```bash
-echo "{\"level\": 30, \"message\": \"Hello RedwoodJS\"}" | yarn rw-log-formatter
+echo "{\"level\": 30, \"message\": \"Hello CedarJS\"}" | yarn rw-log-formatter
 ```
 
 Output:
 
 ```bash
-11:00:28 🌲 Hello RedwoodJS
+11:00:28 🌲 Hello CedarJS
 ✨ Done in 0.14s.
 ```
 
@@ -201,7 +201,7 @@ yarn rw serve api | yarn rw-log-formatter
 
 > Note: Since `rw serve` sets the Node environment to `production` you will not see log non-warn/error output unless you configure your logging level to `debug` or below.
 
-You'll see that formatted output by default when you launch your RedwoodJS app using:
+You'll see that formatted output by default when you launch your CedarJS app using:
 
 ```bash
 yarn rw dev
@@ -371,7 +371,7 @@ Note that not all [known pino transports](https://github.com/pinojs/pino/blob/HE
 
 ## Default Configuration Overview
 
-RedwoodJS provides an opinionated logger with sensible, practical defaults. These include:
+CedarJS provides an opinionated logger with sensible, practical defaults. These include:
 
 - Colorize and emojify output with a custom LogFormatter
 - Ignore certain event attributes like hostname and pid for cleaner log statements

@@ -14,7 +14,7 @@
 
 ## Edgio Deploy Setup
 
-In order to deploy your RedwoodJS project to Edgio, the project must first be initialized with the Edgio CLI.
+In order to deploy your CedarJS project to Edgio, the project must first be initialized with the Edgio CLI.
 
 1. In your project, run the command `yarn rw setup deploy edgio`.
 2. Verify the changes to your project, commit and push to your repository.

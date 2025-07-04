@@ -49,7 +49,7 @@ Some pages should only be visible to authenticated users. We support this using 
 ## Redirect Routes
 
 If you move a page you might still want to keep the old route around, so that
-old links to your site keep working. To this end RedwoodJS supports the
+old links to your site keep working. To this end CedarJS supports the
 `redirect` prop on routes, which allows you to specify the name of the route
 you want to redirect to:
 
@@ -848,7 +848,7 @@ Note that if you're copy-pasting this example, it uses [Tailwind CSS](https://ta
 
 :::note Can I customize the development one?
 
-As it's part of the RedwoodJS framework, you can't _change_ the dev fatal error page, but you can always build your own that takes the same props. If there's a feature you want to add to the built-in version, let us know on the [forums](https://community.redwoodjs.com/).
+As it's part of the CedarJS framework, you can't _change_ the dev fatal error page, but you can always build your own that takes the same props. If there's a feature you want to add to the built-in version, let us know on the [forums](https://community.redwoodjs.com/).
 
 :::
 

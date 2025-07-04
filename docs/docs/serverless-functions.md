@@ -747,7 +747,7 @@ And, in some other cases, you may even want to limit how often the function is c
 
 ### Webhooks
 
-If your function receives an incoming Webhook from a third party, see [Webhooks](webhooks.md) in the RedwoodJS documentation to verify and trust its payload.
+If your function receives an incoming Webhook from a third party, see [Webhooks](webhooks.md) in the CedarJS documentation to verify and trust its payload.
 
 ### Serverless Functions with Redwood User Authentication
 
@@ -854,7 +854,7 @@ Logging in production — and monitoring for suspicious activity, unknown IP add
 
 Third-party log services like [logFlare](https://logflare.app/), [Datadog](https://www.datadoghq.com/) and [LogDNA](https://www.logdna.com/) all have features that store logs for inspection, but also can trigger alerts and notifications if something you deem untoward occurs.
 
-See [Logger](logger.md) in the RedwoodJS docs for more information about how to setup and use logging services.
+See [Logger](logger.md) in the CedarJS docs for more information about how to setup and use logging services.
 
 #### Rate Limiting
 
@@ -870,7 +870,7 @@ Rate limiting is a very powerful feature for securing backend APIs from maliciou
 
 API Gateways like [Kong](https://docs.konghq.com/hub/kong-inc/rate-limiting/) offer plugins to configure how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years.
 
-Currently, RedwoodJS does not offer rate limiting in the framework, but your deployment target infrastructure may. This is a feature RedwoodJS will investigate for future releases.
+Currently, CedarJS does not offer rate limiting in the framework, but your deployment target infrastructure may. This is a feature CedarJS will investigate for future releases.
 
 For more information about Rate Limiting in Node.js, consider:
 
@@ -894,7 +894,7 @@ If the IP address in the event does not match, then you can raise an error and r
 
 ## Returning Binary Data
 
-By default, RedwoodJS functions return strings or JSON. If you need to return binary data, your function will need to encode it as Base64 and then set the `isBase64Encoded` response parameter to `true`. Note that this is best suited to relatively small responses. The entire response body will be loaded into memory as a string, and many serverless hosting environments will limit your function to eg. 10 seconds, so if your file takes longer than that to process and download it may get cut off. For larger or static files, it may be better to upload files to an object store like S3 and generate a [pre-signed URL](https://stackoverflow.com/questions/38831829/nodejs-aws-sdk-s3-generate-presigned-url) that the client can use to download the file directly.
+By default, CedarJS functions return strings or JSON. If you need to return binary data, your function will need to encode it as Base64 and then set the `isBase64Encoded` response parameter to `true`. Note that this is best suited to relatively small responses. The entire response body will be loaded into memory as a string, and many serverless hosting environments will limit your function to eg. 10 seconds, so if your file takes longer than that to process and download it may get cut off. For larger or static files, it may be better to upload files to an object store like S3 and generate a [pre-signed URL](https://stackoverflow.com/questions/38831829/nodejs-aws-sdk-s3-generate-presigned-url) that the client can use to download the file directly.
 
 Here's an example of how to return a binary file from the filesystem:
 

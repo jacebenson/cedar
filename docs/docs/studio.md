@@ -1,10 +1,10 @@
 ---
-description: RedwoodJS Studio is a package used during development to gain runtime insights into a project.
+description: CedarJS Studio is a package used during development to gain runtime insights into a project.
 ---
 
 # Studio
 
-RedwoodJS Studio is a package used during development to gain runtime insights into a project.
+CedarJS Studio is a package used during development to gain runtime insights into a project.
 
 ## Motivation
 

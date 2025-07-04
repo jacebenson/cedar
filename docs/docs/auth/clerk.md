@@ -36,7 +36,7 @@ How you get your API keys to production depends on your deploy provider.
 
 :::
 
-After you create the application, you should be redirected to its dashboard where you should see the RedwoodJS logo.
+After you create the application, you should be redirected to its dashboard where you should see the CedarJS logo.
 Click on it and copy the two API keys it shows into your project's `.env` file:
 
 ```bash title=".env"

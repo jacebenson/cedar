@@ -47,11 +47,11 @@ By using the `BookInfo` fragment, you can maintain a consistent set of fields fo
 
 In developer documentation, you can explain the purpose of the fragment, provide examples like the one above, and encourage developers to use fragments to organize and reuse their GraphQL queries effectively.
 
-## Using Fragments in RedwoodJS
+## Using Fragments in CedarJS
 
-RedwoodJS makes it easy to use fragments, especially with VS Code and Apollo GraphQL Client.
+CedarJS makes it easy to use fragments, especially with VS Code and Apollo GraphQL Client.
 
-First, RedwoodJS instructs the VS Code GraphQL Plugin where to look for fragments by configuring the `documents` attribute of your project's `graphql.config.js`:
+First, CedarJS instructs the VS Code GraphQL Plugin where to look for fragments by configuring the `documents` attribute of your project's `graphql.config.js`:
 
 ```js
 // graphql.config.js
@@ -64,7 +64,7 @@ module.exports = {
 }
 ```
 
-Second, RedwoodJS automatically creates the [fragmentRegistry](https://www.apollographql.com/docs/react/data/fragments/#registering-named-fragments-using-createfragmentregistry) needed for Apollo to know about the fragments in your project without needing to interpolate their declarations.
+Second, CedarJS automatically creates the [fragmentRegistry](https://www.apollographql.com/docs/react/data/fragments/#registering-named-fragments-using-createfragmentregistry) needed for Apollo to know about the fragments in your project without needing to interpolate their declarations.
 
 Redwood exports ways to interact with fragments in the `@cedarjs/web/apollo` package.
 
@@ -278,7 +278,7 @@ For example:
 }}>
 ```
 
-To make this easier to maintain, RedwoodJS GraphQL CodeGen automatically generates `possibleTypes` so you can simply assign it to the `graphQLClientConfig`:
+To make this easier to maintain, CedarJS GraphQL CodeGen automatically generates `possibleTypes` so you can simply assign it to the `graphQLClientConfig`:
 
 ```ts
 // web/src/App.tsx

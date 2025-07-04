@@ -28,7 +28,7 @@ If you have an existing site created with a prior version, you'll need to upgrad
 
 ### Node.js and Yarn Versions
 
-During installation, RedwoodJS checks if your system meets version requirements for Node and Yarn:
+During installation, CedarJS checks if your system meets version requirements for Node and Yarn:
 
 - node: "=20.x"
 - yarn: ">=1.22.21"
