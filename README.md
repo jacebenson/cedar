@@ -45,7 +45,7 @@ efforts of the RedwoodJS founders, maintainers and community.
    expected.
 9. Make a new git commit (or amend the previous one you did)
 
-Cedar doesn't have the equivalent of Redwood Studio yet. So Studio will not
+CedarJS doesn't have the equivalent of Redwood Studio yet. So Studio will not
 work for now. Let me know if that's something you use and need.
 
 ## Roadmap
