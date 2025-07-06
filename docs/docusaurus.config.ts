@@ -68,7 +68,7 @@ const config: Config = {
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.gg/8mNkAgby5m',
+              href: 'https://cedarjs.com/discord',
             },
             // {
             //   label: 'Discourse',
