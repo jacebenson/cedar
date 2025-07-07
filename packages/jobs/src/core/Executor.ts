@@ -84,8 +84,10 @@ export class Executor {
       if (this.job.attempts >= this.maxAttempts) {
         this.logger.warn(
           this.job,
-          `[RedwoodJob] Failed job ${this.jobIdentifier}: reached max attempts (${this.maxAttempts})`,
+          `[RedwoodJob] Failed job ${this.jobIdentifier}: reached max ` +
+            `attempts (${this.maxAttempts})`,
         )
+
         await this.adapter.failure({
           job: this.job,
           deleteJob: this.deleteFailedJobs,
