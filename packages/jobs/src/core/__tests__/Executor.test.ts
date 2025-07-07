@@ -8,7 +8,7 @@ import type { ExecutorOptions } from '../Executor.js'
 
 import { MockAdapter, mockLogger } from './mocks.js'
 
-const mocks = vi.hoisted(() => {
+const loadersMockFns = vi.hoisted(() => {
   return {
     loadJob: vi.fn(),
   }
@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => {
 
 vi.mock('../../loaders.js', () => {
   return {
-    loadJob: mocks.loadJob,
+    loadJob: loadersMockFns.loadJob,
   }
 })
 
@@ -109,7 +109,7 @@ describe('perform', () => {
     const executor = new Executor(options)
 
     // mock the `loadJob` loader to return the job mock
-    mocks.loadJob.mockImplementation(() => mockJob)
+    loadersMockFns.loadJob.mockImplementation(() => mockJob)
 
     await executor.perform()
 
@@ -137,7 +137,7 @@ describe('perform', () => {
     // spy on the success function of the adapter
     const adapterSpy = vi.spyOn(mockAdapter, 'success')
     // mock the `loadJob` loader to return the job mock
-    mocks.loadJob.mockImplementation(() => mockJob)
+    loadersMockFns.loadJob.mockImplementation(() => mockJob)
 
     await executor.perform()
 
@@ -169,7 +169,7 @@ describe('perform', () => {
     // spy on the success function of the adapter
     const adapterSpy = vi.spyOn(mockAdapter, 'success')
     // mock the `loadJob` loader to return the job mock
-    mocks.loadJob.mockImplementation(() => mockJob)
+    loadersMockFns.loadJob.mockImplementation(() => mockJob)
 
     await executor.perform()
 
@@ -203,7 +203,7 @@ describe('perform', () => {
     // spy on the success function of the adapter
     const adapterSpy = vi.spyOn(mockAdapter, 'error')
     // mock the `loadJob` loader to return the job mock
-    mocks.loadJob.mockImplementation(() => mockJob)
+    loadersMockFns.loadJob.mockImplementation(() => mockJob)
 
     await executor.perform()
 

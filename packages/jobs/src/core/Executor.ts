@@ -71,9 +71,8 @@ export class Executor {
         deleteJob: this.deleteSuccessfulJobs,
       })
     } catch (error: any) {
-      this.logger.error(
-        `[RedwoodJob] Error in job ${this.jobIdentifier}: ${error.message}`,
-      )
+      const errorMessage = `[RedwoodJob] Error in job ${this.jobIdentifier}: ${error.message}`
+      this.logger.error(errorMessage)
       this.logger.error(error.stack)
 
       await this.adapter.error({
@@ -82,11 +81,10 @@ export class Executor {
       })
 
       if (this.job.attempts >= this.maxAttempts) {
-        this.logger.warn(
-          this.job,
+        const maxAttemptsMessage =
           `[RedwoodJob] Failed job ${this.jobIdentifier}: reached max ` +
-            `attempts (${this.maxAttempts})`,
-        )
+          `attempts (${this.maxAttempts})`
+        this.logger.warn(this.job, maxAttemptsMessage)
 
         await this.adapter.failure({
           job: this.job,
