@@ -51,7 +51,9 @@ interface FailureData {
 /**
  * Implements a job adapter using Prisma ORM.
  *
- * Assumes a table exists with the following schema (the table name can be customized):
+ * Assumes a table exists with the following schema (the table name can be
+ * customized):
+ *
  * ```prisma
  * model BackgroundJob {
  *   id        Int       \@id \@default(autoincrement())
@@ -118,7 +120,8 @@ export class PrismaAdapter extends BaseAdapter<PrismaAdapterOptions> {
     //   or was already locked by this exact process and never cleaned up
     // - doesn't have a failedAt, meaning we will stop retrying
     // Translates to:
-    // `((runAt <= ? AND (lockedAt IS NULL OR lockedAt < ?)) OR lockedBy = ?) AND failedAt IS NULL`
+    //   ((runAt <= ? AND (lockedAt IS NULL OR lockedAt < ?)) OR lockedBy = ?)
+    //   AND failedAt IS NULL
     const where = {
       AND: [
         {
