@@ -15,8 +15,11 @@ export interface ExecutorOptions {
   adapter: BaseAdapter
   job: BaseJob
   logger?: BasicLogger
+  /** Defaults to DEFAULT_MAX_ATTEMPTS */
   maxAttempts?: number
+  /** Defaults to DEFAULT_DELETE_FAILED_JOBS */
   deleteFailedJobs?: boolean
+  /** Defaults to DEFAULT_DELETE_SUCCESSFUL_JOBS */
   deleteSuccessfulJobs?: boolean
 }
 
@@ -77,6 +80,9 @@ export class Executor {
 
       await this.adapter.error({
         job: this.job,
+        runAt: new Date(
+          new Date().getTime() + this.backoffMilliseconds(this.job.attempts),
+        ),
         error,
       })
 
@@ -92,5 +98,9 @@ export class Executor {
         })
       }
     }
+  }
+
+  backoffMilliseconds(attempts: number) {
+    return 1000 * attempts ** 4
   }
 }
