@@ -7,14 +7,14 @@ import { handler } from '../execHandler.js'
 
 vi.mock('@cedarjs/project-config', () => ({
   getPaths: () => ({
-    scripts: path.join('redwood-app', 'scripts'),
+    scripts: path.join('cedar-app', 'scripts'),
   }),
   resolveFile: (path: string) => path,
 }))
 
 vi.mock('@cedarjs/internal/dist/files', () => ({
   findScripts: () => {
-    const scriptsPath = path.join('redwood-app', 'scripts')
+    const scriptsPath = path.join('cedar-app', 'scripts')
 
     return [
       path.join(scriptsPath, 'one', 'two', 'myNestedScript.ts'),
