@@ -21,7 +21,7 @@ vi.mock('@cedarjs/project-config', () => ({
   getPaths: () => ({
     api: { base: '', src: '' },
     web: { base: '', src: '' },
-    scripts: path.join('redwood-app', 'scripts'),
+    scripts: path.join('cedar-app', 'scripts'),
   }),
   getConfig: () => ({}),
   resolveFile: (path: string) => path,
@@ -29,7 +29,7 @@ vi.mock('@cedarjs/project-config', () => ({
 
 vi.mock('@cedarjs/internal/dist/files', () => ({
   findScripts: () => {
-    const scriptsPath = path.join('redwood-app', 'scripts')
+    const scriptsPath = path.join('cedar-app', 'scripts')
 
     return [
       path.join(scriptsPath, 'one', 'two', 'myNestedScript.ts'),
@@ -61,7 +61,7 @@ describe('yarn rw exec', () => {
   it('passes args on to the script', async () => {
     vol.fromJSON({
       'redwood.toml': '# redwood.toml',
-      [path.join('redwood-app', 'scripts', 'normalScript.ts')]: '// script',
+      [path.join('cedar-app', 'scripts', 'normalScript.ts')]: '// script',
     })
 
     // Running:
@@ -88,7 +88,7 @@ describe('yarn rw exec', () => {
         },
       },
       functionName: 'default',
-      path: path.join('redwood-app', 'scripts', 'normalScript.ts'),
+      path: path.join('cedar-app', 'scripts', 'normalScript.ts'),
     })
   })
 })
