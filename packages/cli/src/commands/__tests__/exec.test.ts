@@ -23,7 +23,7 @@ vi.mock('@cedarjs/project-config', () => ({
     web: { base: '', src: '' },
     scripts: path.join('cedar-app', 'scripts'),
   }),
-  getConfig: () => ({}),
+  getConfig: () => ({ experimental: { streamingSsr: { enabled: false } } }),
   resolveFile: (path: string) => path,
 }))
 
@@ -43,7 +43,6 @@ vi.mock('@cedarjs/internal/dist/files', () => ({
 
 vi.mock('../../lib/exec', () => ({
   runScriptFunction: vi.fn(),
-  configureBabel: vi.fn(),
 }))
 
 vi.mock('fs', () => ({ ...memfs, default: { ...memfs } }))
