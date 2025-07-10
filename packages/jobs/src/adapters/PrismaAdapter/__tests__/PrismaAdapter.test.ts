@@ -238,6 +238,7 @@ const mockPrismaJob = {
   handler: '',
   attempts: 10,
   runAt: new Date(),
+  cron: null,
   lockedAt: new Date(),
   lockedBy: 'test-process',
   lastError: null,
@@ -256,7 +257,11 @@ describe('success()', () => {
       db: mockDb,
       logger: mockLogger,
     })
-    await adapter.success({ job: mockPrismaJob, deleteJob: true })
+    await adapter.success({
+      job: mockPrismaJob,
+      runAt: new Date(),
+      deleteJob: true,
+    })
 
     expect(spy).toHaveBeenCalledWith({ where: { id: 1 } })
   })
@@ -267,7 +272,13 @@ describe('success()', () => {
       db: mockDb,
       logger: mockLogger,
     })
-    await adapter.success({ job: mockPrismaJob, deleteJob: false })
+    const runAt = new Date()
+
+    await adapter.success({
+      job: mockPrismaJob,
+      runAt,
+      deleteJob: false,
+    })
 
     expect(spy).toHaveBeenCalledWith({
       where: { id: mockPrismaJob.id },
@@ -275,7 +286,7 @@ describe('success()', () => {
         lockedAt: null,
         lockedBy: null,
         lastError: null,
-        runAt: null,
+        runAt,
       },
     })
   })

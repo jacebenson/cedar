@@ -24,6 +24,7 @@ export interface BaseJob {
   path: string
   args: unknown[]
   attempts: number
+  cron?: string | undefined | null
 }
 export type PossibleBaseJob = BaseJob | undefined
 
@@ -158,6 +159,7 @@ export interface CreateSchedulerConfig<TAdapters extends Adapters> {
 export interface JobDefinition<
   TQueues extends QueueNames,
   TArgs extends unknown[] = [],
+  TCron extends string | undefined = string | undefined,
 > {
   /**
    * The name of the queue that this job should always be scheduled on. This
@@ -172,6 +174,13 @@ export interface JobDefinition<
    * @default 50
    */
   priority?: PriorityValue
+
+  /**
+   * If this is specified it will be the recurring schedule this job will run at
+   * See https://github.com/harrisiirak/cron-parser#cron-format for the
+   * supported syntax.
+   */
+  cron?: TCron
 
   /**
    * The function to run when this job is executed.
@@ -196,7 +205,8 @@ export type JobComputedProperties = {
 export type Job<
   TQueues extends QueueNames,
   TArgs extends unknown[] = [],
-> = JobDefinition<TQueues, TArgs> & JobComputedProperties
+  TCron extends string | undefined = string | undefined,
+> = JobDefinition<TQueues, TArgs, TCron> & JobComputedProperties
 
 export type ScheduleJobOptions =
   | {
@@ -218,13 +228,28 @@ export type ScheduleJobOptions =
 
 type PriorityValue = IntRange<1, 101>
 
-// If the job has no arguments:
-//  - you may pass an empty array for the arguments and then optionally pass the
-//    scheduler options
-//  - you may optionally pass the scheduler options
-// If the job has arguments:
-//  - you must pass the arguments and then optionally pass the scheduler options
-export type CreateSchedulerArgs<TJob extends Job<QueueNames>> =
-  Parameters<TJob['perform']> extends []
-    ? [ScheduleJobOptions?] | [[], ScheduleJobOptions?]
-    : [Parameters<TJob['perform']>, ScheduleJobOptions?]
+/**
+ * If the job has no arguments:
+ *  - you may pass an empty array for the arguments and then optionally pass the
+ *    scheduler options
+ *  - you may optionally pass the scheduler options
+ * If the job has arguments:
+ *  - you must pass the arguments and then optionally pass the scheduler options
+ * If the job has a cron schedule defined:
+ *  - options are not allowed (cron jobs are scheduled automatically)
+ */
+export type CreateSchedulerArgs<TJob extends Job<QueueNames, any[], any>> =
+  TJob['cron'] extends ''
+    ? // empty string cron, allow options
+      Parameters<TJob['perform']> extends []
+      ? [ScheduleJobOptions?] | [[], ScheduleJobOptions?]
+      : [Parameters<TJob['perform']>, ScheduleJobOptions?]
+    : TJob['cron'] extends string
+      ? // non-empty string cron, disallow options
+        Parameters<TJob['perform']> extends []
+        ? [] | [[]]
+        : [Parameters<TJob['perform']>]
+      : // undefined or not present, allow options
+        Parameters<TJob['perform']> extends []
+        ? [ScheduleJobOptions?] | [[], ScheduleJobOptions?]
+        : [Parameters<TJob['perform']>, ScheduleJobOptions?]
