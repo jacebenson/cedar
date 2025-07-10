@@ -63,7 +63,7 @@ export class Executor {
   }
 
   async perform() {
-    this.logger.info(`[RedwoodJob] Started job ${this.jobIdentifier}`)
+    this.logger.info(`[CedarJS Jobs] Started job ${this.jobIdentifier}`)
 
     try {
       const job = await loadJob({ name: this.job.name, path: this.job.path })
@@ -74,7 +74,7 @@ export class Executor {
         deleteJob: this.deleteSuccessfulJobs,
       })
     } catch (error: any) {
-      const errorMessage = `[RedwoodJob] Error in job ${this.jobIdentifier}: ${error.message}`
+      const errorMessage = `[CedarJS Jobs] Error in job ${this.jobIdentifier}: ${error.message}`
       this.logger.error(errorMessage)
       this.logger.error(error.stack)
 
@@ -88,7 +88,7 @@ export class Executor {
 
       if (this.job.attempts >= this.maxAttempts) {
         const maxAttemptsMessage =
-          `[RedwoodJob] Failed job ${this.jobIdentifier}: reached max ` +
+          `[CedarJS Jobs] Failed job ${this.jobIdentifier}: reached max ` +
           `attempts (${this.maxAttempts})`
         this.logger.warn(this.job, maxAttemptsMessage)
 
