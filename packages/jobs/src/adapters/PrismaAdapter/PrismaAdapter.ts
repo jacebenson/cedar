@@ -19,6 +19,7 @@ export interface PrismaJob extends BaseJob {
   id: number
   handler: string
   runAt: Date
+  cron: string | null | undefined
   lockedAt: Date
   lockedBy: string
   lastError: string | null
@@ -62,6 +63,7 @@ interface FailureData {
  *   queue     String
  *   priority  Int
  *   runAt     DateTime
+ *   cron      String?
  *   lockedAt  DateTime?
  *   lockedBy  String?
  *   lastError String?
@@ -201,7 +203,7 @@ export class PrismaAdapter extends BaseAdapter<PrismaAdapterOptions> {
   // Prisma queries are lazily evaluated and only sent to the db when they are
   // awaited, so do the await here to ensure they actually run (if the user
   // doesn't await the Promise then the queries will never be executed!)
-  override async success({ job, deleteJob }: SuccessOptions<PrismaJob>) {
+  override async success({ job, runAt, deleteJob }: SuccessOptions<PrismaJob>) {
     this.logger.debug(`[CedarJS Jobs] Job ${job.id} success`)
 
     if (deleteJob) {
@@ -213,7 +215,7 @@ export class PrismaAdapter extends BaseAdapter<PrismaAdapterOptions> {
           lockedAt: null,
           lockedBy: null,
           lastError: null,
-          runAt: null,
+          runAt: runAt || null,
         },
       })
     }
@@ -255,6 +257,7 @@ export class PrismaAdapter extends BaseAdapter<PrismaAdapterOptions> {
     path,
     args,
     runAt,
+    cron,
     queue,
     priority,
   }: SchedulePayload) {
@@ -262,6 +265,7 @@ export class PrismaAdapter extends BaseAdapter<PrismaAdapterOptions> {
       data: {
         handler: JSON.stringify({ name, path, args }),
         runAt,
+        cron,
         queue,
         priority,
       },
