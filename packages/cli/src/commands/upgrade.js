@@ -49,8 +49,8 @@ export const builder = (yargs) => {
     })
     .epilogue(
       `Also see the ${terminalLink(
-        'Cedar CLI Reference for the upgrade command',
-        'https://redwoodjs.com/docs/cli-commands#upgrade',
+        'CedarJS CLI Reference for the upgrade command',
+        'https://cedarjs.com/docs/cli-commands#upgrade',
       )}.\nAnd the ${terminalLink(
         'GitHub releases page',
         'https://github.com/cedarjs/cedar/releases',
@@ -66,12 +66,12 @@ const isValidSemver = (string) => {
   return SEMVER_REGEX.test(string)
 }
 
-const isValidCedarTag = (tag) => {
+const isValidCedarJSTag = (tag) => {
   return ['rc', 'canary', 'latest', 'next', 'experimental'].includes(tag)
 }
 
 export const validateTag = (tag) => {
-  const isTagValid = isValidSemver(tag) || isValidCedarTag(tag)
+  const isTagValid = isValidSemver(tag) || isValidCedarJSTag(tag)
 
   if (!isTagValid) {
     // Stop execution
@@ -103,7 +103,7 @@ export const handler = async ({ dryRun, tag, verbose, dedupe }) => {
       },
       {
         title: 'Updating your CedarJS version',
-        task: (ctx) => updateCedarDepsForAllSides(ctx, { dryRun, verbose }),
+        task: (ctx) => updateCedarJSDepsForAllSides(ctx, { dryRun, verbose }),
         enabled: (ctx) => !!ctx.versionToUpgradeTo,
       },
       {
@@ -170,7 +170,7 @@ export const handler = async ({ dryRun, tag, verbose, dedupe }) => {
             // Reminder to update the `notifications.versionUpdates` TOML option
             if (
               !getConfig().notifications.versionUpdates.includes(tag) &&
-              isValidCedarTag(tag)
+              isValidCedarJSTag(tag)
             ) {
               additionalMessages.push(
                 `   ❖ You may want to update your redwood.toml config so that \`notifications.versionUpdates\` includes "${tag}"\n`,
@@ -255,7 +255,7 @@ async function setLatestVersionToContext(ctx, tag) {
 }
 
 /**
- * Iterates over Cedar dependencies in package.json files and updates the version.
+ * Iterates over CedarJS dependencies in package.json files and updates the version.
  */
 function updatePackageJsonVersion(pkgPath, version, { dryRun, verbose }) {
   const pkg = JSON.parse(
@@ -293,7 +293,7 @@ function updatePackageJsonVersion(pkgPath, version, { dryRun, verbose }) {
   }
 }
 
-function updateCedarDepsForAllSides(ctx, options) {
+function updateCedarJSDepsForAllSides(ctx, options) {
   if (!ctx.versionToUpgradeTo) {
     throw new Error('Failed to upgrade')
   }
@@ -353,7 +353,7 @@ async function updatePackageVersionsFromTemplate(ctx, { dryRun, verbose }) {
 
           Object.entries(templatePackageJson.dependencies || {}).forEach(
             ([depName, depVersion]) => {
-              // Cedar packages are handled in another task
+              // CedarJS packages are handled in another task
               if (!depName.startsWith('@cedarjs/')) {
                 if (verbose || dryRun) {
                   console.log(
@@ -368,7 +368,7 @@ async function updatePackageVersionsFromTemplate(ctx, { dryRun, verbose }) {
 
           Object.entries(templatePackageJson.devDependencies || {}).forEach(
             ([depName, depVersion]) => {
-              // Cedar packages are handled in another task
+              // CedarJS packages are handled in another task
               if (!depName.startsWith('@cedarjs/')) {
                 if (verbose || dryRun) {
                   console.log(
@@ -460,7 +460,8 @@ async function downloadYarnPatches(ctx, { dryRun, verbose }) {
 }
 
 async function refreshPrismaClient(task, { verbose }) {
-  /** Relates to prisma/client issue, @see: https://github.com/redwoodjs/redwood/issues/1083 */
+  // Relates to prisma/client issue
+  // See: https://github.com/redwoodjs/redwood/issues/1083
   try {
     await generatePrismaClient({
       verbose,
@@ -503,7 +504,7 @@ const dedupeDeps = async (task, { verbose }) => {
     if (yarnVersion > 1) {
       await execa('yarn', ['dedupe'], baseExecaArgsForDedupe)
     } else {
-      // Cedar projects should not be using yarn 1.x as we specify a version of yarn in the package.json
+      // CedarJS projects should not be using yarn 1.x as we specify a version of yarn in the package.json
       // with "packageManager": "yarn@4.6.0" or similar.
       // Although we could (and previous did) automatically run `npx yarn-deduplicate` here, that would require
       // the user to have `npx` installed, which is not guaranteed and we do not wish to enforce that.
