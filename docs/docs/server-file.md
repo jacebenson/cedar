@@ -1,6 +1,6 @@
 # Server File
 
-Redwood v7 introduced a new entry point to Redwood's api server: the server file at `api/src/server.ts`.
+The entry point to CedarJS's api server is the server file at `api/src/server.ts`.
 
 It allows you to:
 
@@ -64,7 +64,7 @@ That means you will swap the `CMD` instruction in the api server stage:
 :::important
 If you are using a [Server File](#using-the-server-file) then you must change the command that runs the `api_serve` service to `./api/dist/server.js` as shown above.
 
-Not updating the command will not completely configure the GraphQL Server and not setup [Redwood Realtime](./realtime.md), if you are using that.
+Not updating the command will not completely configure the GraphQL Server and not setup [CedarJS Realtime](./realtime.md), if you are using that.
 :::
 
 ### Configuring the server
@@ -88,9 +88,9 @@ const server = await createServer({
 
 For the complete list of options, see [Fastify's documentation](https://fastify.dev/docs/latest/Reference/Server/#factory).
 
-#### Configure the redwood API plugin
+#### Configure the CedarJS API plugin
 
-Second, you may want to alter the behavior of redwood's API plugin itself. To do this we provide a `configureApiServer(server)` option where you can do anything you wish to the fastify instance before the API plugin is registered. Two examples are given below.
+Second, you may want to alter the behavior of CedarJS's API plugin itself. To do this we provide a `configureApiServer(server)` option where you can do anything you wish to the fastify instance before the API plugin is registered. Two examples are given below.
 
 ##### Example: Compressing Payloads and Rate Limiting
 
@@ -139,7 +139,7 @@ If you try to POST file content to the api server such as images or PDFs, you ma
 ```
 
 This's because Fastify [only supports `application/json` and `text/plain` content types natively](https://www.fastify.io/docs/latest/Reference/ContentTypeParser/).
-While Redwood configures the api server to also accept `application/x-www-form-urlencoded` and `multipart/form-data`, if you want to support other content or MIME types (likes images or PDFs), you'll need to configure them here in the server file.
+While CedarJS configures the api server to also accept `application/x-www-form-urlencoded` and `multipart/form-data`, if you want to support other content or MIME types (likes images or PDFs), you'll need to configure them here in the server file.
 
 You can use Fastify's `addContentTypeParser` function to allow uploads of the content types your application needs.
 For example, to support image file uploads you'd tell Fastify to allow `/^image\/.*/` content types:
@@ -161,7 +161,7 @@ The regular expression (`/^image\/.*/`) above allows all image content or MIME t
 
 Now, when you POST those content types to a function served by the api server, you can access the file content on `event.body`.
 
-Note that for the GraphQL endpoint, using Redwood's built-in [Uploads](uploads.md), multipart requests are already configured.
+Note that for the GraphQL endpoint, using CedarJS's built-in [Uploads](uploads.md), multipart requests are already configured.
 
 #### Additional Fastify plugins
 
@@ -178,7 +178,7 @@ server.register(myFastifyPlugin)
 
 :::note Fastify encapsulation
 
-Fastify is built around the concept of [encapsulation](https://fastify.dev/docs/latest/Reference/Encapsulation/). It is important to note that redwood's API plugin cannot be mutated after it is registered, see [here](https://fastify.dev/docs/latest/Reference/Plugins/#asyncawait). This is why you must use the `configureApiServer` option to do as shown above.
+Fastify is built around the concept of [encapsulation](https://fastify.dev/docs/latest/Reference/Encapsulation/). It is important to note that CedarJS's API plugin cannot be mutated after it is registered, see [here](https://fastify.dev/docs/latest/Reference/Plugins/#asyncawait). This is why you must use the `configureApiServer` option to do as shown above.
 
 :::
 
@@ -233,4 +233,4 @@ await server.listen({
 ```
 
 If you don't specify a host, `createServer` uses `NODE_ENV` to set it. If `NODE_ENV` is production, it defaults to `'0.0.0.0'` and `'::'` otherwise.
-The Dockerfile sets `NODE_ENV` to production so that things work out of the box.
+Our default Dockerfile sets `NODE_ENV` to production so that things work out of the box.
