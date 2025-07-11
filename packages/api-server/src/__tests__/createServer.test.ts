@@ -243,6 +243,7 @@ describe('resolveOptions', () => {
         logger: defaults.logger,
         bodyLimit: defaults.fastifyServerOptions.bodyLimit,
       },
+      discoverFunctionsGlob: defaults.discoverFunctionsGlob,
       apiHost: defaults.apiHost,
       apiPort: defaults.apiPort,
     })
