@@ -140,7 +140,7 @@ export const handler = async ({ dryRun, tag, verbose, dedupe, yes }) => {
         task: async (ctx) => setLatestVersionToContext(ctx, tag),
       },
       {
-        title: 'Updating your Cedar version',
+        title: 'Updating your CedarJS version',
         task: (ctx) => updateCedarDepsForAllSides(ctx, { dryRun, verbose }),
         enabled: (ctx) => !!ctx.versionToUpgradeTo,
       },
@@ -180,7 +180,7 @@ export const handler = async ({ dryRun, tag, verbose, dedupe, yes }) => {
           const version = ctx.versionToUpgradeTo
           const messageSections = [
             `One more thing...\n\n   ${c.warning(
-              `🎉 Your project has been upgraded to Cedar ${version}!`,
+              `🎉 Your project has been upgraded to CedarJS ${version}!`,
             )} \n\n`,
           ]
           // Show links when switching to 'latest' or 'rc', undefined is essentially an alias of 'latest'
