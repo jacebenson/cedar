@@ -50,9 +50,9 @@ const tasks = async ({ force }) => {
 
   const packageJsonPath = path.join(getPaths().base, 'package.json')
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'))
-  const redwoodVersion =
+  const cedarjsVersion =
     packageJson.devDependencies?.['@cedarjs/core'] ?? 'latest'
-  const jobsPackage = `@cedarjs/jobs@${redwoodVersion}`
+  const jobsPackage = `@cedarjs/jobs@${cedarjsVersion}`
 
   return new Listr(
     [
@@ -119,7 +119,7 @@ const tasks = async ({ force }) => {
           Execute jobs with:  ${c.highlight('yarn rw jobs work\n')}
 
           Check out the docs for more info:
-          ${c.link('https://docs.redwoodjs.com/docs/background-jobs')}
+          ${c.link('https://cedarjs.com/docs/background-jobs')}
 
         `
         },
