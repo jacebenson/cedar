@@ -375,21 +375,24 @@ reports every night at midnight, check for abandoned carts every 15 minutes,
 that sort of thing. We call these recurring jobs.
 
 CedarJS's job system has native support for these kinds of jobs by specifying a
-`cron` schedule when creating a job:
+`cron` schedule when scheduling a job:
 
 ```js
 import { jobs } from 'src/lib/jobs'
 
 export const NightlyReportJob = jobs.createJob({
   queue: 'default',
-  // highlight-start
-  // Run every day at midnight
-  cron: '0 0 * * *',
-  // highlight-end
   perform: async () => {
     await DailyUsageReport.run()
   },
 })
+
+const scheduler = manager.createScheduler({ adapter: 'prisma' })
+
+// Run every day at midnight
+// highlight-start
+await scheduler(NightlyReportJob, [], { cron: '0 0 * * *' })
+// highlight-end
 ```
 
 CedarJS uses https://github.com/harrisiirak/cron-parser under the hood for
