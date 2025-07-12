@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import 'whatwg-fetch'
 
-import { findCellMocks } from '@cedarjs/testing/dist/web/findCellMocks.js'
+import { findCellMocks } from '@cedarjs/testing/dist/cjs/web/findCellMocks.js'
 import {
   startMSW,
   setupRequestHandlers,
@@ -9,7 +9,7 @@ import {
   mockGraphQLMutation,
   mockGraphQLQuery,
   mockCurrentUser,
-} from '@cedarjs/testing/dist/web/mockRequests.js'
+} from '@cedarjs/testing/dist/cjs/web/mockRequests.js'
 
 global.mockGraphQLQuery = mockGraphQLQuery
 global.mockGraphQLMutation = mockGraphQLMutation

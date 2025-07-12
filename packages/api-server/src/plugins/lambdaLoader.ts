@@ -28,7 +28,31 @@ export const setLambdaFunctions = async (foundFunctions: string[]) => {
     const ts = Date.now()
     const routeName = path.basename(fnPath).replace('.js', '')
 
-    const { handler } = await import(`file://${fnPath}`)
+    const fnImport = await import(`file://${fnPath}`)
+    const handler: Handler = (() => {
+      if ('handler' in fnImport) {
+        // ESModule export of handler - when using
+        // `export const handler = ...` - most common case
+        return fnImport.handler
+      }
+
+      if ('default' in fnImport) {
+        if ('handler' in fnImport.default) {
+          // CommonJS export of handler - when using
+          // `module.exports.handler = ...` or `export default { handler: ... }`
+          // This is less common, but required for bundling tools that export a
+          // default object, like esbuild and rollup
+          return fnImport.default.handler
+        }
+
+        // Default export is not expected, so skip it
+      }
+
+      // If no handler is found, return undefined - we do not want to throw an
+      // error
+      return undefined
+    })()
+
     LAMBDA_FUNCTIONS[routeName] = handler
     if (!handler) {
       console.warn(
@@ -54,16 +78,18 @@ export const setLambdaFunctions = async (foundFunctions: string[]) => {
 
 type LoadFunctionsFromDistOptions = {
   fastGlobOptions?: FastGlobOptions
+  discoverFunctionsGlob?: string | string[]
 }
 
 // TODO: Use v8 caching to load these crazy fast.
 export const loadFunctionsFromDist = async (
   options: LoadFunctionsFromDistOptions = {},
 ) => {
-  const serverFunctions = findApiDistFunctions(
-    getPaths().api.base,
-    options?.fastGlobOptions,
-  )
+  const serverFunctions = findApiDistFunctions({
+    cwd: getPaths().api.base,
+    options: options?.fastGlobOptions,
+    discoverFunctionsGlob: options?.discoverFunctionsGlob,
+  })
 
   // Place `GraphQL` serverless function at the start.
   const i = serverFunctions.findIndex((x) => path.basename(x) === 'graphql.js')
@@ -74,15 +100,25 @@ export const loadFunctionsFromDist = async (
   await setLambdaFunctions(serverFunctions)
 }
 
-// NOTE: Copied from @cedarjs/internal/dist/files to avoid depending on @cedarjs/internal.
+// NOTE: Copied from @cedarjs/internal/dist/files to avoid depending on
+// @cedarjs/internal.
 // import { findApiDistFunctions } from '@cedarjs/internal/dist/files'
-function findApiDistFunctions(
-  cwd: string = getPaths().api.base,
-  options: FastGlobOptions = {},
-) {
-  return fg.sync('dist/functions/**/*.{ts,js}', {
+const findApiDistFunctions = (params: {
+  cwd: string
+  options?: FastGlobOptions
+  discoverFunctionsGlob?: string | string[]
+}) => {
+  const {
+    cwd = getPaths().api.base,
+    options = {},
+    discoverFunctionsGlob = 'dist/functions/**/*.{ts,js}',
+  } = params
+
+  return fg.sync(discoverFunctionsGlob, {
     cwd,
-    deep: 2, // We don't support deeply nested api functions, to maximise compatibility with deployment providers
+    // We don't support deeply nested api functions, to maximise compatibility
+    // with deployment providers
+    deep: 2,
     absolute: true,
     ...options,
   })

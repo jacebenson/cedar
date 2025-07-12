@@ -10,6 +10,8 @@
   "license": "MIT",
   "type": "module",
   "bin": {
+    "cedarjs": "./dist/index.js",
+    "cj": "./dist/index.js",
     "redwood": "./dist/index.js",
     "rw": "./dist/index.js",
     "rwfw": "./dist/rwfw.js"
@@ -85,6 +87,7 @@
     "title-case": "3.0.3",
     "unionfs": "4.5.4",
     "uuid": "10.0.0",
+    "vite-node": "3.2.4",
     "yargs": "17.7.2"
   },
   "devDependencies": {

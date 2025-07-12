@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Head from '@docusaurus/Head'
 import Link from '@docusaurus/Link'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 import Layout from '@theme/Layout'
 
 import sidebars from '../../sidebars'
 
+import styles from './styles.module.css'
+
 export default function Home() {
-  console.log('main sidebar', sidebars.main)
+  const [stargazerCount, setStargazerCount] = useState<number | string>('--')
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/cedarjs/cedar')
+      .then((response) => response.json())
+      .then((data) => {
+        setStargazerCount(data.stargazers_count)
+      })
+      .catch((error) => {
+        console.error('Error fetching startgazer count:', error)
+        setStargazerCount('--')
+      })
+  }, [])
 
   return (
     <Layout
@@ -45,7 +60,7 @@ export default function Home() {
               justifyContent: 'center',
             }}
           >
-            <a href="https://discord.gg/8mNkAgby5m">
+            <a href="https://cedarjs.com/discord">
               <img
                 src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"
                 alt="Join our Discord server!"
@@ -66,24 +81,20 @@ export default function Home() {
           </p>
         </section>
         <h1>About</h1>
-
         <p>
           CedarJS is a fork of the <a href="https://redwoodjs.com">RedwoodJS</a>{' '}
           framework with the goal of taking it into the modern web development
           era with a smooth transition path for existing RedwoodJS applications.
         </p>
-
         <p>
           CedarJS is a reliable, modern, and actively maintained full-stack
           React framework used in production by both large and small companies.
         </p>
-
         <p>
           CedarJS would obviously not be where it is today without the vision
           and heroic efforts of the RedwoodJS founders, maintainers and
           community.
         </p>
-
         <blockquote>
           cedar has become a powerful symbol of strength and revitalization
           <cite style={{ display: 'block' }}>
@@ -97,9 +108,35 @@ export default function Home() {
             </a>
           </cite>
         </blockquote>
-
+        <div style={{ textAlign: 'center', marginBlock: '30px' }}>
+          <p>Please star the project on GitHub!</p>
+          <div className={styles.starButtonStyle}>
+            <a
+              href="https://github.com/cedarjs/cedar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.starSectionStyle}
+            >
+              <img
+                src={useBaseUrl('/img/github-star-small.png')}
+                alt="Star"
+                width="32"
+                height="32"
+                className={styles.starIcon}
+              />
+              Star
+            </a>
+            <a
+              href="https://github.com/cedarjs/cedar/stargazers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.countSectionStyle}
+            >
+              {stargazerCount}
+            </a>
+          </div>
+        </div>
         <h1>Documentation</h1>
-
         <ul>
           {sidebars.main.map((section: string | Record<string, any>) => {
             const linkText =

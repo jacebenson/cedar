@@ -34,6 +34,33 @@ try {
 
   process.chdir(repoRoot)
 
+  await promptForUntrackedFiles()
+
+  console.log('Running git clean -fdx...')
+  await $`git clean -fdx`
+
+  console.log('Running yarn install...')
+  await $`yarn install`
+
+  console.log('Running yarn install in packages/create-cedar-rsc-app...')
+  const createCedarRscAppPath = path.join(
+    repoRoot,
+    'packages/create-cedar-rsc-app',
+  )
+  await $({ cwd: createCedarRscAppPath })`yarn install`
+
+  console.log('Running yarn build...')
+  await $`yarn build`
+
+  console.log('All tasks completed successfully!')
+  console.log(`Returning to original directory: ${originalCwd}`)
+  process.chdir(originalCwd)
+} catch (error) {
+  console.error('Error during clean-build process:', error)
+  process.exit(1)
+}
+
+async function promptForUntrackedFiles() {
   console.log('Checking for untracked files...')
   const statusResult =
     await $`git status --porcelain --untracked-files=all`.quiet()
@@ -65,27 +92,4 @@ try {
       process.exit(0)
     }
   }
-
-  console.log('Running git clean -fdx...')
-  await $`git clean -fdx`
-
-  console.log('Running yarn install...')
-  await $`yarn install`
-
-  console.log('Running yarn build...')
-  await $`yarn build`
-
-  console.log('Installing dependencies in packages/create-cedar-rsc-app...')
-  const createCedarRscAppPath = path.join(
-    repoRoot,
-    'packages/create-cedar-rsc-app',
-  )
-  process.chdir(createCedarRscAppPath)
-  await $`yarn install`
-
-  console.log('All tasks completed successfully!')
-  console.log(`Returning to original directory: ${originalCwd}`)
-} catch (error) {
-  console.error('Error during clean-build process:', error)
-  process.exit(1)
 }

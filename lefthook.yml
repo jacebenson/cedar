@@ -5,6 +5,9 @@
 #
 pre-push:
   parallel: true
+  skip:
+    - ref: next
+    - ref: release/*
   jobs:
     - run: yarn lint
     - run: yarn prettier --check --log-level=silent .
@@ -12,10 +15,15 @@ pre-push:
 
 pre-commit:
   parallel: true
+  skip:
+    - ref: next
+    - ref: release/*
   jobs:
     - name: lint staged files
       run: yarn eslint {staged_files}
       glob: '*.{js,ts,jsx,tsx}'
+      exclude:
+        - __fixtures__/*
 
     - run: yarn prettier --log-level=silent --check {staged_files}
 #

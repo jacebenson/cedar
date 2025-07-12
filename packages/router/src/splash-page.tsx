@@ -385,7 +385,7 @@ export const SplashPage = ({
                   <div className="resource">
                     <a
                       className="resource-link"
-                      href="https://discord.gg/8mNkAgby5m"
+                      href="https://cedarjs.com/discord"
                       target="_blank"
                       rel="noreferrer"
                     ></a>
@@ -478,7 +478,7 @@ export const SplashPage = ({
                 </a>
                 <a
                   className="social-link"
-                  href="https://discord.gg/8mNkAgby5m"
+                  href="https://cedarjs.com/discord"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Go to the CedarJS Discord server"

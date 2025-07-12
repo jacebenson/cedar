@@ -83,8 +83,6 @@ export const handler = async (args) => {
   delete scriptArgs.s
   delete scriptArgs.silent
 
-  // Configuration is now handled in the runScriptFunction
-
   const scriptPath = resolveScriptPath(name)
 
   if (!scriptPath) {

@@ -1,8 +1,5 @@
 /* eslint-disable no-var */
 import type { Global as jest } from '@jest/types'
-// import type { SuiteAPI, TestAPI } from 'vitest'
-// import type { SuiteAPI } from 'vitest'
-// type TestAPI = (name: string, test: () => void | Promise<void>) => void
 type TestAPI = jest.It
 type SuiteAPI = jest.Describe
 
