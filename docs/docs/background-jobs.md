@@ -802,7 +802,10 @@ The general gist of the required functions:
 There's still more to add to background jobs! Our current TODO list:
 
 - More adapters: Redis, SQS, RabbitMQ...
-- RW Studio integration: monitor the state of your outstanding jobs
-- Baremetal integration: if jobs are enabled, monitor the workers with pm2
-- Recurring jobs (like cron jobs)
-- Lifecycle hooks: `beforePerform()`, `afterPerform()`, `afterSuccess()`, `afterFailure()`
+- CedarJS Admin integration: monitor the state of your outstanding jobs, provide
+  a way to cancel or retry jobs, read failure logs, and more.
+- Baremetal integration: if jobs are enabled, monitor the workers with pm2 or
+  systemd
+- Lifecycle hooks: `beforePerform()`, `afterPerform()`, `afterSuccess()`,
+  `afterFailure()`
+- Let us know what you need! https://cedarjs.com/discord
