@@ -6,4 +6,4 @@ const requireFromVitest = createRequire(require.resolve('vitest/package.json'))
 
 const bin = requireFromVitest('./package.json')['bin']
 
-requireFromVitest(bin)
+requireFromVitest(bin['vitest'])
