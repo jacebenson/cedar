@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react'
-import type { ConfigEnv, PluginOption } from 'vite'
+import type { PluginOption } from 'vite'
 
 import { getWebSideDefaultBabelConfig } from '@cedarjs/babel-config'
 import { getConfig } from '@cedarjs/project-config'
@@ -28,10 +28,14 @@ export { cedarTransformJsAsJsx } from './plugins/vite-plugin-jsx-loader.js'
 export { cedarMergedConfig } from './plugins/vite-plugin-merged-config.js'
 export { cedarSwapApolloProvider } from './plugins/vite-plugin-swap-apollo-provider.js'
 
+type PluginOptions = {
+  mode: string | undefined
+}
+
 /**
  * Pre-configured vite plugin, with required config for CedarJS apps.
  */
-export function cedar({ mode }: ConfigEnv): PluginOption[] {
+export function cedar({ mode }: PluginOptions): PluginOption[] {
   const rwConfig = getConfig()
 
   const rscEnabled = rwConfig.experimental?.rsc?.enabled

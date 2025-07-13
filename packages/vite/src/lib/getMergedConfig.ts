@@ -1,8 +1,8 @@
 import path from 'node:path'
 
 import type { InputOption } from 'rollup'
-import type { ConfigEnv, UserConfig } from 'vite'
 import { mergeConfig } from 'vite'
+import type { ConfigEnv, UserConfig } from 'vitest/config'
 
 import type { Config, Paths } from '@cedarjs/project-config'
 import { getConfig, getPaths } from '@cedarjs/project-config'
@@ -32,6 +32,8 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
     } else {
       apiPort = rwConfig.api.port
     }
+
+    const NODE_MODULES_PATH = path.join(rwPaths.base, 'node_modules')
 
     const defaultRwViteConfig: UserConfig = {
       root: rwPaths.web.src,
@@ -142,6 +144,35 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
             global: 'globalThis',
           },
         },
+      },
+      ssr: {
+        noExternal: env.mode == 'test' ? ['@cedarjs/testing'] : [],
+      },
+      resolve: {
+        alias:
+          env.mode === 'test'
+            ? [
+                // Mock implementations
+                {
+                  find: /^@cedarjs\/router$/,
+                  replacement: path.join(
+                    NODE_MODULES_PATH,
+                    '@cedarjs/testing/dist/web/MockRouter.js',
+                  ),
+                },
+                {
+                  find: /^@cedarjs\/auth$/,
+                  replacement: path.join(
+                    NODE_MODULES_PATH,
+                    '@cedarjs/testing/dist/web/mockAuth.js',
+                  ),
+                },
+              ]
+            : [],
+      },
+      test: {
+        globals: false,
+        environment: 'jsdom',
       },
     }
 
