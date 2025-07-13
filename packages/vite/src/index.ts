@@ -1,8 +1,12 @@
 import react from '@vitejs/plugin-react'
-import type { PluginOption } from 'vite'
+import type { ConfigEnv, PluginOption } from 'vite'
 
 import { getWebSideDefaultBabelConfig } from '@cedarjs/babel-config'
 import { getConfig } from '@cedarjs/project-config'
+import {
+  mockProvidersRoutesPlugin,
+  mockProvidersRelativeRoutesPathsPlugin,
+} from '@cedarjs/testing/vitest'
 
 import { cedarCellTransform } from './plugins/vite-plugin-cedar-cell.js'
 import { cedarEntryInjectionPlugin } from './plugins/vite-plugin-cedar-entry-injection.js'
@@ -27,7 +31,7 @@ export { cedarSwapApolloProvider } from './plugins/vite-plugin-swap-apollo-provi
 /**
  * Pre-configured vite plugin, with required config for CedarJS apps.
  */
-export function cedar(): PluginOption[] {
+export function cedar({ mode }: ConfigEnv): PluginOption[] {
   const rwConfig = getConfig()
 
   const rscEnabled = rwConfig.experimental?.rsc?.enabled
@@ -51,6 +55,8 @@ export function cedar(): PluginOption[] {
   }
 
   return [
+    mode === 'test' && mockProvidersRoutesPlugin(),
+    mode === 'test' && mockProvidersRelativeRoutesPathsPlugin(),
     cedarNodePolyfills(),
     cedarHtmlEnvPlugin(),
     cedarEntryInjectionPlugin(),
