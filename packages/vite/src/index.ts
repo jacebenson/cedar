@@ -63,5 +63,5 @@ export function cedar(): PluginOption[] {
   ]
 }
 
-/** @deprecated - Please use the named `cedar` export instead */
+/** @deprecated Please use the named `cedar` export instead */
 export default cedar
