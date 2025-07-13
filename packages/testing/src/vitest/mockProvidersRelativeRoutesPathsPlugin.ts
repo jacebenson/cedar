@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
 
-export function mockProvidersRelativeRoutesPathsPlugin() {
+export function mockProvidersRelativeRoutesPathsPlugin(): Plugin {
   return {
     name: 'cedarjs:mock-providers-relative-routes-paths',
     resolveId(id, importer) {
@@ -13,5 +13,5 @@ export function mockProvidersRelativeRoutesPathsPlugin() {
 
       return null
     },
-  } satisfies Plugin
+  }
 }
