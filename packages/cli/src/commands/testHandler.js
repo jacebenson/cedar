@@ -148,11 +148,13 @@ export const handler = async ({
       process.env.SKIP_DB_PUSH = '1'
     }
 
+    console.log('jestArgs', jestArgs)
+
     // **NOTE** There is no official way to run Jest programmatically,
     // so we're running it via execa, since `jest.run()` is a bit unstable.
     // https://github.com/facebook/jest/issues/5048
     const runCommand = async () => {
-      await execa('yarn jest', jestArgs, {
+      await execa('yarn vitest', ['run'], {
         cwd: rwjsPaths.base,
         shell: true,
         stdio: 'inherit',
