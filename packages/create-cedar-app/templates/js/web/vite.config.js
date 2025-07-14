@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [cedar({ mode })],
   test: {
     environment: 'jsdom',
+    setupFiles: ['./vitest.setup.js'],
     // Enables global test APIs like describe, it, expect
     globals: true,
   },
