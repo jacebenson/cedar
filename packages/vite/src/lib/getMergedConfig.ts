@@ -164,8 +164,31 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
                   find: /^@cedarjs\/auth$/,
                   replacement: path.join(
                     NODE_MODULES_PATH,
-                    '@cedarjs/testing/dist/web/mockAuth.js',
+                    '@cedarjs/auth/dist/index.js',
                   ),
+                  customResolver: (id, importer) => {
+                    // console.log('getMergedConfig auth customResolver id', id)
+                    console.log(
+                      'getMergedConfig auth customResolver importer',
+                      importer,
+                    )
+
+                    if (importer?.endsWith('mockAuth.js')) {
+                      console.log('returning id', id)
+                      return id
+                    }
+
+                    const mockAuthId = path.join(
+                      NODE_MODULES_PATH,
+                      '@cedarjs/testing/dist/web/mockAuth.js',
+                    )
+                    console.log('returning id', mockAuthId)
+
+                    return path.join(
+                      NODE_MODULES_PATH,
+                      '@cedarjs/testing/dist/web/mockAuth.js',
+                    )
+                  },
                 },
               ]
             : [],
