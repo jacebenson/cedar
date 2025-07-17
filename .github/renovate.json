@@ -3,7 +3,7 @@
   "configMigration": true,
   "extends": ["config:recommended"],
   "postUpdateOptions": ["yarnDedupeHighest"],
-  "prConcurrentLimit": 3,
+  "prConcurrentLimit": 5,
   "rebaseWhen": "conflicted",
   "packageRules": [
     {
