@@ -18,12 +18,22 @@
       "options": {
         "singleQuote": true
       }
+    },
+    {
+      "files": "package.json",
+      "options": {
+        "packageJsonIgnoreSortKeys": [
+          "dependencies",
+          "devDependencies",
+          "peerDependencies"
+        ]
+      }
     }
   ],
   "plugins": [
     "prettier-plugin-curly",
     "prettier-plugin-sh",
-    "prettier-plugin-packagejson"
+    "prettier-plugin-sort-pkgjson"
   ],
   "semi": false
 }

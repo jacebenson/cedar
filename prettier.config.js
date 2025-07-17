@@ -13,7 +13,19 @@ const config = {
   plugins: [
     'prettier-plugin-curly',
     'prettier-plugin-sh',
-    'prettier-plugin-packagejson',
+    'prettier-plugin-sort-pkgjson',
+  ],
+  overrides: [
+    {
+      files: ['package.json'],
+      options: {
+        packageJsonIgnoreSortKeys: [
+          'dependencies',
+          'devDependencies',
+          'peerDependencies',
+        ],
+      },
+    },
   ],
 }
 
