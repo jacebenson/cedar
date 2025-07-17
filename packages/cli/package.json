@@ -3,22 +3,12 @@
   "version": "0.0.5",
   "description": "The Redwood Command Line",
   "repository": {
+    "directory": "packages/cli",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/cli"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "bin": {
-    "cedarjs": "./dist/index.js",
-    "cj": "./dist/index.js",
-    "redwood": "./dist/index.js",
-    "rw": "./dist/index.js",
-    "rwfw": "./dist/rwfw.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts",
     "build:pack": "yarn pack -o cedarjs-cli.tgz",
@@ -29,6 +19,16 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "bin": {
+    "cedarjs": "./dist/index.js",
+    "cj": "./dist/index.js",
+    "redwood": "./dist/index.js",
+    "rw": "./dist/index.js",
+    "rwfw": "./dist/rwfw.js"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/api-server": "workspace:*",

@@ -1,16 +1,6 @@
 {
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "packages/*",
-    "packages/adapters/*/*",
-    "packages/auth-providers/*/*",
-    "packages/cli-packages/*",
-    "packages/mailer/core",
-    "packages/mailer/handlers/*",
-    "packages/mailer/renderers/*",
-    "!packages/create-cedar-rsc-app"
-  ],
   "scripts": {
     "build": "nx run-many -t build",
     "build:clean": "node ./tasks/clean.mjs",
@@ -47,13 +37,7 @@
     "test:k6": "tsx ./tasks/k6-test/run-k6-tests.mts",
     "test:types": "nx run-many -t test:types"
   },
-  "resolutions": {
-    "@storybook/react-dom-shim@npm:7.6.20": "https://verdaccio.tobbe.dev/@storybook/react-dom-shim/-/react-dom-shim-8.0.8.tgz",
-    "vscode-languageserver": "6.1.1",
-    "vscode-languageserver-protocol": "3.17.5",
-    "vscode-languageserver-textdocument": "1.0.12",
-    "vscode-languageserver-types": "3.17.5"
-  },
+  "packageManager": "yarn@4.6.0",
   "devDependencies": {
     "@actions/cache": "4.0.3",
     "@actions/core": "1.11.1",
@@ -136,6 +120,22 @@
     "yargs": "17.7.2",
     "zx": "8.7.1"
   },
-  "packageManager": "yarn@4.6.0",
-  "npmClient": "yarn"
+  "workspaces": [
+    "!packages/create-cedar-rsc-app",
+    "packages/*",
+    "packages/adapters/*/*",
+    "packages/auth-providers/*/*",
+    "packages/cli-packages/*",
+    "packages/mailer/core",
+    "packages/mailer/handlers/*",
+    "packages/mailer/renderers/*"
+  ],
+  "npmClient": "yarn",
+  "resolutions": {
+    "@storybook/react-dom-shim@npm:7.6.20": "https://verdaccio.tobbe.dev/@storybook/react-dom-shim/-/react-dom-shim-8.0.8.tgz",
+    "vscode-languageserver": "6.1.1",
+    "vscode-languageserver-protocol": "3.17.5",
+    "vscode-languageserver-textdocument": "1.0.12",
+    "vscode-languageserver-types": "3.17.5"
+  }
 }

@@ -3,49 +3,12 @@
   "version": "0.0.5",
   "description": "Vite configuration package for CedarJS",
   "repository": {
+    "directory": "packages/vite",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/vite"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
-    },
-    "./client": {
-      "require": "./dist/cjs/client.js",
-      "import": "./dist/client.js"
-    },
-    "./buildFeServer": {
-      "require": "./dist/cjs/buildFeServer.js",
-      "import": "./dist/buildFeServer.js"
-    },
-    "./build": {
-      "import": "./dist/build/build.js",
-      "default": "./dist/cjs/build/build.js"
-    },
-    "./bins/rw-vite-build.mjs": "./bins/rw-vite-build.mjs"
-  },
-  "bin": {
-    "rw-dev-fe": "./dist/devFeServer.js",
-    "rw-serve-fe": "./dist/runFeServer.js",
-    "rw-vite-build": "./bins/rw-vite-build.mjs",
-    "rw-vite-dev": "./bins/rw-vite-dev.mjs",
-    "vite": "./bins/vite.mjs"
-  },
-  "files": [
-    "dist",
-    "inject"
-  ],
   "scripts": {
     "build": "tsx build.ts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-vite.tgz",
@@ -55,6 +18,43 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "bin": {
+    "rw-dev-fe": "./dist/devFeServer.js",
+    "rw-serve-fe": "./dist/runFeServer.js",
+    "rw-vite-build": "./bins/rw-vite-build.mjs",
+    "rw-vite-dev": "./bins/rw-vite-dev.mjs",
+    "vite": "./bins/vite.mjs"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      }
+    },
+    "./bins/rw-vite-build.mjs": "./bins/rw-vite-build.mjs",
+    "./build": {
+      "default": "./dist/cjs/build/build.js",
+      "import": "./dist/build/build.js"
+    },
+    "./buildFeServer": {
+      "import": "./dist/buildFeServer.js",
+      "require": "./dist/cjs/buildFeServer.js"
+    },
+    "./client": {
+      "import": "./dist/client.js",
+      "require": "./dist/cjs/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "inject"
+  ],
   "dependencies": {
     "@babel/generator": "7.27.5",
     "@babel/parser": "7.27.5",

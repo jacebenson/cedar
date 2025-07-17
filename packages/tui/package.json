@@ -2,16 +2,11 @@
   "name": "@cedarjs/tui",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/tui",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/tui"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-tui.tgz",
@@ -19,6 +14,11 @@
     "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
     "prepublishOnly": "NODE_ENV=production yarn build"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "boxen": "5.1.2",
     "chalk": "4.1.2",

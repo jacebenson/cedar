@@ -2,31 +2,12 @@
   "name": "@cedarjs/auth-firebase-api",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/auth-providers/firebase/api",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/auth-providers/firebase/api"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./dist/decoder": {
-      "default": {
-        "types": "./dist/decoder.d.ts",
-        "default": "./dist/decoder.js"
-      }
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-auth-firebase-api.tgz",
@@ -38,6 +19,25 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./dist/decoder": {
+      "default": {
+        "default": "./dist/decoder.js",
+        "types": "./dist/decoder.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "firebase-admin": "12.6.0"
   },

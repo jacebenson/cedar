@@ -2,17 +2,12 @@
   "name": "create-cedar-app",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/create-cedar-app",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/create-cedar-app"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "bin": "./dist/create-cedar-app.js",
-  "files": [
-    "dist",
-    "templates"
-  ],
   "scripts": {
     "build": "tsx ./scripts/build.ts",
     "build:pack": "node ./scripts/buildPack.js",
@@ -23,6 +18,11 @@
     "test:e2e": "vitest --pool=forks run e2e",
     "ts-to-js": "yarn node ./scripts/tsToJS.js"
   },
+  "bin": "./dist/create-cedar-app.js",
+  "files": [
+    "dist",
+    "templates"
+  ],
   "devDependencies": {
     "@babel/core": "^7.26.10",
     "@babel/plugin-transform-typescript": "^7.26.8",

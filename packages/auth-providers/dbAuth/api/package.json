@@ -2,49 +2,12 @@
   "name": "@cedarjs/auth-dbauth-api",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/auth-providers/dbAuth/api",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/auth-providers/dbAuth/api"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./dist/decoder": {
-      "default": {
-        "types": "./dist/decoder.d.ts",
-        "default": "./dist/decoder.js"
-      }
-    },
-    "./dist/errors": {
-      "default": {
-        "types": "./dist/errors.d.ts",
-        "default": "./dist/errors.js"
-      }
-    },
-    "./dist/shared": {
-      "default": {
-        "types": "./dist/shared.d.ts",
-        "default": "./dist/shared.js"
-      }
-    },
-    "./dist/DbAuthHandler": {
-      "default": {
-        "types": "./dist/DbAuthHandler.d.ts",
-        "default": "./dist/DbAuthHandler.js"
-      }
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-auth-dbauth-api.tgz",
@@ -56,6 +19,43 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./dist/DbAuthHandler": {
+      "default": {
+        "default": "./dist/DbAuthHandler.js",
+        "types": "./dist/DbAuthHandler.d.ts"
+      }
+    },
+    "./dist/decoder": {
+      "default": {
+        "default": "./dist/decoder.js",
+        "types": "./dist/decoder.d.ts"
+      }
+    },
+    "./dist/errors": {
+      "default": {
+        "default": "./dist/errors.js",
+        "types": "./dist/errors.d.ts"
+      }
+    },
+    "./dist/shared": {
+      "default": {
+        "default": "./dist/shared.js",
+        "types": "./dist/shared.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/project-config": "workspace:*",
     "base64url": "3.0.1",

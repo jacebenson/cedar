@@ -2,16 +2,11 @@
   "name": "@cedarjs/mailer-renderer-mjml-react",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/mailer/renderers/mjml-react",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/mailer/renderers/mjml-react"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-mailer-renderer-mjml-react.tgz",
@@ -19,6 +14,11 @@
     "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
     "prepublishOnly": "NODE_ENV=production yarn build"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/mailer-core": "workspace:*",
     "@faire/mjml-react": "3.4.0",

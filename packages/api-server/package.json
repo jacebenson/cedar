@@ -3,21 +3,11 @@
   "version": "0.0.5",
   "description": "CedarJS's HTTP server for Serverless Functions",
   "repository": {
+    "directory": "packages/api-server",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/api-server"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/createServer.js",
-  "types": "./dist/createServer.d.ts",
-  "bin": {
-    "rw-api-server-watch": "./dist/watch.js",
-    "rw-log-formatter": "./dist/logFormatter/bin.js",
-    "rw-server": "./dist/bin.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-api-server.tgz",
@@ -28,6 +18,16 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "bin": {
+    "rw-api-server-watch": "./dist/watch.js",
+    "rw-log-formatter": "./dist/logFormatter/bin.js",
+    "rw-server": "./dist/bin.js"
+  },
+  "main": "./dist/createServer.js",
+  "types": "./dist/createServer.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/context": "workspace:*",
     "@cedarjs/fastify-web": "workspace:*",
@@ -50,6 +50,14 @@
     "split2": "4.2.0",
     "yargs": "17.7.2"
   },
+  "peerDependencies": {
+    "@cedarjs/graphql-server": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@cedarjs/graphql-server": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
     "@types/aws-lambda": "8.10.145",
@@ -62,14 +70,6 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "@cedarjs/graphql-server": "workspace:*"
-  },
-  "peerDependenciesMeta": {
-    "@cedarjs/graphql-server": {
-      "optional": true
-    }
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

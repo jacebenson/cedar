@@ -1,35 +1,35 @@
 {
+  "private": true,
   "name": "@cedarjs/framework-tools",
   "version": "0.0.5",
-  "private": true,
   "repository": {
+    "directory": "packages/framework-tools",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/framework-tools"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/buildDefaults.d.ts",
-      "default": "./dist/buildDefaults.js"
-    },
-    "./generateTypes": {
-      "types": "./dist/generateTypes.d.ts",
-      "default": "./dist/generateTypes.js"
-    }
-  },
-  "types": "./dist/buildDefaults.d.ts",
-  "bin": {
-    "rw-fwtools-attw": "./dist/bins/rw-fwtools-attw.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.ts && run build:types",
     "build:types": "tsc --build --verbose"
   },
+  "bin": {
+    "rw-fwtools-attw": "./dist/bins/rw-fwtools-attw.js"
+  },
+  "types": "./dist/buildDefaults.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/buildDefaults.js",
+      "types": "./dist/buildDefaults.d.ts"
+    },
+    "./generateTypes": {
+      "default": "./dist/generateTypes.js",
+      "types": "./dist/generateTypes.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@arethetypeswrong/cli": "0.18.1",
     "esbuild": "0.25.0",

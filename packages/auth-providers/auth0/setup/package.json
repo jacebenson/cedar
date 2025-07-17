@@ -2,31 +2,12 @@
   "name": "@cedarjs/auth-auth0-setup",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/auth-providers/auth0/setup",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/auth-providers/auth0/setup"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./dist/setup": {
-      "types": "./dist/setup.d.ts",
-      "default": "./dist/setup.js"
-    },
-    "./dist/setupHandler": {
-      "types": "./dist/setupHandler.d.ts",
-      "default": "./dist/setupHandler.js"
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-auth-auth0-setup.tgz",
@@ -38,6 +19,25 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/setup": {
+      "default": "./dist/setup.js",
+      "types": "./dist/setup.d.ts"
+    },
+    "./dist/setupHandler": {
+      "default": "./dist/setupHandler.js",
+      "types": "./dist/setupHandler.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/cli-helpers": "workspace:*"
   },

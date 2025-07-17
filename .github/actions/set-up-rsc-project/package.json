@@ -1,6 +1,6 @@
 {
+  "private": true,
   "name": "set-up-rsc-project",
   "version": "0.0.0",
-  "private": true,
   "type": "module"
 }

@@ -2,19 +2,11 @@
   "name": "@cedarjs/cli-data-migrate",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/cli-packages/dataMigrate",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/cli-packages/dataMigrate"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "exports": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "up": "./dist/bin.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-cli-data-migrate.tgz",
@@ -24,6 +16,14 @@
     "test:dist": "yarn jest ./dist.test.ts",
     "test:unit": "yarn jest src"
   },
+  "bin": {
+    "up": "./dist/bin.js"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/babel-config": "workspace:*",
     "@cedarjs/project-config": "workspace:*",

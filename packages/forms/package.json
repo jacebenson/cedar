@@ -2,25 +2,12 @@
   "name": "@cedarjs/forms",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/forms",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/forms"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-forms.tgz",
@@ -32,10 +19,26 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "graphql": "16.9.0",
     "pascalcase": "1.0.0",
     "react-hook-form": "7.54.2"
+  },
+  "peerDependencies": {
+    "react": "19.0.0-rc-f2df5694-20240916"
   },
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
@@ -54,9 +57,6 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "react": "19.0.0-rc-f2df5694-20240916"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

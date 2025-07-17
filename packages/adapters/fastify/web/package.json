@@ -2,16 +2,11 @@
   "name": "@cedarjs/fastify-web",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/adapters/fastify/web",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/adapters/fastify/web"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/web.js",
-  "types": "./dist/web.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-fastify-web.tgz",
@@ -20,6 +15,11 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/web.js",
+  "types": "./dist/web.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/project-config": "workspace:*",
     "@fastify/http-proxy": "11.1.2",

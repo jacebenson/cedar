@@ -2,84 +2,12 @@
   "name": "@cedarjs/router",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/router",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/router"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
-    },
-    "./Route": {
-      "import": "./dist/Route.js",
-      "require": "./dist/cjs/Route.js"
-    },
-    "./Set": {
-      "import": "./dist/Set.js",
-      "require": "./dist/cjs/Set.js"
-    },
-    "./Link": {
-      "import": "./dist/link.js",
-      "require": "./dist/cjs/link.js"
-    },
-    "./NavLink": {
-      "import": "./dist/navLink.js",
-      "require": "./dist/cjs/navLink.js"
-    },
-    "./location": {
-      "import": "./dist/location.js",
-      "require": "./dist/cjs/location.js"
-    },
-    "./namedRoutes": {
-      "import": "./dist/namedRoutes.js",
-      "require": "./dist/cjs/namedRoutes.js"
-    },
-    "./util": {
-      "import": "./dist/util.js",
-      "require": "./dist/cjs/util.js"
-    },
-    "./react-util": {
-      "import": "./dist/react-util.js",
-      "require": "./dist/cjs/react-util.js"
-    },
-    "./rscCss": {
-      "require": "./dist/cjs/rsc/rscCss.js",
-      "import": "./dist/rsc/rscCss.js"
-    },
-    "./serverRouter": {
-      "import": "./dist/rsc/ServerRouter.js",
-      "require": "./dist/cjs/rsc/ServerRouter.js"
-    },
-    "./RscRouter": {
-      "react-server": "./dist/rsc/ServerRouter.js",
-      "require": "./dist/cjs/rsc/ClientRouter.js",
-      "import": "./dist/rsc/ClientRouter.js"
-    },
-    "./SsrRouter": {
-      "react-server": "./dist/rsc/ServerRouter.js",
-      "require": "./dist/cjs/rsc/SsrRouter.js",
-      "import": "./dist/rsc/SsrRouter.js"
-    },
-    "./dist/*": {
-      "require": "./dist/cjs/*.js",
-      "import": "./dist/*.js"
-    }
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "skip-nav.css"
-  ],
   "scripts": {
     "build": "tsx ./build.ts",
     "build:pack": "yarn pack -o cedarjs-router.tgz",
@@ -93,6 +21,78 @@
     "test:types": "tstyche",
     "test:watch": "vitest watch"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      }
+    },
+    "./Link": {
+      "import": "./dist/link.js",
+      "require": "./dist/cjs/link.js"
+    },
+    "./NavLink": {
+      "import": "./dist/navLink.js",
+      "require": "./dist/cjs/navLink.js"
+    },
+    "./Route": {
+      "import": "./dist/Route.js",
+      "require": "./dist/cjs/Route.js"
+    },
+    "./RscRouter": {
+      "import": "./dist/rsc/ClientRouter.js",
+      "react-server": "./dist/rsc/ServerRouter.js",
+      "require": "./dist/cjs/rsc/ClientRouter.js"
+    },
+    "./Set": {
+      "import": "./dist/Set.js",
+      "require": "./dist/cjs/Set.js"
+    },
+    "./SsrRouter": {
+      "import": "./dist/rsc/SsrRouter.js",
+      "react-server": "./dist/rsc/ServerRouter.js",
+      "require": "./dist/cjs/rsc/SsrRouter.js"
+    },
+    "./dist/*": {
+      "import": "./dist/*.js",
+      "require": "./dist/cjs/*.js"
+    },
+    "./location": {
+      "import": "./dist/location.js",
+      "require": "./dist/cjs/location.js"
+    },
+    "./namedRoutes": {
+      "import": "./dist/namedRoutes.js",
+      "require": "./dist/cjs/namedRoutes.js"
+    },
+    "./react-util": {
+      "import": "./dist/react-util.js",
+      "require": "./dist/cjs/react-util.js"
+    },
+    "./rscCss": {
+      "import": "./dist/rsc/rscCss.js",
+      "require": "./dist/cjs/rsc/rscCss.js"
+    },
+    "./serverRouter": {
+      "import": "./dist/rsc/ServerRouter.js",
+      "require": "./dist/cjs/rsc/ServerRouter.js"
+    },
+    "./util": {
+      "import": "./dist/util.js",
+      "require": "./dist/cjs/util.js"
+    }
+  },
+  "files": [
+    "dist",
+    "skip-nav.css"
+  ],
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/auth": "workspace:*",
@@ -101,6 +101,10 @@
     "react": "19.0.0-rc-f2df5694-20240916",
     "react-dom": "19.0.0-rc-f2df5694-20240916",
     "react-server-dom-webpack": "19.0.0-rc-f2df5694-20240916"
+  },
+  "peerDependencies": {
+    "react": "19.0.0-rc-f2df5694-20240916",
+    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.1",
@@ -116,10 +120,6 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "react": "19.0.0-rc-f2df5694-20240916",
-    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

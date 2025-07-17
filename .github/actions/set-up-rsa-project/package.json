@@ -1,6 +1,6 @@
 {
+  "private": true,
   "name": "set-up-rsa-project",
   "version": "0.0.0",
-  "private": true,
   "type": "module"
 }

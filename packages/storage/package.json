@@ -2,44 +2,12 @@
   "name": "@cedarjs/storage",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/storage",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/storage"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      },
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./FileSystemStorage": {
-      "require": "./dist/cjs/adapters/FileSystemStorage/FileSystemStorage.js",
-      "import": "./dist/adapters/FileSystemStorage/FileSystemStorage.js"
-    },
-    "./MemoryStorage": {
-      "require": "./dist/cjs/adapters/MemoryStorage/MemoryStorage.js",
-      "import": "./dist/adapters/MemoryStorage/MemoryStorage.js"
-    },
-    "./BaseStorageAdapter": {
-      "require": "./dist/cjs/adapters/BaseStorageAdapter.js",
-      "import": "./dist/adapters/BaseStorageAdapter.js"
-    },
-    "./UrlSigner": {
-      "require": "./dist/cjs/UrlSigner.js",
-      "import": "./dist/UrlSigner.js"
-    }
-  },
-  "files": [
-    "dist",
-    "!dist/**/*.test.d.*"
-  ],
   "scripts": {
     "build": "yarn setup:test && tsx ./build.mts",
     "build:pack": "yarn pack -o cedarjs-storage.tgz",
@@ -52,6 +20,38 @@
     "test:types": "yarn setup:test && tstyche",
     "test:watch": "vitest watch"
   },
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      }
+    },
+    "./BaseStorageAdapter": {
+      "import": "./dist/adapters/BaseStorageAdapter.js",
+      "require": "./dist/cjs/adapters/BaseStorageAdapter.js"
+    },
+    "./FileSystemStorage": {
+      "import": "./dist/adapters/FileSystemStorage/FileSystemStorage.js",
+      "require": "./dist/cjs/adapters/FileSystemStorage/FileSystemStorage.js"
+    },
+    "./MemoryStorage": {
+      "import": "./dist/adapters/MemoryStorage/MemoryStorage.js",
+      "require": "./dist/cjs/adapters/MemoryStorage/MemoryStorage.js"
+    },
+    "./UrlSigner": {
+      "import": "./dist/UrlSigner.js",
+      "require": "./dist/cjs/UrlSigner.js"
+    }
+  },
+  "files": [
+    "!dist/**/*.test.d.*",
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/project-config": "workspace:*",
     "mime-types": "2.1.35",

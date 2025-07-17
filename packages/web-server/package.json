@@ -3,19 +3,11 @@
   "version": "0.0.5",
   "description": "Cedar's server for the Web side",
   "repository": {
+    "directory": "packages/web-server",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/web-server"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/cliConfig.js",
-  "types": "./dist/cliConfig.d.ts",
-  "bin": {
-    "rw-web-server": "./dist/bin.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-web-server.tgz",
@@ -24,6 +16,14 @@
     "fix:permissions": "chmod +x dist/index.js; chmod +x dist/watch.js",
     "prepublishOnly": "NODE_ENV=production yarn build"
   },
+  "bin": {
+    "rw-web-server": "./dist/bin.js"
+  },
+  "main": "./dist/cliConfig.js",
+  "types": "./dist/cliConfig.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/fastify-web": "workspace:*",
     "@cedarjs/project-config": "workspace:*",

@@ -2,31 +2,12 @@
   "name": "@cedarjs/auth-supertokens-api",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/auth-providers/supertokens/api",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/auth-providers/supertokens/api"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./dist/decoder": {
-      "default": {
-        "types": "./dist/decoder.d.ts",
-        "default": "./dist/decoder.js"
-      }
-    }
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-auth-supertokens-api.tgz",
@@ -38,9 +19,31 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./dist/decoder": {
+      "default": {
+        "default": "./dist/decoder.js",
+        "types": "./dist/decoder.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "jsonwebtoken": "9.0.2",
     "jwks-rsa": "3.1.0"
+  },
+  "peerDependencies": {
+    "supertokens-node": "15.2.3"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.1",
@@ -52,9 +55,6 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "supertokens-node": "15.2.3"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

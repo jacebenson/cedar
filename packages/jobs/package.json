@@ -2,30 +2,12 @@
   "name": "@cedarjs/jobs",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/jobs",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/jobs"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "default": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "rw-jobs": "./dist/bins/rw-jobs.js",
-    "rw-jobs-worker": "./dist/bins/rw-jobs-worker.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-jobs.tgz",
@@ -37,6 +19,24 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
+  "bin": {
+    "rw-jobs": "./dist/bins/rw-jobs.js",
+    "rw-jobs-worker": "./dist/bins/rw-jobs-worker.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/cli-helpers": "workspace:*",
     "@cedarjs/project-config": "workspace:*",

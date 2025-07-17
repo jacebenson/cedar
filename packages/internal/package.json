@@ -2,64 +2,12 @@
   "name": "@cedarjs/internal",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/internal",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/internal"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "commonjs",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./package.json": "./package.json",
-    "./dist/dev": {
-      "types": "./dist/dev.d.ts",
-      "default": "./dist/dev.js"
-    },
-    "./dist/files": {
-      "types": "./dist/files.d.ts",
-      "default": "./dist/files.js"
-    },
-    "./dist/files.js": {
-      "types": "./dist/files.d.ts",
-      "default": "./dist/files.js"
-    },
-    "./dist/gql": {
-      "types": "./dist/gql.d.ts",
-      "default": "./dist/gql.js"
-    },
-    "./dist/routes.js": {
-      "types": "./dist/routes.d.ts",
-      "default": "./dist/routes.js"
-    },
-    "./dist/ts2js": {
-      "types": "./dist/ts2js.d.ts",
-      "default": "./dist/ts2js.js"
-    },
-    "./dist/validateSchema": {
-      "types": "./dist/validateSchema.d.ts",
-      "default": "./dist/validateSchema.js"
-    },
-    "./dist/build/api": {
-      "types": "./dist/build/api.d.ts",
-      "default": "./dist/build/api.js"
-    },
-    "./dist/generate/generate": {
-      "types": "./dist/generate/generate.d.ts",
-      "default": "./dist/generate/generate.js"
-    }
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "bin": {
-    "rw-gen": "./dist/generate/generate.js",
-    "rw-gen-watch": "./dist/generate/watch.js"
-  },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:clean-dist": "rimraf 'dist/**/*/__tests__' --glob",
@@ -73,6 +21,58 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "bin": {
+    "rw-gen": "./dist/generate/generate.js",
+    "rw-gen-watch": "./dist/generate/watch.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/build/api": {
+      "default": "./dist/build/api.js",
+      "types": "./dist/build/api.d.ts"
+    },
+    "./dist/dev": {
+      "default": "./dist/dev.js",
+      "types": "./dist/dev.d.ts"
+    },
+    "./dist/files": {
+      "default": "./dist/files.js",
+      "types": "./dist/files.d.ts"
+    },
+    "./dist/files.js": {
+      "default": "./dist/files.js",
+      "types": "./dist/files.d.ts"
+    },
+    "./dist/generate/generate": {
+      "default": "./dist/generate/generate.js",
+      "types": "./dist/generate/generate.d.ts"
+    },
+    "./dist/gql": {
+      "default": "./dist/gql.js",
+      "types": "./dist/gql.d.ts"
+    },
+    "./dist/routes.js": {
+      "default": "./dist/routes.js",
+      "types": "./dist/routes.d.ts"
+    },
+    "./dist/ts2js": {
+      "default": "./dist/ts2js.js",
+      "types": "./dist/ts2js.d.ts"
+    },
+    "./dist/validateSchema": {
+      "default": "./dist/validateSchema.js",
+      "types": "./dist/validateSchema.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@babel/core": "^7.26.10",
     "@babel/parser": "7.27.5",

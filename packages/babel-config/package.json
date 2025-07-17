@@ -2,16 +2,11 @@
   "name": "@cedarjs/babel-config",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/babel-config",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/babel-config"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "exports": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && run build:types",
     "build:pack": "yarn pack -o cedarjs-babel-config.tgz",
@@ -21,6 +16,11 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "types": "./dist/index.d.ts",
+  "exports": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@babel/core": "^7.26.10",
     "@babel/parser": "7.27.5",

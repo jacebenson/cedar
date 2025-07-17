@@ -2,16 +2,11 @@
   "name": "@cedarjs/graphql-server",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/graphql-server",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/graphql-server"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-graphql-server.tgz",
@@ -21,6 +16,11 @@
     "test": "yarn vitest run src/",
     "test:watch": "yarn test --watch"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/api": "workspace:*",

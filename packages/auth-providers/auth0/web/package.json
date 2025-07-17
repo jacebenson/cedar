@@ -2,40 +2,12 @@
   "name": "@cedarjs/auth-auth0-web",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/auth-providers/auth0/web",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/auth-providers/auth0/web"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "default": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
-    },
-    "./dist/auth0": {
-      "import": {
-        "types": "./dist/auth0.d.ts",
-        "default": "./dist/auth0.js"
-      },
-      "default": {
-        "types": "./dist/cjs/auth0.d.ts",
-        "default": "./dist/cjs/auth0.js"
-      }
-    }
-  },
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.ts",
     "build:pack": "yarn pack -o cedarjs-auth-auth0-web.tgz",
@@ -48,8 +20,39 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      },
+      "import": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
+    },
+    "./dist/auth0": {
+      "default": {
+        "default": "./dist/cjs/auth0.js",
+        "types": "./dist/cjs/auth0.d.ts"
+      },
+      "import": {
+        "default": "./dist/auth0.js",
+        "types": "./dist/auth0.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/auth": "workspace:*"
+  },
+  "peerDependencies": {
+    "@auth0/auth0-spa-js": "2.1.3"
   },
   "devDependencies": {
     "@auth0/auth0-spa-js": "2.1.3",
@@ -61,9 +64,6 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
-  },
-  "peerDependencies": {
-    "@auth0/auth0-spa-js": "2.1.3"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

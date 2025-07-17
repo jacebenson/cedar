@@ -3,21 +3,63 @@
   "version": "0.0.5",
   "description": "Tools, wrappers and configuration for testing a Cedar project.",
   "repository": {
+    "directory": "packages/testing",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/testing"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "build": "tsx ./build.mts && yarn build:types",
+    "build:pack": "yarn pack -o cedarjs-testing.tgz",
+    "build:types": "tsc --build --verbose ./tsconfig.build.json",
+    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
+    "build:watch": "nodemon --watch src --ext 'js,jsx,ts,tsx' --ignore dist --exec 'yarn build'",
+    "check:attw": "yarn rw-fwtools-attw",
+    "check:package": "concurrently npm:check:attw yarn:publint",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "exports": {
-    "./config/jest/web": {
-      "default": "./config/jest/web/index.js"
+    "./api": {
+      "import": {
+        "default": "./dist/api/index.js",
+        "types": "./dist/api/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/api/index.js",
+        "types": "./dist/cjs/api/index.d.ts"
+      }
+    },
+    "./auth": {
+      "import": {
+        "default": "./dist/web/mockAuth.js",
+        "types": "./dist/web/mockAuth.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/web/mockAuth.js",
+        "types": "./dist/cjs/web/index.d.ts"
+      }
+    },
+    "./cache": {
+      "import": {
+        "default": "./dist/cache/index.js",
+        "types": "./dist/cache/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/cjs/cache/index.js",
+        "types": "./dist/cjs/cache/index.d.ts"
+      }
     },
     "./config/jest/api": {
       "default": "./config/jest/api/index.js"
     },
     "./config/jest/api/jest-preset": {
       "default": "./config/jest/api/jest-preset.js"
+    },
+    "./config/jest/web": {
+      "default": "./config/jest/web/index.js"
     },
     "./config/jest/web/jest-preset": {
       "default": "./config/jest/web/jest-preset.js"
@@ -31,66 +73,24 @@
     "./dist/cjs/web/mockRequests": {
       "default": "./dist/cjs/web/mockRequests.js"
     },
-    "./auth": {
-      "import": {
-        "types": "./dist/web/mockAuth.d.ts",
-        "default": "./dist/web/mockAuth.js"
-      },
-      "require": {
-        "types": "./dist/cjs/web/index.d.ts",
-        "default": "./dist/cjs/web/mockAuth.js"
-      }
-    },
-    "./api": {
-      "import": {
-        "types": "./dist/api/index.d.ts",
-        "default": "./dist/api/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/api/index.d.ts",
-        "default": "./dist/cjs/api/index.js"
-      }
-    },
-    "./cache": {
-      "import": {
-        "types": "./dist/cache/index.d.ts",
-        "default": "./dist/cache/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/cache/index.d.ts",
-        "default": "./dist/cjs/cache/index.js"
-      }
-    },
     "./web": {
       "import": {
-        "types": "./dist/web/index.d.ts",
-        "default": "./dist/web/index.js"
+        "default": "./dist/web/index.js",
+        "types": "./dist/web/index.d.ts"
       },
       "require": {
-        "types": "./dist/cjs/web/index.d.ts",
-        "default": "./dist/cjs/web/index.js"
+        "default": "./dist/cjs/web/index.js",
+        "types": "./dist/cjs/web/index.d.ts"
       }
     }
   },
   "files": [
-    "config",
-    "web",
     "api",
     "cache",
-    "dist"
+    "config",
+    "dist",
+    "web"
   ],
-  "scripts": {
-    "build": "tsx ./build.mts && yarn build:types",
-    "build:pack": "yarn pack -o cedarjs-testing.tgz",
-    "build:types": "tsc --build --verbose ./tsconfig.build.json",
-    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
-    "build:watch": "nodemon --watch src --ext 'js,jsx,ts,tsx' --ignore dist --exec 'yarn build'",
-    "check:attw": "yarn rw-fwtools-attw",
-    "check:package": "concurrently npm:check:attw yarn:publint",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
   "dependencies": {
     "@cedarjs/auth": "workspace:*",
     "@cedarjs/babel-config": "workspace:*",

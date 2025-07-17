@@ -2,16 +2,11 @@
   "name": "@cedarjs/cli-storybook-vite",
   "version": "0.0.5",
   "repository": {
+    "directory": "packages/cli-packages/storybook-vite",
     "type": "git",
-    "url": "git+https://github.com/cedarjs/cedar.git",
-    "directory": "packages/cli-packages/storybook-vite"
+    "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-cli-storybook-vite.tgz",
@@ -21,6 +16,11 @@
     "test": "yarn test:unit",
     "test:unit": "vitest run"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@cedarjs/cli-helpers": "workspace:*",
     "@cedarjs/project-config": "workspace:*",
