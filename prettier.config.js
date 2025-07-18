@@ -126,6 +126,7 @@ const config = {
           'dependencies',
           'devDependencies',
           'peerDependencies',
+          'workspaces',
         ],
       },
     },
