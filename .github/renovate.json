@@ -3,9 +3,13 @@
   "configMigration": true,
   "extends": ["config:recommended"],
   "postUpdateOptions": ["yarnDedupeHighest"],
-  "prConcurrentLimit": 3,
+  "prConcurrentLimit": 5,
   "rebaseWhen": "conflicted",
   "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    },
     {
       "matchUpdateTypes": ["patch"],
       "automerge": true,
@@ -32,7 +36,6 @@
         "pretty-ms",
         "stdout-update",
         "tempy",
-        "termi-link",
         "title-case",
         "untildify",
         "/^@cedarjs//"

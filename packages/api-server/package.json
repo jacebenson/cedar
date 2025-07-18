@@ -53,13 +53,13 @@
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
     "@types/aws-lambda": "8.10.145",
-    "@types/lodash": "4.17.15",
+    "@types/lodash": "4.17.20",
     "@types/qs": "6.9.16",
     "@types/split2": "4.2.3",
     "@types/yargs": "17.0.33",
     "memfs": "4.17.2",
     "pino-abstract-transport": "1.2.0",
-    "tsx": "4.19.4",
+    "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
   },

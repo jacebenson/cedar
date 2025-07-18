@@ -12,9 +12,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/cache@npm:3.3.0":
-  version: 3.3.0
-  resolution: "@actions/cache@npm:3.3.0"
+"@actions/cache@npm:4.0.3":
+  version: 4.0.3
+  resolution: "@actions/cache@npm:4.0.3"
   dependencies:
     "@actions/core": "npm:^1.11.1"
     "@actions/exec": "npm:^1.0.1"
@@ -24,8 +24,9 @@ __metadata:
     "@azure/abort-controller": "npm:^1.1.0"
     "@azure/ms-rest-js": "npm:^2.6.0"
     "@azure/storage-blob": "npm:^12.13.0"
+    "@protobuf-ts/plugin": "npm:^2.9.4"
     semver: "npm:^6.3.1"
-  checksum: 10c0/e4206205bfdf8a108f2c36c582ae08acdb5d8e43ee424dde0e5248a270fa57b232709c2448b625536bfc4dd67ad037268e9796c35e1517ea6ce56083710a1ff2
+  checksum: 10c0/5558ffe4b02ffab1e62d96579736d04664e340cfe5ab70909f8e5c898d5530bd4b81015de3f280cd038bc6d69bc20c1c0c82a1f42b9c4a0cd2f6ad99f4b2aaab
   languageName: node
   linkType: hard
 
@@ -199,11 +200,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arethetypeswrong/cli@npm:0.18.1":
-  version: 0.18.1
-  resolution: "@arethetypeswrong/cli@npm:0.18.1"
+"@arethetypeswrong/cli@npm:0.18.2":
+  version: 0.18.2
+  resolution: "@arethetypeswrong/cli@npm:0.18.2"
   dependencies:
-    "@arethetypeswrong/core": "npm:0.18.1"
+    "@arethetypeswrong/core": "npm:0.18.2"
     chalk: "npm:^4.1.2"
     cli-table3: "npm:^0.6.3"
     commander: "npm:^10.0.1"
@@ -212,13 +213,13 @@ __metadata:
     semver: "npm:^7.5.4"
   bin:
     attw: dist/index.js
-  checksum: 10c0/65cb47d9e0564dd5b1312236e620c327215a9717a4e770a36dc6a08b98ad1a699fc29ef8df4878e23cddec14bb00d29719631cb01ea6f73f14b7e09b57eb3dc8
+  checksum: 10c0/15fa8ee8659aa7b163c08f3d739247fe44d838b1aa5cefe125d8c90c03955fbc1e5a7c76885c354ec217a07c8fdcb5f5dc297188cadf626b303b1ae85232c51e
   languageName: node
   linkType: hard
 
-"@arethetypeswrong/core@npm:0.18.1":
-  version: 0.18.1
-  resolution: "@arethetypeswrong/core@npm:0.18.1"
+"@arethetypeswrong/core@npm:0.18.2":
+  version: 0.18.2
+  resolution: "@arethetypeswrong/core@npm:0.18.2"
   dependencies:
     "@andrewbranch/untar.js": "npm:^1.0.3"
     "@loaderkit/resolve": "npm:^1.0.2"
@@ -228,7 +229,7 @@ __metadata:
     semver: "npm:^7.5.4"
     typescript: "npm:5.6.1-rc"
     validate-npm-package-name: "npm:^5.0.0"
-  checksum: 10c0/ba2a5c259f36980a487d728d28ebba761c28a1f9674eefe059ae6e26c820dac0816e39a769b8f40fd37c2da9c554178bbacc08902d3c4ac4636ec170eaaa3b7f
+  checksum: 10c0/465b4e6bf41a236b265108d21e88e75f6940959d6611d7daf989b69c875cf84fdaf77a539d0d5ce1d2602b7eadeba22da54994247a4825d8ad473685ad7e860e
   languageName: node
   linkType: hard
 
@@ -1962,6 +1963,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@bufbuild/protobuf@npm:2.6.0, @bufbuild/protobuf@npm:^2.4.0":
+  version: 2.6.0
+  resolution: "@bufbuild/protobuf@npm:2.6.0"
+  checksum: 10c0/94c6fd63266a78135e3a82cb054dcde66760909948932152069bef3bb68335877b213d80c6983bb609b15f2ea0eb5912621eebd5bd4a98dbb940136ff5161b30
+  languageName: node
+  linkType: hard
+
+"@bufbuild/protoplugin@npm:^2.4.0":
+  version: 2.6.0
+  resolution: "@bufbuild/protoplugin@npm:2.6.0"
+  dependencies:
+    "@bufbuild/protobuf": "npm:2.6.0"
+    "@typescript/vfs": "npm:^1.5.2"
+    typescript: "npm:5.4.5"
+  checksum: 10c0/4812b451a60cca6e43455cf2f803950f01e595794803a810ddac75eb381e4ecfe42336d01b314652b871527c6e70b7885330e69fe4b1ce71d9847f6d322568f1
+  languageName: node
+  linkType: hard
+
 "@cedarjs/api-server@workspace:*, @cedarjs/api-server@workspace:packages/api-server":
   version: 0.0.0-use.local
   resolution: "@cedarjs/api-server@workspace:packages/api-server"
@@ -1975,7 +1994,7 @@ __metadata:
     "@fastify/multipart": "npm:9.0.3"
     "@fastify/url-data": "npm:6.0.3"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/lodash": "npm:4.17.15"
+    "@types/lodash": "npm:4.17.20"
     "@types/qs": "npm:6.9.16"
     "@types/split2": "npm:4.2.3"
     "@types/yargs": "npm:17.0.33"
@@ -1993,7 +2012,7 @@ __metadata:
     pretty-ms: "npm:7.0.1"
     qs: "npm:6.13.0"
     split2: "npm:4.2.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     yargs: "npm:17.7.2"
@@ -2016,7 +2035,7 @@ __metadata:
     "@cedarjs/framework-tools": "workspace:*"
     "@prisma/client": "npm:5.20.0"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     "@types/memjs": "npm:1"
     "@types/pascalcase": "npm:1.0.3"
     "@types/split2": "npm:4.2.3"
@@ -2033,7 +2052,7 @@ __metadata:
     split2: "npm:4.2.0"
     title-case: "npm:3.0.3"
     ts-toolbelt: "npm:9.6.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2058,15 +2077,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-auth0-api@workspace:packages/auth-providers/auth0/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     concurrently: "npm:8.2.2"
     jsonwebtoken: "npm:9.0.2"
     jwks-rsa: "npm:3.1.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2076,13 +2095,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-auth0-setup@workspace:packages/auth-providers/auth0/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2099,7 +2118,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2111,16 +2130,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-azure-active-directory-api@workspace:packages/auth-providers/azureActiveDirectory/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     concurrently: "npm:8.2.2"
     jsonwebtoken: "npm:9.0.2"
     jwks-rsa: "npm:3.1.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2130,13 +2149,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-azure-active-directory-setup@workspace:packages/auth-providers/azureActiveDirectory/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2154,7 +2173,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2166,14 +2185,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-clerk-api@workspace:packages/auth-providers/clerk/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
-    "@clerk/backend": "npm:1.33.1"
+    "@clerk/backend": "npm:1.34.0"
     "@types/aws-lambda": "npm:8.10.145"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2183,13 +2202,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-clerk-setup@workspace:packages/auth-providers/clerk/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -2206,7 +2225,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2218,13 +2237,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-custom-setup@workspace:packages/auth-providers/custom/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2234,7 +2253,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-dbauth-api@workspace:packages/auth-providers/dbAuth/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/project-config": "workspace:*"
@@ -2245,7 +2264,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     md5: "npm:2.3.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
     vitest: "npm:3.2.4"
@@ -2256,7 +2275,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-dbauth-middleware@workspace:packages/auth-providers/dbAuth/middleware"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/auth-dbauth-api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
@@ -2266,7 +2285,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     ts-toolbelt: "npm:9.6.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2286,7 +2305,7 @@ __metadata:
     "@types/yargs": "npm:17.0.33"
     core-js: "npm:3.42.0"
     prompts: "npm:2.4.2"
-    terminal-link: "npm:2.1.1"
+    termi-link: "npm:1.1.0"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2296,15 +2315,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-dbauth-web@workspace:packages/auth-providers/dbAuth/web"
   dependencies:
-    "@babel/cli": "npm:7.27.2"
-    "@babel/core": "npm:^7.26.10"
-    "@babel/runtime-corejs3": "npm:7.27.6"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/auth": "workspace:*"
+    "@cedarjs/framework-tools": "workspace:*"
     "@simplewebauthn/browser": "npm:9.0.1"
     "@simplewebauthn/types": "npm:9.0.1"
     "@types/react": "npm:^18.2.55"
-    core-js: "npm:3.42.0"
+    concurrently: "npm:8.2.2"
+    publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2314,14 +2334,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-firebase-api@workspace:packages/auth-providers/firebase/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/aws-lambda": "npm:8.10.145"
     concurrently: "npm:8.2.2"
     firebase-admin: "npm:12.6.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2331,13 +2351,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-firebase-setup@workspace:packages/auth-providers/firebase/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2354,7 +2374,7 @@ __metadata:
     firebase: "npm:10.14.1"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2366,15 +2386,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-netlify-api@workspace:packages/auth-providers/netlify/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     concurrently: "npm:8.2.2"
     jsonwebtoken: "npm:9.0.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2384,13 +2404,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-netlify-setup@workspace:packages/auth-providers/netlify/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2407,7 +2427,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2419,16 +2439,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-supabase-api@workspace:packages/auth-providers/supabase/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@supabase/ssr": "npm:0.5.1"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     concurrently: "npm:8.2.2"
     jsonwebtoken: "npm:9.0.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2438,7 +2458,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-supabase-middleware@workspace:packages/auth-providers/supabase/middleware"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/auth": "workspace:*"
     "@cedarjs/auth-supabase-api": "workspace:*"
@@ -2450,7 +2470,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     ts-toolbelt: "npm:9.6.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2460,13 +2480,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-supabase-setup@workspace:packages/auth-providers/supabase/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -2483,7 +2503,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2495,15 +2515,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-supertokens-api@workspace:packages/auth-providers/supertokens/api"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
-    "@types/jsonwebtoken": "npm:9.0.8"
+    "@types/jsonwebtoken": "npm:9.0.10"
     concurrently: "npm:8.2.2"
     jsonwebtoken: "npm:9.0.2"
     jwks-rsa: "npm:3.1.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2515,14 +2535,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth-supertokens-setup@workspace:packages/auth-providers/supertokens/setup"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/cli-helpers": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@types/yargs": "npm:17.0.33"
     concurrently: "npm:8.2.2"
     memfs: "npm:4.17.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2539,7 +2559,7 @@ __metadata:
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
     supertokens-auth-react: "npm:0.39.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2551,7 +2571,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/auth@workspace:packages/auth"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/framework-tools": "workspace:*"
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:14.3.1"
@@ -2560,7 +2580,7 @@ __metadata:
     msw: "npm:1.3.4"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     type-fest: "npm:4.26.1"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
@@ -2597,7 +2617,7 @@ __metadata:
     core-js: "npm:3.42.0"
     fast-glob: "npm:3.3.3"
     graphql: "npm:16.9.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2622,7 +2642,7 @@ __metadata:
     listr2: "npm:7.0.2"
     memfs: "npm:4.17.2"
     termi-link: "npm:1.1.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     yargs: "npm:17.7.2"
   bin:
@@ -2640,7 +2660,7 @@ __metadata:
     "@cedarjs/telemetry": "workspace:*"
     "@opentelemetry/api": "npm:1.8.0"
     "@types/dotenv-defaults": "npm:^2.0.4"
-    "@types/lodash": "npm:4.17.15"
+    "@types/lodash": "npm:4.17.20"
     "@types/pascalcase": "npm:1.0.3"
     "@types/semver": "npm:^7"
     "@types/yargs": "npm:17.0.33"
@@ -2657,7 +2677,7 @@ __metadata:
     semver: "npm:7.6.3"
     smol-toml: "npm:1.3.4"
     termi-link: "npm:1.1.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     yargs-parser: "npm:21.1.1"
@@ -2680,7 +2700,7 @@ __metadata:
     storybook: "npm:7.6.20"
     storybook-framework-cedarjs: "workspace:*"
     termi-link: "npm:1.1.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     yargs: "npm:17.7.2"
@@ -2704,7 +2724,7 @@ __metadata:
     "@cedarjs/structure": "workspace:*"
     "@cedarjs/telemetry": "workspace:*"
     "@cedarjs/web-server": "workspace:*"
-    "@listr2/prompt-adapter-enquirer": "npm:2.0.12"
+    "@listr2/prompt-adapter-enquirer": "npm:2.0.16"
     "@opentelemetry/api": "npm:1.8.0"
     "@opentelemetry/core": "npm:1.22.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.49.1"
@@ -2751,7 +2771,7 @@ __metadata:
     systeminformation: "npm:5.23.8"
     termi-link: "npm:1.1.0"
     title-case: "npm:3.0.3"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     unionfs: "npm:4.5.4"
     uuid: "npm:10.0.0"
@@ -2800,7 +2820,7 @@ __metadata:
     publint: "npm:0.3.12"
     tasuku: "npm:2.0.1"
     tempy: "npm:1.0.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     yargs: "npm:17.7.2"
@@ -2813,11 +2833,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/context@workspace:packages/context"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/framework-tools": "workspace:*"
     concurrently: "npm:8.2.2"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -2832,7 +2852,7 @@ __metadata:
     esbuild: "npm:0.25.0"
     fast-glob: "npm:3.3.3"
     fs-extra: "npm:11.2.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2851,14 +2871,14 @@ __metadata:
     "@cedarjs/project-config": "workspace:*"
     "@cedarjs/testing": "workspace:*"
     "@cedarjs/web-server": "workspace:*"
-    "@types/lodash": "npm:4.17.15"
+    "@types/lodash": "npm:4.17.20"
     graphql-tag: "npm:2.12.6"
     lodash: "npm:4.17.21"
     nodemon: "npm:3.1.10"
     publint: "npm:0.3.12"
     react-refresh: "npm:0.14.0"
     rimraf: "npm:6.0.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   bin:
     cedarjs: ./dist/bins/cedarjs.js
@@ -2923,7 +2943,7 @@ __metadata:
     "@typescript-eslint/rule-tester": "npm:8.19.1"
     "@typescript-eslint/utils": "npm:8.19.1"
     eslint: "npm:8.57.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2940,7 +2960,7 @@ __metadata:
     "@fastify/url-data": "npm:6.0.3"
     fast-glob: "npm:3.3.3"
     fastify: "npm:5.4.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -2966,7 +2986,7 @@ __metadata:
     react: "npm:19.0.0-rc-f2df5694-20240916"
     react-dom: "npm:19.0.0-rc-f2df5694-20240916"
     react-hook-form: "npm:7.54.2"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -2978,15 +2998,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/framework-tools@workspace:packages/framework-tools"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@types/fs-extra": "npm:11.0.4"
     esbuild: "npm:0.25.0"
     fast-glob: "npm:3.3.3"
     fs-extra: "npm:11.2.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     type-fest: "npm:4.26.1"
     typescript: "npm:5.6.2"
-    zx: "npm:8.7.0"
+    zx: "npm:8.7.1"
   bin:
     rw-fwtools-attw: ./dist/bins/rw-fwtools-attw.js
   languageName: unknown
@@ -3017,8 +3037,8 @@ __metadata:
     "@graphql-yoga/plugin-persisted-operations": "npm:3.7.0"
     "@opentelemetry/api": "npm:1.8.0"
     "@types/aws-lambda": "npm:8.10.145"
-    "@types/jsonwebtoken": "npm:9.0.8"
-    "@types/lodash": "npm:4.17.15"
+    "@types/jsonwebtoken": "npm:9.0.10"
+    "@types/lodash": "npm:4.17.20"
     "@types/uuid": "npm:10.0.0"
     "@whatwg-node/fetch": "npm:0.9.21"
     "@whatwg-node/promise-helpers": "npm:^1.3.0"
@@ -3029,7 +3049,7 @@ __metadata:
     graphql-yoga: "npm:5.7.0"
     jsonwebtoken: "npm:9.0.2"
     lodash: "npm:4.17.21"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
     vitest: "npm:3.2.4"
@@ -3040,7 +3060,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/internal@workspace:packages/internal"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@babel/core": "npm:^7.26.10"
     "@babel/parser": "npm:7.27.5"
     "@babel/plugin-transform-react-jsx": "npm:7.27.1"
@@ -3084,7 +3104,7 @@ __metadata:
     systeminformation: "npm:5.23.8"
     termi-link: "npm:1.1.0"
     ts-node: "npm:10.9.2"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   bin:
@@ -3104,7 +3124,7 @@ __metadata:
     concurrently: "npm:8.2.2"
     cron-parser: "npm:5.3.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     type-fest: "npm:4.26.1"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
@@ -3120,7 +3140,7 @@ __metadata:
   dependencies:
     "@cedarjs/api": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -3132,7 +3152,7 @@ __metadata:
   dependencies:
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/mailer-core": "workspace:*"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3145,7 +3165,7 @@ __metadata:
     "@cedarjs/mailer-core": "workspace:*"
     "@types/nodemailer": "npm:^6"
     nodemailer: "npm:6.9.16"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3156,8 +3176,8 @@ __metadata:
   dependencies:
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/mailer-core": "workspace:*"
-    resend: "npm:3.5.0"
-    tsx: "npm:4.19.4"
+    resend: "npm:4.6.0"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3170,7 +3190,7 @@ __metadata:
     "@cedarjs/mailer-core": "workspace:*"
     "@cedarjs/mailer-handler-nodemailer": "workspace:*"
     "@types/nodemailer": "npm:^6"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3184,7 +3204,7 @@ __metadata:
     "@faire/mjml-react": "npm:3.4.0"
     "@types/mjml": "npm:4"
     mjml: "npm:4.15.3"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3196,7 +3216,7 @@ __metadata:
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/mailer-core": "workspace:*"
     "@react-email/render": "npm:0.0.17"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3216,9 +3236,9 @@ __metadata:
     react: "npm:19.0.0-rc-f2df5694-20240916"
     react-dom: "npm:19.0.0-rc-f2df5694-20240916"
     ts-toolbelt: "npm:9.6.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
-    vite: "npm:5.4.16"
+    vite: "npm:5.4.19"
     vitest: "npm:3.2.4"
   languageName: unknown
   linkType: soft
@@ -3250,7 +3270,7 @@ __metadata:
     publint: "npm:0.3.12"
     rollup: "npm:4.24.0"
     rollup-plugin-swc3: "npm:0.12.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     unimport: "npm:5.0.1"
     vitest: "npm:3.2.4"
@@ -3264,7 +3284,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/project-config@workspace:packages/project-config"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/framework-tools": "workspace:*"
     concurrently: "npm:8.2.2"
     deepmerge: "npm:4.3.1"
@@ -3273,7 +3293,7 @@ __metadata:
     rimraf: "npm:6.0.1"
     smol-toml: "npm:1.3.4"
     string-env-interpolation: "npm:1.0.1"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   languageName: unknown
@@ -3292,14 +3312,14 @@ __metadata:
     "@graphql-tools/utils": "npm:10.5.4"
     "@graphql-yoga/plugin-defer-stream": "npm:3.7.0"
     "@graphql-yoga/plugin-graphql-sse": "npm:3.7.0"
-    "@graphql-yoga/redis-event-target": "npm:3.0.1"
-    "@graphql-yoga/subscription": "npm:5.0.1"
+    "@graphql-yoga/redis-event-target": "npm:3.0.3"
+    "@graphql-yoga/subscription": "npm:5.0.5"
     "@n1ru4l/graphql-live-query": "npm:0.10.0"
     "@n1ru4l/in-memory-live-query-store": "npm:0.10.0"
     graphql: "npm:16.9.0"
-    ioredis: "npm:5.6.0"
+    ioredis: "npm:5.6.1"
     nodemon: "npm:3.1.10"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -3322,7 +3342,7 @@ __metadata:
     camelcase: "npm:6.3.0"
     esbuild: "npm:0.25.0"
     publint: "npm:0.3.12"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     vitest: "npm:3.2.4"
   languageName: unknown
   linkType: soft
@@ -3331,7 +3351,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/router@workspace:packages/router"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@babel/cli": "npm:7.27.2"
     "@babel/core": "npm:^7.26.10"
     "@babel/runtime-corejs3": "npm:7.27.6"
@@ -3348,7 +3368,7 @@ __metadata:
     react-dom: "npm:19.0.0-rc-f2df5694-20240916"
     react-server-dom-webpack: "npm:19.0.0-rc-f2df5694-20240916"
     tstyche: "npm:3.0.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -3368,7 +3388,7 @@ __metadata:
     esbuild: "npm:0.25.0"
     fast-glob: "npm:3.3.3"
     fs-extra: "npm:11.2.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3377,7 +3397,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/storage@workspace:packages/storage"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/project-config": "workspace:*"
     "@prisma/client": "npm:5.20.0"
@@ -3387,7 +3407,7 @@ __metadata:
     mime-types: "npm:2.1.35"
     publint: "npm:0.3.12"
     tstyche: "npm:3.0.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     ulid: "npm:2.3.0"
     vitest: "npm:3.2.4"
@@ -3405,7 +3425,7 @@ __metadata:
     "@prisma/internals": "npm:5.20.0"
     "@types/fs-extra": "npm:11.0.4"
     "@types/line-column": "npm:1.0.2"
-    "@types/lodash": "npm:4.17.15"
+    "@types/lodash": "npm:4.17.20"
     "@types/node": "npm:20.17.10"
     "@types/vscode": "npm:1.96.0"
     camelcase: "npm:6.3.0"
@@ -3446,7 +3466,7 @@ __metadata:
     ci-info: "npm:4.0.0"
     envinfo: "npm:7.14.0"
     systeminformation: "npm:5.23.8"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     uuid: "npm:10.0.0"
     vitest: "npm:3.2.4"
@@ -3483,7 +3503,7 @@ __metadata:
     msw: "npm:1.3.4"
     publint: "npm:0.3.12"
     ts-toolbelt: "npm:9.6.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     whatwg-fetch: "npm:3.6.20"
@@ -3499,7 +3519,7 @@ __metadata:
     chalk: "npm:4.1.2"
     enquirer: "npm:2.4.1"
     stdout-update: "npm:1.6.8"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -3508,7 +3528,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/vite@workspace:packages/vite"
   dependencies:
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@babel/generator": "npm:7.27.5"
     "@babel/parser": "npm:7.27.5"
     "@babel/traverse": "npm:7.27.4"
@@ -3551,9 +3571,9 @@ __metadata:
     react-server-dom-webpack: "npm:19.0.0-rc-f2df5694-20240916"
     rimraf: "npm:6.0.1"
     rollup: "npm:4.24.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
-    vite: "npm:5.4.16"
+    vite: "npm:5.4.19"
     vite-plugin-cjs-interop: "npm:2.2.0"
     vite-plugin-node-polyfills: "npm:0.23.0"
     vitest: "npm:3.2.4"
@@ -3579,7 +3599,7 @@ __metadata:
     dotenv-defaults: "npm:5.0.2"
     fastify: "npm:5.4.0"
     fs-extra: "npm:11.2.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     yargs: "npm:17.7.2"
   bin:
@@ -3593,7 +3613,7 @@ __metadata:
   dependencies:
     "@apollo/client": "npm:3.13.8"
     "@apollo/client-react-streaming": "npm:0.12.2"
-    "@arethetypeswrong/cli": "npm:0.18.1"
+    "@arethetypeswrong/cli": "npm:0.18.2"
     "@babel/cli": "npm:7.27.2"
     "@babel/core": "npm:^7.26.10"
     "@babel/plugin-transform-runtime": "npm:7.27.4"
@@ -3626,7 +3646,7 @@ __metadata:
     stacktracey: "npm:2.1.8"
     ts-toolbelt: "npm:9.6.0"
     tstyche: "npm:3.0.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
   peerDependencies:
@@ -3680,12 +3700,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/backend@npm:1.33.1":
-  version: 1.33.1
-  resolution: "@clerk/backend@npm:1.33.1"
+"@clerk/backend@npm:1.34.0":
+  version: 1.34.0
+  resolution: "@clerk/backend@npm:1.34.0"
   dependencies:
-    "@clerk/shared": "npm:^3.9.4"
-    "@clerk/types": "npm:^4.59.2"
+    "@clerk/shared": "npm:^3.9.5"
+    "@clerk/types": "npm:^4.59.3"
     cookie: "npm:1.0.2"
     snakecase-keys: "npm:8.0.1"
     tslib: "npm:2.8.1"
@@ -3694,7 +3714,7 @@ __metadata:
   peerDependenciesMeta:
     svix:
       optional: true
-  checksum: 10c0/9158047d3ee156ce7aa26c9771302d7c0b406b73fc25bebbb6cc5cd2d0355c67854a21be11a5661354b7f2b52c0ed6354f1db44b8dc6af81a362e250aeee3718
+  checksum: 10c0/ac0d1da4990ae1880d266753e45ac97a55a824f5fd93810cc271d7a6a9f5c8a239e6160635841d20b8c365f804a955ab763f2ab7a7ee75e598fad2c7e6d2fd1f
   languageName: node
   linkType: hard
 
@@ -3712,11 +3732,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clerk/shared@npm:^3.9.4":
-  version: 3.9.4
-  resolution: "@clerk/shared@npm:3.9.4"
+"@clerk/shared@npm:^3.9.4, @clerk/shared@npm:^3.9.5":
+  version: 3.12.3
+  resolution: "@clerk/shared@npm:3.12.3"
   dependencies:
-    "@clerk/types": "npm:^4.59.2"
+    "@clerk/types": "npm:^4.67.0"
     dequal: "npm:2.0.3"
     glob-to-regexp: "npm:0.4.1"
     js-cookie: "npm:3.0.5"
@@ -3730,16 +3750,25 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10c0/dae58bf57c55acfd60c27bd8c47b2728efcac64453818491ffbac1fe93f1c9c073225c24770425cde54820b07dbda3a15a0e373fdbe482e7758d0459d683a2f2
+  checksum: 10c0/03405e75ba2568a488a7adbe21927714b146d46cf569a88f88436224930d69ab8be90656132ec21e07424bfe5f0ef6b07226824589bee0f25d81f81cfa7eef0b
   languageName: node
   linkType: hard
 
-"@clerk/types@npm:4.59.2, @clerk/types@npm:^4.59.2":
+"@clerk/types@npm:4.59.2":
   version: 4.59.2
   resolution: "@clerk/types@npm:4.59.2"
   dependencies:
     csstype: "npm:3.1.3"
   checksum: 10c0/0def3b4f4afd6f074acb160ed2c3055755eee2d0d7b463c6fce7f80618978d567656455012486aa60567feff28bcf60b36aaa1a06b0fcb66b3adf04e6bd14200
+  languageName: node
+  linkType: hard
+
+"@clerk/types@npm:^4.59.2, @clerk/types@npm:^4.59.3, @clerk/types@npm:^4.67.0":
+  version: 4.67.0
+  resolution: "@clerk/types@npm:4.67.0"
+  dependencies:
+    csstype: "npm:3.1.3"
+  checksum: 10c0/f98cbce416ca32890e364d44d295786ad41cba78d09b55cf9caa9aada538c4df1a5487f60728ed3f336eb0d5b6a1778941faa675c973363d81bd22d945d47ceb
   languageName: node
   linkType: hard
 
@@ -6494,37 +6523,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-yoga/redis-event-target@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@graphql-yoga/redis-event-target@npm:3.0.1"
+"@graphql-yoga/redis-event-target@npm:3.0.3":
+  version: 3.0.3
+  resolution: "@graphql-yoga/redis-event-target@npm:3.0.3"
   dependencies:
-    "@graphql-yoga/typed-event-target": "npm:^3.0.0"
+    "@graphql-yoga/typed-event-target": "npm:^3.0.2"
     "@whatwg-node/events": "npm:^0.1.0"
   peerDependencies:
     ioredis: ^5.0.6
-  checksum: 10c0/501db555950800eac29257ab413c2e73fbf3524d4b5b30c69a4de7c74071e2a756ed0a6405c3b7614ba931972bc8e89bec491593d327f558a5ec6ea82f88ed87
+  checksum: 10c0/dcb800c066d25b644f67d0ab042d3edd6895b8213a0d9b4c204950efefd4b13b5d1133ca87fadf3a5a38952e4fe27ba92e52fd9c8b0f371054c2dd47ebaa8e82
   languageName: node
   linkType: hard
 
-"@graphql-yoga/subscription@npm:5.0.1, @graphql-yoga/subscription@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@graphql-yoga/subscription@npm:5.0.1"
+"@graphql-yoga/subscription@npm:5.0.5, @graphql-yoga/subscription@npm:^5.0.1":
+  version: 5.0.5
+  resolution: "@graphql-yoga/subscription@npm:5.0.5"
   dependencies:
-    "@graphql-yoga/typed-event-target": "npm:^3.0.0"
+    "@graphql-yoga/typed-event-target": "npm:^3.0.2"
     "@repeaterjs/repeater": "npm:^3.0.4"
     "@whatwg-node/events": "npm:^0.1.0"
-    tslib: "npm:^2.5.2"
-  checksum: 10c0/fccbdb1497edc085437d83127dbe6fde399b30e0277d5d6cdfc4aad16d733b00fe8b65e3d0eda3ba50250123545e59a7e684b9de5f9050721933ff1bf9950a58
+    tslib: "npm:^2.8.1"
+  checksum: 10c0/5828800163da6bdd936dca08d6fa80954bb3c56be1d79f0d0a2682ff54a523f971d4f2b2bcaba2fe2ecf0d06e42a49d3c2f770b641dd97c74b75ad90a3437c59
   languageName: node
   linkType: hard
 
-"@graphql-yoga/typed-event-target@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@graphql-yoga/typed-event-target@npm:3.0.0"
+"@graphql-yoga/typed-event-target@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@graphql-yoga/typed-event-target@npm:3.0.2"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.4"
-    tslib: "npm:^2.5.2"
-  checksum: 10c0/563c26e4ef8f116e3b2991651acc2a80a37e1c53c6df4159e46e948b226624fc3c414663deef063fa19a7a63bc6a2d2ed8b950782b4d57f34eea775e3312d61c
+    tslib: "npm:^2.8.1"
+  checksum: 10c0/51b4205aa25d47273aa887507040e702e6d9bb26fbc48c3187d38f4919f34b9fc0b22f28cdc83079c72912bf0d563619c141fae10a5d34ef69740da8b897ff81
   languageName: node
   linkType: hard
 
@@ -7014,16 +7043,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lerna/create@npm:8.1.9":
-  version: 8.1.9
-  resolution: "@lerna/create@npm:8.1.9"
+"@lerna/create@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@lerna/create@npm:8.2.3"
   dependencies:
     "@npmcli/arborist": "npm:7.5.4"
     "@npmcli/package-json": "npm:5.2.0"
     "@npmcli/run-script": "npm:8.1.0"
     "@nx/devkit": "npm:>=17.1.2 < 21"
     "@octokit/plugin-enterprise-rest": "npm:6.0.1"
-    "@octokit/rest": "npm:19.0.11"
+    "@octokit/rest": "npm:20.1.2"
     aproba: "npm:2.0.0"
     byte-size: "npm:8.1.1"
     chalk: "npm:4.1.0"
@@ -7041,7 +7070,6 @@ __metadata:
     get-stream: "npm:6.0.0"
     git-url-parse: "npm:14.0.0"
     glob-parent: "npm:6.0.2"
-    globby: "npm:11.1.0"
     graceful-fs: "npm:4.2.11"
     has-unicode: "npm:2.0.1"
     ini: "npm:^1.3.8"
@@ -7076,10 +7104,10 @@ __metadata:
     slash: "npm:^3.0.0"
     ssri: "npm:^10.0.6"
     string-width: "npm:^4.2.3"
-    strip-ansi: "npm:^6.0.1"
-    strong-log-transformer: "npm:2.1.0"
     tar: "npm:6.2.1"
     temp-dir: "npm:1.0.0"
+    through: "npm:2.3.8"
+    tinyglobby: "npm:0.2.12"
     upath: "npm:2.0.1"
     uuid: "npm:^10.0.0"
     validate-npm-package-license: "npm:^3.0.4"
@@ -7089,7 +7117,7 @@ __metadata:
     write-pkg: "npm:4.0.0"
     yargs: "npm:17.7.2"
     yargs-parser: "npm:21.1.1"
-  checksum: 10c0/f050e79c0bd982c6fdf9b7347275a94cc80f7a6599094f1cf114c10d5373c21afac9bd1a5c0b2ca400e6aaf18da883c384dfd6e5c84a186a2c09c912bf9b2238
+  checksum: 10c0/e484e41cff8233bdaca72872c96abe5b10423033b0c6464c55fc56a87c43f01ee236ef2cae616a5a93beb2c432e87866f8e15a16e46ea2b3949938d796ec6c78
   languageName: node
   linkType: hard
 
@@ -7100,12 +7128,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@listr2/prompt-adapter-enquirer@npm:2.0.12":
-  version: 2.0.12
-  resolution: "@listr2/prompt-adapter-enquirer@npm:2.0.12"
+"@listr2/prompt-adapter-enquirer@npm:2.0.16":
+  version: 2.0.16
+  resolution: "@listr2/prompt-adapter-enquirer@npm:2.0.16"
   peerDependencies:
     enquirer: ">= 2.3.0 < 3"
-  checksum: 10c0/53bfaac3b71560f009d94dfb107ed00fb9ea36d17ab1ae57680f330f88656e8a836839bb8cdc85478b4e173fb4d9b863097ab1b5d5912d6f0c6cc906cc311606
+  checksum: 10c0/f93c4eb433525d5ce8ea7ff75902ab1f074665b4a6a58388b44c843fc7c8c43c3b3e2ef0c2293534a2f1e7b62f1ae901047feec4028ce2f6a704a466289d3efc
   languageName: node
   linkType: hard
 
@@ -7547,54 +7575,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/auth-token@npm:^3.0.0":
-  version: 3.0.4
-  resolution: "@octokit/auth-token@npm:3.0.4"
-  checksum: 10c0/abdf5e2da36344de9727c70ba782d58004f5ae1da0f65fa9bc9216af596ef23c0e4675f386df2f6886806612558091d603564051b693b0ad1986aa6160b7a231
+"@octokit/auth-token@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@octokit/auth-token@npm:4.0.0"
+  checksum: 10c0/57acaa6c394c5abab2f74e8e1dcf4e7a16b236f713c77a54b8f08e2d14114de94b37946259e33ec2aab0566b26f724c2b71d2602352b59e541a9854897618f3c
   languageName: node
   linkType: hard
 
-"@octokit/core@npm:^4.2.1":
-  version: 4.2.4
-  resolution: "@octokit/core@npm:4.2.4"
+"@octokit/core@npm:^5.0.2":
+  version: 5.2.2
+  resolution: "@octokit/core@npm:5.2.2"
   dependencies:
-    "@octokit/auth-token": "npm:^3.0.0"
-    "@octokit/graphql": "npm:^5.0.0"
-    "@octokit/request": "npm:^6.0.0"
-    "@octokit/request-error": "npm:^3.0.0"
-    "@octokit/types": "npm:^9.0.0"
+    "@octokit/auth-token": "npm:^4.0.0"
+    "@octokit/graphql": "npm:^7.1.0"
+    "@octokit/request": "npm:^8.4.1"
+    "@octokit/request-error": "npm:^5.1.1"
+    "@octokit/types": "npm:^13.0.0"
     before-after-hook: "npm:^2.2.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: 10c0/e54081a56884e628d1804837fddcd48c10d516117bb891551c8dc9d8e3dad449aeb9b4677ca71e8f0e76268c2b7656c953099506679aaa4666765228474a3ce6
+  checksum: 10c0/b4484d85552303b839613e2133dcd064fa06a7c10fe0ebd11ba8f67cb8e3384e48983c589f4d1dc0fa3754857784e3d90ff4eab9782e118baf13ddd1b834957c
   languageName: node
   linkType: hard
 
-"@octokit/endpoint@npm:^7.0.0":
-  version: 7.0.6
-  resolution: "@octokit/endpoint@npm:7.0.6"
+"@octokit/endpoint@npm:^9.0.6":
+  version: 9.0.6
+  resolution: "@octokit/endpoint@npm:9.0.6"
   dependencies:
-    "@octokit/types": "npm:^9.0.0"
-    is-plain-object: "npm:^5.0.0"
+    "@octokit/types": "npm:^13.1.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: 10c0/fd147a55010b54af7567bf90791359f7096a1c9916a2b7c72f8afd0c53141338b3d78da3a4ab3e3bdfeb26218a1b73735432d8987ccc04996b1019219299f115
+  checksum: 10c0/8e06197b21869aeb498e0315093ca6fbee12bd1bdcfc1667fcd7d79d827d84f2c5a30702ffd28bba7879780e367d14c30df5b20d47fcaed5de5fdc05f5d4e013
   languageName: node
   linkType: hard
 
-"@octokit/graphql@npm:^5.0.0":
-  version: 5.0.6
-  resolution: "@octokit/graphql@npm:5.0.6"
+"@octokit/graphql@npm:^7.1.0":
+  version: 7.1.1
+  resolution: "@octokit/graphql@npm:7.1.1"
   dependencies:
-    "@octokit/request": "npm:^6.0.0"
-    "@octokit/types": "npm:^9.0.0"
+    "@octokit/request": "npm:^8.4.1"
+    "@octokit/types": "npm:^13.0.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: 10c0/de1d839d97fe6d96179925f6714bf96e7af6f77929892596bb4211adab14add3291fc5872b269a3d0e91a4dcf248d16096c82606c4a43538cf241b815c2e2a36
+  checksum: 10c0/c27216200f3f4ce7ce2a694fb7ea43f8ea4a807fbee3a423c41ed137dd7948dfc0bbf6ea1656f029a7625c84b583acdef740a7032266d0eff55305c91c3a1ed6
   languageName: node
   linkType: hard
 
-"@octokit/openapi-types@npm:^18.0.0":
-  version: 18.0.0
-  resolution: "@octokit/openapi-types@npm:18.0.0"
-  checksum: 10c0/d90fab10d962be71e72b85ffab2055cffd9c3196ff1edc3e4106deb78e99e8782965cf7aa6a4c1398f828e4d0c3e0f905915debfe34396d956dfce8e75b21664
+"@octokit/openapi-types@npm:^24.2.0":
+  version: 24.2.0
+  resolution: "@octokit/openapi-types@npm:24.2.0"
+  checksum: 10c0/8f47918b35e9b7f6109be6f7c8fc3a64ad13a48233112b29e92559e64a564b810eb3ebf81b4cd0af1bb2989d27b9b95cca96e841ec4e23a3f68703cefe62fd9e
   languageName: node
   linkType: hard
 
@@ -7605,97 +7632,78 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/plugin-paginate-rest@npm:^6.1.2":
-  version: 6.1.2
-  resolution: "@octokit/plugin-paginate-rest@npm:6.1.2"
+"@octokit/plugin-paginate-rest@npm:11.4.4-cjs.2":
+  version: 11.4.4-cjs.2
+  resolution: "@octokit/plugin-paginate-rest@npm:11.4.4-cjs.2"
   dependencies:
-    "@octokit/tsconfig": "npm:^1.0.2"
-    "@octokit/types": "npm:^9.2.3"
+    "@octokit/types": "npm:^13.7.0"
   peerDependencies:
-    "@octokit/core": ">=4"
-  checksum: 10c0/def241c4f00b864822ab6414eaadd8679a6d332004c7e77467cfc1e6d5bdcc453c76bd185710ee942e4df201f9dd2170d960f46af5b14ef6f261a0068f656364
+    "@octokit/core": 5
+  checksum: 10c0/1d61a63c98a18c171bccdc6cf63ffe279fe852e8bdc9db6647ffcb27f4ea485fdab78fb71b552ed0f2186785cf5264f8ed3f9a8f33061e4697b5f73b097accb1
   languageName: node
   linkType: hard
 
-"@octokit/plugin-request-log@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "@octokit/plugin-request-log@npm:1.0.4"
+"@octokit/plugin-request-log@npm:^4.0.0":
+  version: 4.0.1
+  resolution: "@octokit/plugin-request-log@npm:4.0.1"
   peerDependencies:
-    "@octokit/core": ">=3"
-  checksum: 10c0/7238585445555db553912e0cdef82801c89c6e5cbc62c23ae086761c23cc4a403d6c3fddd20348bbd42fb7508e2c2fce370eb18fdbe3fbae2c0d2c8be974f4cc
+    "@octokit/core": 5
+  checksum: 10c0/6f556f86258c5fbff9b1821075dc91137b7499f2ad0fd12391f0876064a6daa88abe1748336b2d483516505771d358aa15cb4bcdabc348a79e3d951fe9726798
   languageName: node
   linkType: hard
 
-"@octokit/plugin-rest-endpoint-methods@npm:^7.1.2":
-  version: 7.2.3
-  resolution: "@octokit/plugin-rest-endpoint-methods@npm:7.2.3"
+"@octokit/plugin-rest-endpoint-methods@npm:13.3.2-cjs.1":
+  version: 13.3.2-cjs.1
+  resolution: "@octokit/plugin-rest-endpoint-methods@npm:13.3.2-cjs.1"
   dependencies:
-    "@octokit/types": "npm:^10.0.0"
+    "@octokit/types": "npm:^13.8.0"
   peerDependencies:
-    "@octokit/core": ">=3"
-  checksum: 10c0/8bffbc5852695dd08d65cc64b6ab7d2871ed9df1e791608f48b488a3908b5b655e3686b5dd72fc37c824e82bdd4dfc9d24e2e50205bbc324667def1d705bc9da
+    "@octokit/core": ^5
+  checksum: 10c0/810fe5cb1861386746bf0218ea969d87c56e553ff339490526483b4b66f53c4b4c6092034bec30c5d453172eb6f33e75b5748ade1b401b76774b5a994e2c10b0
   languageName: node
   linkType: hard
 
-"@octokit/request-error@npm:^3.0.0":
-  version: 3.0.3
-  resolution: "@octokit/request-error@npm:3.0.3"
+"@octokit/request-error@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@octokit/request-error@npm:5.1.1"
   dependencies:
-    "@octokit/types": "npm:^9.0.0"
+    "@octokit/types": "npm:^13.1.0"
     deprecation: "npm:^2.0.0"
     once: "npm:^1.4.0"
-  checksum: 10c0/1e252ac193c8af23b709909911aa327ed5372cbafcba09e4aff41e0f640a7c152579ab0a60311a92e37b4e7936392d59ee4c2feae5cdc387ee8587a33d8afa60
+  checksum: 10c0/dc9fc76ea5e4199273e4665ce9ddf345fe8f25578d9999c9a16f276298e61ee6fe0e6f5a6147b91ba3b34fdf5b9e6b7af6ae13d6333175e95b30c574088f7a2d
   languageName: node
   linkType: hard
 
-"@octokit/request@npm:^6.0.0":
-  version: 6.2.8
-  resolution: "@octokit/request@npm:6.2.8"
+"@octokit/request@npm:^8.4.1":
+  version: 8.4.1
+  resolution: "@octokit/request@npm:8.4.1"
   dependencies:
-    "@octokit/endpoint": "npm:^7.0.0"
-    "@octokit/request-error": "npm:^3.0.0"
-    "@octokit/types": "npm:^9.0.0"
-    is-plain-object: "npm:^5.0.0"
-    node-fetch: "npm:^2.6.7"
+    "@octokit/endpoint": "npm:^9.0.6"
+    "@octokit/request-error": "npm:^5.1.1"
+    "@octokit/types": "npm:^13.1.0"
     universal-user-agent: "npm:^6.0.0"
-  checksum: 10c0/6b6079ed45bac44c4579b40990bfd1905b03d4bc4e5255f3d5a10cf5182171578ebe19abeab32ebb11a806f1131947f2a06b7a077bd7e77ade7b15fe2882174b
+  checksum: 10c0/1a69dcb7336de708a296db9e9a58040e5b284a87495a63112f80eb0007da3fc96a9fadecb9e875fc63cf179c23a0f81031fbef2a6f610a219e45805ead03fcf3
   languageName: node
   linkType: hard
 
-"@octokit/rest@npm:19.0.11":
-  version: 19.0.11
-  resolution: "@octokit/rest@npm:19.0.11"
+"@octokit/rest@npm:20.1.2":
+  version: 20.1.2
+  resolution: "@octokit/rest@npm:20.1.2"
   dependencies:
-    "@octokit/core": "npm:^4.2.1"
-    "@octokit/plugin-paginate-rest": "npm:^6.1.2"
-    "@octokit/plugin-request-log": "npm:^1.0.4"
-    "@octokit/plugin-rest-endpoint-methods": "npm:^7.1.2"
-  checksum: 10c0/a14ae31fc5e70e76d2492aae63d3453cbb71f44e7492400f885ab5ac6b2612bcb244bafa29e45a59461f3e5d99807ff9c88d48af8317ffa4f8ad3f8f11fdd035
+    "@octokit/core": "npm:^5.0.2"
+    "@octokit/plugin-paginate-rest": "npm:11.4.4-cjs.2"
+    "@octokit/plugin-request-log": "npm:^4.0.0"
+    "@octokit/plugin-rest-endpoint-methods": "npm:13.3.2-cjs.1"
+  checksum: 10c0/712e08c43c7af37c5c219f95ae289b3ac2646270be4e8a7141fa2aa9340ed8f7134f117c9467e89206c5a9797c49c8d2c039b884d4865bb3bde91bc5adb3c38c
   languageName: node
   linkType: hard
 
-"@octokit/tsconfig@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@octokit/tsconfig@npm:1.0.2"
-  checksum: 10c0/84db70b495beeed69259dd4def14cdfb600edeb65ef32811558c99413ee2b414ed10bff9c4dcc7a43451d0fd36b4925ada9ef7d4272b5eae38cb005cc2f459ac
-  languageName: node
-  linkType: hard
-
-"@octokit/types@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "@octokit/types@npm:10.0.0"
+"@octokit/types@npm:^13.0.0, @octokit/types@npm:^13.1.0, @octokit/types@npm:^13.7.0, @octokit/types@npm:^13.8.0":
+  version: 13.10.0
+  resolution: "@octokit/types@npm:13.10.0"
   dependencies:
-    "@octokit/openapi-types": "npm:^18.0.0"
-  checksum: 10c0/9bbbec1e452c271752e5ba735c161a558933f2e35f3004bb0b6e8d6ba574af48b68bab2f293112a8e68c595435a2fbcc76f3e7333f45ba1888bb5193777a943e
-  languageName: node
-  linkType: hard
-
-"@octokit/types@npm:^9.0.0, @octokit/types@npm:^9.2.3":
-  version: 9.3.2
-  resolution: "@octokit/types@npm:9.3.2"
-  dependencies:
-    "@octokit/openapi-types": "npm:^18.0.0"
-  checksum: 10c0/2925479aa378a4491762b4fcf381bdc7daca39b4e0b2dd7062bce5d74a32ed7d79d20d3c65ceaca6d105cf4b1f7417fea634219bf90f79a57d03e2dac629ec45
+    "@octokit/openapi-types": "npm:^24.2.0"
+  checksum: 10c0/f66a401b89d653ec28e5c1529abdb7965752db4d9d40fa54c80e900af4c6bf944af6bd0a83f5b4f1eecb72e3d646899dfb27ffcf272ac243552de7e3b97a038d
   languageName: node
   linkType: hard
 
@@ -8294,6 +8302,48 @@ __metadata:
     "@prisma/prisma-schema-wasm": "npm:5.20.0-12.06fc58a368dc7be9fbbbe894adf8d445d208c284"
     fs-extra: "npm:11.1.1"
   checksum: 10c0/2980da4f7757a7998a675d3538296cbd7e18d05d94ca1729280e099d03822dab57a89b202dcff241d87e55720c0042b9c67418eb6a0d7556623b6d4da8916be5
+  languageName: node
+  linkType: hard
+
+"@protobuf-ts/plugin@npm:^2.9.4":
+  version: 2.11.1
+  resolution: "@protobuf-ts/plugin@npm:2.11.1"
+  dependencies:
+    "@bufbuild/protobuf": "npm:^2.4.0"
+    "@bufbuild/protoplugin": "npm:^2.4.0"
+    "@protobuf-ts/protoc": "npm:^2.11.1"
+    "@protobuf-ts/runtime": "npm:^2.11.1"
+    "@protobuf-ts/runtime-rpc": "npm:^2.11.1"
+    typescript: "npm:^3.9"
+  bin:
+    protoc-gen-dump: bin/protoc-gen-dump
+    protoc-gen-ts: bin/protoc-gen-ts
+  checksum: 10c0/32e1c89b7f02fefa6d14b477c0ce12319b4d96d33744ad7faadf5cd5ee415c7ac376b9ca74cd12b9fbb98b210ef8cb0d88bf95e0709e85994c12589e6af72013
+  languageName: node
+  linkType: hard
+
+"@protobuf-ts/protoc@npm:^2.11.1":
+  version: 2.11.1
+  resolution: "@protobuf-ts/protoc@npm:2.11.1"
+  bin:
+    protoc: protoc.js
+  checksum: 10c0/6a3cbcaeede068c94b48273271426192f438328e13019aafebb88e1153efac38b3ad358603751d7ac8b1d2cbef5ff515eaf960796dcce9daafbe2013255bdb0e
+  languageName: node
+  linkType: hard
+
+"@protobuf-ts/runtime-rpc@npm:^2.11.1":
+  version: 2.11.1
+  resolution: "@protobuf-ts/runtime-rpc@npm:2.11.1"
+  dependencies:
+    "@protobuf-ts/runtime": "npm:^2.11.1"
+  checksum: 10c0/20337ea721a619a93c3888fbbe768c8334a8ed67a759a33aefb2a5c587fff690ca8fcb8dc97f9b7590012d9f4c43a6b9020f72dd2fc57f004c26eeca93a51982
+  languageName: node
+  linkType: hard
+
+"@protobuf-ts/runtime@npm:^2.11.1":
+  version: 2.11.1
+  resolution: "@protobuf-ts/runtime@npm:2.11.1"
+  checksum: 10c0/6071c0373251e915cebb449fb7bf3254e946534edf4c4eb6e89933989a3ab5dcb148ed82cc0ea844bbc2f4346d0dc76f852c2b5f900a6bdaa35e5fb2cb4666f9
   languageName: node
   linkType: hard
 
@@ -8945,20 +8995,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-email/render@npm:0.0.16":
-  version: 0.0.16
-  resolution: "@react-email/render@npm:0.0.16"
-  dependencies:
-    html-to-text: "npm:9.0.5"
-    js-beautify: "npm:^1.14.11"
-    react-promise-suspense: "npm:0.3.4"
-  peerDependencies:
-    react: ^18.2.0
-    react-dom: ^18.2.0
-  checksum: 10c0/1cc3479f674f070f8564b8944dcb86081b7f52b67742d0c255d79b6cea989be0e2207d2adcd5a920ff4b41fbe360d655ac97a71f8ebd5e6d78441cafcfc668dc
-  languageName: node
-  linkType: hard
-
 "@react-email/render@npm:0.0.17":
   version: 0.0.17
   resolution: "@react-email/render@npm:0.0.17"
@@ -8970,6 +9006,20 @@ __metadata:
     react: ^18.2.0
     react-dom: ^18.2.0
   checksum: 10c0/34a1c5a55586d7cd723638d8cd5328fddf30015e5065a2e9d5204772e0532e84d63af1b2b1b8ec02cef52a8f57d34871200c0075a9ed7b2861362d8138d3db5e
+  languageName: node
+  linkType: hard
+
+"@react-email/render@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@react-email/render@npm:1.1.2"
+  dependencies:
+    html-to-text: "npm:^9.0.5"
+    prettier: "npm:^3.5.3"
+    react-promise-suspense: "npm:^0.3.4"
+  peerDependencies:
+    react: ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^18.0 || ^19.0 || ^19.0.0-rc
+  checksum: 10c0/def0039a24b797d962d7dcb3a3401c093aa0115545284e00863de4066a826a3e4977b8f2c65b1f3bf77352bee5595e0dedf166ea52467dcb7080e14785e1c3ac
   languageName: node
   linkType: hard
 
@@ -11250,13 +11300,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jsonwebtoken@npm:9.0.8, @types/jsonwebtoken@npm:^9.0.2":
-  version: 9.0.8
-  resolution: "@types/jsonwebtoken@npm:9.0.8"
+"@types/jsonwebtoken@npm:9.0.10, @types/jsonwebtoken@npm:^9.0.2":
+  version: 9.0.10
+  resolution: "@types/jsonwebtoken@npm:9.0.10"
   dependencies:
     "@types/ms": "npm:*"
     "@types/node": "npm:*"
-  checksum: 10c0/dd3ccea05115ad9c4458d0c2a487179b1abf8886eaa8cc77d64031a8ef47abd3ff038cdde26e76893372238c8612e4f5fd578b3400e525b65c0e8d3abefe5282
+  checksum: 10c0/0688ac8fb75f809201cb7e18a12b9d80ce539cb9dd27e1b01e11807cb1a337059e899b8ee3abc3f2c9417f02e363a3069d9eab9ef9724b1da1f0e10713514f94
   languageName: node
   linkType: hard
 
@@ -11267,10 +11317,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.17.15, @types/lodash@npm:^4.14.167":
-  version: 4.17.15
-  resolution: "@types/lodash@npm:4.17.15"
-  checksum: 10c0/2eb2dc6d231f5fb4603d176c08c8d7af688f574d09af47466a179cd7812d9f64144ba74bb32ca014570ffdc544eedc51b7a5657212bad083b6eecbd72223f9bb
+"@types/lodash@npm:4.17.20, @types/lodash@npm:^4.14.167":
+  version: 4.17.20
+  resolution: "@types/lodash@npm:4.17.20"
+  checksum: 10c0/98cdd0faae22cbb8079a01a3bb65aa8f8c41143367486c1cbf5adc83f16c9272a2a5d2c1f541f61d0d73da543c16ee1d21cf2ef86cb93cd0cc0ac3bced6dd88f
   languageName: node
   linkType: hard
 
@@ -11848,6 +11898,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript/vfs@npm:^1.5.2":
+  version: 1.6.1
+  resolution: "@typescript/vfs@npm:1.6.1"
+  dependencies:
+    debug: "npm:^4.1.1"
+  peerDependencies:
+    typescript: "*"
+  checksum: 10c0/3878686aff4bf26813dad9242aa8e01c5c9734f4d37f31035f93e9c8b850f15ec6a4480f04cf3a3a1cbf78a4e796ae1be5d6c54f7f7c91556eafee913a8d0da4
+  languageName: node
+  linkType: hard
+
 "@ungap/structured-clone@npm:^1.2.0":
   version: 1.2.0
   resolution: "@ungap/structured-clone@npm:1.2.0"
@@ -12178,12 +12239,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/types@npm:4.0.0":
-  version: 4.0.0
-  resolution: "@yarnpkg/types@npm:4.0.0"
+"@yarnpkg/types@npm:4.0.1":
+  version: 4.0.1
+  resolution: "@yarnpkg/types@npm:4.0.1"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10c0/41f67a4aa5c414c1e228f51453451fa15e0dd70c5cf2b1ae1ca142a3f018f25e4a37e60372cd0f5970c755e1804a2e31e208bff427add1cf13f899b0b9adc1e0
+  checksum: 10c0/90226789475680ba599833571dd76c0718dd5b4c5022481263ef309d6a628f6246671cd6ca86e49c966ddefa7aca6ccef82240dc1476d2cea702ea5bee2a6b72
   languageName: node
   linkType: hard
 
@@ -14976,7 +15037,7 @@ __metadata:
     semver: "npm:7.6.3"
     systeminformation: "npm:5.23.8"
     termi-link: "npm:1.1.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     untildify: "npm:4.0.0"
     uuid: "npm:10.0.0"
     vitest: "npm:3.2.4"
@@ -16056,13 +16117,6 @@ __metadata:
     es-errors: "npm:^1.3.0"
     gopd: "npm:^1.2.0"
   checksum: 10c0/199f2a0c1c16593ca0a145dbf76a962f8033ce3129f01284d48c45ed4e14fea9bbacd7b3610b6cdc33486cef20385ac054948fefc6272fcce645c09468f93031
-  languageName: node
-  linkType: hard
-
-"duplexer@npm:^0.1.1":
-  version: 0.1.2
-  resolution: "duplexer@npm:0.1.2"
-  checksum: 10c0/c57bcd4bdf7e623abab2df43a7b5b23d18152154529d166c1e0da6bee341d84c432d157d7e97b32fecb1bf3a8b8857dd85ed81a915789f550637ed25b8e64fc2
   languageName: node
   linkType: hard
 
@@ -17799,7 +17853,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fdir@npm:^6.2.0, fdir@npm:^6.4.4":
+"fdir@npm:^6.2.0, fdir@npm:^6.4.3, fdir@npm:^6.4.4":
   version: 6.4.6
   resolution: "fdir@npm:6.4.6"
   peerDependencies:
@@ -18765,7 +18819,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:11.1.0, globby@npm:^11.0.1, globby@npm:^11.0.2, globby@npm:^11.0.3":
+"globby@npm:^11.0.1, globby@npm:^11.0.2, globby@npm:^11.0.3":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
@@ -19269,7 +19323,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-to-text@npm:9.0.5":
+"html-to-text@npm:9.0.5, html-to-text@npm:^9.0.5":
   version: 9.0.5
   resolution: "html-to-text@npm:9.0.5"
   dependencies:
@@ -19729,9 +19783,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ioredis@npm:5.6.0":
-  version: 5.6.0
-  resolution: "ioredis@npm:5.6.0"
+"ioredis@npm:5.6.1":
+  version: 5.6.1
+  resolution: "ioredis@npm:5.6.1"
   dependencies:
     "@ioredis/commands": "npm:^1.1.1"
     cluster-key-slot: "npm:^1.1.0"
@@ -19742,7 +19796,7 @@ __metadata:
     redis-errors: "npm:^1.2.0"
     redis-parser: "npm:^3.0.0"
     standard-as-callback: "npm:^2.1.0"
-  checksum: 10c0/a885e5146640fc448706871290ef424ffa39af561f7ee3cf1590085209a509f85e99082bdaaf3cd32fa66758aea3fc2055d1109648ddca96fac4944bf2092c30
+  checksum: 10c0/26ae49cf448e807e454a9bdea5a9dfdcf669e2fdbf2df341900a0fb693c5662fea7e39db3227ce8972d1bda0ba7da9b7410e5163b12d8878a579548d847220ac
   languageName: node
   linkType: hard
 
@@ -21764,17 +21818,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lerna@npm:8.1.9":
-  version: 8.1.9
-  resolution: "lerna@npm:8.1.9"
+"lerna@npm:8.2.3":
+  version: 8.2.3
+  resolution: "lerna@npm:8.2.3"
   dependencies:
-    "@lerna/create": "npm:8.1.9"
+    "@lerna/create": "npm:8.2.3"
     "@npmcli/arborist": "npm:7.5.4"
     "@npmcli/package-json": "npm:5.2.0"
     "@npmcli/run-script": "npm:8.1.0"
     "@nx/devkit": "npm:>=17.1.2 < 21"
     "@octokit/plugin-enterprise-rest": "npm:6.0.1"
-    "@octokit/rest": "npm:19.0.11"
+    "@octokit/rest": "npm:20.1.2"
     aproba: "npm:2.0.0"
     byte-size: "npm:8.1.1"
     chalk: "npm:4.1.0"
@@ -21795,7 +21849,6 @@ __metadata:
     get-stream: "npm:6.0.0"
     git-url-parse: "npm:14.0.0"
     glob-parent: "npm:6.0.2"
-    globby: "npm:11.1.0"
     graceful-fs: "npm:4.2.11"
     has-unicode: "npm:2.0.1"
     import-local: "npm:3.1.0"
@@ -21835,10 +21888,10 @@ __metadata:
     slash: "npm:3.0.0"
     ssri: "npm:^10.0.6"
     string-width: "npm:^4.2.3"
-    strip-ansi: "npm:^6.0.1"
-    strong-log-transformer: "npm:2.1.0"
     tar: "npm:6.2.1"
     temp-dir: "npm:1.0.0"
+    through: "npm:2.3.8"
+    tinyglobby: "npm:0.2.12"
     typescript: "npm:>=3 < 6"
     upath: "npm:2.0.1"
     uuid: "npm:^10.0.0"
@@ -21851,7 +21904,7 @@ __metadata:
     yargs-parser: "npm:21.1.1"
   bin:
     lerna: dist/cli.js
-  checksum: 10c0/e3362d66324f5ee9606dbdb332a6b09eeb2df6378177e36a1bbcf532927d921beb4d25dbcc717c4adf3a7dcd67e0bcee67bedf81fdbe7e78bbecce310358d762
+  checksum: 10c0/618d2adb5504227ca0b4dbeca920fbc188a907e71df39ace105af3696393c3aefb75cf7a98899ec728b15ea9e92aca29cdfc21d479d23163e2fd812281fd10a1
   languageName: node
   linkType: hard
 
@@ -25419,6 +25472,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.5.3":
+  version: 3.6.2
+  resolution: "prettier@npm:3.6.2"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: 10c0/488cb2f2b99ec13da1e50074912870217c11edaddedeadc649b1244c749d15ba94e846423d062e2c4c9ae683e2d65f754de28889ba06e697ac4f988d44f45812
+  languageName: node
+  linkType: hard
+
 "pretty-bytes@npm:5.6.0, pretty-bytes@npm:^5.6.0":
   version: 5.6.0
   resolution: "pretty-bytes@npm:5.6.0"
@@ -26112,7 +26174,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-promise-suspense@npm:0.3.4":
+"react-promise-suspense@npm:0.3.4, react-promise-suspense@npm:^0.3.4":
   version: 0.3.4
   resolution: "react-promise-suspense@npm:0.3.4"
   dependencies:
@@ -26686,12 +26748,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resend@npm:3.5.0":
-  version: 3.5.0
-  resolution: "resend@npm:3.5.0"
+"resend@npm:4.6.0":
+  version: 4.6.0
+  resolution: "resend@npm:4.6.0"
   dependencies:
-    "@react-email/render": "npm:0.0.16"
-  checksum: 10c0/9920a456b926ef7be165a550c1c02355a8390fb215f05778118e3758a636411d49e4fa1ce3c648f42499e5928e7e159e2ebcce89b991c5708ae8b3393a84c242
+    "@react-email/render": "npm:1.1.2"
+  checksum: 10c0/ffd82d406fff0ebf7b66078df8bb5348a8aa01f0dadb8b3700184a2c4104e193cb8ed63902e0034d0492d3bbb318a67504d6cb826ef60fe67c753ffa9f800799
   languageName: node
   linkType: hard
 
@@ -27126,7 +27188,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@actions/cache": "npm:3.3.0"
+    "@actions/cache": "npm:4.0.3"
     "@actions/core": "npm:1.11.1"
     "@actions/exec": "npm:1.1.1"
     "@actions/glob": "npm:0.5.0"
@@ -27159,7 +27221,7 @@ __metadata:
     "@types/prompts": "npm:2.4.9"
     "@typescript-eslint/eslint-plugin": "npm:8.19.1"
     "@typescript-eslint/parser": "npm:8.19.1"
-    "@yarnpkg/types": "npm:4.0.0"
+    "@yarnpkg/types": "npm:4.0.1"
     babel-jest: "npm:^29.7.0"
     babel-plugin-auto-import: "npm:1.1.0"
     babel-plugin-remove-code: "npm:0.0.6"
@@ -27183,7 +27245,7 @@ __metadata:
     jest: "npm:29.7.0"
     jscodeshift: "npm:17.0.0"
     lefthook: "npm:^1.11.14"
-    lerna: "npm:8.1.9"
+    lerna: "npm:8.2.3"
     listr2: "npm:7.0.2"
     make-dir-cli: "npm:4.0.0"
     msw: "npm:1.3.4"
@@ -27200,11 +27262,11 @@ __metadata:
     rimraf: "npm:6.0.1"
     tree-kill: "npm:1.2.2"
     tstyche: "npm:3.0.0"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     vitest: "npm:3.2.4"
     yargs: "npm:17.7.2"
-    zx: "npm:8.7.0"
+    zx: "npm:8.7.1"
   languageName: unknown
   linkType: soft
 
@@ -28147,10 +28209,10 @@ __metadata:
     "@types/node": "npm:20.17.10"
     magic-string: "npm:0.30.11"
     react-docgen: "npm:7.0.3"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:5.6.2"
     unplugin-auto-import: "npm:19.3.0"
-    vite: "npm:5.4.16"
+    vite: "npm:5.4.19"
     vite-plugin-node-polyfills: "npm:0.23.0"
   peerDependencies:
     "@cedarjs/project-config": "workspace:*"
@@ -28484,19 +28546,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strong-log-transformer@npm:2.1.0":
-  version: 2.1.0
-  resolution: "strong-log-transformer@npm:2.1.0"
-  dependencies:
-    duplexer: "npm:^0.1.1"
-    minimist: "npm:^1.2.0"
-    through: "npm:^2.3.4"
-  bin:
-    sl-log-transformer: bin/sl-log-transformer.js
-  checksum: 10c0/3c3b8aa8f34d661910563ff996412e2f527fc814e699a376854b554d4a4294ab7e285b4e2c08a080a7b19c5600a9b93a98798d3ac600fe3de545ca6605c07829
-  languageName: node
-  linkType: hard
-
 "stubborn-fs@npm:^1.2.5":
   version: 1.2.5
   resolution: "stubborn-fs@npm:1.2.5"
@@ -28558,16 +28607,6 @@ __metadata:
   dependencies:
     has-flag: "npm:^4.0.0"
   checksum: 10c0/ea1d3c275dd604c974670f63943ed9bd83623edc102430c05adb8efc56ba492746b6e95386e7831b872ec3807fd89dd8eb43f735195f37b5ec343e4234cc7e89
-  languageName: node
-  linkType: hard
-
-"supports-hyperlinks@npm:^2.0.0":
-  version: 2.3.0
-  resolution: "supports-hyperlinks@npm:2.3.0"
-  dependencies:
-    has-flag: "npm:^4.0.0"
-    supports-color: "npm:^7.0.0"
-  checksum: 10c0/4057f0d86afb056cd799602f72d575b8fdd79001c5894bcb691176f14e870a687e7981e50bc1484980e8b688c6d5bcd4931e1609816abb5a7dc1486b7babf6a1
   languageName: node
   linkType: hard
 
@@ -28805,16 +28844,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terminal-link@npm:2.1.1":
-  version: 2.1.1
-  resolution: "terminal-link@npm:2.1.1"
-  dependencies:
-    ansi-escapes: "npm:^4.2.1"
-    supports-hyperlinks: "npm:^2.0.0"
-  checksum: 10c0/947458a5cd5408d2ffcdb14aee50bec8fb5022ae683b896b2f08ed6db7b2e7d42780d5c8b51e930e9c322bd7c7a517f4fa7c76983d0873c83245885ac5ee13e3
-  languageName: node
-  linkType: hard
-
 "test-exclude@npm:^6.0.0":
   version: 6.0.0
   resolution: "test-exclude@npm:6.0.0"
@@ -28893,7 +28922,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"through@npm:2, through@npm:>=2.2.7 <3, through@npm:^2.3.4, through@npm:^2.3.6, through@npm:^2.3.8":
+"through@npm:2, through@npm:2.3.8, through@npm:>=2.2.7 <3, through@npm:^2.3.6, through@npm:^2.3.8":
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: 10c0/4b09f3774099de0d4df26d95c5821a62faee32c7e96fb1f4ebd54a2d7c11c57fe88b0a0d49cf375de5fee5ae6bf4eb56dbbf29d07366864e2ee805349970d3cc
@@ -28927,6 +28956,16 @@ __metadata:
   version: 0.3.2
   resolution: "tinyexec@npm:0.3.2"
   checksum: 10c0/3efbf791a911be0bf0821eab37a3445c2ba07acc1522b1fa84ae1e55f10425076f1290f680286345ed919549ad67527d07281f1c19d584df3b74326909eb1f90
+  languageName: node
+  linkType: hard
+
+"tinyglobby@npm:0.2.12":
+  version: 0.2.12
+  resolution: "tinyglobby@npm:0.2.12"
+  dependencies:
+    fdir: "npm:^6.4.3"
+    picomatch: "npm:^4.0.2"
+  checksum: 10c0/7c9be4fd3625630e262dcb19015302aad3b4ba7fc620f269313e688f2161ea8724d6cb4444baab5ef2826eb6bed72647b169a33ec8eea37501832a2526ff540f
   languageName: node
   linkType: hard
 
@@ -29294,9 +29333,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.19.4":
-  version: 4.19.4
-  resolution: "tsx@npm:4.19.4"
+"tsx@npm:4.20.3":
+  version: 4.20.3
+  resolution: "tsx@npm:4.20.3"
   dependencies:
     esbuild: "npm:~0.25.0"
     fsevents: "npm:~2.3.3"
@@ -29306,7 +29345,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10c0/f7b8d44362343fbde1f2ecc9832d243a450e1168dd09702a545ebe5f699aa6912e45b431a54b885466db414cceda48e5067b36d182027c43b2c02a4f99d8721e
+  checksum: 10c0/6ff0d91ed046ec743fac7ed60a07f3c025e5b71a5aaf58f3d2a6b45e4db114c83e59ebbb078c8e079e48d3730b944a02bc0de87695088aef4ec8bbc705dc791b
   languageName: node
   linkType: hard
 
@@ -29520,6 +29559,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:5.4.5":
+  version: 5.4.5
+  resolution: "typescript@npm:5.4.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/2954022ada340fd3d6a9e2b8e534f65d57c92d5f3989a263754a78aba549f7e6529acc1921913560a4b816c46dce7df4a4d29f9f11a3dc0d4213bb76d043251e
+  languageName: node
+  linkType: hard
+
 "typescript@npm:5.6.1-rc":
   version: 5.6.1-rc
   resolution: "typescript@npm:5.6.1-rc"
@@ -29540,6 +29589,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^3.9":
+  version: 3.9.10
+  resolution: "typescript@npm:3.9.10"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/863cc06070fa18a0f9c6a83265fb4922a8b51bf6f2c6760fb0b73865305ce617ea4bc6477381f9f4b7c3a8cb4a455b054f5469e6e41307733fe6a2bd9aae82f8
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>":
+  version: 5.4.5
+  resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/db2ad2a16ca829f50427eeb1da155e7a45e598eec7b086d8b4e8ba44e5a235f758e606d681c66992230d3fc3b8995865e5fd0b22a2c95486d0b3200f83072ec9
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@npm%3A5.6.1-rc#optional!builtin<compat/typescript>":
   version: 5.6.1-rc
   resolution: "typescript@patch:typescript@npm%3A5.6.1-rc#optional!builtin<compat/typescript>::version=5.6.1-rc&hash=8c6c40"
@@ -29557,6 +29626,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/94eb47e130d3edd964b76da85975601dcb3604b0c848a36f63ac448d0104e93819d94c8bdf6b07c00120f2ce9c05256b8b6092d23cf5cf1c6fa911159e4d572f
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^3.9#optional!builtin<compat/typescript>":
+  version: 3.9.10
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#optional!builtin<compat/typescript>::version=3.9.10&hash=3bd3d3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/9041fb3886e7d6a560f985227b8c941d17a750f2edccb5f9b3a15a2480574654d9be803ad4a14aabcc2f2553c4d272a25fd698a7c42692f03f66b009fb46883c
   languageName: node
   linkType: hard
 
@@ -29639,7 +29718,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:6.19.7, undici@npm:^6.19.5":
+"undici@npm:6.19.7":
   version: 6.19.7
   resolution: "undici@npm:6.19.7"
   checksum: 10c0/801d1e66d5bccdd3fcc9ecf1c95b83a593e4867b89e21ed725e35bd4d572b3d3ce1d7feab2a4f2046f65923de70bfafb69ac148c633d1ab30a948d6fec24475a
@@ -29652,6 +29731,13 @@ __metadata:
   dependencies:
     "@fastify/busboy": "npm:^2.0.0"
   checksum: 10c0/08d0f2596553aa0a54ca6e8e9c7f45aef7d042c60918564e3a142d449eda165a80196f6ef19ea2ef2e6446959e293095d8e40af1236f0d67223b06afac5ecad7
+  languageName: node
+  linkType: hard
+
+"undici@npm:^6.19.5":
+  version: 6.21.3
+  resolution: "undici@npm:6.21.3"
+  checksum: 10c0/294da109853fad7a6ef5a172ad0ca3fb3f1f60cf34703d062a5ec967daf69ad8c03b52e6d536c5cba3bb65615769bf08e5b30798915cbccdddaca01045173dda
   languageName: node
   linkType: hard
 
@@ -31112,11 +31198,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zx@npm:8.7.0":
-  version: 8.7.0
-  resolution: "zx@npm:8.7.0"
+"zx@npm:8.7.1":
+  version: 8.7.1
+  resolution: "zx@npm:8.7.1"
   bin:
     zx: build/cli.js
-  checksum: 10c0/0773448306ef0b5e2fb46723c29048b611781e987aeb89eb153e2ef07ff60cd16bae88666a9d272f4486fee09258ef30775d14dece3599f401dacad965fb30ef
+  checksum: 10c0/48a7e3c3a15c6620bc5d205bc492c3ecd1b8cb1be5ee709a0c3d1866bbb7b167ad53270d8ebeb273dc796f73367ec11666ba6d155eb2957ed62f1476008f71c2
   languageName: node
   linkType: hard

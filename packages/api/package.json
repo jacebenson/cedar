@@ -99,7 +99,7 @@
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
     "@types/aws-lambda": "8.10.145",
-    "@types/jsonwebtoken": "9.0.8",
+    "@types/jsonwebtoken": "9.0.10",
     "@types/memjs": "1",
     "@types/pascalcase": "1.0.3",
     "@types/split2": "4.2.3",
@@ -109,7 +109,7 @@
     "redis": "4.7.1",
     "split2": "4.2.0",
     "ts-toolbelt": "9.6.0",
-    "tsx": "4.19.4",
+    "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
   },

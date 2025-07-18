@@ -927,15 +927,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint__js@npm:^8.42.3":
-  version: 8.42.3
-  resolution: "@types/eslint__js@npm:8.42.3"
-  dependencies:
-    "@types/eslint": "npm:*"
-  checksum: 10c0/ccc5180b92155929a089ffb03ed62625216dcd5e46dd3197c6f82370ce8b52c7cb9df66c06b0a3017995409e023bc9eafe5a3f009e391960eacefaa1b62d9a56
-  languageName: node
-  linkType: hard
-
 "@types/estree@npm:*, @types/estree@npm:^1.0.6":
   version: 1.0.6
   resolution: "@types/estree@npm:1.0.6"
@@ -1446,7 +1437,6 @@ __metadata:
     "@eslint-community/eslint-plugin-eslint-comments": "npm:^4.3.0"
     "@eslint/js": "npm:^9.7.0"
     "@types/eslint-plugin-markdown": "npm:^2.0.2"
-    "@types/eslint__js": "npm:^8.42.3"
     "@types/fs-extra": "npm:^11"
     "@types/node": "npm:^22.10.2"
     "@types/semver": "npm:7.5.8"
@@ -1478,13 +1468,13 @@ __metadata:
     publint: "npm:0.3.12"
     rimraf: "npm:^6.0.1"
     semver: "npm:7.6.3"
-    tsx: "npm:4.19.4"
+    tsx: "npm:4.20.3"
     typescript: "npm:^5.5.3"
     typescript-eslint: "npm:^8.0.0"
     untildify: "npm:5.0.0"
     which: "npm:4.0.0"
     yauzl-promise: "npm:4.0.0"
-    zx: "npm:8.7.0"
+    zx: "npm:8.7.1"
   bin:
     create-cedar-rsc-app: dist/index.js
   languageName: unknown
@@ -4004,9 +3994,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:4.19.4":
-  version: 4.19.4
-  resolution: "tsx@npm:4.19.4"
+"tsx@npm:4.20.3":
+  version: 4.20.3
+  resolution: "tsx@npm:4.20.3"
   dependencies:
     esbuild: "npm:~0.25.0"
     fsevents: "npm:~2.3.3"
@@ -4016,7 +4006,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 10c0/f7b8d44362343fbde1f2ecc9832d243a450e1168dd09702a545ebe5f699aa6912e45b431a54b885466db414cceda48e5067b36d182027c43b2c02a4f99d8721e
+  checksum: 10c0/6ff0d91ed046ec743fac7ed60a07f3c025e5b71a5aaf58f3d2a6b45e4db114c83e59ebbb078c8e079e48d3730b944a02bc0de87695088aef4ec8bbc705dc791b
   languageName: node
   linkType: hard
 
@@ -4284,11 +4274,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zx@npm:8.7.0":
-  version: 8.7.0
-  resolution: "zx@npm:8.7.0"
+"zx@npm:8.7.1":
+  version: 8.7.1
+  resolution: "zx@npm:8.7.1"
   bin:
     zx: build/cli.js
-  checksum: 10c0/0773448306ef0b5e2fb46723c29048b611781e987aeb89eb153e2ef07ff60cd16bae88666a9d272f4486fee09258ef30775d14dece3599f401dacad965fb30ef
+  checksum: 10c0/48a7e3c3a15c6620bc5d205bc492c3ecd1b8cb1be5ee709a0c3d1866bbb7b167ad53270d8ebeb273dc796f73367ec11666ba6d155eb2957ed62f1476008f71c2
   languageName: node
   linkType: hard
