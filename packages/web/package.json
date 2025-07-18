@@ -8,31 +8,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx ./build.ts && yarn build:types",
-    "build:pack": "yarn pack -o cedarjs-web.tgz",
-    "build:types": "tsc --build --verbose ./tsconfig.build.json ./tsconfig.cjs.json",
-    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
-    "check:attw": "tsx ./attw.ts",
-    "check:package": "concurrently npm:check:attw yarn:publint",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:types": "tstyche",
-    "test:watch": "vitest watch"
-  },
-  "bin": {
-    "cedarjs": "./dist/cjs/bins/cedarjs.js",
-    "cj": "./dist/cjs/bins/cedarjs.js",
-    "cross-env": "./dist/cjs/bins/cross-env.js",
-    "msw": "./dist/cjs/bins/msw.js",
-    "redwood": "./dist/cjs/bins/redwood.js",
-    "rw": "./dist/cjs/bins/redwood.js",
-    "rwfw": "./dist/cjs/bins/rwfw.js",
-    "storybook": "./dist/cjs/bins/storybook.js",
-    "tsc": "./dist/cjs/bins/tsc.js"
-  },
-  "main": "./dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -136,12 +111,37 @@
       "default": "./dist/entry/index.js"
     }
   },
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "cedarjs": "./dist/cjs/bins/cedarjs.js",
+    "cj": "./dist/cjs/bins/cedarjs.js",
+    "cross-env": "./dist/cjs/bins/cross-env.js",
+    "msw": "./dist/cjs/bins/msw.js",
+    "redwood": "./dist/cjs/bins/redwood.js",
+    "rw": "./dist/cjs/bins/redwood.js",
+    "rwfw": "./dist/cjs/bins/rwfw.js",
+    "storybook": "./dist/cjs/bins/storybook.js",
+    "tsc": "./dist/cjs/bins/tsc.js"
+  },
   "files": [
     "apollo",
     "dist",
     "src/entry",
     "toast"
   ],
+  "scripts": {
+    "build": "tsx ./build.ts && yarn build:types",
+    "build:pack": "yarn pack -o cedarjs-web.tgz",
+    "build:types": "tsc --build --verbose ./tsconfig.build.json ./tsconfig.cjs.json",
+    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
+    "check:attw": "tsx ./attw.ts",
+    "check:package": "concurrently npm:check:attw yarn:publint",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:types": "tstyche",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@apollo/client": "3.13.8",
     "@babel/runtime-corejs3": "7.27.6",
@@ -158,10 +158,6 @@
     "react-hot-toast": "2.4.1",
     "stacktracey": "2.1.8",
     "ts-toolbelt": "9.6.0"
-  },
-  "peerDependencies": {
-    "react": "19.0.0-rc-f2df5694-20240916",
-    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "devDependencies": {
     "@apollo/client-react-streaming": "0.12.2",
@@ -187,6 +183,10 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
+  },
+  "peerDependencies": {
+    "react": "19.0.0-rc-f2df5694-20240916",
+    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

@@ -8,25 +8,6 @@
   },
   "license": "MIT",
   "type": "commonjs",
-  "scripts": {
-    "build": "tsx ./build.mts && yarn build:types",
-    "build:clean-dist": "rimraf 'dist/**/*/__tests__' --glob",
-    "build:pack": "yarn pack -o cedarjs-internal.tgz",
-    "build:types": "tsc --build --verbose ./tsconfig.json",
-    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
-    "check:attw": "yarn attw -P",
-    "check:package": "concurrently npm:check:attw yarn:publint",
-    "fix:permissions": "chmod +x dist/generate/generate.js dist/generate/watch.js",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
-  "bin": {
-    "rw-gen": "./dist/generate/generate.js",
-    "rw-gen-watch": "./dist/generate/watch.js"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "default": "./dist/index.js",
@@ -70,9 +51,28 @@
     },
     "./package.json": "./package.json"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "rw-gen": "./dist/generate/generate.js",
+    "rw-gen-watch": "./dist/generate/watch.js"
+  },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsx ./build.mts && yarn build:types",
+    "build:clean-dist": "rimraf 'dist/**/*/__tests__' --glob",
+    "build:pack": "yarn pack -o cedarjs-internal.tgz",
+    "build:types": "tsc --build --verbose ./tsconfig.json",
+    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
+    "check:attw": "yarn attw -P",
+    "check:package": "concurrently npm:check:attw yarn:publint",
+    "fix:permissions": "chmod +x dist/generate/generate.js dist/generate/watch.js",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@babel/core": "^7.26.10",
     "@babel/parser": "7.27.5",

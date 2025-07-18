@@ -9,16 +9,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx ./build.mts",
-    "build:pack": "yarn pack -o cedarjs-cli.tgz",
-    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx,template\" --ignore dist --exec \"yarn build && yarn fix:permissions\"",
-    "dev": "RWJS_CWD=../../__fixtures__/example-todo-main node dist/index.js",
-    "fix:permissions": "chmod +x dist/index.js dist/rwfw.js",
-    "prepublishOnly": "yarn build",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
   "bin": {
     "cedarjs": "./dist/index.js",
     "cj": "./dist/index.js",
@@ -29,6 +19,16 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsx ./build.mts",
+    "build:pack": "yarn pack -o cedarjs-cli.tgz",
+    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx,template\" --ignore dist --exec \"yarn build && yarn fix:permissions\"",
+    "dev": "RWJS_CWD=../../__fixtures__/example-todo-main node dist/index.js",
+    "fix:permissions": "chmod +x dist/index.js dist/rwfw.js",
+    "prepublishOnly": "yarn build",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/api-server": "workspace:*",

@@ -8,14 +8,6 @@
   },
   "license": "MIT",
   "type": "commonjs",
-  "scripts": {
-    "build": "tsx ./build.mts && yarn build:types",
-    "build:pack": "yarn pack -o cedarjs-ogimage-gen.tgz",
-    "build:types": "tsc --build --verbose",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
   "exports": {
     "./hooks": {
       "default": "./cjsWrappers/hooks.js",
@@ -39,6 +31,14 @@
     "dist",
     "empty.js"
   ],
+  "scripts": {
+    "build": "tsx ./build.mts && yarn build:types",
+    "build:pack": "yarn pack -o cedarjs-ogimage-gen.tgz",
+    "build:types": "tsc --build --verbose",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@cedarjs/internal": "workspace:*",
     "@cedarjs/project-config": "workspace:*",

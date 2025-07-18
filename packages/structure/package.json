@@ -8,6 +8,11 @@
     "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "yarn build:js && yarn build:types",
     "build:js": "babel src -d dist --extensions \".js,.jsx,.ts,.tsx\"",
@@ -19,11 +24,6 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
-  "main": "dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/project-config": "workspace:*",

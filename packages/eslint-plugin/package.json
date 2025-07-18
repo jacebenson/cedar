@@ -7,6 +7,11 @@
     "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsx ./build.mts && yarn build:types",
     "build:pack": "yarn pack -o cedarjs-eslint-plugin.tgz",
@@ -16,11 +21,6 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@typescript-eslint/utils": "8.19.1",
     "eslint": "8.57.1"

@@ -9,22 +9,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx build.ts && yarn build:types",
-    "build:pack": "yarn pack -o cedarjs-vite.tgz",
-    "build:types": "tsc --build --verbose ./tsconfig.build.json",
-    "check:attw": "tsx ./attw.ts",
-    "check:package": "concurrently npm:check:attw yarn:publint",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
-  "bin": {
-    "rw-dev-fe": "./dist/devFeServer.js",
-    "rw-serve-fe": "./dist/runFeServer.js",
-    "rw-vite-build": "./bins/rw-vite-build.mjs",
-    "rw-vite-dev": "./bins/rw-vite-dev.mjs",
-    "vite": "./bins/vite.mjs"
-  },
   "exports": {
     ".": {
       "import": {
@@ -51,10 +35,26 @@
     },
     "./package.json": "./package.json"
   },
+  "bin": {
+    "rw-dev-fe": "./dist/devFeServer.js",
+    "rw-serve-fe": "./dist/runFeServer.js",
+    "rw-vite-build": "./bins/rw-vite-build.mjs",
+    "rw-vite-dev": "./bins/rw-vite-dev.mjs",
+    "vite": "./bins/vite.mjs"
+  },
   "files": [
     "dist",
     "inject"
   ],
+  "scripts": {
+    "build": "tsx build.ts && yarn build:types",
+    "build:pack": "yarn pack -o cedarjs-vite.tgz",
+    "build:types": "tsc --build --verbose ./tsconfig.build.json",
+    "check:attw": "tsx ./attw.ts",
+    "check:package": "concurrently npm:check:attw yarn:publint",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@babel/generator": "7.27.5",
     "@babel/parser": "7.27.5",

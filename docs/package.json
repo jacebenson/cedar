@@ -1,7 +1,7 @@
 {
-  "private": true,
   "name": "docs",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "build": "docusaurus build",
     "clear": "docusaurus clear",
@@ -11,7 +11,18 @@
     "start": "docusaurus start",
     "swizzle": "docusaurus swizzle"
   },
-  "packageManager": "yarn@4.6.0",
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
   "dependencies": {
     "@docusaurus/core": "3.8.1",
     "@docusaurus/plugin-content-docs": "3.8.1",
@@ -33,16 +44,5 @@
     "@types/react": "^18.2.55",
     "typescript": "5.6.2"
   },
-  "browserslist": {
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "production": [
-      ">0.5%",
-      "not dead",
-      "not op_mini all"
-    ]
-  }
+  "packageManager": "yarn@4.6.0"
 }

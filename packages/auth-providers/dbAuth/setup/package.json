@@ -7,6 +7,11 @@
     "url": "git+https://github.com/cedarjs/cedar.git"
   },
   "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "yarn build:js && yarn build:types",
     "build //": "Including .snap in extensions because of https://github.com/babel/babel/issues/11394",
@@ -18,11 +23,6 @@
     "test": "yarn vitest run src",
     "test:watch": "yarn test --watch"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/cli-helpers": "workspace:*",

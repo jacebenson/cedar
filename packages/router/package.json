@@ -8,21 +8,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx ./build.ts",
-    "build:pack": "yarn pack -o cedarjs-router.tgz",
-    "build:types": "tsc --build --verbose tsconfig.build.json",
-    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
-    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
-    "check:attw": "tsx ./attw.ts",
-    "check:package": "concurrently npm:check:attw yarn publint",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:types": "tstyche",
-    "test:watch": "vitest watch"
-  },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -89,10 +74,25 @@
       "require": "./dist/cjs/util.js"
     }
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "skip-nav.css"
   ],
+  "scripts": {
+    "build": "tsx ./build.ts",
+    "build:pack": "yarn pack -o cedarjs-router.tgz",
+    "build:types": "tsc --build --verbose tsconfig.build.json",
+    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
+    "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build\"",
+    "check:attw": "tsx ./attw.ts",
+    "check:package": "concurrently npm:check:attw yarn publint",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:types": "tstyche",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@babel/runtime-corejs3": "7.27.6",
     "@cedarjs/auth": "workspace:*",
@@ -101,10 +101,6 @@
     "react": "19.0.0-rc-f2df5694-20240916",
     "react-dom": "19.0.0-rc-f2df5694-20240916",
     "react-server-dom-webpack": "19.0.0-rc-f2df5694-20240916"
-  },
-  "peerDependencies": {
-    "react": "19.0.0-rc-f2df5694-20240916",
-    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.1",
@@ -120,6 +116,10 @@
     "tsx": "4.20.3",
     "typescript": "5.6.2",
     "vitest": "3.2.4"
+  },
+  "peerDependencies": {
+    "react": "19.0.0-rc-f2df5694-20240916",
+    "react-dom": "19.0.0-rc-f2df5694-20240916"
   },
   "gitHead": "3905ed045508b861b495f8d5630d76c7a157d8f1"
 }

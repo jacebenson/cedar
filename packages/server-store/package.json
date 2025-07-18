@@ -8,19 +8,19 @@
   },
   "license": "MIT",
   "type": "commonjs",
+  "exports": {
+    "default": "./dist/serverStore.js",
+    "types": "./dist/serverStore.d.ts"
+  },
+  "types": "./dist/serverStore.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsx ./build.mts && run build:types",
     "build:pack": "yarn pack -o cedarjs-server-store.tgz",
     "build:types": "tsc --build --verbose"
   },
-  "types": "./dist/serverStore.d.ts",
-  "exports": {
-    "default": "./dist/serverStore.js",
-    "types": "./dist/serverStore.d.ts"
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@cedarjs/auth": "workspace:*",
     "@cedarjs/cookie-jar": "workspace:*",

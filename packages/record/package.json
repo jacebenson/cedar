@@ -8,6 +8,17 @@
   },
   "license": "MIT",
   "type": "module",
+  "exports": {
+    ".": {
+      "default": "./dist/cjs/index.js",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsx ./build.mts",
     "build:pack": "yarn pack -o cedarjs-record.tgz",
@@ -17,17 +28,6 @@
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "default": "./dist/cjs/index.js",
-      "import": "./dist/index.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@cedarjs/api": "workspace:*",
     "@cedarjs/project-config": "workspace:*",

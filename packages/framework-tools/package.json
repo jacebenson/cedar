@@ -1,7 +1,7 @@
 {
-  "private": true,
   "name": "@cedarjs/framework-tools",
   "version": "0.0.5",
+  "private": true,
   "repository": {
     "directory": "packages/framework-tools",
     "type": "git",
@@ -9,14 +9,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx ./build.ts && run build:types",
-    "build:types": "tsc --build --verbose"
-  },
-  "bin": {
-    "rw-fwtools-attw": "./dist/bins/rw-fwtools-attw.js"
-  },
-  "types": "./dist/buildDefaults.d.ts",
   "exports": {
     ".": {
       "default": "./dist/buildDefaults.js",
@@ -27,9 +19,17 @@
       "types": "./dist/generateTypes.d.ts"
     }
   },
+  "types": "./dist/buildDefaults.d.ts",
+  "bin": {
+    "rw-fwtools-attw": "./dist/bins/rw-fwtools-attw.js"
+  },
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsx ./build.ts && run build:types",
+    "build:types": "tsc --build --verbose"
+  },
   "dependencies": {
     "@arethetypeswrong/cli": "0.18.1",
     "esbuild": "0.25.0",

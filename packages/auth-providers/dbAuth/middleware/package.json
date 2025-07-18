@@ -8,19 +8,6 @@
   },
   "license": "MIT",
   "type": "module",
-  "scripts": {
-    "build": "tsx ./build.mts",
-    "build:pack": "yarn pack -o cedarjs-auth-dbauth-middleware.tgz",
-    "build:types": "tsc --build --verbose ./tsconfig.build.json",
-    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
-    "check:attw": "yarn attw -P",
-    "check:package": "concurrently npm:check:attw yarn:publint",
-    "prepublishOnly": "NODE_ENV=production yarn build",
-    "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
@@ -33,9 +20,22 @@
       }
     }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "scripts": {
+    "build": "tsx ./build.mts",
+    "build:pack": "yarn pack -o cedarjs-auth-dbauth-middleware.tgz",
+    "build:types": "tsc --build --verbose ./tsconfig.build.json",
+    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
+    "check:attw": "yarn attw -P",
+    "check:package": "concurrently npm:check:attw yarn:publint",
+    "prepublishOnly": "NODE_ENV=production yarn build",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
     "@cedarjs/auth-dbauth-api": "workspace:*",
     "@cedarjs/web": "workspace:*"
