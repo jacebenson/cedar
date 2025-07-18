@@ -57,7 +57,6 @@ describe('TS template', () => {
         "/scripts/seed.ts",
         "/scripts/tsconfig.json",
         "/vitest.config.ts",
-        "/vitest.setup.ts",
         "/web",
         "/web/package.json",
         "/web/public",
@@ -81,6 +80,7 @@ describe('TS template', () => {
         "/web/src/pages/NotFoundPage/NotFoundPage.tsx",
         "/web/tsconfig.json",
         "/web/vite.config.ts",
+        "/web/vitest.setup.ts",
       ]
     `)
   })
@@ -139,7 +139,6 @@ describe('JS template', () => {
         "/scripts/jsconfig.json",
         "/scripts/seed.js",
         "/vitest.config.mjs",
-        "/vitest.setup.js",
         "/web",
         "/web/jsconfig.json",
         "/web/package.json",
@@ -163,6 +162,7 @@ describe('JS template', () => {
         "/web/src/pages/NotFoundPage",
         "/web/src/pages/NotFoundPage/NotFoundPage.jsx",
         "/web/vite.config.js",
+        "/web/vitest.setup.js",
       ]
     `)
   })
