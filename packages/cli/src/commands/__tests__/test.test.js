@@ -52,7 +52,7 @@ test('Syncs or creates test database when the flag --db-push is set to true', as
 
   expect(execa.mock.results[0].value.cmd).toBe('yarn vitest')
 
-  expect(execa.mock.results[0].value.params).toContain('--projects', 'api')
+  expect(execa.mock.results[0].value.params).toContain('--project', 'api')
 })
 
 test('Skips test database sync/creation when the flag --db-push is set to false', async () => {

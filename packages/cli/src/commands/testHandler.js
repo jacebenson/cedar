@@ -115,8 +115,6 @@ export const handler = async ({
       process.env.SKIP_DB_PUSH = '1'
     }
 
-    console.log('Vitest arguments:', JSON.stringify(vitestArgs, null, 2))
-
     // **NOTE** There is no official way to run Jest programmatically,
     // so we're running it via execa, since `jest.run()` is a bit unstable.
     // https://github.com/facebook/jest/issues/5048
