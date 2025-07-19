@@ -6,8 +6,9 @@
   },
   "exclude": [
     "**/__tests__",
-    // The following files are only used by ESM projects
-    "globRoutesImporter.ts",
+    "",
+    "// The following files are only used by ESM projects",
+    "src/web/globRoutesImporter.ts",
     "src/vitest"
   ]
 }

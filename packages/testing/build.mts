@@ -26,7 +26,7 @@ await build({
     outdir: 'dist/cjs',
   },
 })
-await generateTypesCjs()
+// await generateTypesCjs()
 await insertCommonJsPackageJson({
   buildFileUrl: import.meta.url,
 })
