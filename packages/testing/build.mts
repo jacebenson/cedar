@@ -1,6 +1,11 @@
 import fs from 'node:fs'
 
-import { buildCjs, buildEsm } from '@cedarjs/framework-tools'
+import {
+  build,
+  defaultBuildOptions,
+  defaultIgnorePatterns,
+  buildEsm,
+} from '@cedarjs/framework-tools'
 import {
   generateTypesCjs,
   generateTypesEsm,
@@ -10,7 +15,17 @@ import {
 await buildEsm()
 await generateTypesEsm()
 
-await buildCjs()
+// CJS Build
+await build({
+  entryPointOptions: {
+    ignore: [...defaultIgnorePatterns, '**/globRoutesImporter.ts'],
+  },
+  buildOptions: {
+    ...defaultBuildOptions,
+    tsconfig: 'tsconfig.cjs.json',
+    outdir: 'dist/cjs',
+  },
+})
 await generateTypesCjs()
 await insertCommonJsPackageJson({
   buildFileUrl: import.meta.url,

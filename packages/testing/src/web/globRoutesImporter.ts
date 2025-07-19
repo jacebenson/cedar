@@ -1,13 +1,13 @@
 /// <reference types="vite/client" />
 
-// Because this file uses the vite-specific import.meta.glob feature, we can't
-// build this with esbuild. We also can't build it with vite when building the
-// framework, because at that time we have no idea what user project this will
-// be used in or what routes it will have. At least we can't evaluate the glob
-// import at framework build time. So I copy this file as-is into the build
-// output, and then tell vite to process this file when building the user's
-// project. I do that by including @cedarjs/testing in `noExternal` in the
-// default vite config (see lib/getMergedConfig.ts in the vite package)
+// We're building this file with esbuild, which doesn't understand the vite-
+// specific `import.meta.glob` feature. So it'll just leave it as is, which is
+// actually exactly what we want. We can't evaluate the glob import when
+// building the framework, because at that time we have no idea what user
+// project this will be used in or what routes it will have. So instead I tell
+// vite to process this file when building the user's project. I do that by
+// including @cedarjs/testing in `noExternal` in the default vite config (see
+// lib/getMergedConfig.ts in the vite package)
 
 // This finds the user's Routes file in web/src/Routes.{tsx,jsx}
 const defaultExports = import.meta.glob('/Routes.{tsx,jsx}', {
