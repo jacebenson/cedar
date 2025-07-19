@@ -7,7 +7,6 @@ import {
   buildEsm,
 } from '@cedarjs/framework-tools'
 import {
-  generateTypesCjs,
   generateTypesEsm,
   insertCommonJsPackageJson,
 } from '@cedarjs/framework-tools/generateTypes'
@@ -26,6 +25,8 @@ await build({
     outdir: 'dist/cjs',
   },
 })
+// Skipping this for now. Need to decide if I should support both ESM and CJS
+// projects once ESM support is done or not
 // await generateTypesCjs()
 await insertCommonJsPackageJson({
   buildFileUrl: import.meta.url,
