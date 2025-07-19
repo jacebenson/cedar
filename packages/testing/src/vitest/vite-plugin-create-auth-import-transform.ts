@@ -10,7 +10,7 @@ export function createAuthImportTransformPlugin(): PluginOption {
         // This regex defines 4 capture groups, where the second is `createAuth` and
         // the third is an (optional) comma for subsequent named imports — we want to remove those two.
         code = code.replace(
-          /(import\s*{[^}]*)(\bcreateAuth\b)(,?)([^}]*})/,
+          /(^\s*import\s*{[^}]*?)(\bcreateAuth\b)(,?)([^}]*})/,
           '$1$4',
         )
         // Add import to mocked `createAuth` at the top of the file.
