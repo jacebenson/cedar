@@ -9,11 +9,17 @@
 // including @cedarjs/testing in `noExternal` in the default vite config (see
 // lib/getMergedConfig.ts in the vite package)
 
-// This finds the user's Routes file in web/src/Routes.{tsx,jsx}
-const defaultExports = import.meta.glob('/Routes.{tsx,jsx}', {
-  import: 'default',
-  eager: true,
-})
+// We want to find the user's Routes file in web/src/Routes.{tsx,jsx}
+// When running tests from the root of the user's project, vite will see the
+// path as `/src/Routes.tsx`. When running the tests from the web/ directory,
+// vite will see the path as `/Routes.tsx`
+const defaultExports = import.meta.glob(
+  ['/src/Routes.{tsx,jsx}', '/Routes.{tsx,jsx}'],
+  {
+    import: 'default',
+    eager: true,
+  },
+)
 const routesFileName = Object.keys(defaultExports)[0]
 
 if (!routesFileName) {

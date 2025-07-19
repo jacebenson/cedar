@@ -80,7 +80,7 @@ export const handler = async ({
     ),
   ]
 
-  const jestArgs = [
+  const vitestArgs = [
     ...jestFilterArgs,
     ...forwardJestFlags,
     collectCoverage ? '--collectCoverage' : null,
@@ -91,7 +91,7 @@ export const handler = async ({
   // because of https://github.com/facebook/create-react-app/issues/5210
   if (watch && !process.env.CI && !collectCoverage) {
     const hasSourceControl = isInGitRepository() || isInMercurialRepository()
-    jestArgs.push(hasSourceControl ? '--watch' : '--watchAll')
+    vitestArgs.push(hasSourceControl ? '--watch' : '--watchAll')
   }
 
   // if no sides declared with yargs, default to all sides
@@ -100,7 +100,7 @@ export const handler = async ({
   }
 
   if (sides.length > 0) {
-    jestArgs.push('--projects', ...sides)
+    vitestArgs.push('--project', ...sides)
   }
 
   try {
@@ -115,13 +115,14 @@ export const handler = async ({
       process.env.SKIP_DB_PUSH = '1'
     }
 
-    console.log('jestArgs', jestArgs)
+    console.log('Vitest arguments:', JSON.stringify(vitestArgs, null, 2))
 
     // **NOTE** There is no official way to run Jest programmatically,
     // so we're running it via execa, since `jest.run()` is a bit unstable.
     // https://github.com/facebook/jest/issues/5048
+    // TODO: Run vitest programmatically. See https://vitest.dev/advanced/api/
     const runCommand = async () => {
-      await execa('yarn vitest', ['run'], {
+      await execa('yarn vitest', vitestArgs, {
         cwd: rwjsPaths.base,
         shell: true,
         stdio: 'inherit',
