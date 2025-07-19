@@ -74,6 +74,16 @@
         "types": "./dist/cjs/web/index.d.ts",
         "default": "./dist/cjs/web/index.js"
       }
+    },
+    "./web/MockRouter.js": {
+      "import": {
+        "types": "./dist/web/MockRouter.d.ts",
+        "default": "./dist/web/MockRouter.js"
+      },
+      "require": {
+        "types": "./dist/cjs/web/MockRouter.d.ts",
+        "default": "./dist/cjs/web/MockRouter.js"
+      }
     }
   },
   "files": [
@@ -117,6 +127,7 @@
     "jest-watch-typeahead": "2.2.2",
     "msw": "1.3.4",
     "ts-toolbelt": "9.6.0",
+    "unplugin-auto-import": "19.3.0",
     "vitest": "3.2.4",
     "whatwg-fetch": "3.6.20"
   },

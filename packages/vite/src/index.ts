@@ -4,8 +4,11 @@ import type { PluginOption } from 'vite'
 import { getWebSideDefaultBabelConfig } from '@cedarjs/babel-config'
 import { getConfig } from '@cedarjs/project-config'
 import {
-  mockProvidersRoutesPlugin,
-  mockProvidersRelativeRoutesPathsPlugin,
+  autoImportMockFunctionsPlugin,
+  // mockProvidersRoutesPlugin,
+  // mockProvidersRelativeRoutesPathsPlugin,
+  cedarJsRouterImportTransformPlugin,
+  createAuthImportTransformPlugin,
 } from '@cedarjs/testing/vitest'
 
 import { cedarCellTransform } from './plugins/vite-plugin-cedar-cell.js'
@@ -59,8 +62,11 @@ export function cedar({ mode }: PluginOptions): PluginOption[] {
   }
 
   return [
-    mode === 'test' && mockProvidersRoutesPlugin(),
-    mode === 'test' && mockProvidersRelativeRoutesPathsPlugin(),
+    // mode === 'test' && mockProvidersRoutesPlugin(),
+    // mode === 'test' && mockProvidersRelativeRoutesPathsPlugin(),
+    mode === 'test' && cedarJsRouterImportTransformPlugin(),
+    mode === 'test' && createAuthImportTransformPlugin(),
+    mode === 'test' && autoImportMockFunctionsPlugin(),
     cedarNodePolyfills(),
     cedarHtmlEnvPlugin(),
     cedarEntryInjectionPlugin(),

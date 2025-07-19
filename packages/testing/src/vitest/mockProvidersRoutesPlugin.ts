@@ -17,8 +17,9 @@ export function mockProvidersRoutesPlugin(): Plugin {
 
       return null
     },
-    load(id) {
+    load(id, options) {
       if (id === 'cedarjs:/Routes.tsx') {
+        console.log('cedarjs:/Routes.tsx Loading ID:', id, 'options:', options)
         return routes
       }
 

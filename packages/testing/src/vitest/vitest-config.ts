@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => ({
               find: /^@cedarjs\/router$/,
               replacement: path.join(
                 NODE_MODULES_PATH,
-                '@cedarjs/testing/dist/web/MockRouter.js',
+                '@cedarjs/testing/web/MockRouter.js',
               ),
             },
             // {
