@@ -48,7 +48,7 @@
     "@cedarjs/auth": "0.5.0",
     "@cedarjs/framework-tools": "workspace:*",
     "@cedarjs/graphql-server": "0.5.0",
-    "@types/aws-lambda": "8.10.145",
+    "@types/aws-lambda": "8.10.152",
     "concurrently": "8.2.2",
     "publint": "0.3.12",
     "ts-toolbelt": "9.6.0",
