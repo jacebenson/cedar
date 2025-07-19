@@ -1,13 +1,9 @@
-import path from 'path'
-
 import execa from 'execa'
-import fs from 'fs-extra'
 
 import { recordTelemetryAttributes } from '@cedarjs/cli-helpers'
 import { ensurePosixPath } from '@cedarjs/project-config'
 import { errorTelemetry, timedTelemetry } from '@cedarjs/telemetry'
 
-import c from '../lib/colors.js'
 import { getPaths } from '../lib/index.js'
 import * as project from '../lib/project.js'
 
@@ -27,32 +23,6 @@ function isInMercurialRepository() {
     return true
   } catch {
     return false
-  }
-}
-
-function isJestConfigFile(sides) {
-  for (let side of sides) {
-    try {
-      if (sides.includes(side)) {
-        const jestConfigExists =
-          fs.existsSync(path.join(side, 'jest.config.js')) ||
-          fs.existsSync(path.join(side, 'jest.config.cjs')) ||
-          fs.existsSync(path.join(side, 'jest.config.ts'))
-
-        if (!jestConfigExists) {
-          console.error(
-            c.error(
-              `\nError: Missing Jest config file ${side}/jest.config.cjs` +
-                '\nTo add this file, run `npx @cedarjs/codemods update-jest-config`\n',
-            ),
-          )
-          throw new Error(`Error: Jest config file not found in ${side} side`)
-        }
-      }
-    } catch (e) {
-      errorTelemetry(process.argv, e.message)
-      process.exit(e?.exitCode || 1)
-    }
   }
 }
 
@@ -132,9 +102,6 @@ export const handler = async ({
   if (sides.length > 0) {
     jestArgs.push('--projects', ...sides)
   }
-
-  //checking if Jest config files exists in each of the sides
-  isJestConfigFile(sides)
 
   try {
     const cacheDirDb = `file:${ensurePosixPath(
