@@ -28336,6 +28336,7 @@ __metadata:
     unplugin-auto-import: "npm:19.3.0"
     vite: "npm:5.4.19"
     vite-plugin-node-polyfills: "npm:0.23.0"
+    vitest: "npm:3.2.4"
   peerDependencies:
     "@cedarjs/project-config": 0.5.0
     "@cedarjs/router": 0.5.0
