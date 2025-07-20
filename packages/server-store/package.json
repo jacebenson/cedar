@@ -24,7 +24,7 @@
   "dependencies": {
     "@cedarjs/auth": "0.5.0",
     "@cedarjs/cookie-jar": "0.5.0",
-    "esbuild": "0.25.0",
+    "esbuild": "0.25.8",
     "fast-glob": "3.3.3",
     "fs-extra": "11.2.0"
   },
