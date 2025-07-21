@@ -79,9 +79,7 @@ export const handler = async ({
     project.sides().forEach((side) => sides.push(side))
   }
 
-  if (sides.length > 0) {
-    vitestArgs.push('--project', ...sides)
-  }
+  sides.forEach((side) => vitestArgs.push('--project', side))
 
   try {
     const cacheDirDb = `file:${ensurePosixPath(
