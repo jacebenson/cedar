@@ -7,25 +7,6 @@ import { errorTelemetry, timedTelemetry } from '@cedarjs/telemetry'
 import { getPaths } from '../lib/index.js'
 import * as project from '../lib/project.js'
 
-// https://github.com/facebook/create-react-app/blob/cbad256a4aacfc3084be7ccf91aad87899c63564/packages/react-scripts/scripts/test.js#L39
-function isInGitRepository() {
-  try {
-    execa.commandSync('git rev-parse --is-inside-work-tree')
-    return true
-  } catch {
-    return false
-  }
-}
-
-function isInMercurialRepository() {
-  try {
-    execa.commandSync('hg --cwd . root')
-    return true
-  } catch {
-    return false
-  }
-}
-
 export const handler = async ({
   filter: filterParams = [],
   watch = true,
@@ -90,8 +71,7 @@ export const handler = async ({
   // If the user wants to watch, set the proper watch flag based on what kind of repo this is
   // because of https://github.com/facebook/create-react-app/issues/5210
   if (watch && !process.env.CI && !collectCoverage) {
-    const hasSourceControl = isInGitRepository() || isInMercurialRepository()
-    vitestArgs.push(hasSourceControl ? '--watch' : '--watchAll')
+    vitestArgs.push('--watch')
   }
 
   // if no sides declared with yargs, default to all sides
@@ -120,7 +100,7 @@ export const handler = async ({
     // https://github.com/facebook/jest/issues/5048
     // TODO: Run vitest programmatically. See https://vitest.dev/advanced/api/
     const runCommand = async () => {
-      await execa('yarn vitest', vitestArgs, {
+      await execa('yarn vitest run', vitestArgs, {
         cwd: rwjsPaths.base,
         shell: true,
         stdio: 'inherit',
