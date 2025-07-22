@@ -4,3 +4,4 @@ export { cedarJsRouterImportTransformPlugin } from './vite-plugin-cedarjs-router
 export { createAuthImportTransformPlugin } from './vite-plugin-create-auth-import-transform.js'
 export { autoImportsPlugin } from './vite-plugin-auto-import.js'
 export { trackDbImportsPlugin } from './vite-plugin-track-db-imports.js'
+export { cedarApiVitestConfigPlugin } from './vite-plugin-cedar-api-vitest-config.js'
