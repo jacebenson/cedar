@@ -304,7 +304,8 @@ async function loadScenarios(testPath: string, scenarioName: string) {
       scenario = allScenarios[scenarioName]
     } else {
       throw new Error(
-        `UndefinedScenario: There is no scenario named "${scenarioName}" in ${testFilePath}.{js,ts}`,
+        `UndefinedScenario: There is no scenario named "${scenarioName}" in ` +
+          `${testFilePath}.{js,ts}`,
       )
     }
   }

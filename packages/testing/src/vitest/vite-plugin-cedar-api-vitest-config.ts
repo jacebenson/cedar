@@ -34,6 +34,11 @@ export function cedarApiVitestConfigPlugin(): Plugin {
         },
       }
 
+      const existingSetupFiles = userConfig?.test?.setupFiles ?? []
+      const existingSetupFilesArray = Array.isArray(existingSetupFiles)
+        ? existingSetupFiles
+        : [existingSetupFiles]
+
       userConfig.test = {
         environment: path.join(import.meta.dirname, 'CedarApiVitestEnv.js'),
         // fileParallelism: false,
@@ -44,6 +49,10 @@ export function cedarApiVitestConfigPlugin(): Plugin {
         // https://github.com/vitest-dev/vitest/discussions/7416
         poolOptions: { forks: { singleFork: true } },
         ...userConfig.test,
+        setupFiles: [
+          path.join(import.meta.dirname, 'vitest-api.setup.js'),
+          ...existingSetupFilesArray,
+        ],
       }
     },
   }
