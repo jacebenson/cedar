@@ -2,7 +2,7 @@ import path from 'node:path'
 
 import { defineConfig } from 'vitest/config'
 
-import { autoImportPlugin } from '@cedarjs/testing/vitest'
+import { autoImportsPlugin } from '@cedarjs/testing/vitest'
 import {
   cedarjsDirectoryNamedImportPlugin,
   getEnvVarDefinitions,
@@ -14,7 +14,7 @@ export default defineConfig({
     // issue is a version missmatch between Vite in CedarJS and Vite in the plugin
     // TODO: How does this affect projects using this?
     // _@ts-expect-error - version mismatch
-    autoImportPlugin(),
+    autoImportsPlugin(),
     cedarjsDirectoryNamedImportPlugin(),
   ],
   define: getEnvVarDefinitions(),

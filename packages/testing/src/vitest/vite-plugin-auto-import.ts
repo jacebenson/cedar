@@ -1,6 +1,6 @@
 import autoImport from 'unplugin-auto-import/vite'
 
-export function autoImportPlugin() {
+export function autoImportsPlugin() {
   return [
     autoImport({
       // targets to transform
