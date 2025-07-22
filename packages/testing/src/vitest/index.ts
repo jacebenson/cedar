@@ -3,3 +3,4 @@ export { mockProvidersRelativeRoutesPathsPlugin } from './mockProvidersRelativeR
 export { cedarJsRouterImportTransformPlugin } from './vite-plugin-cedarjs-router-import-transform.js'
 export { createAuthImportTransformPlugin } from './vite-plugin-create-auth-import-transform.js'
 export { autoImportPlugin } from './vite-plugin-auto-import.js'
+export { trackDbImportsPlugin } from './vite-plugin-track-db-imports.js'

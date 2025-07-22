@@ -7,7 +7,7 @@ type SuiteAPI = jest.Describe
 
 declare global {
   // eslint-disable-next-line no-var
-  var mockCurrentUser: (currentUser: Record<string, unknown> | null) => void
+  var defineScenario: (currentUser: Record<string, unknown> | null) => void
 }
 
 // @NOTE without these imports in the setup file, mockCurrentUser
@@ -306,7 +306,7 @@ jest.mock('@cedarjs/context', () => {
 beforeEach(() => {
   mockContextStore.set('context', {})
 })
-global.mockCurrentUser = (currentUser: Record<string, unknown> | null) => {
+global.defineScenario = (currentUser: Record<string, unknown> | null) => {
   mockContextStore.set('context', { currentUser })
 }
 

@@ -8,6 +8,7 @@ import { beforeEach, it, describe, vi, beforeAll } from 'vitest'
 
 import { getPaths } from '@cedarjs/project-config'
 import { defineScenario } from '@cedarjs/testing/api'
+import type { DefineScenario } from '@cedarjs/testing/api'
 
 // Attempt to emulate the request context isolation behavior
 // This is a little more complicated than it would necessarily need to be
@@ -62,7 +63,12 @@ globalThis.mockCurrentUser = (currentUser: Record<string, unknown> | null) => {
 // Scenario support
 // ====================================
 
-globalThis.defineScenario = defineScenario
+declare global {
+  // eslint-disable-next-line no-var
+  var defineScenario: DefineScenario
+}
+
+global.defineScenario = defineScenario
 
 const cedarPaths = getPaths()
 
@@ -401,7 +407,30 @@ function isErrorWithCode(e: unknown): e is { code: string } {
   )
 }
 
-globalThis.scenario = buildScenario(it)
-globalThis.scenario.only = buildScenario(it.only)
-globalThis.describeScenario = buildDescribeScenario(describe)
-globalThis.describeScenario.only = buildDescribeScenario(describe.only)
+interface GlobalScenario {
+  (...args: [string, string, TestFunc] | [string, TestFunc]): ReturnType<It>
+  only?: (
+    ...args: [string, string, TestFunc] | [string, TestFunc]
+  ) => ReturnType<It>
+}
+
+interface DescribeScenario {
+  (
+    ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
+  ): ReturnType<Describe>
+  only?: (
+    ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
+  ) => ReturnType<Describe>
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var scenario: GlobalScenario
+  // eslint-disable-next-line no-var
+  var describeScenario: DescribeScenario
+}
+
+global.scenario = buildScenario(it)
+global.scenario.only = buildScenario(it.only)
+global.describeScenario = buildDescribeScenario(describe)
+global.describeScenario.only = buildDescribeScenario(describe.only)

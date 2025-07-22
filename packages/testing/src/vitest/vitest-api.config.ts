@@ -12,7 +12,8 @@ export default defineConfig({
   plugins: [
     // I hate to do this, but it's the pragmatic solution for now. The underlying
     // issue is a version missmatch between Vite in CedarJS and Vite in the plugin
-    // @ts-expect-error - version mismatch
+    // TODO: How does this affect projects using this?
+    // _@ts-expect-error - version mismatch
     autoImportPlugin(),
     cedarjsDirectoryNamedImportPlugin(),
   ],

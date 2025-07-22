@@ -4,7 +4,7 @@ import type { PluginOption } from 'vite'
 import { getWebSideDefaultBabelConfig } from '@cedarjs/babel-config'
 import { getConfig } from '@cedarjs/project-config'
 import {
-  autoImportMockFunctionsPlugin,
+  autoImportPlugin,
   // mockProvidersRoutesPlugin,
   // mockProvidersRelativeRoutesPathsPlugin,
   cedarJsRouterImportTransformPlugin,
@@ -68,7 +68,7 @@ export function cedar({ mode }: PluginOptions): PluginOption[] {
     // mode === 'test' && mockProvidersRelativeRoutesPathsPlugin(),
     mode === 'test' && cedarJsRouterImportTransformPlugin(),
     mode === 'test' && createAuthImportTransformPlugin(),
-    mode === 'test' && autoImportMockFunctionsPlugin(),
+    mode === 'test' && autoImportPlugin(),
     cedarNodePolyfills(),
     cedarHtmlEnvPlugin(),
     cedarEntryInjectionPlugin(),
