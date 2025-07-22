@@ -66,9 +66,11 @@ globalThis.mockCurrentUser = (currentUser: Record<string, unknown> | null) => {
 declare global {
   // eslint-disable-next-line no-var
   var defineScenario: DefineScenario
+  // eslint-disable-next-line no-var
+  var __cedarjs_db_imported__: string
 }
 
-global.defineScenario = defineScenario
+globalThis.defineScenario = defineScenario
 
 const cedarPaths = getPaths()
 
@@ -117,14 +119,10 @@ function buildScenario(itFunc: It) {
 
       const scenarioData = await seedScenario(scenario)
       try {
-        console.log(`Running test ${testName} with scenario ${scenarioName}`)
         const result = await testFunc(scenarioData)
 
         return result
       } finally {
-        console.log(
-          `Cleaning up after test ${testName} with scenario ${scenarioName}`,
-        )
         // Make sure to cleanup, even if test fails
         await teardown()
       }
@@ -174,7 +172,7 @@ function buildDescribeScenario(describeFunc: Describe) {
 }
 
 async function configureTeardown() {
-  if (!wasDbUsed()) {
+  if (!wasDbImported()) {
     return
   }
 
@@ -188,8 +186,6 @@ async function configureTeardown() {
     return m.dbName || m.name
   })
 
-  console.log('schema models', schemaModels)
-
   // check if pre-defined delete order already exists and if so, use it to start
   if (fs.existsSync(TEARDOWN_CACHE_PATH)) {
     teardownOrder = JSON.parse(fs.readFileSync(TEARDOWN_CACHE_PATH).toString())
@@ -201,8 +197,6 @@ async function configureTeardown() {
     teardownOrder = schemaModels
   }
 
-  console.log('teardown order', teardownOrder)
-
   // keep a copy of the original order to compare against
   originalTeardownOrder = deepCopy(teardownOrder)
 }
@@ -212,7 +206,7 @@ beforeAll(async () => {
 })
 
 async function teardown() {
-  if (!wasDbUsed()) {
+  if (!wasDbImported()) {
     return
   }
 
@@ -222,7 +216,6 @@ async function teardown() {
   for (const modelName of teardownOrder) {
     try {
       const query = `DELETE FROM ${quoteStyle}${modelName}${quoteStyle}`
-      console.log(`Deleting ${modelName} using query: ${query}`)
       await projectDb.$executeRawUnsafe(query)
     } catch (e) {
       console.error('teardown error\n', e)
@@ -324,31 +317,8 @@ async function loadScenarios(testPath: string, scenarioName: string) {
  * Just disconnecting db in jest-preset is not enough, because the Prisma client
  * is created in a different context.
  */
-const wasDbUsed = () => {
-  // This code doesn't work in an ESM environment. There is no require, and even
-  // if I could create one, there's no require cache to look for db imports in.
-  //
-  // Some alternative solutions I could try implementing:
-  // - Use vitest to mock the db lib import, wrapping it with a simple proxy
-  //   that records usage
-  // - Use a vite plugin to replace the db lib import with a mock that records
-  //   usage
-  //
-  // For now I'm just returning `true`, which isn't as effective as it could be
-  // but should at least unblock me for now
-  //
-  // try {
-  //   const libDbPath = require.resolve(`${cedarPaths.api.lib}/db`)
-  //   return Object.keys(require.cache).some((module) => {
-  //     return module === libDbPath
-  //   })
-  // } catch {
-  //   // If db wasn't resolved, no point trying to perform db resets
-  //   return false
-  // }
-
-  // TODO: ⛔️ Be smarter about this
-  return true
+const wasDbImported = () => {
+  return Boolean(globalThis.__cedarjs_db_imported__)
 }
 
 let quoteStyle: string
@@ -431,7 +401,7 @@ declare global {
   var describeScenario: DescribeScenario
 }
 
-global.scenario = buildScenario(it)
-global.scenario.only = buildScenario(it.only)
-global.describeScenario = buildDescribeScenario(describe)
-global.describeScenario.only = buildDescribeScenario(describe.only)
+globalThis.scenario = buildScenario(it)
+globalThis.scenario.only = buildScenario(it.only)
+globalThis.describeScenario = buildDescribeScenario(describe)
+globalThis.describeScenario.only = buildDescribeScenario(describe.only)
