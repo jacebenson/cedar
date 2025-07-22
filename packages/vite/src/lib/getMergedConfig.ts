@@ -146,6 +146,8 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
         },
       },
       ssr: {
+        // `@cedarjs/testing` is not externalized in order to support
+        // `import.meta.glob`, which we use in one of the files in the package
         noExternal: env.mode == 'test' ? ['@cedarjs/testing'] : [],
       },
       resolve: {
