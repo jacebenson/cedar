@@ -3,7 +3,8 @@ import path from 'node:path'
 import type { Plugin } from 'vite'
 
 import { getPaths } from '@cedarjs/project-config'
-import { getEnvVarDefinitions } from '@cedarjs/vite'
+
+import { getEnvVarDefinitions } from './envVarDefinitions.js'
 
 export function cedarVitestApiConfigPlugin(): Plugin {
   return {
