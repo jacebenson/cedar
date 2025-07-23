@@ -1,6 +1,5 @@
 import path from 'node:path'
 
-import { mergeConfig } from 'vite'
 import type { Plugin } from 'vite'
 
 import { getPaths } from '@cedarjs/project-config'
@@ -9,8 +8,8 @@ import { getEnvVarDefinitions } from '@cedarjs/vite'
 export function cedarApiVitestConfigPlugin(): Plugin {
   return {
     name: 'cedar-vitest-plugin',
-    config: (userConfig) => {
-      const cedarConfig = {
+    config: () => {
+      return {
         define: getEnvVarDefinitions(),
         ssr: {
           noExternal: ['@cedarjs/testing'],
@@ -32,8 +31,6 @@ export function cedarApiVitestConfigPlugin(): Plugin {
           setupFiles: [path.join(import.meta.dirname, 'vitest-api.setup.js')],
         },
       }
-
-      return mergeConfig(cedarConfig, userConfig)
     },
   }
 }
