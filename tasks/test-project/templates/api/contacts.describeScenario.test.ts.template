@@ -4,8 +4,8 @@ import {
   contact,
   contacts,
   createContact
-} from './contacts'
-import type { StandardScenario } from './contacts.scenarios'
+} from './contacts.js'
+import type { StandardScenario } from './contacts.scenarios.js'
 
 /**
  * Example test for describe scenario.
