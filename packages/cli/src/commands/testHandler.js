@@ -12,6 +12,7 @@ export const handler = async ({
   dbPush = true,
   ...others
 }) => {
+  console.log('testHandler.js enter')
   recordTelemetryAttributes({
     command: 'test',
     dbPush,
@@ -62,9 +63,8 @@ export const handler = async ({
   ].filter((flagOrValue) => flagOrValue !== null) // Filter out nulls, not booleans because user may have passed a --something false flag
 
   if (process.env.CI) {
-    // Don't run in watch mode in CI
+    // Force run mode in CI
     vitestArgs.push('--run')
-    watch = false
   }
 
   // if no sides declared with yargs, default to all sides
@@ -102,6 +102,7 @@ export const handler = async ({
     if (watch) {
       await runCommand()
     } else {
+      console.log('testHandler.js using timedTelemetry')
       await timedTelemetry(process.argv, { type: 'test' }, async () => {
         await runCommand()
       })
