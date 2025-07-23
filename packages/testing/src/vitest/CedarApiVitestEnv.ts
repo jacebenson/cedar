@@ -1,5 +1,5 @@
 import { getSchema } from '@prisma/internals'
-import 'dotenv-defaults/config'
+import 'dotenv-defaults/config.js'
 import execa from 'execa'
 import type { Environment } from 'vitest/environments'
 
