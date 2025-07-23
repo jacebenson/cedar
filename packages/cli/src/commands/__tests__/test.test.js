@@ -21,16 +21,16 @@ vi.mock('@cedarjs/structure', () => {
   }
 })
 
-// Before rw tests run, api/ and web/ `jest.config.js` is confirmed via existsSync()
-vi.mock('fs-extra', async (importOriginal) => {
-  const originalFsExtra = await importOriginal()
-  return {
-    default: {
-      ...originalFsExtra,
-      existsSync: () => true,
-    },
-  }
-})
+// Before rw tests run, api/ and web/ `vitest.config.ts` is confirmed via existsSync()
+// vi.mock('fs-extra', async (importOriginal) => {
+//   const originalFsExtra = await importOriginal()
+//   return {
+//     default: {
+//       ...originalFsExtra,
+//       existsSync: () => true,
+//     },
+//   }
+// })
 
 afterEach(() => {
   vi.clearAllMocks()
@@ -96,7 +96,7 @@ test('Does not create db when calling test with just web', async () => {
   expect(execa.mock.results[0].value.cmd).toBe('yarn vitest')
 })
 
-test('Passes filter param to jest command if passed', async () => {
+test('Passes filter param to vitest command if passed', async () => {
   await handler({
     filter: ['web', 'bazinga'],
   })
@@ -105,12 +105,13 @@ test('Passes filter param to jest command if passed', async () => {
   expect(execa.mock.results[0].value.params).toContain('bazinga')
 })
 
-test('Passes other flags to jest', async () => {
+test('Passes other flags to vitest', async () => {
   await handler({
     u: true,
     debug: true,
     json: true,
     collectCoverage: true,
+    watch: true,
   })
 
   expect(execa.mock.results[0].value.cmd).toBe('yarn vitest')
@@ -118,9 +119,10 @@ test('Passes other flags to jest', async () => {
   expect(execa.mock.results[0].value.params).toContain('--debug')
   expect(execa.mock.results[0].value.params).toContain('--json')
   expect(execa.mock.results[0].value.params).toContain('--collectCoverage')
+  expect(execa.mock.results[0].value.params).toContain('--watch')
 })
 
-test('Passes values of other flags to jest', async () => {
+test('Passes values of other flags to vitest', async () => {
   await handler({
     bazinga: false,
     hello: 'world',

@@ -9,35 +9,29 @@ import * as project from '../lib/project.js'
 
 export const handler = async ({
   filter: filterParams = [],
-  watch = true,
-  collectCoverage = false,
   dbPush = true,
   ...others
 }) => {
   recordTelemetryAttributes({
     command: 'test',
-    watch,
-    collectCoverage,
     dbPush,
   })
+  let watch = true
   const rwjsPaths = getPaths()
   const forwardJestFlags = Object.keys(others).flatMap((flagName) => {
-    if (
-      [
-        'collect-coverage',
-        'db-push',
-        'loadEnvFiles',
-        'watch',
-        '$0',
-        '_',
-      ].includes(flagName)
-    ) {
+    if (['db-push', 'loadEnvFiles', '$0', '_'].includes(flagName)) {
       // filter out flags meant for the rw test command only
       return []
     } else {
       // and forward on the other flags
       const flag = flagName.length > 1 ? `--${flagName}` : `-${flagName}`
       const flagValue = others[flagName]
+
+      if (flagName === 'watch') {
+        watch = flagValue === true
+      } else if (flagName === 'run' && flagValue) {
+        watch = false
+      }
 
       if (Array.isArray(flagValue)) {
         // jest does not collapse flags e.g. --coverageReporters=html --coverageReporters=text
@@ -64,14 +58,13 @@ export const handler = async ({
   const vitestArgs = [
     ...jestFilterArgs,
     ...forwardJestFlags,
-    collectCoverage ? '--collectCoverage' : null,
     '--passWithNoTests',
   ].filter((flagOrValue) => flagOrValue !== null) // Filter out nulls, not booleans because user may have passed a --something false flag
 
-  // If the user wants to watch, set the proper watch flag based on what kind of repo this is
-  // because of https://github.com/facebook/create-react-app/issues/5210
-  if (watch && !process.env.CI && !collectCoverage) {
-    vitestArgs.push('--watch')
+  if (process.env.CI) {
+    // Don't run in watch mode in CI
+    vitestArgs.push('--run')
+    watch = false
   }
 
   // if no sides declared with yargs, default to all sides
@@ -98,7 +91,7 @@ export const handler = async ({
     // https://github.com/facebook/jest/issues/5048
     // TODO: Run vitest programmatically. See https://vitest.dev/advanced/api/
     const runCommand = async () => {
-      await execa('yarn vitest run', vitestArgs, {
+      await execa('yarn vitest', vitestArgs, {
         cwd: rwjsPaths.base,
         shell: true,
         stdio: 'inherit',
