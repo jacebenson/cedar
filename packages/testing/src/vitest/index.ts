@@ -5,4 +5,4 @@ export { createAuthImportTransformPlugin } from './vite-plugin-create-auth-impor
 export { autoImportsPlugin } from './vite-plugin-auto-import.js'
 export { trackDbImportsPlugin } from './vite-plugin-track-db-imports.js'
 export { cedarApiVitestConfigPlugin } from './vite-plugin-cedar-api-vitest-config.js'
-export { cedarApiVitestPreset } from './vite-plugin-cedar-api-vitest.js'
+export { cedarApiVitestPreset } from './vite-plugin-cedar-api-vitest-preset.js'
