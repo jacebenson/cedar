@@ -21,6 +21,10 @@
         "default": "./dist/cjs/index.js"
       }
     },
+    "./api": {
+      "types": "./dist/api/vite-plugin-cedar-vitest-api-preset.d.ts",
+      "default": "./dist/api/vite-plugin-cedar-vitest-api-preset.js"
+    },
     "./client": {
       "require": "./dist/cjs/client.js",
       "import": "./dist/client.js"
