@@ -1,18 +1,10 @@
-import path from 'node:path'
-
 import { defineConfig } from 'vitest/config'
 
-import { cedarjsDirectoryNamedImportPlugin } from '@cedarjs/vite'
+import { cedarVitestPreset } from '@cedarjs/testing/api'
 
 export default defineConfig({
-  plugins: [cedarjsDirectoryNamedImportPlugin()],
-  resolve: {
-    alias: {
-      src: path.resolve(__dirname, './src'),
-    },
-  },
+  plugins: [cedarVitestPreset()],
   test: {
-    fileParallelism: false,
     globals: true,
   },
 })
