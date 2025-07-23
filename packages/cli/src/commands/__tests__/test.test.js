@@ -1,5 +1,5 @@
 globalThis.__dirname = __dirname
-import '../../lib/test'
+import '../../lib/test.js'
 
 vi.mock('execa', () => ({
   default: vi.fn((cmd, params) => ({
@@ -21,23 +21,15 @@ vi.mock('@cedarjs/structure', () => {
   }
 })
 
-// Before rw tests run, api/ and web/ `vitest.config.ts` is confirmed via existsSync()
-// vi.mock('fs-extra', async (importOriginal) => {
-//   const originalFsExtra = await importOriginal()
-//   return {
-//     default: {
-//       ...originalFsExtra,
-//       existsSync: () => true,
-//     },
-//   }
-// })
-
 afterEach(() => {
   vi.clearAllMocks()
 })
 
 test('Runs tests for all available sides if no filter passed', async () => {
   await handler({})
+
+  console.log('execa', execa)
+  console.log('execa.mock.results', execa.mock.results)
 
   expect(execa.mock.results[0].value.cmd).toBe('yarn vitest')
   expect(execa.mock.results[0].value.params).toContain('web')
