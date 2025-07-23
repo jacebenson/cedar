@@ -9,7 +9,7 @@ import {
   // mockProvidersRelativeRoutesPathsPlugin,
   cedarJsRouterImportTransformPlugin,
   createAuthImportTransformPlugin,
-} from '@cedarjs/testing/vitest'
+} from '@cedarjs/testing/web/vitest'
 
 import { cedarCellTransform } from './plugins/vite-plugin-cedar-cell.js'
 import { cedarEntryInjectionPlugin } from './plugins/vite-plugin-cedar-entry-injection.js'

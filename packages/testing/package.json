@@ -51,6 +51,10 @@
         "default": "./dist/cjs/api/index.js"
       }
     },
+    "./api/vitest": {
+      "types": "./dist/api/vitest/index.d.ts",
+      "default": "./dist/api/vitest/index.js"
+    },
     "./cache": {
       "import": {
         "types": "./dist/cache/index.d.ts",
@@ -60,10 +64,6 @@
         "types": "./dist/cjs/cache/index.d.ts",
         "default": "./dist/cjs/cache/index.js"
       }
-    },
-    "./vitest": {
-      "types": "./dist/vitest/index.d.ts",
-      "default": "./dist/vitest/index.js"
     },
     "./web": {
       "import": {
@@ -84,6 +84,10 @@
         "types": "./dist/cjs/web/MockRouter.d.ts",
         "default": "./dist/cjs/web/MockRouter.js"
       }
+    },
+    "./web/vitest": {
+      "types": "./dist/web/vitest/index.d.ts",
+      "default": "./dist/web/vitest/index.js"
     },
     "./mockContext": {
       "// TODO": "./is the mockContext export still needed?",

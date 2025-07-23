@@ -5,7 +5,7 @@ import type { Plugin } from 'vite'
 import { getPaths } from '@cedarjs/project-config'
 import { getEnvVarDefinitions } from '@cedarjs/vite'
 
-export function cedarApiVitestConfigPlugin(): Plugin {
+export function cedarVitestApiConfigPlugin(): Plugin {
   return {
     name: 'cedar-vitest-plugin',
     config: () => {

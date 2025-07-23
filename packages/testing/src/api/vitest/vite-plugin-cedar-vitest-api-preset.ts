@@ -1,12 +1,12 @@
 import { cedarjsDirectoryNamedImportPlugin } from '@cedarjs/vite'
 
 import { autoImportsPlugin } from './vite-plugin-auto-import.js'
-import { cedarApiVitestConfigPlugin } from './vite-plugin-cedar-api-vitest-config.js'
+import { cedarVitestApiConfigPlugin } from './vite-plugin-cedar-vitest-api-config.js'
 import { trackDbImportsPlugin } from './vite-plugin-track-db-imports.js'
 
-export function cedarApiVitestPreset() {
+export function cedarVitestPreset() {
   return [
-    cedarApiVitestConfigPlugin(),
+    cedarVitestApiConfigPlugin(),
     autoImportsPlugin(),
     cedarjsDirectoryNamedImportPlugin(),
     trackDbImportsPlugin(),
