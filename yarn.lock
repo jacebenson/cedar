@@ -3259,6 +3259,7 @@ __metadata:
     "@rollup/plugin-replace": "npm:6.0.2"
     "@swc/core": "npm:1.12.1"
     "@types/mime-types": "npm:2.1.4"
+    "@types/react": "npm:^18.2.55"
     "@whatwg-node/fetch": "npm:0.9.21"
     babel-plugin-ignore-html-and-css-imports: "npm:0.1.0"
     babel-plugin-tester: "npm:11.0.4"
