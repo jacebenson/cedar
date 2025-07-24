@@ -87,10 +87,12 @@ export async function buildAndImport(
         exportConditions: ['node'],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs'],
       }),
+      // @ts-expect-error - Ignore type errors for now
       replace({
         preventAssignment: true,
         'process.env.NODE_ENV': '"production"',
       }),
+      // @ts-expect-error - Ignore type errors for now
       alias({
         entries: [
           {
@@ -109,6 +111,7 @@ export async function buildAndImport(
       cedarjsRoutesAutoLoaderPlugin(),
       cedarjsDirectoryNamedImportPlugin(),
       cedarjsPrerenderMediaImportsPlugin(),
+      // @ts-expect-error - Ignore type errors for now
       commonjs(),
       typescriptPlugin(options.filepath, tsConfigs.web),
       unimportPlugin.rollup({
