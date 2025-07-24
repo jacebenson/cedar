@@ -11,6 +11,8 @@ import {
   processPagesDir,
 } from '@cedarjs/project-config'
 
+import { dedent } from './utils'
+
 export interface PluginOptions {
   forPrerender?: boolean
 }
@@ -38,7 +40,7 @@ function withRelativeImports(page: PagesDependency) {
 
 function prerenderLoaderImpl(forPrerender: boolean, relativeImport: string) {
   if (forPrerender) {
-    return `{
+    return dedent(2)`{
       const chunkId = './${relativeImport.split('/').at(-1)}-__PRERENDER_CHUNK_ID.js';
       return require(chunkId);
     }`
@@ -179,20 +181,21 @@ export function cedarjsRoutesAutoLoaderPlugin({
       // Generate declarations for each page
       for (const { importName, relativeImport } of currentPages) {
         // Skip any explicitly imported pages
-        if (importName === 'FooPage' || excludedPages.has(importName)) {
+        if (excludedPages.has(importName)) {
           continue
         }
 
-        const declaration = `const ${importName} = {
-  name: "${importName}",
-  prerenderLoader: (name) => ${prerenderLoaderImpl(forPrerender, relativeImport)},
-  LazyComponent: lazy(() => import("${relativeImport}"))
-}`
+        const declaration = dedent(8)`const ${importName} = {
+          name: "${importName}",
+          prerenderLoader: (name) => ${prerenderLoaderImpl(forPrerender, relativeImport)},
+          LazyComponent: lazy(() => import("${relativeImport}"))
+        }`
         declarations.push(declaration)
       }
 
       // Prepend the imports and declarations to the code
-      const autoLoaderCode = [...imports, ...declarations].join('\n\n')
+      const autoLoaderCode =
+        imports.join('\n') + '\n\n' + declarations.join('\n\n')
       const finalCode = `${autoLoaderCode}\n\n${code}`
 
       return {
