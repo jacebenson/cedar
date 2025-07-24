@@ -7,7 +7,7 @@ import { getConfig, getPaths } from '@cedarjs/project-config'
 // @MARK: have to do this, otherwise rwjs/web is loaded before shims
 import { getOperationName } from '@cedarjs/web/dist/graphql.js'
 
-import { GqlHandlerImportError } from '../errors'
+import { GqlHandlerImportError } from '../errors.js'
 
 interface GqlOperation {
   operationName: string

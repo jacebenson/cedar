@@ -8,7 +8,7 @@
     "directory": "packages/prerender"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -19,8 +19,8 @@
       "default": "./dist/browserUtils/index.js"
     },
     "./detection": {
-      "types": "./dist/detection/index.d.ts",
-      "default": "./dist/detection/index.js"
+      "types": "./dist/detection/detection.d.ts",
+      "default": "./dist/detection/detection.js"
     }
   },
   "main": "dist/index.js",

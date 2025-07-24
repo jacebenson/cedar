@@ -11,7 +11,7 @@ import {
   processPagesDir,
 } from '@cedarjs/project-config'
 
-import { dedent } from './utils'
+import { dedent } from './utils.js'
 
 export interface PluginOptions {
   forPrerender?: boolean

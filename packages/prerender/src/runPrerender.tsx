@@ -4,7 +4,6 @@ import path from 'node:path'
 import React from 'react'
 import type { ElementType, FunctionComponent } from 'react'
 
-// @ts-expect-error CJS vs ESM
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 import type { CheerioAPI } from 'cheerio'
 import { load as loadHtml } from 'cheerio'
@@ -18,15 +17,15 @@ import {
 import { matchPath } from '@cedarjs/router/dist/util'
 import type { QueryInfo } from '@cedarjs/web'
 
-import { buildAndImport } from './build-and-import/buildAndImport'
-import { detectPrerenderRoutes } from './detection'
+import { buildAndImport } from './build-and-import/buildAndImport.js'
+import { detectPrerenderRoutes } from './detection/detection.js'
 import {
   GqlHandlerImportError,
   JSONParseError,
   PrerenderGqlError,
-} from './errors'
-import { executeQuery, getGqlHandler } from './graphql/graphql'
-import { getRootHtmlPath, registerShims, writeToDist } from './internal'
+} from './errors.js'
+import { executeQuery, getGqlHandler } from './graphql/graphql.js'
+import { getRootHtmlPath, registerShims, writeToDist } from './internal.js'
 
 // Create an apollo client that we can use to prepopulate the cache and restore it client-side
 const prerenderApolloClient = new ApolloClient({ cache: new InMemoryCache() })
