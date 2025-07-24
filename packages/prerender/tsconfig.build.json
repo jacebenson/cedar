@@ -1,11 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "Node16",
-    "moduleResolution": "Node16",
     "rootDir": "src",
     "outDir": "dist",
-    "allowJs": true
+    "module": "Node16",
+    "moduleResolution": "Node16"
   },
   "include": ["./src/**/*", "ambient.d.ts"],
   "references": [
