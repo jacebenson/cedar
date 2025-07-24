@@ -3244,6 +3244,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/prerender@workspace:packages/prerender"
   dependencies:
+    "@babel/generator": "npm:7.27.5"
+    "@babel/parser": "npm:7.27.5"
+    "@babel/traverse": "npm:7.27.4"
     "@cedarjs/babel-config": "workspace:*"
     "@cedarjs/framework-tools": "workspace:*"
     "@cedarjs/project-config": "workspace:*"

@@ -40,6 +40,9 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
+    "@babel/generator": "7.27.5",
+    "@babel/parser": "7.27.5",
+    "@babel/traverse": "7.27.4",
     "@cedarjs/babel-config": "workspace:*",
     "@cedarjs/project-config": "workspace:*",
     "@cedarjs/router": "workspace:*",
