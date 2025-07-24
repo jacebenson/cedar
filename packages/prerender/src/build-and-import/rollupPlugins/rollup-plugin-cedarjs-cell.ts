@@ -1,10 +1,14 @@
 import { parse as parsePath } from 'node:path'
 
-import generate from '@babel/generator'
+import babelGenerator from '@babel/generator'
 import { parse } from '@babel/parser'
-import traverse from '@babel/traverse'
+import babelTraverse from '@babel/traverse'
 import type * as t from '@babel/types'
 import type { Plugin } from 'rollup'
+
+// See https://github.com/babel/babel/issues/13855#issuecomment-945123514
+const traverse = babelTraverse.default
+const generate = babelGenerator.default
 
 // A cell can export the declarations below.
 const EXPECTED_EXPORTS_FROM_CELL = [
@@ -72,12 +76,10 @@ export function cellTransformPlugin(): Plugin {
         let hasDefaultExport = false
 
         // Traverse the AST to collect export information
-        // @ts-expect-error - Ignore type errors for now
         traverse(ast, {
           ExportDefaultDeclaration() {
             hasDefaultExport = true
           },
-          // @ts-expect-error - Ignore type errors for now
           ExportNamedDeclaration(path) {
             const declaration = path.node.declaration
 
@@ -122,9 +124,7 @@ export function cellTransformPlugin(): Plugin {
           : '@cedarjs/web'
 
         // Transform the AST
-        // @ts-expect-error - Ignore type errors for now
         traverse(ast, {
-          // @ts-expect-error - Ignore type errors for now
           Program(path) {
             // Insert import at the top of the file
             const importDeclaration = {
@@ -190,7 +190,6 @@ export function cellTransformPlugin(): Plugin {
         })
 
         // Generate the transformed code
-        // @ts-expect-error - Ignore type errors for now
         const result = generate(ast, {
           retainLines: true,
           compact: false,

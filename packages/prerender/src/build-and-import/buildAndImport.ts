@@ -25,6 +25,9 @@ import { cedarjsRoutesAutoLoaderPlugin } from './rollupPlugins/rollup-plugin-ced
 import { typescriptPlugin } from './rollupPlugins/rollup-plugin-cedarjs-typescript.js'
 import { getPkgType, isValidJsFile, makeFilePath } from './utils.js'
 
+/** @see {@link https://github.com/rollup/plugins/issues/1541} */
+const fix = <T>(f: { default: T }): T => f as unknown as T
+
 const tsconfigPathsToRegExp = (paths: Record<string, any>) => {
   return Object.keys(paths || {}).map((key) => {
     return new RegExp(`^${key.replace(/\*/g, '.*')}$`)
@@ -92,8 +95,7 @@ export async function buildAndImport(
         preventAssignment: true,
         'process.env.NODE_ENV': '"production"',
       }),
-      // @ts-expect-error - Ignore type errors for now
-      alias({
+      fix(alias)({
         entries: [
           {
             find: 'src',
@@ -111,8 +113,7 @@ export async function buildAndImport(
       cedarjsRoutesAutoLoaderPlugin(),
       cedarjsDirectoryNamedImportPlugin(),
       cedarjsPrerenderMediaImportsPlugin(),
-      // @ts-expect-error - Ignore type errors for now
-      commonjs(),
+      fix(commonjs)(),
       typescriptPlugin(options.filepath, tsConfigs.web),
       unimportPlugin.rollup({
         imports: [

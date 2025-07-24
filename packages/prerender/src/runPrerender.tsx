@@ -4,7 +4,7 @@ import path from 'node:path'
 import React from 'react'
 import type { ElementType, FunctionComponent } from 'react'
 
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import * as pkg from '@apollo/client'
 import type { CheerioAPI } from 'cheerio'
 import { load as loadHtml } from 'cheerio'
 import ReactDOMServer from 'react-dom/server'
@@ -26,6 +26,9 @@ import {
 } from './errors.js'
 import { executeQuery, getGqlHandler } from './graphql/graphql.js'
 import { getRootHtmlPath, registerShims, writeToDist } from './internal.js'
+
+// @ts-expect-error - ESM/CJS issue
+const { ApolloClient, InMemoryCache } = pkg.default
 
 // Create an apollo client that we can use to prepopulate the cache and restore it client-side
 const prerenderApolloClient = new ApolloClient({ cache: new InMemoryCache() })
