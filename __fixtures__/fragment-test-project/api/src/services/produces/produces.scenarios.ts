@@ -6,20 +6,20 @@ export const standard = defineScenario<Prisma.ProduceCreateArgs>({
   produce: {
     one: {
       data: {
-        name: "String4372567",
-        quantity: 5121815,
-        price: 1146204,
+        name: "String5899100",
+        quantity: 7675914,
+        price: 4275602,
         region: "String",
-        stall: { create: { name: "String", stallNumber: "String4356419" } },
+        stall: { create: { name: "String", stallNumber: "String1160791" } },
       },
     },
     two: {
       data: {
-        name: "String1795238",
-        quantity: 2348895,
-        price: 3710401,
+        name: "String242106",
+        quantity: 1821444,
+        price: 4034000,
         region: "String",
-        stall: { create: { name: "String", stallNumber: "String8563946" } },
+        stall: { create: { name: "String", stallNumber: "String6252397" } },
       },
     },
   },

@@ -1,5 +1,5 @@
-import { user } from './users.js'
-import type { StandardScenario } from './users.scenarios.js'
+import { user } from './users'
+import type { StandardScenario } from './users.scenarios'
 
 describe('users', () => {
   scenario('returns a single user', async (scenario: StandardScenario) => {
