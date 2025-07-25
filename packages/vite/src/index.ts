@@ -34,13 +34,13 @@ export { cedarSwapApolloProvider } from './plugins/vite-plugin-swap-apollo-provi
 export { getEnvVarDefinitions } from './lib/envVarDefinitions.js'
 
 type PluginOptions = {
-  mode: string | undefined
+  mode?: string | undefined
 }
 
 /**
  * Pre-configured vite plugin, with required config for CedarJS apps.
  */
-export function cedar({ mode }: PluginOptions): PluginOption[] {
+export function cedar({ mode }: PluginOptions = {}): PluginOption[] {
   const rwConfig = getConfig()
 
   const rscEnabled = rwConfig.experimental?.rsc?.enabled
