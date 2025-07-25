@@ -1,5 +1,6 @@
 import path from 'path'
 
+import type { DocumentNode } from 'graphql'
 import { print } from 'graphql'
 
 import { getConfig, getPaths } from '@cedarjs/project-config'
