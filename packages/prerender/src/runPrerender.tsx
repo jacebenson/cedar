@@ -24,6 +24,7 @@ import {
   JSONParseError,
   PrerenderGqlError,
 } from './errors.js'
+import { NodeRunner } from './graphql/exec.js'
 import { executeQuery, getGqlHandler } from './graphql/graphql.js'
 import { getRootHtmlPath, registerShims, writeToDist } from './internal.js'
 
@@ -39,6 +40,7 @@ async function recursivelyRender(
   CellCacheContextProvider: ElementType,
   LocationProvider: ElementType,
   renderPath: string,
+  nodeRunner: NodeRunner,
   gqlHandler: any,
   queryCache: Record<string, QueryInfo>,
 ): Promise<string> {
@@ -56,6 +58,7 @@ async function recursivelyRender(
 
       try {
         const resultString = await executeQuery(
+          nodeRunner,
           gqlHandler,
           value.query,
           value.variables,
@@ -146,6 +149,7 @@ async function recursivelyRender(
       CellCacheContextProvider,
       LocationProvider,
       renderPath,
+      nodeRunner,
       gqlHandler,
       queryCache,
     )
@@ -281,7 +285,9 @@ export const runPrerender = async ({
 }: PrerenderParams): Promise<string | void> => {
   registerShims(renderPath)
 
-  const gqlHandler = await getGqlHandler()
+  const nodeRunner = new NodeRunner()
+
+  const gqlHandler = await getGqlHandler(nodeRunner)
 
   const prerenderDistPath = path.join(getPaths().web.dist, '__prerender')
   fs.mkdirSync(prerenderDistPath, { recursive: true })
@@ -329,9 +335,12 @@ export const runPrerender = async ({
     CellCacheContextProvider,
     LocationProvider,
     renderPath,
+    nodeRunner,
     gqlHandler,
     queryCache,
   )
+
+  nodeRunner.close()
 
   const { helmet } = globalThis.__REDWOOD__HELMET_CONTEXT
 

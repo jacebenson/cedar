@@ -9,6 +9,8 @@ import { getOperationName } from '@cedarjs/web/dist/graphql.js'
 
 import { GqlHandlerImportError } from '../errors.js'
 
+import type { NodeRunner } from './exec.js'
+
 interface GqlOperation {
   operationName: string
   query: string | undefined
@@ -21,11 +23,11 @@ interface GqlOperation {
  * And execute the query against it
  *
  * Note that this function does NOT throw errors, even when
- * there is a GraphQL error. Instead, it returns the result with the graphql error.
- *
- * @returns {Promise<QueryResult>}
+ * there is a GraphQL error. Instead, it returns the result with the graphql
+ * error.
  */
 export async function executeQuery(
+  nodeRunner: NodeRunner,
   gqlHandler: (args: any) => Promise<any>,
   query: DocumentNode,
   variables?: Record<string, unknown>,
@@ -45,7 +47,8 @@ export async function executeQuery(
   // generated on the web side)
   if (config.graphql.trustedDocuments) {
     const documentsPath = path.join(getPaths().web.graphql, 'graphql')
-    const documents: Record<string, any> | undefined = require(documentsPath)
+    const documents: Record<string, any> | undefined =
+      await nodeRunner.importFile(documentsPath)
     const documentName =
       operationName[0].toUpperCase() + operationName.slice(1) + 'Document'
     const queryHash = documents?.[documentName]?.__meta__?.hash
@@ -70,11 +73,11 @@ export async function executeQuery(
  *
  * Throws GqlHandlerImportError, so that we can warn the user (but not blow up)
  */
-export async function getGqlHandler() {
+export async function getGqlHandler(nodeRunner: NodeRunner) {
   const gqlPath = path.join(getPaths().api.functions, 'graphql')
 
   try {
-    const { handler } = require(gqlPath)
+    const { handler } = await nodeRunner.importFile(gqlPath)
 
     return async (operation: Record<string, unknown>) => {
       return await handler(buildApiEvent(operation), buildContext())
