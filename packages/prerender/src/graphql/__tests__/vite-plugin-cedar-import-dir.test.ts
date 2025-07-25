@@ -24,7 +24,7 @@ describe('vite plugin cedar import dir', () => {
     )
   }
 
-  it.only('should transform glob imports correctly', async () => {
+  it('should transform glob imports correctly', async () => {
     const testCase = 'import-dir'
     const codeFile = path.join(fixturesDir, testCase, 'code.js')
     const outputFile = path.join(fixturesDir, testCase, 'output.js')

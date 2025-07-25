@@ -44,68 +44,107 @@ export function cedarImportDirPlugin(
         tsx: ext === '.tsx',
       })
 
-      // Parse import statements with glob patterns
-      const importRegex =
-        /import\s+(\w+)\s+from\s+['"`]([^'"`]*\*\*[^'"`]*)['"`]/g
-      let match
-      let transformedCode = code
+      let hasTransformations = false
+      const newBody: swc.ModuleItem[] = []
 
-      while ((match = importRegex.exec(code)) !== null) {
-        const [fullMatch, importName, importPath] = match
+      for (const item of ast.body) {
+        if (
+          item.type === 'ImportDeclaration' &&
+          item.source.value.includes('/**/')
+        ) {
+          hasTransformations = true
 
-        const importGlob = importStatementPath(importPath)
-        const cwd = path.dirname(id)
+          // Get the import name from the default import specifier
+          const defaultSpecifier = item.specifiers.find(
+            (spec): spec is swc.ImportDefaultSpecifier =>
+              spec.type === 'ImportDefaultSpecifier',
+          )
 
-        try {
-          const dirFiles = fg
-            .sync(importGlob, { cwd })
-            .filter((n) => !n.includes('.test.')) // ignore `*.test.*` files.
-            .filter((n) => !n.includes('.scenarios.')) // ignore `*.scenarios.*` files.
-            .filter((n) => !n.includes('.d.ts'))
-
-          const staticGlob = importGlob.split('*')[0]
-          const filePathToVarName = (filePath: string) => {
-            return filePath
-              .replace(staticGlob, '')
-              .replace(/\.(js|ts)$/, '')
-              .replace(/[^a-zA-Z0-9]/g, '_')
+          if (!defaultSpecifier) {
+            // If no default specifier, keep original import
+            newBody.push(item)
+            continue
           }
 
-          let replacement = `let ${importName} = {}\n`
+          const importName = defaultSpecifier.local.value
+          const importPath = item.source.value
 
-          for (const filePath of dirFiles) {
-            const { dir: fileDir, name: fileName } = path.parse(filePath)
-            const filePathWithoutExtension = fileDir + '/' + fileName
-            const fpVarName = filePathToVarName(filePath)
+          const importGlob = importStatementPath(importPath)
+          const cwd = path.dirname(id)
 
-            // Generate import statement
-            const importStatement = `import * as ${importName}_${fpVarName} from '${
-              projectIsEsm
+          try {
+            const dirFiles = fg
+              .sync(importGlob, { cwd })
+              .filter((n) => !n.includes('.test.')) // ignore `*.test.*` files.
+              .filter((n) => !n.includes('.scenarios.')) // ignore `*.scenarios.*` files.
+              .filter((n) => !n.includes('.d.ts'))
+
+            const staticGlob = importGlob.split('*')[0]
+            const filePathToVarName = (filePath: string) => {
+              return filePath
+                .replace(staticGlob, '')
+                .replace(/\.(js|ts)$/, '')
+                .replace(/[^a-zA-Z0-9]/g, '_')
+            }
+
+            // Create variable declaration by parsing: let importName = {}
+            const variableDeclarationCode = `let ${importName} = {}`
+            const variableDeclarationAst = await swc.parse(
+              variableDeclarationCode,
+              {
+                syntax: 'ecmascript',
+              },
+            )
+            newBody.push(variableDeclarationAst.body[0])
+
+            // Process each matched file
+            for (const filePath of dirFiles) {
+              const { dir: fileDir, name: fileName } = path.parse(filePath)
+              const filePathWithoutExtension = fileDir + '/' + fileName
+              const fpVarName = filePathToVarName(filePath)
+              const namespaceImportName = `${importName}_${fpVarName}`
+
+              // Create namespace import by parsing
+              const finalImportPath = projectIsEsm
                 ? `${filePathWithoutExtension}.js`
                 : filePathWithoutExtension
-            }'\n`
+              const namespaceImportCode = `import * as ${namespaceImportName} from '${finalImportPath}'`
+              const namespaceImportAst = await swc.parse(namespaceImportCode, {
+                syntax: 'ecmascript',
+              })
+              newBody.push(namespaceImportAst.body[0])
 
-            // Generate assignment statement
-            const assignmentStatement = `${importName}.${fpVarName} = ${importName}_${fpVarName}\n`
-
-            replacement += importStatement + assignmentStatement
+              // Create assignment by parsing: importName.fpVarName = importName_fpVarName
+              const assignmentCode = `${importName}.${fpVarName} = ${namespaceImportName}`
+              const assignmentAst = await swc.parse(assignmentCode, {
+                syntax: 'ecmascript',
+              })
+              newBody.push(assignmentAst.body[0])
+            }
+          } catch (error) {
+            // If there's an error with glob matching, keep the original import
+            console.warn(`Failed to process glob import: ${importPath}`, error)
+            newBody.push(item)
           }
-
-          // Replace the original import statement
-          transformedCode = transformedCode.replace(
-            fullMatch,
-            replacement.trim(),
-          )
-        } catch (error) {
-          // If there's an error with glob matching, keep the original import
-          console.warn(`Failed to process glob import: ${importPath}`, error)
+        } else {
+          // Keep non-glob imports as-is
+          newBody.push(item)
         }
       }
 
       // Only return transformed code if we actually made changes
-      if (transformedCode !== code) {
+      if (hasTransformations) {
+        const transformedAst: swc.Module = {
+          ...ast,
+          body: newBody,
+        }
+
+        const output = await swc.print(transformedAst, {
+          minify: false,
+        })
+
         return {
-          code: transformedCode,
+          code: output.code,
           map: null, // For simplicity, not generating source maps
         }
       }
