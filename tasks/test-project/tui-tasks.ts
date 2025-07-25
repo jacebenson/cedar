@@ -807,7 +807,7 @@ export default DoublePage`
         )
 
         const test = `import { user } from './users'
-            import type { StandardScenario } from './users.scenarios'
+            import type { StandardScenario } from './users.scenarios.js'
 
             describe('users', () => {
               scenario('returns a single user', async (scenario: StandardScenario) => {
