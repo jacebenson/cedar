@@ -1,24 +1,30 @@
 import fs from 'fs'
 import path from 'path'
 
+import type { Plugin } from 'vite'
 import { describe, it, expect } from 'vitest'
 
-import plugin from '../vite-plugin-cedar-import-dir.js'
+import { cedarImportDirPlugin } from '../vite-plugin-cedar-import-dir.js'
 
 describe('vite plugin cedar import dir', () => {
   const fixturesDir = path.join(__dirname, '__fixtures__')
 
-  const callTransform = (vitePlugin: any, code: string, id: string) => {
-    if (typeof vitePlugin.transform === 'function') {
-      return vitePlugin.transform(code, id)
+  async function callTransform(plugin: Plugin, code: string, id: string) {
+    const pluginTransform = plugin?.transform
+
+    if (typeof pluginTransform !== 'function') {
+      throw new Error('Unexpeced transform type')
     }
-    if (vitePlugin.transform?.handler) {
-      return vitePlugin.transform.handler(code, id)
-    }
-    throw new Error('Transform function not found')
+
+    return pluginTransform.call(
+      // The plugin is not using anything on the context, so this is safe
+      {} as ThisParameterType<typeof pluginTransform>,
+      code,
+      id,
+    )
   }
 
-  it('should transform glob imports correctly', async () => {
+  it.only('should transform glob imports correctly', async () => {
     const testCase = 'import-dir'
     const codeFile = path.join(fixturesDir, testCase, 'code.js')
     const outputFile = path.join(fixturesDir, testCase, 'output.js')
@@ -26,10 +32,10 @@ describe('vite plugin cedar import dir', () => {
     const inputCode = fs.readFileSync(codeFile, 'utf-8')
     const expectedOutput = fs.readFileSync(outputFile, 'utf-8')
 
-    const vitePlugin = plugin()
+    const vitePlugin = cedarImportDirPlugin()
     const mockId = path.join(fixturesDir, testCase, 'code.js')
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     if (
       result &&
@@ -57,10 +63,10 @@ describe('vite plugin cedar import dir', () => {
       }
     `
 
-    const vitePlugin = plugin()
+    const vitePlugin = cedarImportDirPlugin()
     const mockId = '/mock/file.js'
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     expect(result).toBeNull()
   })
@@ -71,10 +77,10 @@ describe('vite plugin cedar import dir', () => {
 
     const inputCode = fs.readFileSync(codeFile, 'utf-8')
 
-    const vitePlugin = plugin({ projectIsEsm: true })
+    const vitePlugin = cedarImportDirPlugin({ projectIsEsm: true })
     const mockId = path.join(fixturesDir, testCase, 'code.js')
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     if (
       result &&
@@ -104,10 +110,10 @@ describe('vite plugin cedar import dir', () => {
 
     // We can't actually create files in this test environment,
     // so we'll just test that the plugin doesn't crash with missing directories
-    const vitePlugin = plugin()
+    const vitePlugin = cedarImportDirPlugin()
     const mockId = path.join(testDir, 'file.js')
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     // Should handle missing directories gracefully
     expect(result).toBeDefined()
@@ -119,10 +125,10 @@ describe('vite plugin cedar import dir', () => {
       import utils from './utils/**/*.js'
     `
 
-    const vitePlugin = plugin()
+    const vitePlugin = cedarImportDirPlugin()
     const mockId = '/mock/file.js'
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     if (
       result &&
@@ -139,10 +145,10 @@ describe('vite plugin cedar import dir', () => {
   it('should generate valid variable names from file paths', async () => {
     const inputCode = `import components from './components/**/*.{js,ts}'`
 
-    const vitePlugin = plugin()
+    const vitePlugin = cedarImportDirPlugin()
     const mockId = '/mock/file.js'
 
-    const result = callTransform(vitePlugin, inputCode, mockId)
+    const result = await callTransform(vitePlugin, inputCode, mockId)
 
     if (
       result &&

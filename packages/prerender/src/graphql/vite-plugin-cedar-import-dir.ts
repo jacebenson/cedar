@@ -1,9 +1,14 @@
-import path from 'path'
+import path from 'node:path'
 
+import * as swc from '@swc/core'
 import fg from 'fast-glob'
 import type { Plugin } from 'vite'
 
 import { importStatementPath } from '@cedarjs/project-config'
+
+function dummySpan() {
+  return { start: 0, end: 0, ctxt: 0 }
+}
 
 /**
  * This Vite plugin will search for import statements that include a glob double
@@ -24,37 +29,69 @@ import { importStatementPath } from '@cedarjs/project-config'
  * @param options Configuration options for the plugin
  * @param options.projectIsEsm Whether the project uses ESM format (adds .js extensions)
  */
-function cedarImportDirPlugin(
+export function cedarImportDirPlugin(
   options: { projectIsEsm?: boolean } = {},
 ): Plugin {
   const { projectIsEsm = false } = options
 
   return {
     name: 'vite-plugin-cedar-import-dir',
-    transform(code, id) {
+    async transform(code, id) {
       // Check if the code contains import statements with glob patterns
       if (!code.includes('/**/')) {
         return null
       }
 
-      // Parse import statements with glob patterns
-      const importRegex =
-        /import\s+(\w+)\s+from\s+['"`]([^'"`]*\*\*[^'"`]*)['"`]/g
-      let match
-      let transformedCode = code
+      const ext = path.extname(id)
+      const ast = await swc.parse(code, {
+        syntax: ext === '.ts' || ext === '.tsx' ? 'typescript' : 'ecmascript',
+        tsx: ext === '.tsx',
+      })
 
-      while ((match = importRegex.exec(code)) !== null) {
-        const [fullMatch, importName, importPath] = match
+      let changed = false
+      const newBody: any[] = []
 
-        const importGlob = importStatementPath(importPath)
-        const cwd = path.dirname(id)
+      for (const node of ast.body) {
+        if (
+          node.type === 'ImportDeclaration' &&
+          typeof node.source?.value === 'string' &&
+          node.source.value.includes('/**/')
+        ) {
+          changed = true
+          const importName = node.specifiers[0].local.value
+          newBody.push({
+            type: 'VariableDeclaration',
+            kind: 'let',
+            span: dummySpan(),
+            declarations: [
+              {
+                type: 'VariableDeclarator',
+                span: dummySpan(),
+                id: {
+                  type: 'Identifier',
+                  span: dummySpan(),
+                  value: importName,
+                },
+                init: {
+                  type: 'ObjectExpression',
+                  span: dummySpan(),
+                  properties: [],
+                },
+              },
+            ],
+          })
 
-        try {
+          const importGlob = importStatementPath(node.source.value)
+          const cwd = path.dirname(id)
           const dirFiles = fg
             .sync(importGlob, { cwd })
-            .filter((n) => !n.includes('.test.')) // ignore `*.test.*` files.
-            .filter((n) => !n.includes('.scenarios.')) // ignore `*.scenarios.*` files.
-            .filter((n) => !n.includes('.d.ts'))
+            // Ignore *.test.*, *.scenarios.*, and *.d.ts files.
+            .filter(
+              (n) =>
+                !n.includes('.test.') &&
+                !n.includes('.scenarios.') &&
+                !n.includes('.d.ts'),
+            )
 
           const staticGlob = importGlob.split('*')[0]
           const filePathToVarName = (filePath: string) => {
@@ -64,52 +101,86 @@ function cedarImportDirPlugin(
               .replace(/[^a-zA-Z0-9]/g, '_')
           }
 
-          let replacement = `let ${importName} = {}\n`
-
           for (const filePath of dirFiles) {
             const { dir: fileDir, name: fileName } = path.parse(filePath)
             const filePathWithoutExtension = fileDir + '/' + fileName
-            const fpVarName = filePathToVarName(filePath)
-
-            // Generate import statement
-            const importStatement = `import * as ${importName}_${fpVarName} from '${
-              projectIsEsm
+            const filePathVarName = filePathToVarName(filePath)
+            const importPath =
+              projectIsEsm && !filePathWithoutExtension.endsWith('.js')
                 ? `${filePathWithoutExtension}.js`
                 : filePathWithoutExtension
-            }'\n`
 
-            // Generate assignment statement
-            const assignmentStatement = `${importName}.${fpVarName} = ${importName}_${fpVarName}\n`
+            newBody.push({
+              type: 'ImportDeclaration',
+              span: dummySpan(),
+              specifiers: [
+                {
+                  type: 'ImportNamespaceSpecifier',
+                  span: dummySpan(),
+                  local: {
+                    type: 'Identifier',
+                    span: dummySpan(),
+                    value: `${importName}_${filePathVarName}`,
+                  },
+                },
+              ],
+              source: {
+                type: 'StringLiteral',
+                span: dummySpan(),
+                value: importPath,
+              },
+            })
 
-            replacement += importStatement + assignmentStatement
+            newBody.push({
+              type: 'ExpressionStatement',
+              span: dummySpan(),
+              expression: {
+                type: 'AssignmentExpression',
+                span: dummySpan(),
+                operator: '=',
+                left: {
+                  type: 'MemberExpression',
+                  span: dummySpan(),
+                  object: {
+                    type: 'Identifier',
+                    span: dummySpan(),
+                    value: importName,
+                  },
+                  property: {
+                    type: 'Identifier',
+                    span: dummySpan(),
+                    value: filePathVarName,
+                  },
+                  computed: false,
+                },
+                right: {
+                  type: 'Identifier',
+                  span: dummySpan(),
+                  value: `${importName}_${filePathVarName}`,
+                },
+              },
+            })
           }
-
-          // Replace the original import statement
-          transformedCode = transformedCode.replace(
-            fullMatch,
-            replacement.trim(),
-          )
-        } catch (error) {
-          // If there's an error with glob matching, keep the original import
-          console.warn(`Failed to process glob import: ${importPath}`, error)
+        } else {
+          // Ensure every node in newBody has a span
+          if (!node.span) {
+            node.span = dummySpan()
+          }
+          newBody.push(node)
         }
       }
 
-      // Only return transformed code if we actually made changes
-      if (transformedCode !== code) {
-        return {
-          code: transformedCode,
-          map: null, // For simplicity, not generating source maps
-        }
+      if (changed) {
+        console.log('file was changed')
+        const output = await swc.print(
+          { ...ast, body: newBody },
+          { minify: false },
+        )
+        console.log('new code', output.code)
+        return { code: output.code, map: null }
       }
 
       return null
     },
   }
 }
-
-// Default export
-export default cedarImportDirPlugin
-
-// Named export for better compatibility
-export { cedarImportDirPlugin }
