@@ -30,6 +30,31 @@ export function cedarImportDirPlugin(
 ): Plugin {
   const { projectIsEsm = false } = options
 
+  const createSpan = (): swc.Span => ({
+    start: 0,
+    end: 0,
+    // ctxt is not actually used, I just have to add it because of broken swc
+    // types, see https://github.com/Menci/vite-plugin-top-level-await/issues/52
+    ctxt: 0,
+  })
+
+  const createIdentifier = (value: string, ctxt: number): swc.Identifier => ({
+    type: 'Identifier',
+    span: createSpan(),
+    // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
+    ctxt,
+    value,
+    optional: false,
+    typeAnnotation: null,
+  })
+
+  const createStringLiteral = (value: string): swc.StringLiteral => ({
+    type: 'StringLiteral',
+    span: createSpan(),
+    value,
+    raw: `'${value}'`,
+  })
+
   return {
     name: 'vite-plugin-cedar-import-dir',
     async transform(code, id) {
@@ -46,6 +71,10 @@ export function cedarImportDirPlugin(
 
       let hasTransformations = false
       const newBody: swc.ModuleItem[] = []
+
+      // Extract ctxt from the first item in the AST for consistent context
+      // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
+      const ctxt = ast.body.length > 0 ? ast.body[0].ctxt || 0 : 0
 
       for (const item of ast.body) {
         if (
@@ -75,9 +104,13 @@ export function cedarImportDirPlugin(
           try {
             const dirFiles = fg
               .sync(importGlob, { cwd })
-              .filter((n) => !n.includes('.test.')) // ignore `*.test.*` files.
-              .filter((n) => !n.includes('.scenarios.')) // ignore `*.scenarios.*` files.
-              .filter((n) => !n.includes('.d.ts'))
+              // Ignore *.test.*, *.scenarios.* and *.d.ts files
+              .filter(
+                (n) =>
+                  !n.includes('.test.') &&
+                  !n.includes('.scenarios.') &&
+                  !n.includes('.d.ts'),
+              )
 
             const staticGlob = importGlob.split('*')[0]
             const filePathToVarName = (filePath: string) => {
@@ -87,39 +120,72 @@ export function cedarImportDirPlugin(
                 .replace(/[^a-zA-Z0-9]/g, '_')
             }
 
-            // Create variable declaration by parsing: let importName = {}
-            const variableDeclarationCode = `let ${importName} = {}`
-            const variableDeclarationAst = await swc.parse(
-              variableDeclarationCode,
-              {
-                syntax: 'ecmascript',
-              },
-            )
-            newBody.push(variableDeclarationAst.body[0])
+            // Create variable declaration: let importName = {}
+            newBody.push({
+              type: 'VariableDeclaration',
+              span: createSpan(),
+              // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
+              ctxt,
+              kind: 'let',
+              declare: false,
+              declarations: [
+                {
+                  type: 'VariableDeclarator',
+                  span: createSpan(),
+                  id: createIdentifier(importName, ctxt),
+                  init: {
+                    type: 'ObjectExpression',
+                    span: createSpan(),
+                    properties: [],
+                  },
+                  definite: false,
+                },
+              ],
+            })
 
             // Process each matched file
             for (const filePath of dirFiles) {
               const { dir: fileDir, name: fileName } = path.parse(filePath)
               const filePathWithoutExtension = fileDir + '/' + fileName
-              const fpVarName = filePathToVarName(filePath)
-              const namespaceImportName = `${importName}_${fpVarName}`
+              const filePathVarName = filePathToVarName(filePath)
+              const namespaceImportName = `${importName}_${filePathVarName}`
 
-              // Create namespace import by parsing
+              // Create namespace import: import * as importName_filePathVarName from 'filepath'
               const finalImportPath = projectIsEsm
                 ? `${filePathWithoutExtension}.js`
                 : filePathWithoutExtension
-              const namespaceImportCode = `import * as ${namespaceImportName} from '${finalImportPath}'`
-              const namespaceImportAst = await swc.parse(namespaceImportCode, {
-                syntax: 'ecmascript',
-              })
-              newBody.push(namespaceImportAst.body[0])
 
-              // Create assignment by parsing: importName.fpVarName = importName_fpVarName
-              const assignmentCode = `${importName}.${fpVarName} = ${namespaceImportName}`
-              const assignmentAst = await swc.parse(assignmentCode, {
-                syntax: 'ecmascript',
+              newBody.push({
+                type: 'ImportDeclaration',
+                span: createSpan(),
+                specifiers: [
+                  {
+                    type: 'ImportNamespaceSpecifier',
+                    span: createSpan(),
+                    local: createIdentifier(namespaceImportName, ctxt),
+                  },
+                ],
+                source: createStringLiteral(finalImportPath),
+                typeOnly: false,
               })
-              newBody.push(assignmentAst.body[0])
+
+              // Create assignment: importName.filePathVarName = importName_filePathVarName
+              newBody.push({
+                type: 'ExpressionStatement',
+                span: createSpan(),
+                expression: {
+                  type: 'AssignmentExpression',
+                  span: createSpan(),
+                  operator: '=',
+                  left: {
+                    type: 'MemberExpression',
+                    span: createSpan(),
+                    object: createIdentifier(importName, ctxt),
+                    property: createIdentifier(filePathVarName, ctxt),
+                  },
+                  right: createIdentifier(namespaceImportName, ctxt),
+                },
+              })
             }
           } catch (error) {
             // If there's an error with glob matching, keep the original import
