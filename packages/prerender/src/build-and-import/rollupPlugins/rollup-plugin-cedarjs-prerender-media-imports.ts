@@ -5,7 +5,7 @@ import type { Plugin } from 'rollup'
 
 import { ensurePosixPath, getPaths } from '@cedarjs/project-config'
 
-import { convertToDataUrl } from './utils'
+import { convertToDataUrl } from './utils.js'
 
 // This list of extensions matches config for file-loader
 const defaultExtensions = [

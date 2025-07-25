@@ -4,8 +4,7 @@ import path from 'node:path'
 import React from 'react'
 import type { ElementType, FunctionComponent } from 'react'
 
-// @ts-expect-error CJS vs ESM
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import * as pkg from '@apollo/client'
 import type { CheerioAPI } from 'cheerio'
 import { load as loadHtml } from 'cheerio'
 import ReactDOMServer from 'react-dom/server'
@@ -18,15 +17,19 @@ import {
 import { matchPath } from '@cedarjs/router/dist/util'
 import type { QueryInfo } from '@cedarjs/web'
 
-import { buildAndImport } from './build-and-import/buildAndImport'
-import { detectPrerenderRoutes } from './detection'
+import { buildAndImport } from './build-and-import/buildAndImport.js'
+import { detectPrerenderRoutes } from './detection/detection.js'
 import {
   GqlHandlerImportError,
   JSONParseError,
   PrerenderGqlError,
-} from './errors'
-import { executeQuery, getGqlHandler } from './graphql/graphql'
-import { getRootHtmlPath, registerShims, writeToDist } from './internal'
+} from './errors.js'
+import { executeQuery, getGqlHandler } from './graphql/graphql.js'
+import { NodeRunner } from './graphql/node-runner.js'
+import { getRootHtmlPath, registerShims, writeToDist } from './internal.js'
+
+// @ts-expect-error - ESM/CJS issue
+const { ApolloClient, InMemoryCache } = pkg.default
 
 // Create an apollo client that we can use to prepopulate the cache and restore it client-side
 const prerenderApolloClient = new ApolloClient({ cache: new InMemoryCache() })
@@ -37,6 +40,7 @@ async function recursivelyRender(
   CellCacheContextProvider: ElementType,
   LocationProvider: ElementType,
   renderPath: string,
+  nodeRunner: NodeRunner,
   gqlHandler: any,
   queryCache: Record<string, QueryInfo>,
 ): Promise<string> {
@@ -54,6 +58,7 @@ async function recursivelyRender(
 
       try {
         const resultString = await executeQuery(
+          nodeRunner,
           gqlHandler,
           value.query,
           value.variables,
@@ -144,6 +149,7 @@ async function recursivelyRender(
       CellCacheContextProvider,
       LocationProvider,
       renderPath,
+      nodeRunner,
       gqlHandler,
       queryCache,
     )
@@ -279,7 +285,9 @@ export const runPrerender = async ({
 }: PrerenderParams): Promise<string | void> => {
   registerShims(renderPath)
 
-  const gqlHandler = await getGqlHandler()
+  const nodeRunner = new NodeRunner()
+
+  const gqlHandler = await getGqlHandler(nodeRunner)
 
   const prerenderDistPath = path.join(getPaths().web.dist, '__prerender')
   fs.mkdirSync(prerenderDistPath, { recursive: true })
@@ -327,9 +335,12 @@ export const runPrerender = async ({
     CellCacheContextProvider,
     LocationProvider,
     renderPath,
+    nodeRunner,
     gqlHandler,
     queryCache,
   )
+
+  nodeRunner.close()
 
   const { helmet } = globalThis.__REDWOOD__HELMET_CONTEXT
 
