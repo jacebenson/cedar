@@ -4,7 +4,7 @@ import * as swc from '@swc/core'
 import fg from 'fast-glob'
 import type { Plugin } from 'vite'
 
-import { importStatementPath } from '@cedarjs/project-config'
+import { importStatementPath, getPaths } from '@cedarjs/project-config'
 
 /**
  * This Vite plugin will search for import statements that include a glob double
@@ -57,6 +57,7 @@ export function cedarImportDirPlugin(
 
   return {
     name: 'vite-plugin-cedar-import-dir',
+    enforce: 'pre',
     async transform(code, id) {
       // Check if the code contains import statements with glob patterns
       if (!code.includes('/**/')) {
@@ -99,7 +100,9 @@ export function cedarImportDirPlugin(
           const importPath = item.source.value
 
           const importGlob = importStatementPath(importPath)
-          const cwd = path.dirname(id)
+          const cwd = importGlob.startsWith('src/')
+            ? getPaths().api.base
+            : path.dirname(id)
 
           try {
             const dirFiles = fg

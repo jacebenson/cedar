@@ -9,7 +9,7 @@ import { getOperationName } from '@cedarjs/web/dist/graphql.js'
 
 import { GqlHandlerImportError } from '../errors.js'
 
-import type { NodeRunner } from './exec.js'
+import type { NodeRunner } from './node-runner.js'
 
 interface GqlOperation {
   operationName: string

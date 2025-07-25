@@ -24,8 +24,8 @@ import {
   JSONParseError,
   PrerenderGqlError,
 } from './errors.js'
-import { NodeRunner } from './graphql/exec.js'
 import { executeQuery, getGqlHandler } from './graphql/graphql.js'
+import { NodeRunner } from './graphql/node-runner.js'
 import { getRootHtmlPath, registerShims, writeToDist } from './internal.js'
 
 // @ts-expect-error - ESM/CJS issue

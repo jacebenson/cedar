@@ -4,7 +4,11 @@ import { ViteNodeRunner } from 'vite-node/client'
 import { ViteNodeServer } from 'vite-node/server'
 import { installSourcemapsSupport } from 'vite-node/source-map'
 
-import { getPaths, importStatementPath } from '@cedarjs/project-config'
+import {
+  getPaths,
+  importStatementPath,
+  projectIsEsm,
+} from '@cedarjs/project-config'
 import {
   cedarCellTransform,
   cedarjsDirectoryNamedImportPlugin,
@@ -12,6 +16,7 @@ import {
   cedarSwapApolloProvider,
 } from '@cedarjs/vite'
 
+import { autoImportsPlugin } from './vite-plugin-auto-import.js'
 import { cedarImportDirPlugin } from './vite-plugin-cedar-import-dir.js'
 
 async function createViteServer() {
@@ -47,6 +52,8 @@ async function createViteServer() {
             const apiImportBase = importStatementPath(getPaths().api.base)
             const webImportBase = importStatementPath(getPaths().web.base)
 
+            let resolved: { id: string } | null = null
+
             // When importing a file from the api directory (using api/src/...
             // in the script), that file in turn might import another file using
             // just src/... That's a problem for Vite when it's running a file
@@ -55,19 +62,20 @@ async function createViteServer() {
             // is doing the importing.
             if (importer?.startsWith(apiImportBase)) {
               const apiImportSrc = importStatementPath(getPaths().api.src)
-              return { id: id.replace('src', apiImportSrc) }
+              resolved = { id: id.replace('src', apiImportSrc) }
             } else if (importer?.startsWith(webImportBase)) {
               const webImportSrc = importStatementPath(getPaths().web.src)
-              return { id: id.replace('src', webImportSrc) }
+              resolved = { id: id.replace('src', webImportSrc) }
             }
 
-            return null
+            return resolved
           },
         },
       ],
     },
     plugins: [
-      cedarImportDirPlugin({ projectIsEsm: true }),
+      cedarImportDirPlugin({ projectIsEsm: projectIsEsm() }),
+      autoImportsPlugin(),
       cedarjsDirectoryNamedImportPlugin(),
       cedarCellTransform(),
       cedarjsJobPathInjectorPlugin(),
