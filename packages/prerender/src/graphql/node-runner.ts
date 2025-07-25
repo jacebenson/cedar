@@ -4,11 +4,7 @@ import { ViteNodeRunner } from 'vite-node/client'
 import { ViteNodeServer } from 'vite-node/server'
 import { installSourcemapsSupport } from 'vite-node/source-map'
 
-import {
-  getPaths,
-  importStatementPath,
-  projectIsEsm,
-} from '@cedarjs/project-config'
+import { getPaths, projectIsEsm } from '@cedarjs/project-config'
 import {
   cedarCellTransform,
   cedarjsDirectoryNamedImportPlugin,
