@@ -13,17 +13,20 @@ import { getConfig, getPaths } from '@cedarjs/project-config'
 import {
   getPathsFromTypeScriptConfig,
   parseTypeScriptConfigFiles,
-} from '../internal'
+} from '../internal.js'
 
-import { cellTransformPlugin } from './rollupPlugins/rollup-plugin-cedarjs-cell'
-import { cedarjsDirectoryNamedImportPlugin } from './rollupPlugins/rollup-plugin-cedarjs-directory-named-imports'
-import { externalPlugin } from './rollupPlugins/rollup-plugin-cedarjs-external'
-import { ignoreHtmlAndCssImportsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-ignore-html-and-css-imports'
-import { injectFileGlobalsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-inject-file-globals'
-import { cedarjsPrerenderMediaImportsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-prerender-media-imports'
-import { cedarjsRoutesAutoLoaderPlugin } from './rollupPlugins/rollup-plugin-cedarjs-routes-auto-loader'
-import { typescriptPlugin } from './rollupPlugins/rollup-plugin-cedarjs-typescript'
-import { getPkgType, isValidJsFile, makeFilePath } from './utils'
+import { cellTransformPlugin } from './rollupPlugins/rollup-plugin-cedarjs-cell.js'
+import { cedarjsDirectoryNamedImportPlugin } from './rollupPlugins/rollup-plugin-cedarjs-directory-named-imports.js'
+import { externalPlugin } from './rollupPlugins/rollup-plugin-cedarjs-external.js'
+import { ignoreHtmlAndCssImportsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-ignore-html-and-css-imports.js'
+import { injectFileGlobalsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-inject-file-globals.js'
+import { cedarjsPrerenderMediaImportsPlugin } from './rollupPlugins/rollup-plugin-cedarjs-prerender-media-imports.js'
+import { cedarjsRoutesAutoLoaderPlugin } from './rollupPlugins/rollup-plugin-cedarjs-routes-auto-loader.js'
+import { typescriptPlugin } from './rollupPlugins/rollup-plugin-cedarjs-typescript.js'
+import { getPkgType, isValidJsFile, makeFilePath } from './utils.js'
+
+/** @see {@link https://github.com/rollup/plugins/issues/1541} */
+const fix = <T>(f: { default: T }): T => f as unknown as T
 
 const tsconfigPathsToRegExp = (paths: Record<string, any>) => {
   return Object.keys(paths || {}).map((key) => {
@@ -87,11 +90,12 @@ export async function buildAndImport(
         exportConditions: ['node'],
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs'],
       }),
+      // @ts-expect-error - Ignore type errors for now
       replace({
         preventAssignment: true,
         'process.env.NODE_ENV': '"production"',
       }),
-      alias({
+      fix(alias)({
         entries: [
           {
             find: 'src',
@@ -109,7 +113,7 @@ export async function buildAndImport(
       cedarjsRoutesAutoLoaderPlugin(),
       cedarjsDirectoryNamedImportPlugin(),
       cedarjsPrerenderMediaImportsPlugin(),
-      commonjs(),
+      fix(commonjs)(),
       typescriptPlugin(options.filepath, tsConfigs.web),
       unimportPlugin.rollup({
         imports: [

@@ -5,8 +5,8 @@ import type { TransformPluginContext } from 'rollup'
 
 import { getPaths } from '@cedarjs/project-config'
 
-import { cedarjsRoutesAutoLoaderPlugin } from '../rollup-plugin-cedarjs-routes-auto-loader'
-import { dedent } from '../utils'
+import { cedarjsRoutesAutoLoaderPlugin } from '../rollup-plugin-cedarjs-routes-auto-loader.js'
+import { dedent } from '../utils.js'
 
 const transform = (filename: string) => {
   const code = fs.readFileSync(filename, 'utf-8')

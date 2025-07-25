@@ -5553,10 +5553,10 @@ __metadata:
     "@signalwire/docusaurus-plugin-llms-txt": "npm:1.0.1"
     "@types/react": "npm:^18.2.55"
     clsx: "npm:2.1.1"
-    prism-react-renderer: "npm:2.4.0"
+    prism-react-renderer: "npm:2.4.1"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
-    react-player: "npm:2.16.0"
+    react-player: "npm:2.16.1"
     typescript: "npm:5.6.2"
   languageName: unknown
   linkType: soft
@@ -10442,15 +10442,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prism-react-renderer@npm:2.4.0, prism-react-renderer@npm:^2.3.0":
-  version: 2.4.0
-  resolution: "prism-react-renderer@npm:2.4.0"
+"prism-react-renderer@npm:2.4.1, prism-react-renderer@npm:^2.3.0":
+  version: 2.4.1
+  resolution: "prism-react-renderer@npm:2.4.1"
   dependencies:
     "@types/prismjs": "npm:^1.26.0"
     clsx: "npm:^2.0.0"
   peerDependencies:
     react: ">=16.0.0"
-  checksum: 10c0/3d6969b057da0efe39e3e637bf93601cd5757de5919180e8df16daf1d1b8eedc39b70c7f6f28724fba0a01bc857c6b78312ab027f4e913159d1165c5aba235bb
+  checksum: 10c0/ebbe8feb975224344bbdd046b3a937d121592dbe4b8f22ba0be31f5af37b9a8219f441138ef6cab1c5b96f2aa6b529015200959f7e5e85b60ca69c81d35edcd4
   languageName: node
   linkType: hard
 
@@ -10699,9 +10699,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-player@npm:2.16.0":
-  version: 2.16.0
-  resolution: "react-player@npm:2.16.0"
+"react-player@npm:2.16.1":
+  version: 2.16.1
+  resolution: "react-player@npm:2.16.1"
   dependencies:
     deepmerge: "npm:^4.0.0"
     load-script: "npm:^1.0.0"
@@ -10710,7 +10710,7 @@ __metadata:
     react-fast-compare: "npm:^3.0.1"
   peerDependencies:
     react: ">=16.6.0"
-  checksum: 10c0/ee0f4cd3bd468b28af38dbbb65cae1659218153956f43c0bdd15cd8b38aaaf151deec43b93b7dd887c0ac28242a4ba7e9d01823351e78ba60ae04d5fb51defb4
+  checksum: 10c0/fb89e25e0fd4e5e97441f1617e2c658cda9738176dc2ce167d245435647f11bbfcafd165b86523ae57de29439f89adbe322e97b54d3772dcfbdb6a226466d9b9
   languageName: node
   linkType: hard
 
