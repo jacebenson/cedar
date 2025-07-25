@@ -47,6 +47,7 @@
     "@cedarjs/project-config": "workspace:*",
     "@cedarjs/router": "workspace:*",
     "@cedarjs/structure": "workspace:*",
+    "@cedarjs/vite": "workspace:*",
     "@cedarjs/web": "workspace:*",
     "@rollup/plugin-alias": "5.1.1",
     "@rollup/plugin-commonjs": "28.0.6",

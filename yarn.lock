@@ -3252,6 +3252,7 @@ __metadata:
     "@cedarjs/project-config": "workspace:*"
     "@cedarjs/router": "workspace:*"
     "@cedarjs/structure": "workspace:*"
+    "@cedarjs/vite": "workspace:*"
     "@cedarjs/web": "workspace:*"
     "@rollup/plugin-alias": "npm:5.1.1"
     "@rollup/plugin-commonjs": "npm:28.0.6"
@@ -3528,7 +3529,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@cedarjs/vite@workspace:packages/vite":
+"@cedarjs/vite@workspace:*, @cedarjs/vite@workspace:packages/vite":
   version: 0.0.0-use.local
   resolution: "@cedarjs/vite@workspace:packages/vite"
   dependencies:
