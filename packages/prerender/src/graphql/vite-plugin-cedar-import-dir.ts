@@ -6,10 +6,6 @@ import type { Plugin } from 'vite'
 
 import { importStatementPath } from '@cedarjs/project-config'
 
-function dummySpan() {
-  return { start: 0, end: 0, ctxt: 0 }
-}
-
 /**
  * This Vite plugin will search for import statements that include a glob double
  * star `**` in the source part of the statement. The files that are matched are
@@ -48,50 +44,24 @@ export function cedarImportDirPlugin(
         tsx: ext === '.tsx',
       })
 
-      let changed = false
-      const newBody: any[] = []
+      // Parse import statements with glob patterns
+      const importRegex =
+        /import\s+(\w+)\s+from\s+['"`]([^'"`]*\*\*[^'"`]*)['"`]/g
+      let match
+      let transformedCode = code
 
-      for (const node of ast.body) {
-        if (
-          node.type === 'ImportDeclaration' &&
-          typeof node.source?.value === 'string' &&
-          node.source.value.includes('/**/')
-        ) {
-          changed = true
-          const importName = node.specifiers[0].local.value
-          newBody.push({
-            type: 'VariableDeclaration',
-            kind: 'let',
-            span: dummySpan(),
-            declarations: [
-              {
-                type: 'VariableDeclarator',
-                span: dummySpan(),
-                id: {
-                  type: 'Identifier',
-                  span: dummySpan(),
-                  value: importName,
-                },
-                init: {
-                  type: 'ObjectExpression',
-                  span: dummySpan(),
-                  properties: [],
-                },
-              },
-            ],
-          })
+      while ((match = importRegex.exec(code)) !== null) {
+        const [fullMatch, importName, importPath] = match
 
-          const importGlob = importStatementPath(node.source.value)
-          const cwd = path.dirname(id)
+        const importGlob = importStatementPath(importPath)
+        const cwd = path.dirname(id)
+
+        try {
           const dirFiles = fg
             .sync(importGlob, { cwd })
-            // Ignore *.test.*, *.scenarios.*, and *.d.ts files.
-            .filter(
-              (n) =>
-                !n.includes('.test.') &&
-                !n.includes('.scenarios.') &&
-                !n.includes('.d.ts'),
-            )
+            .filter((n) => !n.includes('.test.')) // ignore `*.test.*` files.
+            .filter((n) => !n.includes('.scenarios.')) // ignore `*.scenarios.*` files.
+            .filter((n) => !n.includes('.d.ts'))
 
           const staticGlob = importGlob.split('*')[0]
           const filePathToVarName = (filePath: string) => {
@@ -101,83 +71,43 @@ export function cedarImportDirPlugin(
               .replace(/[^a-zA-Z0-9]/g, '_')
           }
 
+          let replacement = `let ${importName} = {}\n`
+
           for (const filePath of dirFiles) {
             const { dir: fileDir, name: fileName } = path.parse(filePath)
             const filePathWithoutExtension = fileDir + '/' + fileName
-            const filePathVarName = filePathToVarName(filePath)
-            const importPath =
-              projectIsEsm && !filePathWithoutExtension.endsWith('.js')
+            const fpVarName = filePathToVarName(filePath)
+
+            // Generate import statement
+            const importStatement = `import * as ${importName}_${fpVarName} from '${
+              projectIsEsm
                 ? `${filePathWithoutExtension}.js`
                 : filePathWithoutExtension
+            }'\n`
 
-            newBody.push({
-              type: 'ImportDeclaration',
-              span: dummySpan(),
-              specifiers: [
-                {
-                  type: 'ImportNamespaceSpecifier',
-                  span: dummySpan(),
-                  local: {
-                    type: 'Identifier',
-                    span: dummySpan(),
-                    value: `${importName}_${filePathVarName}`,
-                  },
-                },
-              ],
-              source: {
-                type: 'StringLiteral',
-                span: dummySpan(),
-                value: importPath,
-              },
-            })
+            // Generate assignment statement
+            const assignmentStatement = `${importName}.${fpVarName} = ${importName}_${fpVarName}\n`
 
-            newBody.push({
-              type: 'ExpressionStatement',
-              span: dummySpan(),
-              expression: {
-                type: 'AssignmentExpression',
-                span: dummySpan(),
-                operator: '=',
-                left: {
-                  type: 'MemberExpression',
-                  span: dummySpan(),
-                  object: {
-                    type: 'Identifier',
-                    span: dummySpan(),
-                    value: importName,
-                  },
-                  property: {
-                    type: 'Identifier',
-                    span: dummySpan(),
-                    value: filePathVarName,
-                  },
-                  computed: false,
-                },
-                right: {
-                  type: 'Identifier',
-                  span: dummySpan(),
-                  value: `${importName}_${filePathVarName}`,
-                },
-              },
-            })
+            replacement += importStatement + assignmentStatement
           }
-        } else {
-          // Ensure every node in newBody has a span
-          if (!node.span) {
-            node.span = dummySpan()
-          }
-          newBody.push(node)
+
+          // Replace the original import statement
+          transformedCode = transformedCode.replace(
+            fullMatch,
+            replacement.trim(),
+          )
+        } catch (error) {
+          // If there's an error with glob matching, keep the original import
+          console.warn(`Failed to process glob import: ${importPath}`, error)
         }
       }
 
-      if (changed) {
-        console.log('file was changed')
-        const output = await swc.print(
-          { ...ast, body: newBody },
-          { minify: false },
-        )
-        console.log('new code', output.code)
-        return { code: output.code, map: null }
+      // Only return transformed code if we actually made changes
+      if (transformedCode !== code) {
+        return {
+          code: transformedCode,
+          map: null, // For simplicity, not generating source maps
+        }
       }
 
       return null
