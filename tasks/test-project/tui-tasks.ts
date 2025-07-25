@@ -806,7 +806,7 @@ export default DoublePage`
           fullPath('api/src/services/users/users.scenarios'),
         )
 
-        const test = `import { user } from './users'
+        const test = `import { user } from './users.js'
             import type { StandardScenario } from './users.scenarios.js'
 
             describe('users', () => {

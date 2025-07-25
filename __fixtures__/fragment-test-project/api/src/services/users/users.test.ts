@@ -1,4 +1,4 @@
-import { user } from './users'
+import { user } from './users.js'
 import type { StandardScenario } from './users.scenarios.js'
 
 describe('users', () => {
