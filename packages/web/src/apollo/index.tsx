@@ -8,15 +8,10 @@ import type {
   HttpOptions,
   DocumentNode,
 } from '@apollo/client'
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  split,
-  ApolloLink,
-} from '@apollo/client'
+import * as apolloClient from '@apollo/client'
 import { setLogVerbosity as apolloSetLogVerbosity } from '@apollo/client/core/core.cjs'
 import { setContext } from '@apollo/client/link/context/context.cjs'
+import { ApolloLink, split } from '@apollo/client/link/core/index.js'
 import type { HttpLink } from '@apollo/client/link/http/http.cjs'
 import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries/persisted-queries.cjs'
 import {
@@ -51,6 +46,10 @@ import { useCache } from './useCache.js'
 
 // Not sure why we need to import it this way for legacy builds to work
 const { SSELink, isSubscription, isLiveQuery } = SSELinkExports
+
+const { ApolloProvider, ApolloClient, InMemoryCache } =
+  // @ts-expect-error - ESM/CJS issue
+  apolloClient.default || apolloClient
 
 export type {
   CacheKey,
