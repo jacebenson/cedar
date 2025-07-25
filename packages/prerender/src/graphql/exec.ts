@@ -12,6 +12,8 @@ import {
   cedarSwapApolloProvider,
 } from '@cedarjs/vite'
 
+import { cedarImportDirPlugin } from './vite-plugin-cedar-import-dir.js'
+
 async function createViteServer() {
   const server = await createServer({
     mode: 'production',
@@ -65,6 +67,7 @@ async function createViteServer() {
       ],
     },
     plugins: [
+      cedarImportDirPlugin({ projectIsEsm: true }),
       cedarjsDirectoryNamedImportPlugin(),
       cedarCellTransform(),
       cedarjsJobPathInjectorPlugin(),
