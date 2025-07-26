@@ -17,7 +17,7 @@ export function autoImportsPlugin() {
           'mockSignedWebhook',
         ],
       },
-      // import gql from 'graphql-tag'
+      // import { gql } from 'graphql-tag'
       {
         'graphql-tag': ['gql'],
       },
