@@ -1,4 +1,4 @@
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type { QueryResolvers, MutationResolvers } from 'types/graphql.js'
 
 import { db } from 'src/lib/db.js'
 

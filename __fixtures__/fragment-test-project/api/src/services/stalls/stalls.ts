@@ -2,7 +2,7 @@ import type {
   QueryResolvers,
   MutationResolvers,
   StallRelationResolvers,
-} from "types/graphql";
+} from "types/graphql.js";
 
 import { db } from "src/lib/db.js";
 

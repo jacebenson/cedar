@@ -2,7 +2,7 @@ import type {
   DeletePostMutation,
   DeletePostMutationVariables,
   FindPosts,
-} from 'types/graphql'
+} from 'types/graphql.js'
 
 import { Link, routes } from '@cedarjs/router'
 import { useMutation } from '@cedarjs/web'

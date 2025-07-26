@@ -30,11 +30,11 @@ describe("stalls", () => {
 
   scenario("creates a stall", async () => {
     const result = await createStall({
-      input: { name: "String", stallNumber: "String9101769" },
+      input: { name: "String", stallNumber: "String681423" },
     });
 
     expect(result.name).toEqual("String");
-    expect(result.stallNumber).toEqual("String9101769");
+    expect(result.stallNumber).toEqual("String681423");
   });
 
   scenario("updates a stall", async (scenario: StandardScenario) => {

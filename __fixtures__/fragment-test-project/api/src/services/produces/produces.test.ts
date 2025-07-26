@@ -31,17 +31,17 @@ describe("produces", () => {
   scenario("creates a produce", async (scenario: StandardScenario) => {
     const result = await createProduce({
       input: {
-        name: "String1940013",
-        quantity: 404916,
-        price: 4194637,
+        name: "String2544152",
+        quantity: 7964999,
+        price: 1138414,
         region: "String",
         stallId: scenario.produce.two.stallId,
       },
     });
 
-    expect(result.name).toEqual("String1940013");
-    expect(result.quantity).toEqual(404916);
-    expect(result.price).toEqual(4194637);
+    expect(result.name).toEqual("String2544152");
+    expect(result.quantity).toEqual(7964999);
+    expect(result.price).toEqual(1138414);
     expect(result.region).toEqual("String");
     expect(result.stallId).toEqual(scenario.produce.two.stallId);
   });
@@ -52,10 +52,10 @@ describe("produces", () => {
     })) as Produce;
     const result = await updateProduce({
       id: original.id,
-      input: { name: "String2780002" },
+      input: { name: "String34864682" },
     });
 
-    expect(result.name).toEqual("String2780002");
+    expect(result.name).toEqual("String34864682");
   });
 
   scenario("deletes a produce", async (scenario: StandardScenario) => {
