@@ -1659,7 +1659,6 @@ export const Success = ({
 exports[`in typescript mode > creates a show component 1`] = `
 "import type {
   DeletePostMutation,
-`
   DeletePostMutationVariables,
   FindPostById,
 } from 'types/graphql.js'
