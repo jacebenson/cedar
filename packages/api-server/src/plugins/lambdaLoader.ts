@@ -1,5 +1,8 @@
 import path from 'path'
 
+// See https://github.com/webdiscus/ansis#troubleshooting
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ansis from 'ansis'
 import type { Handler } from 'aws-lambda'
 import fg from 'fast-glob'
@@ -9,11 +12,11 @@ import type {
   FastifyRequest,
   RequestGenericInterface,
 } from 'fastify'
-import { escape } from 'lodash'
 
 import { getPaths } from '@cedarjs/project-config'
 
-import { requestHandler } from '../requestHandlers/awsLambdaFastify'
+import { requestHandler } from '../requestHandlers/awsLambdaFastify.js'
+import { escape } from '../utils.js'
 
 export type Lambdas = Record<string, Handler>
 export const LAMBDA_FUNCTIONS: Lambdas = {}

@@ -1,8 +1,11 @@
 import path from 'path'
 
+// See https://github.com/webdiscus/ansis#troubleshooting
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ansis from 'ansis'
 import chokidar from 'chokidar'
-import dotenv from 'dotenv'
+import { config } from 'dotenv-defaults'
 
 import {
   buildApi,
@@ -12,16 +15,15 @@ import {
 import { loadAndValidateSdls } from '@cedarjs/internal/dist/validateSchema'
 import { ensurePosixPath, getPaths } from '@cedarjs/project-config'
 
-import type { BuildAndRestartOptions } from './buildManager'
-import { BuildManager } from './buildManager'
-import { serverManager } from './serverManager'
+import type { BuildAndRestartOptions } from './buildManager.js'
+import { BuildManager } from './buildManager.js'
+import { serverManager } from './serverManager.js'
 
 const rwjsPaths = getPaths()
 
 if (!process.env.REDWOOD_ENV_FILES_LOADED) {
-  dotenv.config({
+  config({
     path: path.join(rwjsPaths.base, '.env'),
-    // @ts-expect-error The types for dotenv-defaults are using an outdated version of dotenv
     defaults: path.join(rwjsPaths.base, '.env.defaults'),
     multiline: true,
   })

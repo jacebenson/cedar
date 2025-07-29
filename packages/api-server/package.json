@@ -8,21 +8,25 @@
     "directory": "packages/api-server"
   },
   "license": "MIT",
+  "type": "module",
   "main": "./dist/createServer.js",
   "types": "./dist/createServer.d.ts",
   "bin": {
-    "rw-api-server-watch": "./dist/watch.js",
-    "rw-log-formatter": "./dist/logFormatter/bin.js",
-    "rw-server": "./dist/bin.js"
+    "rw-api-server-watch": "./dist/cjs/watch.js",
+    "rw-log-formatter": "./dist/cjs/logFormatter/bin.js",
+    "rw-server": "./dist/cjs/bin.js"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsx ./build.mts && yarn build:types",
+    "build": "tsx ./build.mts",
     "build:pack": "yarn pack -o cedarjs-api-server.tgz",
     "build:types": "tsc --build --verbose tsconfig.build.json",
+    "build:types-cjs": "tsc --build --verbose tsconfig.cjs.json",
     "build:watch": "nodemon --watch src --ext \"js,jsx,ts,tsx\" --ignore dist --exec \"yarn build && yarn fix:permissions\"",
+    "check:attw": "yarn attw -P",
+    "check:package": "concurrently npm:check:attw yarn:publint",
     "fix:permissions": "chmod +x dist/index.js; chmod +x dist/watch.js",
     "prepublishOnly": "NODE_ENV=production yarn build",
     "test": "vitest run",
@@ -43,7 +47,6 @@
     "fast-json-parse": "1.0.3",
     "fastify": "5.4.0",
     "fastify-raw-body": "5.0.0",
-    "lodash": "4.17.21",
     "pretty-bytes": "5.6.0",
     "pretty-ms": "7.0.1",
     "qs": "6.13.0",
@@ -53,7 +56,7 @@
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
     "@types/aws-lambda": "8.10.152",
-    "@types/lodash": "4.17.20",
+    "@types/dotenv-defaults": "^2.0.4",
     "@types/qs": "6.9.16",
     "@types/split2": "4.2.3",
     "@types/yargs": "17.0.33",

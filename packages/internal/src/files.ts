@@ -101,8 +101,7 @@ export const findApiServerFunctions = (
 
 // There is a copy of this function in
 // packages/api-server/src/plugins/lambdaLoader.ts
-// This is done to avoid to avoid @cedarjs/api-server depending on
-// @cedarjs/internal
+// This is done to avoid @cedarjs/api-server depending on @cedarjs/internal
 export const findApiDistFunctions = (params: {
   cwd: string
   options?: FastGlobOptions

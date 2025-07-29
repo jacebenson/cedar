@@ -1,11 +1,14 @@
+// See https://github.com/webdiscus/ansis#troubleshooting
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ansis from 'ansis'
 
 import { redwoodFastifyWeb, coerceRootPath } from '@cedarjs/fastify-web'
 
-import { getWebHost, getWebPort, getAPIHost, getAPIPort } from './cliHelpers'
-import { createServer as createApiServer } from './createServer'
-import createFastifyInstance from './fastify'
-import type { BothParsedOptions } from './types'
+import { getWebHost, getWebPort, getAPIHost, getAPIPort } from './cliHelpers.js'
+import { createServer as createApiServer } from './createServer.js'
+import createFastifyInstance from './fastify.js'
+import type { BothParsedOptions } from './types.js'
 
 export async function handler(options: BothParsedOptions) {
   const timeStart = Date.now()

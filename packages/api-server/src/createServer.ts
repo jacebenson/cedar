@@ -1,6 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 
+// See https://github.com/webdiscus/ansis#troubleshooting
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ansis from 'ansis'
 import { config } from 'dotenv-defaults'
 import fg from 'fast-glob'
@@ -10,13 +13,13 @@ import type { GlobalContext } from '@cedarjs/context'
 import { getAsyncStoreInstance } from '@cedarjs/context/dist/store'
 import { getConfig, getPaths } from '@cedarjs/project-config'
 
-import { resolveOptions } from './createServerHelpers'
+import { resolveOptions } from './createServerHelpers.js'
 import type {
   CreateServerOptions,
   Server,
   StartOptions,
-} from './createServerHelpers'
-import { redwoodFastifyAPI } from './plugins/api'
+} from './createServerHelpers.js'
+import { redwoodFastifyAPI } from './plugins/api.js'
 
 // Load .env files if they haven't already been loaded. This makes importing this file effectful:
 //
