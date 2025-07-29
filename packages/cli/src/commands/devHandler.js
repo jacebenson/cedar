@@ -1,4 +1,5 @@
-import { argv } from 'process'
+import path from 'node:path'
+import { argv } from 'node:process'
 
 import concurrently from 'concurrently'
 import fs from 'fs-extra'
@@ -157,7 +158,7 @@ export const handler = async ({
 
   const redwoodConfigPath = getConfigPath()
 
-  const streamingSsrEnabled = getConfig().experimental.streamingSsr?.enabled
+  const streamingSsrEnabled = getConfig().experimental?.streamingSsr?.enabled
 
   // @TODO (Streaming) Lot of temporary feature flags for started dev server.
   // Written this way to make it easier to read
@@ -174,6 +175,14 @@ export const handler = async ({
     webCommand = `yarn cross-env NODE_ENV=development rw-dev-fe ${forward}`
   }
 
+  const rootPackageJson = JSON.parse(
+    fs.readFileSync(path.join(rwjsPaths.base, 'package.json'), 'utf8'),
+  )
+  const isEsm = rootPackageJson.type === 'module'
+  const serverWatchCommand = isEsm
+    ? `cedarjs-api-server-watch`
+    : `rw-api-server-watch`
+
   /** @type {Record<string, import('concurrently').CommandObj>} */
   const jobs = {
     api: {
@@ -182,7 +191,7 @@ export const handler = async ({
         'yarn nodemon',
         '  --quiet',
         `  --watch "${redwoodConfigPath}"`,
-        '  --exec "yarn rw-api-server-watch',
+        `  --exec "yarn ${serverWatchCommand}`,
         `    --port ${apiAvailablePort}`,
         `    ${getApiDebugFlag()}`,
         '    | rw-log-formatter"',
