@@ -167,18 +167,6 @@ export const resolveFile = (
   return null
 }
 
-function assertResolveFile(
-  filePath: string,
-  extensions: string[] = ['.js', '.tsx', '.ts', '.jsx', '.mjs', '.mts', '.cjs'],
-): string {
-  const resolvedPath = resolveFile(filePath, extensions)
-  if (!resolvedPath) {
-    throw new Error(`File not found: ${filePath}`)
-  }
-
-  return resolvedPath
-}
-
 /**
  * Path constants that are relevant to a Redwood project.
  */
@@ -269,11 +257,10 @@ export const getPaths = (BASE_DIR: string = getBaseDir()): Paths => {
       distBrowser: path.join(BASE_DIR, PATH_WEB_DIR_DIST_BROWSER),
       distRsc: path.join(BASE_DIR, PATH_WEB_DIR_DIST_RSC),
       distSsr: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR),
-      distSsrDocument: assertResolveFile(
-        path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_DOCUMENT),
-      ),
-      distSsrEntryServer: assertResolveFile(
-        path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER),
+      distSsrDocument: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_DOCUMENT),
+      distSsrEntryServer: path.join(
+        BASE_DIR,
+        PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER,
       ),
       distRouteHooks: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_ROUTEHOOKS),
       distRscEntries: path.join(BASE_DIR, PATH_WEB_DIR_DIST_RSC_ENTRIES),
