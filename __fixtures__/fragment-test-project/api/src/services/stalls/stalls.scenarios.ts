@@ -7,6 +7,6 @@ export const standard = defineScenario<Prisma.StallCreateArgs>({
     one: { data: { name: 'String', stallNumber: 'String9136837' } },
     two: { data: { name: 'String', stallNumber: 'String9074776' } },
   },
-});
+})
 
-export type StandardScenario = ScenarioData<Stall, "stall">
+export type StandardScenario = ScenarioData<Stall, 'stall'>

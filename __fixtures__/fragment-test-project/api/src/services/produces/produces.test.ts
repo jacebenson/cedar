@@ -1,4 +1,4 @@
-import type { Produce } from "@prisma/client"
+import type { Produce } from '@prisma/client'
 
 import {
   produces,
@@ -6,8 +6,8 @@ import {
   createProduce,
   updateProduce,
   deleteProduce,
-} from "./produces.js"
-import type { StandardScenario } from "./produces.scenarios.js"
+} from './produces.js'
+import type { StandardScenario } from './produces.scenarios.js'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float.
@@ -15,20 +15,20 @@ import type { StandardScenario } from "./produces.scenarios.js"
 //       https://redwoodjs.com/docs/testing#testing-services
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe("produces", () => {
-  scenario("returns all produces", async (scenario: StandardScenario) => {
+describe('produces', () => {
+  scenario('returns all produces', async (scenario: StandardScenario) => {
     const result = await produces()
 
     expect(result.length).toEqual(Object.keys(scenario.produce).length)
   })
 
-  scenario("returns a single produce", async (scenario: StandardScenario) => {
+  scenario('returns a single produce', async (scenario: StandardScenario) => {
     const result = await produce({ id: scenario.produce.one.id })
 
     expect(result).toEqual(scenario.produce.one)
   })
 
-  scenario("creates a produce", async (scenario: StandardScenario) => {
+  scenario('creates a produce', async (scenario: StandardScenario) => {
     const result = await createProduce({
       input: {
         name: 'String4747749',
@@ -46,7 +46,7 @@ describe("produces", () => {
     expect(result.stallId).toEqual(scenario.produce.two.stallId)
   })
 
-  scenario("updates a produce", async (scenario: StandardScenario) => {
+  scenario('updates a produce', async (scenario: StandardScenario) => {
     const original = (await produce({
       id: scenario.produce.one.id,
     })) as Produce
@@ -58,7 +58,7 @@ describe("produces", () => {
     expect(result.name).toEqual('String9726252')
   })
 
-  scenario("deletes a produce", async (scenario: StandardScenario) => {
+  scenario('deletes a produce', async (scenario: StandardScenario) => {
     const original = (await deleteProduce({
       id: scenario.produce.one.id,
     })) as Produce

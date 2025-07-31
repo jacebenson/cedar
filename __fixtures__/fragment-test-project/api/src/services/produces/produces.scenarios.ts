@@ -23,6 +23,6 @@ export const standard = defineScenario<Prisma.ProduceCreateArgs>({
       },
     },
   },
-});
+})
 
-export type StandardScenario = ScenarioData<Produce, "produce">;
+export type StandardScenario = ScenarioData<Produce, 'produce'>
