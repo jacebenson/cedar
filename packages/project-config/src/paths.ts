@@ -133,8 +133,8 @@ const PATH_WEB_DIR_DIST_BROWSER = 'web/dist/browser'
 const PATH_WEB_DIR_DIST_RSC = 'web/dist/rsc'
 const PATH_WEB_DIR_DIST_SSR = 'web/dist/ssr'
 
-const PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER = 'web/dist/ssr/entry.server.mjs'
-const PATH_WEB_DIR_DIST_SSR_DOCUMENT = 'web/dist/ssr/Document.mjs'
+const PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER = 'web/dist/ssr/entry.server'
+const PATH_WEB_DIR_DIST_SSR_DOCUMENT = 'web/dist/ssr/Document'
 const PATH_WEB_DIR_DIST_SSR_ROUTEHOOKS = 'web/dist/ssr/routeHooks'
 const PATH_WEB_DIR_DIST_RSC_ENTRIES = 'web/dist/rsc/entries.mjs'
 const PATH_WEB_DIR_ROUTE_MANIFEST = 'web/dist/ssr/route-manifest.json'
@@ -165,6 +165,18 @@ export const resolveFile = (
     }
   }
   return null
+}
+
+function assertResolveFile(
+  filePath: string,
+  extensions: string[] = ['.js', '.tsx', '.ts', '.jsx', '.mjs', '.mts', '.cjs'],
+): string {
+  const resolvedPath = resolveFile(filePath, extensions)
+  if (!resolvedPath) {
+    throw new Error(`File not found: ${filePath}`)
+  }
+
+  return resolvedPath
 }
 
 /**
@@ -257,10 +269,11 @@ export const getPaths = (BASE_DIR: string = getBaseDir()): Paths => {
       distBrowser: path.join(BASE_DIR, PATH_WEB_DIR_DIST_BROWSER),
       distRsc: path.join(BASE_DIR, PATH_WEB_DIR_DIST_RSC),
       distSsr: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR),
-      distSsrDocument: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_DOCUMENT),
-      distSsrEntryServer: path.join(
-        BASE_DIR,
-        PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER,
+      distSsrDocument: assertResolveFile(
+        path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_DOCUMENT),
+      ),
+      distSsrEntryServer: assertResolveFile(
+        path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_ENTRY_SERVER),
       ),
       distRouteHooks: path.join(BASE_DIR, PATH_WEB_DIR_DIST_SSR_ROUTEHOOKS),
       distRscEntries: path.join(BASE_DIR, PATH_WEB_DIR_DIST_RSC_ENTRIES),
