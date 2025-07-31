@@ -1,5 +1,5 @@
 // import { Link, routes } from '@cedarjs/router'
-import { Metadata, useQuery } from "@cedarjs/web";
+import { Metadata, useQuery } from '@cedarjs/web';
 
 import FruitInfo from "src/components/FruitInfo";
 import ProduceInfo from "src/components/ProduceInfo";
