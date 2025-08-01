@@ -695,7 +695,7 @@ export async function apiTasks(
           )
           fs.writeFileSync(pathRoutes, resultsRoutesNewContact)
 
-          const blogPostRouteHooks = `import { db } from '$api/src/lib/db'
+          const blogPostRouteHooks = `import { db } from '$api/src/lib/db.js'
 
             export async function routeParameters() {
               return (await db.post.findMany({ take: 7 })).map((post) => ({ id: post.id }))
@@ -831,8 +831,8 @@ export async function apiTasks(
           fullPath('api/src/services/users/users.scenarios'),
         )
 
-        const test = `import { user } from './users'
-            import type { StandardScenario } from './users.scenarios'
+        const test = `import { user } from './users.js'
+            import type { StandardScenario } from './users.scenarios.js'
 
             describe('users', () => {
               scenario('returns a single user', async (scenario: StandardScenario) => {
