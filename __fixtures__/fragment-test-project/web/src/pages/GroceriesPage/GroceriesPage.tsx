@@ -50,6 +50,6 @@ const GroceriesPage = () => {
       </div>
     </div>
   )
-};
+}
 
-export default GroceriesPage;
+export default GroceriesPage

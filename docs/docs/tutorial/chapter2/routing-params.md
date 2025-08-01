@@ -350,7 +350,10 @@ export const Success = ({ article }) => {
 <TabItem value="ts" label="TypeScript">
 
 ```tsx title="web/src/components/ArticleCell/ArticleCell.tsx"
-import type { FindArticleQuery, FindArticleQueryVariables } from 'types/graphql.js'
+import type {
+  FindArticleQuery,
+  FindArticleQueryVariables,
+} from 'types/graphql.js'
 
 import type {
   CellFailureProps,
@@ -795,7 +798,10 @@ export const Success = ({ article }) => {
 <TabItem value="ts" label="TypeScript">
 
 ```tsx title="web/src/components/ArticleCell/ArticleCell.tsx"
-import type { FindArticleQuery, FindArticleQueryVariables } from 'types/graphql.js'
+import type {
+  FindArticleQuery,
+  FindArticleQueryVariables,
+} from 'types/graphql.js'
 
 import type {
   CellFailureProps,

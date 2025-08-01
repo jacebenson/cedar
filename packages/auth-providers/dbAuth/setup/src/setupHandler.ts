@@ -185,10 +185,6 @@ export const createAuthDecoderFunction = {
 
     const content = fs.readFileSync(graphqlPath, 'utf-8')
 
-    if (!content) {
-      throw new Error('Could not read ' + graphqlPath)
-    }
-
     let newContent = content.replace(
       'import { getCurrentUser } from',
       'import { cookieName, getCurrentUser } from',
@@ -209,8 +205,6 @@ export const createAuthDecoderFunction = {
     }
 
     if (!newContent.includes('import { cookieName')) {
-      console.error('unexpected content\n')
-      console.error(newContent)
       throw new Error('Failed to import cookieName')
     }
 
