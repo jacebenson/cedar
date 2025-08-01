@@ -85,9 +85,6 @@ export const handler = async ({
       process.env.SKIP_DB_PUSH = '1'
     }
 
-    // **NOTE** There is no official way to run Jest programmatically,
-    // so we're running it via execa, since `jest.run()` is a bit unstable.
-    // https://github.com/facebook/jest/issues/5048
     // TODO: Run vitest programmatically. See https://vitest.dev/advanced/api/
     const runCommand = async () => {
       await execa('yarn vitest', vitestArgs, {
