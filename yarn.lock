@@ -2716,6 +2716,7 @@ __metadata:
   dependencies:
     "@babel/cli": "npm:7.27.2"
     "@babel/core": "npm:^7.26.10"
+    "@babel/preset-typescript": "npm:7.27.1"
     "@babel/runtime-corejs3": "npm:7.27.6"
     "@cedarjs/api-server": "workspace:*"
     "@cedarjs/cli-helpers": "workspace:*"
