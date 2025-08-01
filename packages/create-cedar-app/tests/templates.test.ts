@@ -180,16 +180,21 @@ describe('JS template', () => {
  * - the yarn lint edge case
  *
  *   We run `yarn lint` before `yarn test` in CI.
- *   Running `yarn lint` leads to a call to `getPaths` from `@cedarjs/internal` which creates the `.redwood` directory.
+ *   Running `yarn lint` leads to a call to `getPaths` from `@cedarjs/internal`
+ *   which creates the `.redwood` directory.
  *   That directory and its contents aren't part of the template,
- *   but will be picked up by this test and lead to a false negative without this.
+ *   but will be picked up by this test and lead to a false negative without
+ *   this.
  *
  * - the yarn.lock edge case
  *
- *   When we release, we add lock files to the templates to speed up yarn install.
+ *   When we release, we add lock files to the templates to speed up yarn
+ *   install.
  *   We remove these lock files after releasing.
- *   But before we release, we run all our unit tests, so these test sees an extra file and fails.
- *   While introduces a blind spot (if a lock file gets added, it won't be caught), that's the tradeoff we're making.
+ *   But before we release, we run all our unit tests, so these test sees an
+ *   extra file and fails.
+ *   While this introduces a blind spot (if a lock file gets added, it won't be
+ *   caught), that's the tradeoff we're making.
  *
  * @param {string} dir
  * @returns string[]
