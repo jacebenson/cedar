@@ -33,8 +33,6 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
       apiPort = rwConfig.api.port
     }
 
-    // const NODE_MODULES_PATH = path.join(rwPaths.base, 'node_modules')
-
     const defaultRwViteConfig: ViteUserConfig = {
       root: rwPaths.web.src,
       // @MARK: when we have these aliases, the warnings from the FE server go
