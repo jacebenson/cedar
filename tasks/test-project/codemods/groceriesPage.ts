@@ -51,7 +51,7 @@ export default (file: FileInfo, api: API) => {
           j.importSpecifier(j.identifier('GetGroceries')),
           j.importSpecifier(j.identifier('GetProduce')),
         ],
-        j.stringLiteral('types/graphql'),
+        j.stringLiteral('types/graphql.js'),
         'type',
       ),
     )
