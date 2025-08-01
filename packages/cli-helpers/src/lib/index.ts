@@ -50,7 +50,7 @@ export const transformTSToJS = (filename: string, content: string) => {
 }
 
 /**
- * This returns the config present in `prettier.config.js` of a Redwood project.
+ * This returns the config present in `prettier.config.cjs` of a Redwood project.
  */
 export const getPrettierOptions = async () => {
   try {
