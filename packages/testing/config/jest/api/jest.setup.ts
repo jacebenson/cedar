@@ -336,7 +336,7 @@ function loadScenarios(testPath: string, scenarioName: string) {
     allScenarios = require(testFilePath)
   } catch (e) {
     // ignore error if scenario file not found, otherwise re-throw
-    if (isErrorWithCode(e)) {
+    if (isErrorWithCode(e) && e.code !== 'MODULE_NOT_FOUND') {
       if (e instanceof Error) {
         throw e
       } else {

@@ -7,7 +7,13 @@ export function trackDbImportsPlugin(): Plugin {
       if (id.match(/src\/lib\/db\.(js|ts)$/)) {
         // Inserting the code last (instead of at the top) works nicer with
         // sourcemaps
-        return code + '\n\n;globalThis.__cedarjs_db_imported__ = true;'
+        return (
+          code +
+          '\n\n;' +
+          'if (typeof globalThis !== "undefined") {\n' +
+          '  globalThis.__cedarjs_db_imported__ = true;\n' +
+          '}\n'
+        )
       }
 
       return code
@@ -22,9 +28,9 @@ export function trackDbImportsPlugin(): Plugin {
 // - Correct source maps are nice when something is broken in a test. Should
 //   look into providing the `map` property in the transform result. What does
 //   `null` mean?
-// - That `typeof` guard looks sensible. Should probably add someting like that.
-//   But maybe throwing an error if it's undefined, so that users can report it
-//   as an error with the framework
+// - That `typeof` guard looks sensible. Should probably add something like
+//   that. But maybe throwing an error if it's undefined, so that users can
+//   report it as an error with the framework
 // - Another option for resetting the flag is to have a `afterEach` or
 //   `afterAll` that does it
 //

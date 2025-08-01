@@ -7,11 +7,24 @@ const mockContext = new Proxy(
       if (prop === 'toJSON') {
         return () => mockContextStore.get('context')
       }
-      return mockContextStore.get('context')[prop]
+
+      const ctx = mockContextStore.get('context')
+
+      if (!ctx) {
+        return undefined
+      }
+
+      return ctx[prop]
     },
     set: (_target, prop, value) => {
       const ctx = mockContextStore.get('context')
+
+      if (!ctx) {
+        return false
+      }
+
       ctx[prop] = value
+
       return true
     },
   },
@@ -23,7 +36,6 @@ export interface GlobalContext extends Record<string, unknown> {}
 export const context = mockContext
 
 export const setContext = (newContext: GlobalContext): GlobalContext => {
-  console.log('calling mocked setContext')
   mockContextStore.set('context', newContext)
   return mockContext
 }

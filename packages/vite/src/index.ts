@@ -5,8 +5,6 @@ import { getWebSideDefaultBabelConfig } from '@cedarjs/babel-config'
 import { getConfig } from '@cedarjs/project-config'
 import {
   autoImportsPlugin,
-  // mockProvidersRoutesPlugin,
-  // mockProvidersRelativeRoutesPathsPlugin,
   cedarJsRouterImportTransformPlugin,
   createAuthImportTransformPlugin,
 } from '@cedarjs/testing/web/vitest'
@@ -64,8 +62,6 @@ export function cedar({ mode }: PluginOptions = {}): PluginOption[] {
   }
 
   return [
-    // mode === 'test' && mockProvidersRoutesPlugin(),
-    // mode === 'test' && mockProvidersRelativeRoutesPathsPlugin(),
     mode === 'test' && cedarJsRouterImportTransformPlugin(),
     mode === 'test' && createAuthImportTransformPlugin(),
     mode === 'test' && autoImportsPlugin(),

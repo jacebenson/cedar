@@ -18,7 +18,7 @@ export const handler = async ({
   })
   let watch = true
   const rwjsPaths = getPaths()
-  const forwardJestFlags = Object.keys(others).flatMap((flagName) => {
+  const forwardVitestFlags = Object.keys(others).flatMap((flagName) => {
     if (['db-push', 'loadEnvFiles', '$0', '_'].includes(flagName)) {
       // filter out flags meant for the rw test command only
       return []
@@ -34,7 +34,7 @@ export const handler = async ({
       }
 
       if (Array.isArray(flagValue)) {
-        // jest does not collapse flags e.g. --coverageReporters=html --coverageReporters=text
+        // vitest does not collapse flags e.g. --coverageReporters=html --coverageReporters=text
         // so we pass it on. Yargs collapses these flags into an array of values
         return flagValue.flatMap((val) => [flag, val])
       } else {
@@ -49,15 +49,15 @@ export const handler = async ({
   )
 
   // All the other params, apart from sides
-  const jestFilterArgs = [
+  const vitestFilterArgs = [
     ...filterParams.filter(
       (filterString) => !project.sides().includes(filterString),
     ),
   ]
 
   const vitestArgs = [
-    ...jestFilterArgs,
-    ...forwardJestFlags,
+    ...vitestFilterArgs,
+    ...forwardVitestFlags,
     '--passWithNoTests',
   ].filter((flagOrValue) => flagOrValue !== null) // Filter out nulls, not booleans because user may have passed a --something false flag
 
