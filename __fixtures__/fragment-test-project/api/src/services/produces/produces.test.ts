@@ -47,9 +47,7 @@ describe('produces', () => {
   })
 
   scenario('updates a produce', async (scenario: StandardScenario) => {
-    const original = (await produce({
-      id: scenario.produce.one.id,
-    })) as Produce
+    const original = (await produce({ id: scenario.produce.one.id })) as Produce
     const result = await updateProduce({
       id: original.id,
       input: { name: 'String9726252' },

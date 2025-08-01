@@ -48,9 +48,7 @@ describe('stalls', () => {
   })
 
   scenario('deletes a stall', async (scenario: StandardScenario) => {
-    const original = (await deleteStall({
-      id: scenario.stall.one.id,
-    })) as Stall
+    const original = (await deleteStall({ id: scenario.stall.one.id })) as Stall
     const result = await stall({ id: original.id })
 
     expect(result).toEqual(null)

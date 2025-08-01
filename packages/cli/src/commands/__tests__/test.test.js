@@ -28,9 +28,6 @@ afterEach(() => {
 test('Runs tests for all available sides if no filter passed', async () => {
   await handler({})
 
-  console.log('execa', execa)
-  console.log('execa.mock.results', execa.mock.results)
-
   expect(execa.mock.results[0].value.cmd).toBe('yarn vitest')
   expect(execa.mock.results[0].value.params).toContain('web')
   expect(execa.mock.results[0].value.params).toContain('api')
