@@ -4,7 +4,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { beforeEach, it, describe, vi, beforeAll } from 'vitest'
+import { afterAll, beforeEach, it, describe, vi, beforeAll } from 'vitest'
 
 import { getPaths } from '@cedarjs/project-config'
 import { defineScenario } from '@cedarjs/testing/api'
