@@ -226,8 +226,10 @@ export const handler = async ({ force, install }) => {
                 'content: []',
                 "content: [join(__dirname, '../src/**/*.{js,jsx,ts,tsx}')]",
               )
-              // `tailwindcss init` will generate ESM syntax, even though the
-              // config file is .cjs. So we change it back to CJS syntax.
+              // `tailwindcss init` will generate ESM syntax when it detects
+              // `"type": "module"` in package.json, even though the config
+              // file is .cjs. So we change it back to CJS syntax after it's
+              // been generated.
               .replace('export default {', 'module.exports = {')
           fs.writeFileSync(tailwindConfigPath, newTailwindConfig)
         },
