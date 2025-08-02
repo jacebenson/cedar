@@ -21,15 +21,8 @@ import { importStatementPath, getPaths } from '@cedarjs/project-config'
  * // services.b = import('src/services/b.ts')
  * // services.nested_c = import('src/services/nested/c.js')
  * ```
- *
- * @param options Configuration options for the plugin
- * @param options.projectIsEsm Whether the project uses ESM format (adds .js extensions)
  */
-export function cedarImportDirPlugin(
-  options: { projectIsEsm?: boolean } = {},
-): Plugin {
-  const { projectIsEsm = false } = options
-
+export function cedarImportDirPlugin(): Plugin {
   const createSpan = (): swc.Span => ({
     start: 0,
     end: 0,
@@ -154,10 +147,6 @@ export function cedarImportDirPlugin(
               const namespaceImportName = `${importName}_${filePathVarName}`
 
               // Create namespace import: import * as importName_filePathVarName from 'filepath'
-              const finalImportPath = projectIsEsm
-                ? `${filePathWithoutExtension}.js`
-                : filePathWithoutExtension
-
               newBody.push({
                 type: 'ImportDeclaration',
                 span: createSpan(),
@@ -168,7 +157,7 @@ export function cedarImportDirPlugin(
                     local: createIdentifier(namespaceImportName, ctxt),
                   },
                 ],
-                source: createStringLiteral(finalImportPath),
+                source: createStringLiteral(filePathWithoutExtension),
                 typeOnly: false,
               })
 
