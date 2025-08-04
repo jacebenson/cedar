@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+
 import { getInput } from '@actions/core'
 import { exec, getExecOutput } from '@actions/exec'
 import github from '@actions/github'
