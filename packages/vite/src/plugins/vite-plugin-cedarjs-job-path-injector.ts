@@ -1,11 +1,89 @@
 import path from 'node:path'
 
-import * as swc from '@swc/core'
+import type * as ESTree from 'estree'
+import oxc from 'oxc-parser'
 import type { Plugin } from 'vite'
 
 import { getPaths } from '@cedarjs/project-config'
 
+// Helper function to safely get child nodes from an AST node
+function getChildNodes(node: ESTree.Node): unknown[] {
+  const children: unknown[] = []
+
+  for (const key in node) {
+    // Skip metadata properties that aren't part of the AST structure
+    if (
+      key === 'parent' ||
+      key === 'leadingComments' ||
+      key === 'trailingComments' ||
+      key === 'range' ||
+      key === 'loc' ||
+      key === 'type'
+    ) {
+      continue
+    }
+
+    // ESTree.Node types don't have index signatures, but we need to dynamically
+    // access properties to traverse the AST. Converting to unknown first, then to
+    // Record<string, unknown> is the safest way to access dynamic properties.
+    const child = (node as unknown as Record<string, unknown>)[key]
+    if (Array.isArray(child)) {
+      children.push(...child)
+    } else if (child && typeof child === 'object') {
+      children.push(child)
+    }
+  }
+
+  return children
+}
+
 export function cedarjsJobPathInjectorPlugin(): Plugin {
+  const isExportDeclaration = (
+    node: ESTree.Node,
+  ): node is ESTree.ExportNamedDeclaration => {
+    return node.type === 'ExportNamedDeclaration'
+  }
+
+  const isVariableDeclaration = (
+    node: ESTree.Declaration | null | undefined,
+  ): node is ESTree.VariableDeclaration => {
+    return node?.type === 'VariableDeclaration'
+  }
+
+  const isVariableDeclarator = (
+    node: ESTree.VariableDeclarator,
+  ): node is ESTree.VariableDeclarator => {
+    return node.type === 'VariableDeclarator'
+  }
+
+  const isCallExpression = (
+    node: ESTree.Expression | null | undefined,
+  ): node is ESTree.CallExpression => {
+    return node?.type === 'CallExpression'
+  }
+
+  const isMemberExpression = (
+    callee: ESTree.Expression | ESTree.Super,
+  ): callee is ESTree.MemberExpression => {
+    return callee.type === 'MemberExpression'
+  }
+
+  const isIdentifier = (node: ESTree.Node): node is ESTree.Identifier => {
+    return node.type === 'Identifier'
+  }
+
+  const isObjectExpression = (
+    expr: ESTree.Expression | ESTree.SpreadElement | undefined,
+  ): expr is ESTree.ObjectExpression => {
+    return expr?.type === 'ObjectExpression'
+  }
+
+  const isProperty = (
+    prop: ESTree.Property | ESTree.SpreadElement,
+  ): prop is ESTree.Property => {
+    return prop.type === 'Property'
+  }
+
   return {
     name: 'cedarjs-job-path-injector',
     transform(code, id) {
@@ -14,16 +92,26 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
         return null
       }
 
-      const isTypescript = id.endsWith('.ts') || id.endsWith('.tsx')
+      let ast: ESTree.Program
 
-      let ast
       try {
-        ast = swc.parseSync(code, {
-          target: 'es2022',
-          syntax: isTypescript ? 'typescript' : 'ecmascript',
-          tsx: id.endsWith('.tsx'),
-          jsx: id.endsWith('.jsx'),
+        const result = oxc.parseSync(id, code, {
+          range: true,
+          sourceType: 'module',
         })
+
+        // Check for parsing errors
+        if (result.errors && result.errors.length > 0) {
+          console.warn('Failed to parse file:', id)
+          console.warn('Parsing errors:', result.errors)
+          // If we can't parse, just return the original code
+          return null
+        }
+
+        // OXC parser returns an AST that's compatible with ESTree, but TypeScript
+        // doesn't recognize the structural compatibility. This cast is safe because
+        // both follow the ESTree specification.
+        ast = result.program as ESTree.Program
       } catch (error) {
         console.warn('Failed to parse file:', id)
         console.warn(error)
@@ -41,40 +129,36 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
       }[] = []
 
       // Traverse the AST to find createJob calls
-      function traverse(node: any) {
+      function traverse(node: ESTree.Node) {
         if (!node || typeof node !== 'object') {
           return
         }
 
         // Look for export declarations
-        if (node.type === 'ExportDeclaration' && node.declaration) {
+        if (isExportDeclaration(node) && node.declaration) {
           const declaration = node.declaration
 
           // Check if it's a variable declaration
-          if (declaration.type === 'VariableDeclaration') {
+          if (isVariableDeclaration(declaration)) {
             const declarator = declaration.declarations[0]
 
-            if (declarator && declarator.type === 'VariableDeclarator') {
+            if (declarator && isVariableDeclarator(declarator)) {
               const init = declarator.init
 
               // Check if it's a call expression
-              if (init && init.type === 'CallExpression') {
+              if (isCallExpression(init)) {
                 const callee = init.callee
 
                 // Check if it's a member expression calling createJob
-                if (callee && callee.type === 'MemberExpression') {
+                if (isMemberExpression(callee)) {
                   const property = callee.property
 
-                  if (
-                    property &&
-                    property.type === 'Identifier' &&
-                    property.value === 'createJob'
-                  ) {
+                  if (isIdentifier(property) && property.name === 'createJob') {
                     // We found a createJob call, let's inject the path and name
                     const variableId = declarator.id
 
-                    if (variableId && variableId.type === 'Identifier') {
-                      const importName = variableId.value
+                    if (isIdentifier(variableId)) {
+                      const importName = variableId.name
                       const importPath = path.relative(paths.api.jobs, id)
                       const importPathWithoutExtension = importPath.replace(
                         /\.[^/.]+$/,
@@ -84,25 +168,33 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
                       // Get the first argument (should be an object)
                       const firstArg = init.arguments[0]
 
-                      if (firstArg?.expression?.type === 'ObjectExpression') {
+                      if (isObjectExpression(firstArg)) {
                         // Find the end of the object properties to insert our new properties
-                        const objectExpr = firstArg.expression
+                        const objectExpr = firstArg
                         const properties = objectExpr.properties
                         let insertPosition: number
 
                         if (properties.length > 0) {
                           // Insert after the last property
                           const lastProperty = properties[properties.length - 1]
-                          // SWC properties don't have direct span, calculate from key and value
-                          if (lastProperty.type === 'KeyValueProperty') {
-                            insertPosition = lastProperty.value.span.end
-                          } else {
+
+                          if (isProperty(lastProperty) && lastProperty.range) {
+                            insertPosition = lastProperty.range[1]
+                          } else if (objectExpr.range) {
                             // Fallback: use the object's end minus 1 (before closing brace)
-                            insertPosition = objectExpr.span.end - 1
+                            insertPosition = objectExpr.range[1] - 1
+                          } else {
+                            // No range information, skip this modification
+                            return
                           }
                         } else {
                           // Empty object, insert after the opening brace
-                          insertPosition = objectExpr.span.start + 1
+                          if (objectExpr.range) {
+                            insertPosition = objectExpr.range[0] + 1
+                          } else {
+                            // No range information, skip this modification
+                            return
+                          }
                         }
 
                         // Build the properties to insert
@@ -133,23 +225,12 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
         }
 
         // Recursively traverse child nodes
-        for (const key in node) {
-          if (
-            key === 'parent' ||
-            key === 'leadingComments' ||
-            key === 'trailingComments' ||
-            key === 'span'
-          ) {
-            continue
+        const childNodes = getChildNodes(node)
+        childNodes.forEach((child) => {
+          if (child && typeof child === 'object' && 'type' in child) {
+            traverse(child as ESTree.Node)
           }
-
-          const child = node[key]
-          if (Array.isArray(child)) {
-            child.forEach(traverse)
-          } else if (child && typeof child === 'object') {
-            traverse(child)
-          }
-        }
+        })
       }
 
       traverse(ast)

@@ -1,6 +1,8 @@
 import path from 'node:path'
 
-import * as swc from '@swc/core'
+import { parse } from 'acorn'
+import { generate } from 'escodegen'
+import type * as ESTree from 'estree'
 import fg from 'fast-glob'
 import type { Plugin } from 'vite'
 
@@ -23,30 +25,86 @@ import { importStatementPath, getPaths } from '@cedarjs/project-config'
  * ```
  */
 export function cedarImportDirPlugin(): Plugin {
-  const createSpan = (): swc.Span => ({
-    start: 0,
-    end: 0,
-    // ctxt is not actually used, I just have to add it because of broken swc
-    // types, see https://github.com/Menci/vite-plugin-top-level-await/issues/52
-    ctxt: 0,
-  })
-
-  const createIdentifier = (value: string, ctxt: number): swc.Identifier => ({
+  const createIdentifier = (name: string): ESTree.Identifier => ({
     type: 'Identifier',
-    span: createSpan(),
-    // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
-    ctxt,
-    value,
-    optional: false,
-    typeAnnotation: null,
+    name,
   })
 
-  const createStringLiteral = (value: string): swc.StringLiteral => ({
-    type: 'StringLiteral',
-    span: createSpan(),
+  const createStringLiteral = (value: string): ESTree.Literal => ({
+    type: 'Literal',
     value,
     raw: `'${value}'`,
   })
+
+  const createVariableDeclaration = (
+    importName: string,
+  ): ESTree.VariableDeclaration => ({
+    type: 'VariableDeclaration',
+    kind: 'let',
+    declarations: [
+      {
+        type: 'VariableDeclarator',
+        id: createIdentifier(importName),
+        init: {
+          type: 'ObjectExpression',
+          properties: [],
+        },
+      },
+    ],
+  })
+
+  const createImportDeclaration = (
+    namespaceImportName: string,
+    fileImportPath: string,
+  ): ESTree.ImportDeclaration => ({
+    type: 'ImportDeclaration',
+    specifiers: [
+      {
+        type: 'ImportNamespaceSpecifier',
+        local: createIdentifier(namespaceImportName),
+      },
+    ],
+    source: createStringLiteral(fileImportPath),
+    attributes: [],
+  })
+
+  const createExpressionStatement = (
+    importName: string,
+    filePathVarName: string,
+    namespaceImportName: string,
+  ): ESTree.ExpressionStatement => ({
+    type: 'ExpressionStatement',
+    expression: {
+      type: 'AssignmentExpression',
+      operator: '=',
+      left: {
+        type: 'MemberExpression',
+        object: createIdentifier(importName),
+        property: createIdentifier(filePathVarName),
+        computed: false,
+        optional: false,
+      },
+      right: createIdentifier(namespaceImportName),
+    },
+  })
+
+  const isImportDeclaration = (
+    node: ESTree.Statement | ESTree.ModuleDeclaration,
+  ): node is ESTree.ImportDeclaration => {
+    return node.type === 'ImportDeclaration'
+  }
+
+  const isStringLiteral = (node: ESTree.Node): node is ESTree.Literal => {
+    return node.type === 'Literal' && typeof node.value === 'string'
+  }
+
+  const hasGlobPattern = (importDecl: ESTree.ImportDeclaration): boolean => {
+    return (
+      isStringLiteral(importDecl.source) &&
+      typeof importDecl.source.value === 'string' &&
+      importDecl.source.value.includes('/**/')
+    )
+  }
 
   return {
     name: 'vite-plugin-cedar-import-dir',
@@ -57,29 +115,34 @@ export function cedarImportDirPlugin(): Plugin {
         return null
       }
 
-      const ext = path.extname(id)
-      const ast = await swc.parse(code, {
-        syntax: ext === '.ts' || ext === '.tsx' ? 'typescript' : 'ecmascript',
-        tsx: ext === '.tsx',
-      })
+      let ast: ESTree.Program
+
+      try {
+        const parsed = parse(code, {
+          ecmaVersion: 'latest',
+          sourceType: 'module',
+          locations: false,
+        })
+
+        // Acorn produces ESTree-compatible AST nodes, but TypeScript types
+        // have minor differences. This assertion is safe because both follow
+        // the ESTree specification for AST structure.
+        ast = parsed as ESTree.Program
+      } catch (error) {
+        console.warn(`Failed to parse file: ${id}`, error)
+        return null
+      }
 
       let hasTransformations = false
-      const newBody: swc.ModuleItem[] = []
-
-      // Extract ctxt from the first item in the AST for consistent context
-      // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
-      const ctxt = ast.body.length > 0 ? ast.body[0].ctxt || 0 : 0
+      const newBody: (ESTree.Statement | ESTree.ModuleDeclaration)[] = []
 
       for (const item of ast.body) {
-        if (
-          item.type === 'ImportDeclaration' &&
-          item.source.value.includes('/**/')
-        ) {
+        if (isImportDeclaration(item) && hasGlobPattern(item)) {
           hasTransformations = true
 
           // Get the import name from the default import specifier
           const defaultSpecifier = item.specifiers.find(
-            (spec): spec is swc.ImportDefaultSpecifier =>
+            (spec): spec is ESTree.ImportDefaultSpecifier =>
               spec.type === 'ImportDefaultSpecifier',
           )
 
@@ -89,8 +152,16 @@ export function cedarImportDirPlugin(): Plugin {
             continue
           }
 
-          const importName = defaultSpecifier.local.value
-          const importPath = item.source.value
+          const importName = defaultSpecifier.local.name
+          const source = item.source
+
+          if (!isStringLiteral(source) || typeof source.value !== 'string') {
+            // This shouldn't happen due to hasGlobPattern check, but for type safety
+            newBody.push(item)
+            continue
+          }
+
+          const importPath = source.value
 
           const importGlob = importStatementPath(importPath)
           const cwd = importGlob.startsWith('src/')
@@ -117,27 +188,7 @@ export function cedarImportDirPlugin(): Plugin {
             }
 
             // Create variable declaration: let importName = {}
-            newBody.push({
-              type: 'VariableDeclaration',
-              span: createSpan(),
-              // @ts-expect-error - See https://github.com/Menci/vite-plugin-top-level-await/issues/52
-              ctxt,
-              kind: 'let',
-              declare: false,
-              declarations: [
-                {
-                  type: 'VariableDeclarator',
-                  span: createSpan(),
-                  id: createIdentifier(importName, ctxt),
-                  init: {
-                    type: 'ObjectExpression',
-                    span: createSpan(),
-                    properties: [],
-                  },
-                  definite: false,
-                },
-              ],
-            })
+            newBody.push(createVariableDeclaration(importName))
 
             // Process each matched file
             for (const filePath of dirFiles) {
@@ -149,37 +200,18 @@ export function cedarImportDirPlugin(): Plugin {
               // Create namespace import: import * as importName_filePathVarName from 'fileImportPath'
               // I'm generating extensionless imports here and let the rest of
               // the plugin pipeline handle the extension.
-              newBody.push({
-                type: 'ImportDeclaration',
-                span: createSpan(),
-                specifiers: [
-                  {
-                    type: 'ImportNamespaceSpecifier',
-                    span: createSpan(),
-                    local: createIdentifier(namespaceImportName, ctxt),
-                  },
-                ],
-                source: createStringLiteral(fileImportPath),
-                typeOnly: false,
-              })
+              newBody.push(
+                createImportDeclaration(namespaceImportName, fileImportPath),
+              )
 
               // Create assignment: importName.filePathVarName = importName_filePathVarName
-              newBody.push({
-                type: 'ExpressionStatement',
-                span: createSpan(),
-                expression: {
-                  type: 'AssignmentExpression',
-                  span: createSpan(),
-                  operator: '=',
-                  left: {
-                    type: 'MemberExpression',
-                    span: createSpan(),
-                    object: createIdentifier(importName, ctxt),
-                    property: createIdentifier(filePathVarName, ctxt),
-                  },
-                  right: createIdentifier(namespaceImportName, ctxt),
-                },
-              })
+              newBody.push(
+                createExpressionStatement(
+                  importName,
+                  filePathVarName,
+                  namespaceImportName,
+                ),
+              )
             }
           } catch (error) {
             // If there's an error with glob matching, keep the original import
@@ -194,17 +226,23 @@ export function cedarImportDirPlugin(): Plugin {
 
       // Only return transformed code if we actually made changes
       if (hasTransformations) {
-        const transformedAst: swc.Module = {
-          ...ast,
+        const transformedAst: ESTree.Program = {
+          type: 'Program',
+          sourceType: 'module',
           body: newBody,
         }
 
-        const output = await swc.print(transformedAst, {
-          minify: false,
+        const output = generate(transformedAst, {
+          format: {
+            indent: {
+              style: '  ',
+            },
+            quotes: 'single',
+          },
         })
 
         return {
-          code: output.code,
+          code: output,
           map: null, // For simplicity, not generating source maps
         }
       }
