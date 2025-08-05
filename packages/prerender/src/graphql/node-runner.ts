@@ -26,8 +26,8 @@ async function createViteServer(customConfig: UserConfig = {}) {
     resolve: {
       alias: [
         {
-          find: /^src\//,
-          replacement: getPaths().api.src + '/',
+          find: /^src\/(.*?)(\.([jt]sx?))?$/,
+          replacement: getPaths().api.src + '/$1',
         },
       ],
     },
@@ -56,7 +56,7 @@ async function createViteServer(customConfig: UserConfig = {}) {
 export class NodeRunner {
   private viteServer?: ViteDevServer = undefined
   private runner?: ViteNodeRunner = undefined
-  private customViteConfig: UserConfig
+  private readonly customViteConfig: UserConfig
 
   constructor(customViteConfig: UserConfig = {}) {
     this.customViteConfig = customViteConfig
