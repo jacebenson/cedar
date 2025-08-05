@@ -1,10 +1,10 @@
-import { createServer, version as viteVersion } from 'vite'
-import type { ViteDevServer } from 'vite'
+import { createServer, version as viteVersion, mergeConfig } from 'vite'
+import type { ViteDevServer, UserConfig } from 'vite'
 import { ViteNodeRunner } from 'vite-node/client'
 import { ViteNodeServer } from 'vite-node/server'
 import { installSourcemapsSupport } from 'vite-node/source-map'
 
-import { getPaths, projectIsEsm } from '@cedarjs/project-config'
+import { getPaths } from '@cedarjs/project-config'
 import {
   cedarCellTransform,
   cedarjsDirectoryNamedImportPlugin,
@@ -15,8 +15,8 @@ import {
 import { autoImportsPlugin } from './vite-plugin-auto-import.js'
 import { cedarImportDirPlugin } from './vite-plugin-cedar-import-dir.js'
 
-async function createViteServer() {
-  const server = await createServer({
+async function createViteServer(customConfig: UserConfig = {}) {
+  const defaultConfig: UserConfig = {
     mode: 'production',
     optimizeDeps: {
       // This is recommended in the vite-node readme
@@ -26,20 +26,24 @@ async function createViteServer() {
     resolve: {
       alias: [
         {
-          find: /^src\//,
-          replacement: getPaths().api.src + '/',
+          find: /^src\/(.*?)(\.([jt]sx?))?$/,
+          replacement: getPaths().api.src + '/$1',
         },
       ],
     },
     plugins: [
-      cedarImportDirPlugin({ projectIsEsm: projectIsEsm() }),
+      cedarImportDirPlugin(),
       autoImportsPlugin(),
       cedarjsDirectoryNamedImportPlugin(),
       cedarCellTransform(),
       cedarjsJobPathInjectorPlugin(),
       cedarSwapApolloProvider(),
     ],
-  })
+  }
+
+  const mergedConfig = mergeConfig(defaultConfig, customConfig)
+
+  const server = await createServer(mergedConfig)
 
   // For old Vite, this is needed to initialize the plugins.
   if (Number(viteVersion.split('.')[0]) < 6) {
@@ -52,9 +56,14 @@ async function createViteServer() {
 export class NodeRunner {
   private viteServer?: ViteDevServer = undefined
   private runner?: ViteNodeRunner = undefined
+  private readonly customViteConfig: UserConfig
+
+  constructor(customViteConfig: UserConfig = {}) {
+    this.customViteConfig = customViteConfig
+  }
 
   async init() {
-    this.viteServer = await createViteServer()
+    this.viteServer = await createViteServer(this.customViteConfig)
     const nodeServer = new ViteNodeServer(this.viteServer, {
       transformMode: {
         ssr: [/.*/],
