@@ -50,12 +50,6 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
     return node?.type === 'VariableDeclaration'
   }
 
-  const isVariableDeclarator = (
-    node: ESTree.VariableDeclarator,
-  ): node is ESTree.VariableDeclarator => {
-    return node.type === 'VariableDeclarator'
-  }
-
   const isCallExpression = (
     node: ESTree.Expression | null | undefined,
   ): node is ESTree.CallExpression => {
@@ -135,88 +129,81 @@ export function cedarjsJobPathInjectorPlugin(): Plugin {
         }
 
         // Look for export declarations
-        if (isExportDeclaration(node) && node.declaration) {
-          const declaration = node.declaration
+        if (
+          isExportDeclaration(node) &&
+          node.declaration &&
+          isVariableDeclaration(node.declaration)
+        ) {
+          const declarator = node.declaration.declarations[0]
 
-          // Check if it's a variable declaration
-          if (isVariableDeclaration(declaration)) {
-            const declarator = declaration.declarations[0]
+          if (declarator) {
+            const init = declarator.init
 
-            if (declarator && isVariableDeclarator(declarator)) {
-              const init = declarator.init
+            if (isCallExpression(init) && isMemberExpression(init.callee)) {
+              const property = init.callee.property
 
-              // Check if it's a call expression
-              if (isCallExpression(init)) {
-                const callee = init.callee
+              if (isIdentifier(property) && property.name === 'createJob') {
+                // We found a createJob call, let's inject the path and name
+                const variableId = declarator.id
 
-                // Check if it's a member expression calling createJob
-                if (isMemberExpression(callee)) {
-                  const property = callee.property
+                if (isIdentifier(variableId)) {
+                  const importName = variableId.name
+                  const importPath = path.relative(paths.api.jobs, id)
+                  const importPathWithoutExtension = importPath.replace(
+                    /\.[^/.]+$/,
+                    '',
+                  )
 
-                  if (isIdentifier(property) && property.name === 'createJob') {
-                    // We found a createJob call, let's inject the path and name
-                    const variableId = declarator.id
+                  // Get the first argument (should be an object)
+                  const firstArg = init.arguments[0]
 
-                    if (isIdentifier(variableId)) {
-                      const importName = variableId.name
-                      const importPath = path.relative(paths.api.jobs, id)
-                      const importPathWithoutExtension = importPath.replace(
-                        /\.[^/.]+$/,
-                        '',
-                      )
+                  if (isObjectExpression(firstArg)) {
+                    // Find the end of the object properties to insert our new properties
+                    const objectExpr = firstArg
+                    const properties = objectExpr.properties
+                    let insertPosition: number
 
-                      // Get the first argument (should be an object)
-                      const firstArg = init.arguments[0]
+                    if (properties.length > 0) {
+                      // Insert after the last property
+                      const lastProperty = properties[properties.length - 1]
 
-                      if (isObjectExpression(firstArg)) {
-                        // Find the end of the object properties to insert our new properties
-                        const objectExpr = firstArg
-                        const properties = objectExpr.properties
-                        let insertPosition: number
-
-                        if (properties.length > 0) {
-                          // Insert after the last property
-                          const lastProperty = properties[properties.length - 1]
-
-                          if (isProperty(lastProperty) && lastProperty.range) {
-                            insertPosition = lastProperty.range[1]
-                          } else if (objectExpr.range) {
-                            // Fallback: use the object's end minus 1 (before closing brace)
-                            insertPosition = objectExpr.range[1] - 1
-                          } else {
-                            // No range information, skip this modification
-                            return
-                          }
-                        } else {
-                          // Empty object, insert after the opening brace
-                          if (objectExpr.range) {
-                            insertPosition = objectExpr.range[0] + 1
-                          } else {
-                            // No range information, skip this modification
-                            return
-                          }
-                        }
-
-                        // Build the properties to insert
-                        const pathProperty = `path: ${JSON.stringify(importPathWithoutExtension)}`
-                        const nameProperty = `name: ${JSON.stringify(importName)}`
-
-                        let insertText = ''
-                        if (properties.length > 0) {
-                          insertText = `, ${pathProperty}, ${nameProperty}`
-                        } else {
-                          insertText = `${pathProperty}, ${nameProperty}`
-                        }
-
-                        modifications.push({
-                          start: insertPosition,
-                          end: insertPosition,
-                          replacement: insertText,
-                        })
-
-                        hasModifications = true
+                      if (isProperty(lastProperty) && lastProperty.range) {
+                        insertPosition = lastProperty.range[1]
+                      } else if (objectExpr.range) {
+                        // Fallback: use the object's end minus 1 (before closing brace)
+                        insertPosition = objectExpr.range[1] - 1
+                      } else {
+                        // No range information, skip this modification
+                        return
+                      }
+                    } else {
+                      // Empty object, insert after the opening brace
+                      if (objectExpr.range) {
+                        insertPosition = objectExpr.range[0] + 1
+                      } else {
+                        // No range information, skip this modification
+                        return
                       }
                     }
+
+                    // Build the properties to insert
+                    const pathProperty = `path: ${JSON.stringify(importPathWithoutExtension)}`
+                    const nameProperty = `name: ${JSON.stringify(importName)}`
+
+                    let insertText = ''
+                    if (properties.length > 0) {
+                      insertText = `, ${pathProperty}, ${nameProperty}`
+                    } else {
+                      insertText = `${pathProperty}, ${nameProperty}`
+                    }
+
+                    modifications.push({
+                      start: insertPosition,
+                      end: insertPosition,
+                      replacement: insertText,
+                    })
+
+                    hasModifications = true
                   }
                 }
               }
