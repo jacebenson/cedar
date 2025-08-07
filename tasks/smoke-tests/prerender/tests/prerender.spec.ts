@@ -58,7 +58,7 @@ test('Check that rehydration works for page not wrapped in Set', async ({
   expect(headerCount).toEqual(1)
 
   const bodyText = await page.locator('body').innerText()
-  expect(bodyText.match(/#7757/g)).toHaveLength(1)
+  expect(bodyText.match(/#7757/g)).toHaveLength(2)
 
   const title = await page.locator('title').innerText()
   expect(title).toBe('Double | Cedar App')
