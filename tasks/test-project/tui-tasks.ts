@@ -674,15 +674,13 @@ export async function apiTasks(
 
             export async function routeParameters() {
               return (await db.post.findMany({ take: 7 })).map((post) => ({ id: post.id }))
-            }
-            `.replaceAll(/ {6}/g, '')
+            }`
           const blogPostRouteHooksPath = `${OUTPUT_PATH}/web/src/pages/BlogPostPage/BlogPostPage.routeHooks.ts`
           fs.writeFileSync(blogPostRouteHooksPath, blogPostRouteHooks)
 
           const waterfallRouteHooks = `export async function routeParameters() {
               return [{ id: 2 }]
-            }
-            `.replaceAll(/ {6}/g, '')
+            }`
           const waterfallRouteHooksPath = `${OUTPUT_PATH}/web/src/pages/WaterfallPage/WaterfallPage.routeHooks.ts`
           fs.writeFileSync(waterfallRouteHooksPath, waterfallRouteHooks)
         },
