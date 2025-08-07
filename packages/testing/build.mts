@@ -10,24 +10,6 @@ import {
 await buildEsm()
 await generateTypesEsm()
 
-// // Build Jest config files with glob pattern for CommonJS
-// await build({
-//   buildOptions: {
-//     outdir: 'dist/cjs/config/jest',
-//     outbase: 'config/jest',
-//     platform: 'node',
-//     target: ['node20'],
-//     format: 'cjs',
-//     logLevel: 'info',
-//     metafile: true,
-//   },
-//   entryPointOptions: {
-//     patterns: ['./config/jest/**/*.ts'],
-//     ignore: ['**/__tests__/**'],
-//   },
-//   metafileName: 'meta.jest-config.json',
-// })
-
 await buildCjs()
 await generateTypesCjs()
 await insertCommonJsPackageJson({
