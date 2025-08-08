@@ -99,6 +99,8 @@ describe('NodeRunner', () => {
     nodeRunner = new NodeRunner({
       resolve: {
         alias: [
+          // This isn't standard config. We do this to mock context and web in
+          // tests
           { find: '@cedarjs/context', replacement: mockContextPath },
           { find: /^@cedarjs\/web$/, replacement: mockWebPath },
         ],
