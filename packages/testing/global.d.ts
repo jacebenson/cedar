@@ -13,20 +13,20 @@ import type {
 } from './src/web/mockRequests.ts'
 
 declare global {
-  // var scenario: (
-  //   ...args:
-  //     | [
-  //         scenarioName: string,
-  //         testName: string,
-  //         testFunc: (scenarioData: any) => any,
-  //       ]
-  //     | [testName: string, testFunc: (scenarioData: any) => any]
-  // ) => void
-  // var describeScenario: (
-  //   ...args:
-  //     | [string, string, (getScenario: () => any) => any]
-  //     | [string, (getScenario: () => any) => any]
-  // ) => ReturnType<SuiteAPI>
+  var scenario: (
+    ...args:
+      | [
+          scenarioName: string,
+          testName: string,
+          testFunc: (scenarioData: any) => any,
+        ]
+      | [testName: string, testFunc: (scenarioData: any) => any]
+  ) => void
+  var describeScenario: (
+    ...args:
+      | [string, string, (getScenario: () => any) => any]
+      | [string, (getScenario: () => any) => any]
+  ) => ReturnType<SuiteAPI>
   var describe: SuiteAPI
   var it: TestAPI
   var testPath: string
