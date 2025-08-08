@@ -5,7 +5,7 @@ import type { Environment } from 'vitest/environments'
 
 import { getPaths } from '@cedarjs/project-config'
 
-import { getDefaultDb, checkAndReplaceDirectUrl } from './directUrlHelpers.js'
+import { getDefaultDb, checkAndReplaceDirectUrl } from '../directUrlHelpers.js'
 
 const CedarApiVitestEnvironment: Environment = {
   name: 'cedar-api',
