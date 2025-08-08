@@ -5,9 +5,11 @@ import { mergeConfig } from 'vite'
 import type { ConfigEnv, ViteUserConfig } from 'vitest/config'
 
 import type { Config, Paths } from '@cedarjs/project-config'
-import { getConfig, getPaths } from '@cedarjs/project-config'
-
-import { getEnvVarDefinitions } from './envVarDefinitions.js'
+import {
+  getConfig,
+  getEnvVarDefinitions,
+  getPaths,
+} from '@cedarjs/project-config'
 
 /**
  * This function will merge in the default Redwood Vite config passed into the

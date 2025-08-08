@@ -1,12 +1,3 @@
-// This file is copy/pasted from @cedarjs/vite to avoid circular dependencies.
-// I'd much, much, rather have a single source of truth for this, so I want to
-// try to come up with a better solution that ideally doesn't involve creating
-// yet another new package just for this single file.
-// Maybe I can do something fun with `import.meta.resolve` to make this a pure
-// runtime circular dependency, and not a build time one. That would help.
-//
-// TODO: ⛔️ Try putting this file in @cedarjs/project-config. See if that
-// works.
 import path from 'node:path'
 
 import { getConfig, getPaths } from '@cedarjs/project-config'

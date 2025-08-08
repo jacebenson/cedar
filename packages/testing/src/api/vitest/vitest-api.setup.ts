@@ -1,6 +1,3 @@
-// TODO: Remove this
-/* eslint @typescript-eslint/no-explicit-any: 0 */
-
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -379,6 +376,7 @@ function isErrorWithCode(e: unknown): e is { code: string } {
 }
 
 // These types are still in `global.d.ts` to work with Jest
+//
 // interface GlobalScenario {
 //   (...args: [string, string, TestFunc] | [string, TestFunc]): ReturnType<It>
 //   only?: (
