@@ -8,8 +8,10 @@ import { NodeRunner } from '../node-runner.js'
 
 const mocks = vi.hoisted(() => {
   return {
-    experimental: null as any,
-    graphql: null as any,
+    projectConfig: {
+      experimental: null as any,
+      graphql: null as any,
+    },
   }
 })
 
@@ -46,14 +48,14 @@ vi.mock('@cedarjs/project-config', async () => {
     projectIsEsm: () => true,
     getConfig: () => {
       return {
-        experimental: mocks.experimental
-          ? mocks.experimental
+        experimental: mocks.projectConfig.experimental
+          ? mocks.projectConfig.experimental
           : {
               streamingSsr: {
                 enabled: false,
               },
             },
-        graphql: mocks.graphql,
+        graphql: mocks.projectConfig.graphql,
       }
     },
     resolveFile: (
@@ -108,8 +110,8 @@ describe('NodeRunner', () => {
     if (nodeRunner) {
       await nodeRunner.close()
     }
-    mocks.experimental = null
-    mocks.graphql = null
+    mocks.projectConfig.experimental = null
+    mocks.projectConfig.graphql = null
   })
 
   it('imports ESM module', async () => {
@@ -292,7 +294,7 @@ describe('NodeRunner', () => {
     })
 
     it('uses different gql template function for trusted documents', async () => {
-      mocks.graphql = {
+      mocks.projectConfig.graphql = {
         trustedDocuments: true,
       }
 
@@ -411,7 +413,7 @@ describe('NodeRunner', () => {
     })
 
     it('uses cedarSwapApolloProvider to swap ApolloProvider when streaming is enabled', async () => {
-      mocks.experimental = {
+      mocks.projectConfig.experimental = {
         streamingSsr: {
           enabled: true,
         },

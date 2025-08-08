@@ -288,8 +288,13 @@ const seedScenario = async (
   }
 }
 
+// TODO: ⛔️ Get rid of the expect-errors here
+
+// @ts-expect-error - Just want to see if this works
 global.scenario = buildScenario(global.it, global.testPath)
+// @ts-expect-error - Just want to see if this works
 global.describeScenario = buildDescribeScenario(
+  // @ts-expect-error - Just want to see if this works
   global.describe,
   global.testPath,
 )
