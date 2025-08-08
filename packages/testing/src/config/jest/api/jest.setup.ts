@@ -3,16 +3,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import type { Global as jest } from '@jest/types'
-
-// type TestAPI = jest.It
-// type SuiteAPI = jest.Describe
-
-// declare global {
-//   // eslint-disable-next-line no-var
-//   var defineScenario: (currentUser: Record<string, unknown> | null) => void
-// }
-
 // @NOTE without these imports in the setup file, mockCurrentUser
 // will remain undefined in the user's tests
 import { defineScenario } from '../../../api/scenario.js'
@@ -288,13 +278,8 @@ const seedScenario = async (
   }
 }
 
-// TODO: ⛔️ Get rid of the expect-errors here
-
-// @ts-expect-error - Just want to see if this works
 global.scenario = buildScenario(global.it, global.testPath)
-// @ts-expect-error - Just want to see if this works
 global.describeScenario = buildDescribeScenario(
-  // @ts-expect-error - Just want to see if this works
   global.describe,
   global.testPath,
 )
