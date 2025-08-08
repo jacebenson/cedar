@@ -110,9 +110,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client-react-streaming@npm:0.12.2":
-  version: 0.12.2
-  resolution: "@apollo/client-react-streaming@npm:0.12.2"
+"@apollo/client-react-streaming@npm:0.12.3":
+  version: 0.12.3
+  resolution: "@apollo/client-react-streaming@npm:0.12.3"
   dependencies:
     "@types/react-dom": "npm:^19.0.0"
     "@wry/equality": "npm:^0.5.6"
@@ -122,13 +122,13 @@ __metadata:
     graphql: ^16 || >=17.0.0-alpha.2
     react: ^19
     react-dom: ^19
-  checksum: 10c0/6c9274962a22346378b87b9b236bfa1edadb970c9f6be628698d9b10c52f50415db9003f615386e7c08cd280b1a6d8896c840770342db74a0080e55f314a0cfb
+  checksum: 10c0/e3b6ee935ae70f16bda933def469987783a170984163e923590fae214034492b43d36c07d6a17eb7b43588618192a77dd954a3cac281c30ecbcb5390eb8bcff2
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:3.13.8, @apollo/client@npm:^3.8.0":
-  version: 3.13.8
-  resolution: "@apollo/client@npm:3.13.8"
+"@apollo/client@npm:3.13.9, @apollo/client@npm:^3.8.0":
+  version: 3.13.9
+  resolution: "@apollo/client@npm:3.13.9"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.1.1"
     "@wry/caches": "npm:^1.0.0"
@@ -158,7 +158,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 10c0/0e5032c1ae1dbef72a01f87af06b84bf505d60e71eba7cb9f20f8284778d8ead65fc1b7eacc570eccb8d045577d7194e38401fbfbdf56c197e159ca91ef11755
+  checksum: 10c0/aca33aa1d9971ae0814bd73912c993da83f69d53d9a5e7971e2b8364557821f0447276f507945b80365b1c4a6a541cd3602fa1343dc0d13769bc5a7d81a26461
   languageName: node
   linkType: hard
 
@@ -3350,7 +3350,7 @@ __metadata:
     "@rollup/plugin-commonjs": "npm:28.0.6"
     "@rollup/plugin-node-resolve": "npm:16.0.1"
     "@rollup/plugin-replace": "npm:6.0.2"
-    "@swc/core": "npm:1.13.2"
+    "@swc/core": "npm:1.13.3"
     "@types/mime-types": "npm:2.1.4"
     "@types/react": "npm:^18.2.55"
     "@whatwg-node/fetch": "npm:0.9.21"
@@ -3642,7 +3642,7 @@ __metadata:
     "@cedarjs/testing": "workspace:*"
     "@cedarjs/web": "workspace:*"
     "@hyrious/esbuild-plugin-commonjs": "npm:0.2.6"
-    "@swc/core": "npm:1.13.2"
+    "@swc/core": "npm:1.13.3"
     "@types/busboy": "npm:^1"
     "@types/express": "npm:4"
     "@types/fs-extra": "npm:11.0.4"
@@ -3665,7 +3665,7 @@ __metadata:
     fs-extra: "npm:11.2.0"
     glob: "npm:11.0.3"
     http-proxy-middleware: "npm:3.0.5"
-    isbot: "npm:5.1.28"
+    isbot: "npm:5.1.29"
     memfs: "npm:4.17.2"
     publint: "npm:0.3.12"
     react: "npm:19.0.0-rc-f2df5694-20240916"
@@ -3712,8 +3712,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cedarjs/web@workspace:packages/web"
   dependencies:
-    "@apollo/client": "npm:3.13.8"
-    "@apollo/client-react-streaming": "npm:0.12.2"
+    "@apollo/client": "npm:3.13.9"
+    "@apollo/client-react-streaming": "npm:0.12.3"
     "@arethetypeswrong/cli": "npm:0.18.2"
     "@babel/cli": "npm:7.27.2"
     "@babel/core": "npm:^7.26.10"
@@ -10500,90 +10500,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-arm64@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-darwin-arm64@npm:1.13.2"
+"@swc/core-darwin-arm64@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-darwin-arm64@npm:1.13.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-darwin-x64@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-darwin-x64@npm:1.13.2"
+"@swc/core-darwin-x64@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-darwin-x64@npm:1.13.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm-gnueabihf@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.13.2"
+"@swc/core-linux-arm-gnueabihf@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-linux-arm-gnueabihf@npm:1.13.3"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-gnu@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-linux-arm64-gnu@npm:1.13.2"
+"@swc/core-linux-arm64-gnu@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-linux-arm64-gnu@npm:1.13.3"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-arm64-musl@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-linux-arm64-musl@npm:1.13.2"
+"@swc/core-linux-arm64-musl@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-linux-arm64-musl@npm:1.13.3"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-gnu@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-linux-x64-gnu@npm:1.13.2"
+"@swc/core-linux-x64-gnu@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-linux-x64-gnu@npm:1.13.3"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@swc/core-linux-x64-musl@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-linux-x64-musl@npm:1.13.2"
+"@swc/core-linux-x64-musl@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-linux-x64-musl@npm:1.13.3"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@swc/core-win32-arm64-msvc@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-win32-arm64-msvc@npm:1.13.2"
+"@swc/core-win32-arm64-msvc@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-win32-arm64-msvc@npm:1.13.3"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@swc/core-win32-ia32-msvc@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-win32-ia32-msvc@npm:1.13.2"
+"@swc/core-win32-ia32-msvc@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-win32-ia32-msvc@npm:1.13.3"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@swc/core-win32-x64-msvc@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core-win32-x64-msvc@npm:1.13.2"
+"@swc/core-win32-x64-msvc@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core-win32-x64-msvc@npm:1.13.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@swc/core@npm:1.13.2":
-  version: 1.13.2
-  resolution: "@swc/core@npm:1.13.2"
+"@swc/core@npm:1.13.3":
+  version: 1.13.3
+  resolution: "@swc/core@npm:1.13.3"
   dependencies:
-    "@swc/core-darwin-arm64": "npm:1.13.2"
-    "@swc/core-darwin-x64": "npm:1.13.2"
-    "@swc/core-linux-arm-gnueabihf": "npm:1.13.2"
-    "@swc/core-linux-arm64-gnu": "npm:1.13.2"
-    "@swc/core-linux-arm64-musl": "npm:1.13.2"
-    "@swc/core-linux-x64-gnu": "npm:1.13.2"
-    "@swc/core-linux-x64-musl": "npm:1.13.2"
-    "@swc/core-win32-arm64-msvc": "npm:1.13.2"
-    "@swc/core-win32-ia32-msvc": "npm:1.13.2"
-    "@swc/core-win32-x64-msvc": "npm:1.13.2"
+    "@swc/core-darwin-arm64": "npm:1.13.3"
+    "@swc/core-darwin-x64": "npm:1.13.3"
+    "@swc/core-linux-arm-gnueabihf": "npm:1.13.3"
+    "@swc/core-linux-arm64-gnu": "npm:1.13.3"
+    "@swc/core-linux-arm64-musl": "npm:1.13.3"
+    "@swc/core-linux-x64-gnu": "npm:1.13.3"
+    "@swc/core-linux-x64-musl": "npm:1.13.3"
+    "@swc/core-win32-arm64-msvc": "npm:1.13.3"
+    "@swc/core-win32-ia32-msvc": "npm:1.13.3"
+    "@swc/core-win32-x64-msvc": "npm:1.13.3"
     "@swc/counter": "npm:^0.1.3"
     "@swc/types": "npm:^0.1.23"
   peerDependencies:
@@ -10612,7 +10612,7 @@ __metadata:
   peerDependenciesMeta:
     "@swc/helpers":
       optional: true
-  checksum: 10c0/aa961c45fc4bb7b427bdf3b061eb009da577b4347864c56e22526e9dd27c83b1dfa21b931ce3a2d130b47d8067bf01743a13fa9851eaff32475caf50f97a6388
+  checksum: 10c0/88a04c319082f8ae5e53b7d7a874014600296087cad3e07d0e927088a19ba2e8355cbced7da02476b5f89cc653e26d1e1c44d9f43ef07fb7b74ec4b5f9e95ef6
   languageName: node
   linkType: hard
 
@@ -20307,10 +20307,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isbot@npm:5.1.28":
-  version: 5.1.28
-  resolution: "isbot@npm:5.1.28"
-  checksum: 10c0/1e9417986613e4b493e57e20b813d7e0130c845657ff14a11d39e4bf326056065850bf52773767f2681c0b7b146ba833d4686db16017dfbadd85a206c8396d90
+"isbot@npm:5.1.29":
+  version: 5.1.29
+  resolution: "isbot@npm:5.1.29"
+  checksum: 10c0/a230429cf6de4b551c129aee8a52b65a6f298a440301537072ddfe94e1eeb481d55bbab1a743084d079c23c71e72ebd89a421d6f7e897f9807493a2f4900319d
   languageName: node
   linkType: hard
 
