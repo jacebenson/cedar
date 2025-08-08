@@ -148,48 +148,6 @@ export function getMergedConfig(rwConfig: Config, rwPaths: Paths) {
         // `import.meta.glob`, which we use in one of the files in the package
         noExternal: env.mode === 'test' ? ['@cedarjs/testing'] : [],
       },
-      resolve: {
-        alias:
-          env.mode === 'test'
-            ? [
-                // Mock implementations
-                // {
-                //   find: /^@cedarjs\/router$/,
-                //   replacement: path.join(
-                //     NODE_MODULES_PATH,
-                //     '@cedarjs/testing/dist/web/MockRouter.js',
-                //   ),
-                // },
-                // {
-                //   find: /^@cedarjs\/auth$/,
-                //   replacement: path.join(
-                //     NODE_MODULES_PATH,
-                //     '@cedarjs/auth/dist/index.js',
-                //   ),
-                //   customResolver: (id, importer) => {
-                //     // console.log('getMergedConfig auth customResolver id', id)
-                //     console.log(
-                //       'getMergedConfig auth customResolver importer',
-                //       importer,
-                //     )
-                //     if (importer?.endsWith('mockAuth.js')) {
-                //       console.log('returning id', id)
-                //       return id
-                //     }
-                //     const mockAuthId = path.join(
-                //       NODE_MODULES_PATH,
-                //       '@cedarjs/testing/dist/web/mockAuth.js',
-                //     )
-                //     console.log('returning id', mockAuthId)
-                //     return path.join(
-                //       NODE_MODULES_PATH,
-                //       '@cedarjs/testing/dist/web/mockAuth.js',
-                //     )
-                //   },
-                // },
-              ]
-            : [],
-      },
       test: {
         globals: false,
         environment: 'jsdom',
