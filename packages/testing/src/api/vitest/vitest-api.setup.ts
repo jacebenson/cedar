@@ -378,6 +378,7 @@ function isErrorWithCode(e: unknown): e is { code: string } {
   )
 }
 
+// These types are still in `global.d.ts` to work with Jest
 // interface GlobalScenario {
 //   (...args: [string, string, TestFunc] | [string, TestFunc]): ReturnType<It>
 //   only?: (
