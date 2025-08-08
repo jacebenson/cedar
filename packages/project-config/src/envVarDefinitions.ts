@@ -28,15 +28,7 @@ export function getEnvVarDefinitions() {
     // prefixed with REDWOOD_ENV_
     ...Object.fromEntries(
       rwConfig.web.includeEnvironmentVariables.flatMap((envName) => [
-        // TODO: Figure out if/why we need to disable eslint here, when we
-        // didn't have to before, when this code was in index.ts
-        // Re-enable if possible
-        // eslint-disable-next-line
         [`import.meta.env.${envName}`, JSON.stringify(process.env[envName])],
-        // TODO: Figure out if/why we need to disable eslint here, when we
-        // didn't have to before, when this code was in index.ts
-        // Re-enable if possible
-        // eslint-disable-next-line
         [`process.env.${envName}`, JSON.stringify(process.env[envName])],
       ]),
     ),
