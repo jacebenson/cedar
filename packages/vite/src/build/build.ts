@@ -1,14 +1,4 @@
-import path from 'node:path'
-
-import fse from 'fs-extra'
-
 import { getPaths } from '@cedarjs/project-config'
-
-export const cleanWebBuild = () => {
-  const rwjsPaths = getPaths()
-  fse.removeSync(rwjsPaths.web.dist)
-  fse.removeSync(path.join(rwjsPaths.generated.prebuild, 'web'))
-}
 
 interface BuildOptions {
   verbose?: boolean

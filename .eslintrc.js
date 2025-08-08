@@ -372,6 +372,7 @@ module.exports = {
     {
       files: [
         'packages/project-config/src/envVarDefinitions.ts',
+        'packages/testing/**',
         'packages/vite/src/plugins/vite-plugin-cedar-html-env.ts',
       ],
       rules: {
