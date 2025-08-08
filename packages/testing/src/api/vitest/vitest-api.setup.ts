@@ -378,28 +378,28 @@ function isErrorWithCode(e: unknown): e is { code: string } {
   )
 }
 
-interface GlobalScenario {
-  (...args: [string, string, TestFunc] | [string, TestFunc]): ReturnType<It>
-  only?: (
-    ...args: [string, string, TestFunc] | [string, TestFunc]
-  ) => ReturnType<It>
-}
+// interface GlobalScenario {
+//   (...args: [string, string, TestFunc] | [string, TestFunc]): ReturnType<It>
+//   only?: (
+//     ...args: [string, string, TestFunc] | [string, TestFunc]
+//   ) => ReturnType<It>
+// }
 
-interface DescribeScenario {
-  (
-    ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
-  ): ReturnType<Describe>
-  only?: (
-    ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
-  ) => ReturnType<Describe>
-}
+// interface DescribeScenario {
+//   (
+//     ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
+//   ): ReturnType<Describe>
+//   only?: (
+//     ...args: [string, string, DescribeBlock] | [string, DescribeBlock]
+//   ) => ReturnType<Describe>
+// }
 
-declare global {
-  // eslint-disable-next-line no-var
-  var scenario: GlobalScenario
-  // eslint-disable-next-line no-var
-  var describeScenario: DescribeScenario
-}
+// declare global {
+//   // eslint-disable-next-line no-var
+//   var scenario: GlobalScenario
+//   // eslint-disable-next-line no-var
+//   var describeScenario: DescribeScenario
+// }
 
 globalThis.scenario = buildScenario(it)
 globalThis.scenario.only = buildScenario(it.only)
