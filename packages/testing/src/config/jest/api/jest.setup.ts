@@ -13,16 +13,14 @@ import { defineScenario } from '../../../api/scenario.js'
 // The key is to reduce the amount of imports in this file, because the
 // require.cache is not shared between each test context
 const { apiSrcPath, tearDownCachePath, dbSchemaPath } =
-  globalThis.__RWJS__TEST_IMPORTS
+  global.__RWJS__TEST_IMPORTS
 
-// TODO: Maybe use Maybe use some other type here
 interface ScenarioData {
   [model: string]: {
     [name: string]: any
   }
 }
 
-// TODO: Maybe use Maybe use some other type here
 type ScenarioDefinition = {
   [model: string]: {
     [name: string]: any | ((scenarios: ScenarioData) => any)
@@ -138,8 +136,6 @@ const getProjectDb = async () => {
  * Wraps "it" or "test", to seed and teardown the scenario after each test
  * This one passes scenario data to the test function
  */
-// TODO: Maybe use  (itFunc: TestAPI, testPath: string) =>
-// function buildScenario(itFunc: jest.It, testPath: string) {
 function buildScenario(itFunc: jest.It, testPath: string) {
   const scenarioFunc = (...args: any[]) => {
     let scenarioName: string, testName: string, testFunc: ScenarioTestFunction

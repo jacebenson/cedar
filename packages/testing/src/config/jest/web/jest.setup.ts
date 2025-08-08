@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom'
 import 'whatwg-fetch'
 
-import '@testing-library/jest-dom'
-import 'whatwg-fetch'
-
 import { findCellMocks } from '../../../web/findCellMocks.js'
 import {
   startMSW,
