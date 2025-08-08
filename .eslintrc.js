@@ -371,6 +371,7 @@ module.exports = {
     // Allow computed member access on process.env in NodeJS contexts and tests
     {
       files: [
+        'packages/project-config/src/envVarDefinitions.ts',
         'packages/testing/**',
         'packages/vite/src/plugins/vite-plugin-cedar-html-env.ts',
       ],
