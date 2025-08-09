@@ -1,5 +1,7 @@
 /// <reference types="vite/client" />
 
+// TODO(storybook): Use this for Storybook as well
+
 // We're building this file with esbuild, which doesn't understand the vite-
 // specific `import.meta.glob` feature. So it'll just leave it as is, which is
 // actually exactly what we want. We can't evaluate the glob import when
@@ -13,6 +15,8 @@
 // When running tests from the root of the user's project, vite will see the
 // path as `/src/Routes.tsx`. When running the tests from the web/ directory,
 // vite will see the path as `/Routes.tsx`
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore - Silence the TS error on this line for CJS builds
 const defaultExports = import.meta.glob(
   ['/src/Routes.{tsx,jsx}', '/Routes.{tsx,jsx}'],
   {

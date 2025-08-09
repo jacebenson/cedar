@@ -4,20 +4,26 @@ export function trackDbImportsPlugin(): Plugin {
   return {
     name: 'db-import-tracker',
     transform(code, id) {
-      if (id.match(/src\/lib\/db\.(js|ts)$/)) {
+      // This regex and code content check could potentially match other files.
+      // It's very unlikely, but it is possible. For now this is good enough
+      if (
+        id.match(/\/api\/src\/lib\/db\.(js|ts)$/) &&
+        code.includes('PrismaClient')
+      ) {
         // Inserting the code last (instead of at the top) works nicer with
         // sourcemaps
         return (
           code +
-          '\n\n;' +
-          'if (typeof globalThis !== "undefined") {\n' +
-          '  globalThis.__cedarjs_db_imported__ = true;\n' +
-          '} else {\n' +
-          '  throw new Error(\n' +
-          '    "vite-plugin-track-db-imports: globalThis is undefined. " +\n' +
-          '    "This is an error with CedarJS"\n' +
-          '  );\n' +
-          '}\n'
+          `
+          ;if (typeof globalThis !== "undefined") {
+            globalThis.__cedarjs_db_imported__ = true;
+          } else {
+            throw new Error(
+              "vite-plugin-track-db-imports: globalThis is undefined. " +
+              "This is an error with CedarJS"
+            );
+          }
+          `
         )
       }
 

@@ -5,10 +5,11 @@
     "tsBuildInfoFile": "./tsconfig.cjs.tsbuildinfo"
   },
   "exclude": [
+    "dist",
+    "node_modules",
     "**/__tests__",
-    "",
-    "// The following files are only used by ESM projects",
-    "src/web/globRoutesImporter.ts",
-    "src/vitest"
+    "**/__mocks__",
+    "**/*.test.*",
+    "src/api/vitest"
   ]
 }
