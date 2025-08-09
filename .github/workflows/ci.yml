@@ -269,7 +269,10 @@ jobs:
 
       - name: Run db import tracking tests
         run: |
-          test -f ./vitest-sort.config.ts && npx vitest --config ./vitest-sort.config.ts run
+          # Only run this for ESM projects where the vitest config file exists
+          if test -f ./vitest-sort.config.ts; then
+            npx vitest --config ./vitest-sort.config.ts run
+          fi
         working-directory: ${{ steps.set-up-test-project.outputs.test-project-path }}/api
 
       - name: 🖥️ Run serve smoke tests
