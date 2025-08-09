@@ -913,6 +913,9 @@ export async function apiTasks(
         fs.copyFileSync(templatePath2, testFilePath2)
         fs.copyFileSync(templatePath3, testFilePath3)
 
+        // I opted to add an additional vitest config file rather than modifying
+        // the existing one because I wanted to keep one looking exactly the
+        // same as it'll look in user's projects.
         fs.copyFileSync(
           path.join(templatesDir, 'vitest-sort.config.ts'),
           path.join(OUTPUT_PATH, 'api', 'vitest-sort.config.ts'),
