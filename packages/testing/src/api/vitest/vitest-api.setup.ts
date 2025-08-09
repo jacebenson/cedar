@@ -64,7 +64,7 @@ declare global {
   // eslint-disable-next-line no-var
   var defineScenario: DefineScenario
   // eslint-disable-next-line no-var
-  var __cedarjs_db_imported__: string
+  var __cedarjs_db_imported__: boolean
 }
 
 globalThis.defineScenario = defineScenario
