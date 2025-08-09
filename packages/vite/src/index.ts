@@ -29,8 +29,6 @@ export { cedarTransformJsAsJsx } from './plugins/vite-plugin-jsx-loader.js'
 export { cedarMergedConfig } from './plugins/vite-plugin-merged-config.js'
 export { cedarSwapApolloProvider } from './plugins/vite-plugin-swap-apollo-provider.js'
 
-export { getEnvVarDefinitions } from './lib/envVarDefinitions.js'
-
 type PluginOptions = {
   mode?: string | undefined
 }
