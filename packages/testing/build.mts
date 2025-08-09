@@ -1,12 +1,8 @@
 import fs from 'node:fs'
 
+import { build, buildEsm, defaultBuildOptions } from '@cedarjs/framework-tools'
 import {
-  build,
-  buildEsm,
-  defaultBuildOptions,
-  defaultIgnorePatterns,
-} from '@cedarjs/framework-tools'
-import {
+  generateTypesCjs,
   generateTypesEsm,
   insertCommonJsPackageJson,
 } from '@cedarjs/framework-tools/generateTypes'
