@@ -915,7 +915,7 @@ export async function apiTasks(
 
         fs.copyFileSync(
           path.join(templatesDir, 'vitest-sort.config.ts'),
-          path.join(testsDir, 'vitest-sort.config.ts'),
+          path.join(OUTPUT_PATH, 'api', 'vitest-sort.config.ts'),
         )
       },
     },
