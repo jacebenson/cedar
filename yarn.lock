@@ -3562,6 +3562,7 @@ __metadata:
     "@cedarjs/internal": "npm:0.7.1"
     "@cedarjs/project-config": "npm:0.7.1"
     "@cedarjs/server-store": "npm:0.7.1"
+    "@cedarjs/testing": "npm:0.7.1"
     "@cedarjs/web": "npm:0.7.1"
     "@hyrious/esbuild-plugin-commonjs": "npm:0.2.6"
     "@swc/core": "npm:1.13.3"
