@@ -11232,6 +11232,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/klaw-sync@npm:6.0.5":
+  version: 6.0.5
+  resolution: "@types/klaw-sync@npm:6.0.5"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/4a5c1f60d314b0add5a66fb60d3180932e666ff1278639a96144f234a260890aa9a71b2547ccc7c574d298b222f369b49dbbcff60408ce8baaf91ad94f478852
+  languageName: node
+  linkType: hard
+
 "@types/line-column@npm:1.0.2":
   version: 1.0.2
   resolution: "@types/line-column@npm:1.0.2"
@@ -14945,6 +14954,7 @@ __metadata:
     "@opentelemetry/sdk-trace-node": "npm:1.22.0"
     "@opentelemetry/semantic-conventions": "npm:1.22.0"
     "@types/babel__core": "npm:7.20.5"
+    "@types/klaw-sync": "npm:6.0.5"
     ansis: "npm:4.1.0"
     check-node-version: "npm:4.2.1"
     ci-info: "npm:4.0.0"
