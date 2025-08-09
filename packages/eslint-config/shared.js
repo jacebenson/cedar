@@ -184,7 +184,6 @@ module.exports = {
         '*.config.js',
         '*.config.cjs',
         'jest.setup.js',
-        'jest.setup.cjs',
       ],
       env: {
         node: true,
