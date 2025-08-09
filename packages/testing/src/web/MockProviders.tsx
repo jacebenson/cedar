@@ -44,3 +44,14 @@ export const MockProviders: React.FunctionComponent<{
     </RedwoodProvider>
   )
 }
+
+function isModuleNotFoundError(error: unknown, module: string) {
+  return (
+    !!error &&
+    typeof error === 'object' &&
+    'code' in error &&
+    error.code === 'MODULE_NOT_FOUND' &&
+    'moduleName' in error &&
+    error.moduleName === module
+  )
+}
