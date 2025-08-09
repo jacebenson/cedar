@@ -202,6 +202,13 @@ beforeAll(async () => {
   await configureTeardown()
 })
 
+afterAll(() => {
+  // afterAll runs after all the tests in a single test file, and then for the
+  // next test file the code that's injected in src/lib/db.ts in the user's
+  // project will set this to `true` again if it's imported
+  globalThis.__cedarjs_db_imported__ = false
+})
+
 async function teardown() {
   if (!wasDbImported()) {
     return
