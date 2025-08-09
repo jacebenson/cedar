@@ -1,6 +1,6 @@
 import { posts } from 'src/services/posts/posts.js'
 
-test('Cedar is correctly tracking db imports 2', () => {
+test('Cedar is correctly tracking db imports 2', async () => {
   const allPosts = await posts()
   expect(Array.isArray(allPosts)).toEqual(true)
 
