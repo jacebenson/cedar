@@ -435,8 +435,6 @@ async function handleTypescriptPreference(typescriptFlag) {
 }
 
 async function handleEsmPreference(esmFlag) {
-  console.log('Handling ESM preference')
-  console.log('  esmFlag:', esmFlag)
   // Handle case where flag is set
   if (esmFlag !== null) {
     tui.drawText(
@@ -724,8 +722,6 @@ async function createRedwoodApp() {
 
   const parsedFlags = cli.parse()
 
-  console.log('parsedFlags:', parsedFlags)
-
   tui.drawText(
     [
       '',
@@ -779,8 +775,6 @@ async function createRedwoodApp() {
     templatesDir,
     useTypescript ? (useEsm ? 'esm-ts' : 'ts') : useEsm ? 'esm-js' : 'js',
   )
-
-  console.log('templateDir:', templateDir)
 
   // Determine git preference
   const useGit = await handleGitPreference(gitInitFlag)
