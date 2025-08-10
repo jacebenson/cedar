@@ -34,7 +34,7 @@ export * from './components/MetaTags.js'
 export * from './components/Metadata.js'
 import * as helmetPkg from '@dr.pogodin/react-helmet'
 
-const { Helmet } = helmetPkg.default || helmetPkg
+const { Helmet } = helmetPkg
 export { Helmet as Head, Helmet }
 
 export * from './components/htmlTags.js'
