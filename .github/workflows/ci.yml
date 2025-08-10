@@ -675,7 +675,7 @@ jobs:
     needs: detect-changes
     if: needs.detect-changes.outputs.code == 'false'
 
-    name: 🌲 Create Cedar App
+    name: 🌲 Create Cedar App / create-cedar-app
     runs-on: ubuntu-latest
 
     steps:
