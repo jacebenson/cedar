@@ -100,17 +100,6 @@
     "./web/vitest": {
       "types": "./dist/web/vitest/index.d.ts",
       "default": "./dist/web/vitest/index.js"
-    },
-    "./mockContext": {
-      "// TODO": "./is the mockContext export still needed?",
-      "import": {
-        "types": "./dist/api/mockContext.d.ts",
-        "default": "./dist/api/mockContext.js"
-      },
-      "require": {
-        "types": "./dist/cjs/api/mockContext.d.ts",
-        "default": "./dist/cjs/api/mockContext.js"
-      }
     }
   },
   "files": [
