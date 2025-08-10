@@ -37,7 +37,7 @@ async function main() {
 }
 
 /**
- *  *@param {{canary: boolean}} options
+ * @param {{canary: boolean}} options
  * @returns {Promise<void>}
  */
 async function setUpTestProject({ canary }) {
