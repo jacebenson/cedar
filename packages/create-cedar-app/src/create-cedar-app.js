@@ -744,7 +744,7 @@ async function createRedwoodApp() {
     parsedFlags['yarn-install'] ??
     (_isYarnBerryOrNewer ? parsedFlags.yes : null)
   const typescriptFlag = parsedFlags.typescript ?? parsedFlags.yes
-  const esmFlag = parsedFlags.esm ?? parsedFlags.yes
+  const esmFlag = parsedFlags.esm // TODO: ?? parsedFlags.yes
   const overwrite = parsedFlags.overwrite
   const gitInitFlag = parsedFlags['git-init'] ?? parsedFlags.yes
   const commitMessageFlag =
