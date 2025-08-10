@@ -98,7 +98,7 @@ export const getWebSideBabelPlugins = (
           // it auto-imports the gql tag from graphql-tag
           !useTrustedDocumentsGqlTag && {
             // import { gql } from 'graphql-tag'
-            members: ['gql'],
+            default: 'gql',
             path: 'graphql-tag',
           },
           // if projects use trusted documents
