@@ -96,6 +96,7 @@ const globRoutesImporterFile = fs.readFileSync(
   globRoutesImporterBuildPath,
   'utf-8',
 )
+
 fs.writeFileSync(
   globRoutesImporterBuildPath,
   globRoutesImporterFile.replaceAll(
