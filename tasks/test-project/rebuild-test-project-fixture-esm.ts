@@ -259,7 +259,7 @@ const createProject = () => {
   const subprocess = exec(
     cmd,
     // We create a ts project and convert using ts-to-js at the end if typescript flag is false
-    ['--no-yarn-install', '--typescript', '--overwrite', '--no-git'],
+    ['--no-yarn-install', '--typescript', '--overwrite', '--no-git', '--esm'],
     getExecaOptions(RW_FRAMEWORK_PATH),
   )
 
@@ -563,7 +563,7 @@ async function runCommand() {
       )
       const templateRootPackageJsonPath = path.join(
         __dirname,
-        '../../packages/create-cedar-app/templates/ts/package.json',
+        '../../packages/create-cedar-app/templates/esm-ts/package.json',
       )
       const newRootPackageJson = JSON.parse(
         fs.readFileSync(templateRootPackageJsonPath, 'utf8'),
