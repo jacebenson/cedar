@@ -770,7 +770,6 @@ async function createRedwoodApp() {
   const useEsm = await handleEsmPreference(esmFlag)
   trace.getActiveSpan()?.setAttribute('esm', useEsm)
 
-  // TODO: esm-ts
   const templateDir = path.join(
     templatesDir,
     useTypescript ? (useEsm ? 'esm-ts' : 'ts') : useEsm ? 'esm-js' : 'js',
