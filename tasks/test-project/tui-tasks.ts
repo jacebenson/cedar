@@ -375,14 +375,14 @@ async function addModel(schema: string) {
   fs.writeFileSync(path, `${current.trim()}\n\n${schema}\n`)
 }
 
-interface ApiTaskOptions {
+interface ApiTasksOptions {
   linkWithLatestFwBuild: boolean
   esmProject: boolean
 }
 
 export async function apiTasks(
   outputPath: string,
-  { linkWithLatestFwBuild, esmProject }: ApiTaskOptions,
+  { linkWithLatestFwBuild, esmProject }: ApiTasksOptions,
 ) {
   OUTPUT_PATH = outputPath
 
@@ -901,12 +901,9 @@ export async function apiTasks(
       },
     },
     {
-      title: 'Add vitest db import tracking tests',
+      title: 'Add vitest db import tracking tests for ESM test project',
       task: () => {
         if (!esmProject) {
-          console.log(
-            'Skipping vitest db import tracking tests for non-ESM projects',
-          )
           return
         }
 
