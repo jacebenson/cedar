@@ -267,7 +267,10 @@ const createProject = () => {
 }
 
 const copyProject = async () => {
-  const fixturePath = path.join(RW_FRAMEWORK_PATH, '__fixtures__/test-project')
+  const fixturePath = path.join(
+    RW_FRAMEWORK_PATH,
+    '__fixtures__/esm-test-project',
+  )
 
   // remove existing Fixture
   await rimraf(fixturePath)
@@ -407,7 +410,7 @@ async function runCommand() {
     task: () => {
       return apiTasks(OUTPUT_PROJECT_PATH, {
         linkWithLatestFwBuild: true,
-        esmProject: false,
+        esmProject: true,
       })
     },
   })
