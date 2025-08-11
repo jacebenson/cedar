@@ -1,4 +1,4 @@
-import type { gql as _gql } from 'graphql-tag'
+import type _gql from 'graphql-tag'
 
 type Gql = typeof _gql
 
