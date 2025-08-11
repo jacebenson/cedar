@@ -3606,6 +3606,9 @@ __metadata:
     whatwg-fetch: "npm:3.6.20"
   peerDependencies:
     vitest: 3.2.4
+  peerDependenciesMeta:
+    vitest:
+      optional: true
   languageName: unknown
   linkType: soft
 
