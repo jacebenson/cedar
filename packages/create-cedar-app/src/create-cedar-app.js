@@ -452,7 +452,7 @@ async function handleEsmPreference(esmFlag) {
       name: 'esm',
       choices: ['CJS', 'ESM'],
       message: 'Select your preferred project type',
-      initial: 'CJS',
+      initial: 'ESM',
     })
     return response.esm === 'ESM'
   } catch (_error) {
