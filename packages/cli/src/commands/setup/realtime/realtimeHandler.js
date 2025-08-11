@@ -62,18 +62,24 @@ export async function handler({ force, includeExamples, verbose }) {
         title: 'Adding Countdown example subscription ...',
         enabled: () => includeExamples,
         task: async () => {
-          const exampleSubscriptionTemplateContent = fs.readFileSync(
+          let exampleSubscriptionTemplateContent = fs.readFileSync(
             path.resolve(
               import.meta.dirname,
               'templates',
               'subscriptions',
               'countdown',
-              projectIsEsm()
-                ? 'esm-countdown.ts.template'
-                : `countdown.ts.template`,
+              `countdown.ts.template`,
             ),
             'utf-8',
           )
+
+          if (projectIsEsm()) {
+            exampleSubscriptionTemplateContent =
+              exampleSubscriptionTemplateContent.replace(
+                "import gql from 'graphql-tag'",
+                "import { gql } from 'graphql-tag'",
+              )
+          }
 
           const exampleFile = path.join(
             redwoodPaths.api.subscriptions,
@@ -145,18 +151,24 @@ export async function handler({ force, includeExamples, verbose }) {
 
           // subscription
 
-          const exampleSubscriptionTemplateContent = fs.readFileSync(
+          let exampleSubscriptionTemplateContent = fs.readFileSync(
             path.resolve(
               import.meta.dirname,
               'templates',
               'subscriptions',
               'newMessage',
-              projectIsEsm()
-                ? 'esm-newMessage.ts.template'
-                : 'newMessage.ts.template',
+              'newMessage.ts.template',
             ),
             'utf-8',
           )
+
+          if (projectIsEsm()) {
+            exampleSubscriptionTemplateContent =
+              exampleSubscriptionTemplateContent.replace(
+                "import gql from 'graphql-tag'",
+                "import { gql } from 'graphql-tag'",
+              )
+          }
 
           const exampleFile = path.join(
             redwoodPaths.api.subscriptions,
