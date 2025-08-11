@@ -95,29 +95,6 @@ test('api prebuild uses babel config only from the api side root', () => {
   expect(code).not.toContain(`import kitty from "kitty-purr"`)
 })
 
-// Still a bit of a mystery why this plugin isn't transforming gql tags
-test.skip('api prebuild transforms gql with `babel-plugin-graphql-tag`', async () => {
-  // babel-plugin-graphql-tag should transpile the "gql" parts of our files,
-  // achieving the following:
-  // 1. removing the `graphql-tag` import
-  // 2. convert the gql syntax into graphql's ast.
-  //
-  // https://www.npmjs.com/package/babel-plugin-graphql-tag
-  const builtFiles = await prebuildApiFiles(findApiFiles())
-  const p = builtFiles
-    .filter((x) => typeof x !== 'undefined')
-    .filter((p) => p.endsWith('todos.sdl.js'))
-    .pop()
-
-  if (!p) {
-    throw new Error('No built files')
-  }
-
-  const code = fs.readFileSync(p, 'utf-8')
-  expect(code.includes('import gql from "graphql-tag";')).toEqual(false)
-  expect(code.includes('gql`')).toEqual(false)
-})
-
 test('jest mock statements also handle', () => {
   const pathToTest = path.join(getPaths().api.services, 'todos/todos.test.js')
 
