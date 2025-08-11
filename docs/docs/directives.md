@@ -137,7 +137,7 @@ export default isSubscriber
 Since validator directives can access arguments (such as `roles`), you can quickly provide RBAC (Role-based Access Control) to fields, queries and mutations.
 
 ```tsx
-import { gql } from 'graphql-tag'
+import gql from 'graphql-tag'
 
 import { createValidatorDirective } from '@cedarjs/graphql-server'
 
@@ -159,7 +159,11 @@ const requireAuth = createValidatorDirective(schema, validate)
 export default requireAuth
 ```
 
-All Redwood apps come with two built-in validator directives: `@requireAuth` and `@skipAuth`.
+(Note that the `gql` import should be `import { gql } from 'graphql-tag'` in
+apps that use ESM)
+
+All Cedar apps come with two built-in validator directives: `@requireAuth` and
+`@skipAuth`.
 The `@requireAuth` directive takes optional roles.
 You may use these to protect against unwanted GraphQL access to your data.
 Or explicitly allow public access.
