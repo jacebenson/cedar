@@ -40,7 +40,31 @@ jobs:
         working-directory: ${{ steps.set-up-test-project.outputs.test-project-path }}
 
       - name: Run "rw test api"
-        run: yarn rw test api --no-watch
+        # Having a bunch of `ls` statements here to see if I can spot anything
+        # weird looking when this step fails
+        run: |
+          echo ""
+          echo "# ls /"
+          ls ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing
+          echo ""
+          echo "# ls /config"
+          ls ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing/config
+          echo ""
+          echo "# ls /config/jest"
+          ls ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing/config/jest
+          echo ""
+          echo "# ls /config/jest/api"
+          ls ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing/config/jest/api
+          echo ""
+          echo "# cat /package.json"
+          cat ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing/package.json && echo ""
+          echo ""
+          echo "# cat /config/jest/api/package.json"
+          cat ${{ steps.set-up-test-project.outputs.test-project-path }}/node_modules/@cedarjs/testing/config/jest/api/package.json && echo ""
+          echo ""
+          echo ""
+          echo "# Starting test"
+          yarn rw test api --no-watch
         working-directory: ${{ steps.set-up-test-project.outputs.test-project-path }}
 
       - name: Run "rw test web"
