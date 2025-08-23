@@ -168,7 +168,7 @@ module.exports = defineConfig({
     const branch = await gitBranch()
 
     enforceConsistentDependenciesAcrossTheProject(ctx)
-    if (branch !== 'next' && branch.startsWith('release/')) {
+    if (branch !== 'next' && !branch?.startsWith('release/')) {
       enforceWorkspaceDependenciesWhenPossible(ctx)
     }
     enforceNotProdAndDevDependencies(ctx)
