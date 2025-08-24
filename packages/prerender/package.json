@@ -1,6 +1,6 @@
 {
   "name": "@cedarjs/prerender",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "CedarJS prerender",
   "repository": {
     "type": "git",
@@ -40,11 +40,11 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@cedarjs/babel-config": "0.8.0",
-    "@cedarjs/project-config": "0.8.0",
-    "@cedarjs/router": "0.8.0",
-    "@cedarjs/structure": "0.8.0",
-    "@cedarjs/web": "0.8.0",
+    "@cedarjs/babel-config": "0.9.0",
+    "@cedarjs/project-config": "0.9.0",
+    "@cedarjs/router": "0.9.0",
+    "@cedarjs/structure": "0.9.0",
+    "@cedarjs/web": "0.9.0",
     "@rollup/plugin-alias": "5.1.1",
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.1",
