@@ -167,8 +167,8 @@ async function executeCompatibilityCheck(templateDir) {
 }
 
 /**
- *
- * This type has to be updated if the engines field in the create redwood app template package.json is updated.
+ * This type has to be updated if the engines field in the create cedar app
+ * template package.json is updated.
  * @returns [boolean, Record<'node' | 'yarn', any>]
  */
 function checkNodeVersion(templateDir) {
@@ -760,9 +760,6 @@ async function createRedwoodApp() {
 
   const templatesDir = fileURLToPath(new URL('../templates', import.meta.url))
 
-  // Engine check
-  await executeCompatibilityCheck(path.join(templatesDir, 'ts'))
-
   targetDir = await handleTargetDirPreference(targetDir)
 
   // Determine ts/js preference
@@ -777,6 +774,9 @@ async function createRedwoodApp() {
     templatesDir,
     useTypescript ? (useEsm ? 'esm-ts' : 'ts') : useEsm ? 'esm-js' : 'js',
   )
+
+  // Engine check
+  await executeCompatibilityCheck(templateDir)
 
   // Determine git preference
   const useGit = await handleGitPreference(gitInitFlag)
