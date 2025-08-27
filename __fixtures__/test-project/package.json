@@ -7,9 +7,9 @@
     ]
   },
   "devDependencies": {
-    "@cedarjs/core": "0.10.1",
-    "@cedarjs/project-config": "0.10.1",
-    "@cedarjs/testing": "0.10.1",
+    "@cedarjs/core": "0.10.2",
+    "@cedarjs/project-config": "0.10.2",
+    "@cedarjs/testing": "0.10.2",
     "prettier-plugin-tailwindcss": "^0.5.12"
   },
   "eslintConfig": {
