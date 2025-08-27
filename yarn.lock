@@ -4183,11 +4183,11 @@ __metadata:
     fs-extra: "npm:11.2.0"
     glob: "npm:11.0.3"
     http-proxy-middleware: "npm:3.0.5"
-    isbot: "npm:5.1.29"
+    isbot: "npm:5.1.30"
     memfs: "npm:4.17.2"
     publint: "npm:0.3.12"
     react: "npm:18.3.1"
-    react-server-dom-webpack: "npm:19.0.0-rc-8269d55d-20240802"
+    react-server-dom-webpack: "npm:19.0.0-rc-f2df5694-20240916"
     rimraf: "npm:6.0.1"
     rollup: "npm:4.24.0"
     tsx: "npm:4.20.5"
@@ -16143,7 +16143,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.26.10"
     "@babel/plugin-transform-typescript": "npm:^7.26.8"
-    "@cedarjs/framework-tools": "workspace:*"
+    "@cedarjs/framework-tools": "npm:0.10.1"
     "@cedarjs/tui": "npm:0.10.1"
     "@opentelemetry/api": "npm:1.8.0"
     "@opentelemetry/exporter-trace-otlp-http": "npm:0.49.1"
@@ -21465,10 +21465,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isbot@npm:5.1.29":
-  version: 5.1.29
-  resolution: "isbot@npm:5.1.29"
-  checksum: 10c0/a230429cf6de4b551c129aee8a52b65a6f298a440301537072ddfe94e1eeb481d55bbab1a743084d079c23c71e72ebd89a421d6f7e897f9807493a2f4900319d
+"isbot@npm:5.1.30":
+  version: 5.1.30
+  resolution: "isbot@npm:5.1.30"
+  checksum: 10c0/00a34842c0573669830ef17fc8b0ce8e3a947835179c13e10da737899310b33d1644fbab8042a8963d581010cce6ae46cd6ee947bd5e79465e29b9cbead44113
   languageName: node
   linkType: hard
 
@@ -27371,17 +27371,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-server-dom-webpack@npm:19.0.0-rc-8269d55d-20240802":
-  version: 19.0.0-rc-8269d55d-20240802
-  resolution: "react-server-dom-webpack@npm:19.0.0-rc-8269d55d-20240802"
+"react-server-dom-webpack@npm:19.0.0-rc-f2df5694-20240916":
+  version: 19.0.0-rc-f2df5694-20240916
+  resolution: "react-server-dom-webpack@npm:19.0.0-rc-f2df5694-20240916"
   dependencies:
     acorn-loose: "npm:^8.3.0"
     neo-async: "npm:^2.6.1"
+    webpack-sources: "npm:^3.2.0"
   peerDependencies:
-    react: 19.0.0-rc-8269d55d-20240802
-    react-dom: 19.0.0-rc-8269d55d-20240802
+    react: 19.0.0-rc-f2df5694-20240916
+    react-dom: 19.0.0-rc-f2df5694-20240916
     webpack: ^5.59.0
-  checksum: 10c0/b483cecdd77d0ba1aada0b00d8cede2fad4d010c97022ad859e2094bb3aa9cd5c16c5267806ef4fa21777250c4bb6ae3c9b0f4c6578b24d1af9f8bb23e172d74
+  checksum: 10c0/ff1890ceca1306df12073fdac579077c35cd411d1a21c6f43bf60065e0121fdfe860f1befccb9e367ba73a37c99add0233780af07528dde77c43d35e641faaf7
   languageName: node
   linkType: hard
 
@@ -31716,6 +31717,13 @@ __metadata:
   version: 7.0.0
   resolution: "webidl-conversions@npm:7.0.0"
   checksum: 10c0/228d8cb6d270c23b0720cb2d95c579202db3aaf8f633b4e9dd94ec2000a04e7e6e43b76a94509cdb30479bd00ae253ab2371a2da9f81446cc313f89a4213a2c4
+  languageName: node
+  linkType: hard
+
+"webpack-sources@npm:^3.2.0":
+  version: 3.3.3
+  resolution: "webpack-sources@npm:3.3.3"
+  checksum: 10c0/ab732f6933b513ba4d505130418995ddef6df988421fccf3289e53583c6a39e205c4a0739cee98950964552d3006604912679c736031337fb4a9d78d8576ed40
   languageName: node
   linkType: hard
 
