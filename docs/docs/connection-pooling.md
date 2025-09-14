@@ -4,9 +4,9 @@ description: Scale your serverless functions
 
 # Connection Pooling
 
-> ⚠ **Work in Progress** ⚠️
+> ⚠️ **Work in Progress** ⚠️
 >
-> There's more to document here. In the meantime, you can check our [community forum](https://community.redwoodjs.com/search?q=connection%20pooling) for answers.
+> There's more to document here. In the meantime, you can check the [Redwood community forums](https://community.redwoodjs.com/search?q=connection%20pooling) for answers.
 >
 > Want to contribute? CedarJS welcomes contributions and loves helping people become contributors.
 > You can edit this doc [here](https://github.com/cedarjs/cedarjs.com/blob/main/docs/connectionPooling.md).
@@ -29,7 +29,7 @@ In a Serverless environment, each function connects directly to the database, wh
 
 ### Prisma Postgres
 
-[Prisma Postgres](https://www.prisma.io/docs/postgres/introduction/overview?utm_source=cedarjs_docs&utm_medium=docs) is a managed PostgreSQL database service that includes:
+[Prisma Postgres](https://www.prisma.io/docs/postgres/introduction/overview) is a managed PostgreSQL database service that includes:
 
 - **Built-in connection pooling**: No need to configure external pooling services
 - **Global caching**: Query-level caching with TTL and Stale-While-Revalidate strategies
@@ -38,11 +38,11 @@ In a Serverless environment, each function connects directly to the database, wh
 
 Prisma Postgres supports schema migrations and queries via Prisma ORM, and automatically handles connection pooling and caching.
 
-To get started with Prisma Postgres, visit the [Prisma Postgres documentation](https://www.prisma.io/docs/postgres/introduction/overview?utm_source=cedarjs_docs&utm_medium=docs).
+To get started with Prisma Postgres, visit the [Prisma Postgres documentation](https://www.prisma.io/docs/postgres/introduction/overview).
 
 #### Local Prisma Postgres
 
-For local development, you can use [local Prisma Postgres](https://www.prisma.io/docs/postgres/database/local-development?utm_source=cedarjs_docs&utm_medium=docs) which runs a PostgreSQL-compatible database locally. This eliminates the need to install and manage PostgreSQL locally while maintaining full compatibility with production PostgreSQL databases.
+For local development, you can use [local Prisma Postgres](https://www.prisma.io/docs/postgres/database/local-development) which runs a PostgreSQL-compatible database locally. This eliminates the need to install and manage PostgreSQL locally while maintaining full compatibility with production PostgreSQL databases.
 
 :::note
 
@@ -77,7 +77,7 @@ Keep the server running while performing migrations and using the database for l
 
 #### Temporary Prisma Postgres database
 
-For quick testing or prototyping, [Prisma Postgres](https://www.prisma.io/postgres) offers temporary production-ready databases that also requires no setup or accounts. Use [`npx create-db`](https://www.prisma.io/docs/postgres/introduction/npx-create-db?utm_source=cedarjs_docs&utm_medium=docs) to create a database that's automatically deleted after 24 hours:
+For quick testing or prototyping, [Prisma Postgres](https://www.prisma.io/postgres) offers temporary production-ready databases that also requires no setup or accounts. Use [`npx create-db`](https://www.prisma.io/docs/postgres/introduction/npx-create-db) to create a database that's automatically deleted after 24 hours:
 
 ```bash
 npx create-db@latest
