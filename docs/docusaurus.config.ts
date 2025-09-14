@@ -8,7 +8,7 @@ import fileExtSwitcher from './src/remark/file-ext-switcher.mjs'
 
 const config: Config = {
   customFields: {
-    defaultDocsLandingPage: 'index', // redirects here when hitting /docs/
+    defaultDocsLandingPage: 'introduction', // redirects here when hitting /docs/
     defaultSectionLandingPages: {
       // map of what is considered the first article in each section
       // section: id

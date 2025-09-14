@@ -5,7 +5,7 @@ import Link from '@docusaurus/Link'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import Layout from '@theme/Layout'
 
-import sidebars from '../../sidebars'
+import sidebars from '../../sidebars.js'
 
 import styles from './styles.module.css'
 
@@ -145,7 +145,8 @@ export default function Home() {
               typeof section === 'string'
                 ? section
                 : section.link?.slug?.replace(/^\//, '') ||
-                  section.items?.at(0)?.id
+                  section.items?.at(0)?.id ||
+                  section.items?.at(0)?.dirName
 
             return (
               <li key={linkTarget}>
