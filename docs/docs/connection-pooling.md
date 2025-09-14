@@ -14,7 +14,20 @@ description: Scale your serverless functions
 
 Production Cedar apps should enable connection pooling in order to properly scale with your Serverless functions.
 
-## Prisma Postgres
+## Why Connection Pooling?
+
+Relational databases have a maximum number of concurrent client connections.
+
+- Postgres allows 100 by default
+- MySQL allows 151 by default
+
+In a traditional server environment, you would need a large amount of traffic (and therefore web servers) to exhaust these connections, since each web server instance typically leverages a single connection.
+
+In a Serverless environment, each function connects directly to the database, which can exhaust limits quickly. To prevent connection errors, you should add a connection pooling service in front of your database. Think of it as a load balancer.
+
+## Prisma
+
+### Prisma Postgres
 
 [Prisma Postgres](https://www.prisma.io/docs/postgres/introduction/overview?utm_source=cedarjs_docs&utm_medium=docs) is a managed PostgreSQL database service that includes:
 
@@ -27,7 +40,7 @@ Prisma Postgres supports schema migrations and queries via Prisma ORM, and autom
 
 To get started with Prisma Postgres, visit the [Prisma Postgres documentation](https://www.prisma.io/docs/postgres/introduction/overview?utm_source=cedarjs_docs&utm_medium=docs).
 
-### Local Prisma Postgres
+#### Local Prisma Postgres
 
 For local development, you can use [local Prisma Postgres](https://www.prisma.io/docs/postgres/database/local-development?utm_source=cedarjs_docs&utm_medium=docs) which runs a PostgreSQL-compatible database locally. This eliminates the need to install and manage PostgreSQL locally while maintaining full compatibility with production PostgreSQL databases.
 
@@ -62,7 +75,7 @@ DATABASE_URL="postgresql://localhost:54322/main"
 
 Keep the server running while performing migrations and using the database for local development.
 
-### Temporary Prisma Postgres database
+#### Temporary Prisma Postgres database
 
 For quick testing or prototyping, [Prisma Postgres](https://www.prisma.io/postgres) offers temporary production-ready databases that also requires no setup or accounts. Use [`npx create-db`](https://www.prisma.io/docs/postgres/introduction/npx-create-db?utm_source=cedarjs_docs&utm_medium=docs) to create a database that's automatically deleted after 24 hours:
 
@@ -72,7 +85,7 @@ npx create-db@latest
 
 This provides both Prisma ORM-optimized and standard PostgreSQL connection strings. You can also claim the database to make it permanent if needed.
 
-## Prisma ORM & Prisma Accelerate
+### Prisma ORM & Prisma Accelerate
 
 If you're already using another database provider (like Supabase, Heroku, Digital Ocean, or AWS RDS), you can add connection pooling and caching to your existing setup using [Prisma Accelerate](https://www.prisma.io/docs/accelerate).
 
@@ -86,7 +99,7 @@ Prisma Accelerate is a fully managed global connection pool and caching layer th
 
 To enable Prisma Accelerate with your existing database, visit the [Prisma Accelerate documentation](https://www.prisma.io/docs/accelerate).
 
-## Prisma & PgBouncer
+### Prisma & PgBouncer
 
 PgBouncer holds a connection pool to the database and proxies incoming client connections by sitting between Prisma Client and the database. This reduces the number of processes a database has to handle at any given time. PgBouncer passes on a limited number of connections to the database and queues additional connections for delivery when space becomes available.
 
