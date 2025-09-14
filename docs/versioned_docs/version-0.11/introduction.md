@@ -35,8 +35,8 @@ We warmly welcome you!
 As you can probably tell from the sidebar, CedarJS's docs are organized into three sections:
 
 - [Tutorial](tutorial/foreword.md)
-- [Reference](index)
-- [How To](how-to/index)
+- [Reference](reference)
+- [How To](how-to)
 
 The order isn't arbitrary.
 This is more or less the learning journey we have in mind for you.
