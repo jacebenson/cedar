@@ -81,9 +81,7 @@ function updatePackageJsonWithVersion(filePath: string, version: string) {
 
   // Update dependencies
   if (packageJson.dependencies) {
-    for (const [pkg, currentVersion] of Object.entries(
-      packageJson.dependencies,
-    )) {
+    for (const [pkg] of Object.entries(packageJson.dependencies)) {
       if (pkg.startsWith('@cedarjs/')) {
         packageJson.dependencies[pkg] = version
       }
@@ -92,9 +90,7 @@ function updatePackageJsonWithVersion(filePath: string, version: string) {
 
   // Update devDependencies
   if (packageJson.devDependencies) {
-    for (const [pkg, currentVersion] of Object.entries(
-      packageJson.devDependencies,
-    )) {
+    for (const [pkg] of Object.entries(packageJson.devDependencies)) {
       if (pkg.startsWith('@cedarjs/')) {
         packageJson.devDependencies[pkg] = version
       }
@@ -252,11 +248,13 @@ async function main() {
 
     if (branchParts.length !== 3 || branchParts[0] !== 'release') {
       throw new Error(
-        `Invalid branch name format. Expected: release/{semver}/v{version}, got: ${branchName}`,
+        'Invalid branch name format. Expected: release/{semver}/v{version}, ' +
+          `got: ${branchName}`,
       )
     }
 
-    const semver = branchParts[1] // 'minor'
+    // i.e. 'minor'
+    const semver = branchParts[1]
 
     log(`Publishing release candidate with ${semver} bump`)
 
