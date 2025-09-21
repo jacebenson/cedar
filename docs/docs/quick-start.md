@@ -39,9 +39,9 @@ yarn cedarjs dev
 
 Your browser should automatically open to [http://localhost:8910](http://localhost:8910) where you'll see the Welcome Page, which links out to many great resources:
 
-<img data-mode="light" src="https://user-images.githubusercontent.com/300/145314717-431cdb7a-1c45-4aca-9bbc-74df4f05cc3b.png" alt="CedarJS Welcome Page" style={{ marginBottom: 20 }} />
+<img data-mode="light" src="/img/quick-start-light-theme.png" alt="CedarJS Welcome Page" style={{ marginBottom: 20 }} />
 
-<img data-mode="dark" src="https://user-images.githubusercontent.com/32992335/161387013-2fc6702c-dfd8-4afe-aa2f-9b06d575ba82.png" alt="CedarJS Welcome Page" style={{ marginBottom: 20 }} />
+<img data-mode="dark" src="/img/quick-start-dark-theme.png" alt="CedarJS Welcome Page" style={{ marginBottom: 20 }} />
 
 Congratulations on running your first Cedar CLI command!
 From dev to deploy, the CLI is with you the whole way.
