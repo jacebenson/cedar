@@ -57,7 +57,7 @@ For all the details, see the [CLI reference](cli-commands.md).
 
 The fastest way to start a new Cedar project is to use GitPod ([additional documentation for working with GitPod](./how-to/using-gitpod)).
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/redwoodjs/starter)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/cedarjs/starter)
 
 ## Prisma and the database
 
