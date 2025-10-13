@@ -90,7 +90,14 @@ yarn cedarjs prisma migrate dev
 
 :::tip
 
-`rw` is short for `redwood`
+If you feel `cedarjs` is too long to type out all the time, you can use `cdr` as
+an alias:
+
+```
+yarn cdr prisma migrate dev
+yarn cdr dev
+# etc
+```
 
 :::
 
