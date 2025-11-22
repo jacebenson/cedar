@@ -141,7 +141,7 @@ what you use so I know what to keep and what to remove!
 - [ ] Future major version: Make it possible to switch existing Cedar apps to
       ESM
 - [ ] Enable strict mode for new Cedar TypeScript apps.
-- [ ] Upgrade to Node 24
+- [x] Upgrade to Node 24
 - [x] Setup dependabot/renovate to automatically merge PRs that pass all checks
 - [x] Move to Vitest for Cedar ESM apps
 
@@ -198,7 +198,7 @@ a `@cedarjs` package of the same name.
 <table>
   <tr>
     <td align="center" valign="center" width="20%"><a href="https://twodots.net"><img src="https://github.com/user-attachments/assets/a98ae112-9f66-4c0a-a450-fa410725b230" width="100px;" alt="TwoDots"/></a></td>
-    <td align="center" valign="center" width="20%"><img src="https://placehold.co/400x400?text=Your\nCompany?" width="100px;" alt=""/></td>
+    <td align="center" valign="center" width="20%"><a href="https://rhoimpact.com/"><img src="https://github.com/user-attachments/assets/1eef45f4-e5a4-42a8-b98e-7ee1b711dc4b" width="100px;" alt="Rho Impact"/></a></td>
     <td align="center" valign="center" width="20%"><img src="https://placehold.co/400x400?text=Your\nCompany?" width="100px;" alt=""/></td>
     <td align="center" valign="center" width="20%"><img src="https://placehold.co/400x400?text=Your\nCompany?" width="100px;" alt=""/></td>
     <td align="center" valign="center" width="20%"><img src="https://placehold.co/400x400?text=Your\nCompany?" width="100px;" alt=""/></td>
