@@ -29,7 +29,7 @@ jobs:
       ssr: ${{ steps.detect-changes.outputs.ssr }}
 
     steps:
-      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Set up job
         uses: ./.github/actions/set-up-job
         with:
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Set up job
         uses: ./.github/actions/set-up-job
         with:
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: Set up job
         uses: ./.github/actions/set-up-job
         with:
@@ -83,14 +83,14 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🏗 Build, lint, test / ${{ matrix.os }} / node 20 latest
+    name: 🏗 Build, lint, test / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/build-lint-test.yml
     with:
       os: ${{ matrix.os }}
 
   tutorial-e2e:
     needs: check
-    name: 🌲 Tutorial E2E / node 20 latest
+    name: 🌲 Tutorial E2E / node 24 latest
     uses: ./.github/workflows/tutorial-e2e.yml
 
   smoke-tests:
@@ -100,7 +100,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🔄 Smoke tests / ${{ matrix.os }} / node 20 latest
+    name: 🔄 Smoke tests / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/smoke-tests-test.yml
     with:
       os: ${{ matrix.os }}
@@ -112,7 +112,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🔄 Smoke tests React 18 / ${{ matrix.os }} / node 20 latest
+    name: 🔄 Smoke tests React 18 / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/smoke-tests-react-18-test.yml
     with:
       os: ${{ matrix.os }}
@@ -124,7 +124,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🔄 Smoke tests ESM / ${{ matrix.os }} / node 20 latest
+    name: 🔄 Smoke tests ESM / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/smoke-tests-test-esm.yml
     with:
       os: ${{ matrix.os }}
@@ -136,7 +136,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🔄 CLI smoke tests / ${{ matrix.os }} / node 20 latest
+    name: 🔄 CLI smoke tests / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/cli-smoke-tests.yml
     with:
       os: ${{ matrix.os }}
@@ -148,7 +148,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
-    name: 🔭 Telemetry check / ${{ matrix.os }} / node 20 latest
+    name: 🔭 Telemetry check / ${{ matrix.os }} / node 24 latest
     uses: ./.github/workflows/telemetry-check.yml
     with:
       os: ${{ matrix.os }}

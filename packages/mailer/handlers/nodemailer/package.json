@@ -26,8 +26,8 @@
   "devDependencies": {
     "@cedarjs/framework-tools": "workspace:*",
     "@types/nodemailer": "^6",
-    "tsx": "4.20.5",
-    "typescript": "5.9.2"
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
   },
   "publishConfig": {
     "access": "public"

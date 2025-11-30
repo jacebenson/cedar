@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout the framework code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Set up job
         uses: ./.github/actions/set-up-job
@@ -46,24 +46,24 @@ jobs:
           REDWOOD_TEST_PROJECT_PATH: ${{ steps.set-up-test-project-esm.outputs.test-project-path }}
           REDWOOD_DISABLE_TELEMETRY: 1
 
-      - name: Run `rw build --no-prerender`
+      - name: Run `cedar build --no-prerender`
         run: |
-          yarn rw build --no-prerender
+          yarn cedar build --no-prerender
         working-directory: ${{ steps.set-up-test-project-esm.outputs.test-project-path }}
 
-      - name: Run `rw prerender`
+      - name: Run `cedar prerender`
         run: |
-          yarn rw prerender --verbose
+          yarn cedar prerender --verbose
         working-directory: ${{ steps.set-up-test-project-esm.outputs.test-project-path }}
 
-      - name: Run `rw test web`
+      - name: Run `cedar test web`
         run: |
-          yarn rw test web --no-watch
+          yarn cedar test web --no-watch
         working-directory: ${{ steps.set-up-test-project-esm.outputs.test-project-path }}
 
-      - name: Run `rw test api`
+      - name: Run `cedar test api`
         run: |
-          yarn rw test api --no-watch
+          yarn cedar test api --no-watch
         working-directory: ${{ steps.set-up-test-project-esm.outputs.test-project-path }}
 
       - name: Run db import tracking tests

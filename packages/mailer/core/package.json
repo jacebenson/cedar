@@ -24,8 +24,8 @@
   "devDependencies": {
     "@cedarjs/api": "workspace:*",
     "@cedarjs/framework-tools": "workspace:*",
-    "tsx": "4.20.5",
-    "typescript": "5.9.2",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
     "vitest": "3.2.4"
   },
   "publishConfig": {

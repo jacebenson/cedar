@@ -17,7 +17,12 @@ import { print } from 'graphql'
 import { terminalLink } from 'termi-link'
 
 import { rootSchema } from '@cedarjs/graphql-server'
-import { getPaths, getConfig, resolveFile } from '@cedarjs/project-config'
+import {
+  getPaths,
+  getConfig,
+  resolveFile,
+  getSchemaPath,
+} from '@cedarjs/project-config'
 
 const { getSchemaWithPath } = prismaInternals
 
@@ -29,7 +34,11 @@ export const generateGraphQLSchema = async () => {
     [print(rootSchema.schema)]: {},
     'graphql/**/*.sdl.{js,ts}': {},
     'directives/**/*.{js,ts}': {},
+    '!directives/**/*.test.{js,ts}': {},
+    '!directives/**/*.spec.{js,ts}': {},
     'subscriptions/**/*.{js,ts}': {},
+    '!subscriptions/**/*.test.{js,ts}': {},
+    '!subscriptions/**/*.spec.{js,ts}': {},
   }
 
   for (const [name, schema] of Object.entries(rootSchema.scalarSchemas)) {
@@ -86,7 +95,10 @@ export const generateGraphQLSchema = async () => {
     if (e instanceof Error) {
       const match = e.message.match(/Unknown type: "(\w+)"/)
       const name = match?.[1]
-      const result = await getSchemaWithPath(redwoodProjectPaths.api.dbSchema)
+      const schemaPath = await getSchemaPath(
+        redwoodProjectPaths.api.prismaConfig,
+      )
+      const result = await getSchemaWithPath(schemaPath)
       // For string operations, concatenate the schemas
       const schemaPrisma = result.schemas
         .map(([, content]) => content)
